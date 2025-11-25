@@ -1,0 +1,368 @@
+import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
+import { colleges } from '../data/mockData';
+import { Button } from '../components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { Progress } from '../components/ui/progress';
+import {
+  MapPin,
+  GraduationCap,
+  DollarSign,
+  Users,
+  Star,
+  Heart,
+  Share2,
+  ExternalLink,
+  Award,
+  BookOpen,
+  Building2,
+  CheckCircle,
+  Calendar,
+  Phone,
+  Mail,
+  Globe
+} from 'lucide-react';
+
+const CollegeDetailPage = () => {
+  const { id } = useParams();
+  const [isSaved, setIsSaved] = useState(false);
+  
+  const college = colleges.find(c => c.id === parseInt(id));
+
+  if (!college) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">College not found</h1>
+            <Link to="/colleges">
+              <Button>Browse Colleges</Button>
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header />
+      
+      <main className="flex-grow">
+        {/* Hero section */}
+        <div className="relative h-[400px]">
+          <img
+            src={college.image}
+            alt={college.name}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+          
+          {/* Content overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-8">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex items-end justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="bg-[#f5a623] text-white text-sm font-bold px-3 py-1 rounded-full">
+                      {college.rating}
+                    </span>
+                    <span className="text-white/80 text-sm">#{college.ranking} in Best Colleges</span>
+                    {college.directAdmission && (
+                      <span className="bg-[#1a5d3a] text-white text-sm font-semibold px-3 py-1 rounded-full">
+                        Direct Admission Available
+                      </span>
+                    )}
+                  </div>
+                  <h1 className="text-4xl font-bold text-white mb-2">{college.name}</h1>
+                  <div className="flex items-center gap-2 text-white/90">
+                    <MapPin size={18} />
+                    <span>{college.location}</span>
+                    <span className="mx-2">•</span>
+                    <span>{college.type} University</span>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <Button
+                    variant="outline"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900"
+                    onClick={() => setIsSaved(!isSaved)}
+                  >
+                    <Heart size={18} className={`mr-2 ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
+                    {isSaved ? 'Saved' : 'Save'}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900"
+                  >
+                    <Share2 size={18} className="mr-2" />
+                    Share
+                  </Button>
+                  <Button className="bg-[#f5a623] hover:bg-[#e09000] text-white">
+                    <ExternalLink size={18} className="mr-2" />
+                    Visit Website
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick stats */}
+        <div className="bg-white border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                  <Users size={20} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">{college.enrollment.toLocaleString()}</p>
+                <p className="text-sm text-gray-500">Students</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                  <GraduationCap size={20} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">{college.acceptanceRate}%</p>
+                <p className="text-sm text-gray-500">Acceptance Rate</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                  <DollarSign size={20} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">${college.tuitionInState.toLocaleString()}</p>
+                <p className="text-sm text-gray-500">In-State Tuition</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                  <Award size={20} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">{college.graduationRate}%</p>
+                <p className="text-sm text-gray-500">Graduation Rate</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                  <BookOpen size={20} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">{college.satRange}</p>
+                <p className="text-sm text-gray-500">SAT Range</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                  <Star size={20} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">#{college.ranking}</p>
+                <p className="text-sm text-gray-500">National Rank</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Main content area */}
+            <div className="lg:col-span-2">
+              <Tabs defaultValue="overview" className="w-full">
+                <TabsList className="w-full justify-start bg-white border border-gray-200 rounded-xl p-1 mb-6">
+                  <TabsTrigger value="overview" className="rounded-lg">Overview</TabsTrigger>
+                  <TabsTrigger value="academics" className="rounded-lg">Academics</TabsTrigger>
+                  <TabsTrigger value="admissions" className="rounded-lg">Admissions</TabsTrigger>
+                  <TabsTrigger value="cost" className="rounded-lg">Cost & Aid</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="overview" className="space-y-6">
+                  <div className="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4">About {college.shortName}</h2>
+                    <p className="text-gray-600 leading-relaxed">{college.description}</p>
+                    <p className="text-gray-600 leading-relaxed mt-4">
+                      {college.name} is a {college.type.toLowerCase()} university located in {college.location}. 
+                      With an enrollment of {college.enrollment.toLocaleString()} students and an acceptance rate of {college.acceptanceRate}%, 
+                      {college.shortName} is ranked #{college.ranking} nationally and offers a wide range of academic programs.
+                    </p>
+                  </div>
+
+                  <div className="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4">Campus Life</h2>
+                    <div className="flex flex-wrap gap-2">
+                      {college.features.map((feature, idx) => (
+                        <span key={idx} className="bg-[#1a5d3a]/10 text-[#1a5d3a] px-3 py-1 rounded-full text-sm font-medium">
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="academics" className="space-y-6">
+                  <div className="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4">Popular Majors</h2>
+                    <div className="grid grid-cols-2 gap-3">
+                      {college.majors.map((major, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-gray-700">
+                          <CheckCircle size={16} className="text-[#1a5d3a]" />
+                          <span>{major}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4">Academic Stats</h2>
+                    <div className="space-y-4">
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm text-gray-600">Graduation Rate</span>
+                          <span className="text-sm font-semibold">{college.graduationRate}%</span>
+                        </div>
+                        <Progress value={college.graduationRate} className="h-2" />
+                      </div>
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm text-gray-600">Student-Faculty Ratio</span>
+                          <span className="text-sm font-semibold">18:1</span>
+                        </div>
+                        <Progress value={70} className="h-2" />
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="admissions" className="space-y-6">
+                  <div className="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4">Admissions Requirements</h2>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <p className="text-sm text-gray-500 mb-1">SAT Range</p>
+                        <p className="text-lg font-bold text-gray-900">{college.satRange}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 mb-1">ACT Range</p>
+                        <p className="text-lg font-bold text-gray-900">{college.actRange}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 mb-1">Acceptance Rate</p>
+                        <p className="text-lg font-bold text-gray-900">{college.acceptanceRate}%</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 mb-1">Application Deadline</p>
+                        <p className="text-lg font-bold text-gray-900">January 15</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {college.directAdmission && (
+                    <div className="bg-[#1a5d3a] rounded-2xl p-6 text-white">
+                      <div className="flex items-center gap-3 mb-4">
+                        <CheckCircle size={24} />
+                        <h2 className="text-xl font-bold">Direct Admission Available</h2>
+                      </div>
+                      <p className="text-white/90 mb-4">
+                        Skip the application process! Create a Student Signal Profile and get admitted directly based on your academic credentials.
+                      </p>
+                      <Link to="/signup">
+                        <Button className="bg-[#f5a623] hover:bg-[#e09000] text-white">
+                          Get Direct Admission
+                        </Button>
+                      </Link>
+                    </div>
+                  )}
+                </TabsContent>
+
+                <TabsContent value="cost" className="space-y-6">
+                  <div className="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4">Cost of Attendance</h2>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="bg-[#1a5d3a]/5 rounded-xl p-4">
+                        <p className="text-sm text-gray-500 mb-1">In-State Tuition</p>
+                        <p className="text-2xl font-bold text-[#1a5d3a]">${college.tuitionInState.toLocaleString()}</p>
+                        <p className="text-xs text-gray-500 mt-1">per year</p>
+                      </div>
+                      <div className="bg-[#f5a623]/10 rounded-xl p-4">
+                        <p className="text-sm text-gray-500 mb-1">Out-of-State Tuition</p>
+                        <p className="text-2xl font-bold text-[#f5a623]">${college.tuitionOutState.toLocaleString()}</p>
+                        <p className="text-xs text-gray-500 mt-1">per year</p>
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
+
+            {/* Sidebar */}
+            <div className="space-y-6">
+              {/* Apply card */}
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <h3 className="font-bold text-gray-900 mb-4">Ready to Apply?</h3>
+                <div className="space-y-3">
+                  <Button className="w-full bg-[#f5a623] hover:bg-[#e09000] text-white font-semibold">
+                    Apply Now
+                  </Button>
+                  <Button variant="outline" className="w-full border-[#1a5d3a] text-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white">
+                    Request Info
+                  </Button>
+                </div>
+              </div>
+
+              {/* Contact card */}
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <h3 className="font-bold text-gray-900 mb-4">Contact Information</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <Globe size={18} className="text-[#1a5d3a]" />
+                    <span className="text-sm">www.{college.shortName.toLowerCase().replace(/\s/g, '')}.edu</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <Phone size={18} className="text-[#1a5d3a]" />
+                    <span className="text-sm">(555) 123-4567</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <Mail size={18} className="text-[#1a5d3a]" />
+                    <span className="text-sm">admissions@{college.shortName.toLowerCase().replace(/\s/g, '')}.edu</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Important dates */}
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <h3 className="font-bold text-gray-900 mb-4">Important Dates</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <Calendar size={18} className="text-[#f5a623]" />
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Early Decision</p>
+                      <p className="text-xs text-gray-500">November 1</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Calendar size={18} className="text-[#f5a623]" />
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Regular Decision</p>
+                      <p className="text-xs text-gray-500">January 15</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Calendar size={18} className="text-[#f5a623]" />
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Financial Aid</p>
+                      <p className="text-xs text-gray-500">March 2</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default CollegeDetailPage;
