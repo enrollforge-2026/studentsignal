@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
 body {
     margin: 0;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
         "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -18,85 +16,60 @@ code {
         monospace;
 }
 
-/* Campus Glow-Up Palette */
-:root {
-    /* Primary Colors */
-    --emerald: #228B22;
-    --emerald-dark: #1a6b1a;
-    --emerald-light: #2ea62e;
-    --tangerine: #FF7518;
-    --tangerine-dark: #e56510;
-    --tangerine-light: #ff9045;
-    --turquoise: #00CED1;
-    --turquoise-dark: #00a8ab;
-    --turquoise-light: #33d8da;
-    --lavender: #9370DB;
-    --lavender-dark: #7b5bc9;
-    --lavender-light: #a989e2;
-    --sand: #F4E1D2;
-    --sand-dark: #e8d0bc;
-    --sand-light: #faf3ec;
-    
-    /* Gradient definitions */
-    --gradient-hero: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dark) 100%);
-    --gradient-cta: linear-gradient(135deg, var(--tangerine) 0%, var(--lavender) 100%);
-    --gradient-card: linear-gradient(180deg, var(--sand-light) 0%, var(--sand) 100%);
-    --gradient-accent: linear-gradient(135deg, var(--turquoise) 0%, var(--lavender) 100%);
-}
 
 @layer base {
   :root {
-        --background: 30 33% 95%;
-        --foreground: 0 0% 10%;
+        --background: 0 0% 100%;
+        --foreground: 0 0% 3.9%;
         --card: 0 0% 100%;
-        --card-foreground: 0 0% 10%;
+        --card-foreground: 0 0% 3.9%;
         --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 10%;
-        --primary: 120 61% 34%;
-        --primary-foreground: 0 0% 100%;
-        --secondary: 27 100% 55%;
-        --secondary-foreground: 0 0% 100%;
-        --muted: 30 33% 92%;
-        --muted-foreground: 0 0% 40%;
-        --accent: 181 100% 41%;
-        --accent-foreground: 0 0% 100%;
+        --popover-foreground: 0 0% 3.9%;
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 0 0% 96.1%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96.1%;
+        --muted-foreground: 0 0% 45.1%;
+        --accent: 0 0% 96.1%;
+        --accent-foreground: 0 0% 9%;
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 0 0% 98%;
-        --border: 30 20% 85%;
-        --input: 30 20% 88%;
-        --ring: 120 61% 34%;
-        --chart-1: 120 61% 34%;
-        --chart-2: 27 100% 55%;
-        --chart-3: 181 100% 41%;
-        --chart-4: 263 54% 65%;
-        --chart-5: 30 50% 89%;
-        --radius: 0.75rem;
+        --border: 0 0% 89.8%;
+        --input: 0 0% 89.8%;
+        --ring: 0 0% 3.9%;
+        --chart-1: 12 76% 61%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+        --radius: 0.5rem;
     }
   .dark {
-        --background: 0 0% 5%;
+        --background: 0 0% 3.9%;
         --foreground: 0 0% 98%;
-        --card: 0 0% 8%;
+        --card: 0 0% 3.9%;
         --card-foreground: 0 0% 98%;
-        --popover: 0 0% 8%;
+        --popover: 0 0% 3.9%;
         --popover-foreground: 0 0% 98%;
-        --primary: 120 61% 40%;
-        --primary-foreground: 0 0% 100%;
-        --secondary: 27 100% 55%;
-        --secondary-foreground: 0 0% 100%;
-        --muted: 0 0% 15%;
-        --muted-foreground: 0 0% 65%;
-        --accent: 181 100% 41%;
-        --accent-foreground: 0 0% 100%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 0 0% 9%;
+        --secondary: 0 0% 14.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 63.9%;
+        --accent: 0 0% 14.9%;
+        --accent-foreground: 0 0% 98%;
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 20%;
-        --input: 0 0% 20%;
-        --ring: 120 61% 40%;
-        --chart-1: 120 61% 45%;
-        --chart-2: 27 100% 60%;
-        --chart-3: 181 100% 45%;
-        --chart-4: 263 54% 70%;
-        --chart-5: 30 50% 70%;
+        --border: 0 0% 14.9%;
+        --input: 0 0% 14.9%;
+        --ring: 0 0% 83.1%;
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
     }
 }
 
@@ -107,46 +80,6 @@ code {
   body {
     @apply bg-background text-foreground;
     }
-}
-
-/* Custom gradient utilities */
-@layer utilities {
-  .gradient-hero {
-    background: linear-gradient(135deg, #228B22 0%, #1a6b1a 100%);
-  }
-  .gradient-cta {
-    background: linear-gradient(135deg, #FF7518 0%, #9370DB 100%);
-  }
-  .gradient-accent {
-    background: linear-gradient(135deg, #00CED1 0%, #9370DB 100%);
-  }
-  .gradient-warm {
-    background: linear-gradient(135deg, #FF7518 0%, #F4E1D2 100%);
-  }
-  .gradient-sand {
-    background: linear-gradient(180deg, #faf3ec 0%, #F4E1D2 100%);
-  }
-  .gradient-lavender-glow {
-    background: linear-gradient(135deg, #9370DB20 0%, #00CED120 100%);
-  }
-  .text-gradient {
-    background: linear-gradient(135deg, #FF7518 0%, #9370DB 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .glow-emerald {
-    box-shadow: 0 0 20px rgba(34, 139, 34, 0.3);
-  }
-  .glow-tangerine {
-    box-shadow: 0 0 20px rgba(255, 117, 24, 0.3);
-  }
-  .glow-turquoise {
-    box-shadow: 0 0 20px rgba(0, 206, 209, 0.3);
-  }
-  .glow-lavender {
-    box-shadow: 0 0 20px rgba(147, 112, 219, 0.3);
-  }
 }
 
 @layer base {
