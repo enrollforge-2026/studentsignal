@@ -248,11 +248,9 @@ export const majorsList = [
 ];
 
 export const navLinks = [
-  { label: "K-12", href: "/k12" },
-  { label: "Colleges", href: "/colleges" },
+  { label: "College Search", href: "/colleges" },
   { label: "Graduate Schools", href: "/graduate" },
-  { label: "Scholarships & Financial Aid", href: "/scholarships" },
-  { label: "Places to Live", href: "/places" }
+  { label: "Scholarships", href: "/scholarships" }
 ];
 
 export const footerLinks = {
