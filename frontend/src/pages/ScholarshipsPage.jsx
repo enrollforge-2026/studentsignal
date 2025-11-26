@@ -297,7 +297,7 @@ const ScholarshipsPage = () => {
                         <div className="flex gap-2">
                           <Button 
                             variant="outline" 
-                            onClick={() => window.open(`#`, '_self')}
+                            onClick={() => handleLearnMore(scholarship)}
                             className="flex-1 text-gray-700 border-gray-300 hover:bg-gray-50 rounded-md font-medium text-sm py-2"
                           >
                             Learn More
