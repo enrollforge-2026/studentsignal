@@ -13,6 +13,7 @@ from models import (
     College, CollegeCreate, CollegeUpdate,
     Scholarship, ScholarshipCreate,
     User, UserCreate, UserLogin, UserResponse, Token, SavedItem,
+    OnboardingData,
     Lead, LeadCreate,
     IPEDSSync, IPEDSStatus
 )
