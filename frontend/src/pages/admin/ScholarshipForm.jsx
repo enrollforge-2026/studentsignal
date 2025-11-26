@@ -25,13 +25,7 @@ const ScholarshipForm = () => {
 
   const [eligibilityInput, setEligibilityInput] = useState('');
 
-  useEffect(() => {
-    if (isEdit) {
-      loadScholarship();
-    }
-  }, [id, isEdit]);
-
-  const loadScholarship = async () => {
+  const loadScholarship = useCallback(async () => {
     try {
       const response = await api.get(`/scholarships/${id}`);
       const scholarship = response.data;
