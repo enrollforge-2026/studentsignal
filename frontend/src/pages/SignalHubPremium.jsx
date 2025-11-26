@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 const SignalHubPremium = () => {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [savedColleges, setSavedColleges] = useState([]);
   const [savedScholarships, setSavedScholarships] = useState([]);
   const [loading, setLoading] = useState(true);
