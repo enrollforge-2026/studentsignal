@@ -34,10 +34,8 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           
           {/* Placeholder routes */}
-          <Route path="/k12" element={<CollegesPage />} />
           <Route path="/graduate" element={<CollegesPage />} />
-          <Route path="/scholarships" element={<CollegesPage />} />
-          <Route path="/places" element={<CollegesPage />} />
+          <Route path="/scholarships" element={<ScholarshipsPage />} />
           <Route path="/quiz" element={<HomePage />} />
           <Route path="/direct-admissions" element={<HomePage />} />
           <Route path="/for-schools" element={<HomePage />} />
