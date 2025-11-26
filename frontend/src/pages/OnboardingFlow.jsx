@@ -172,36 +172,36 @@ const OnboardingFlow = () => {
             
             <div className="space-y-6">
               <div>
-                <Label htmlFor="gradYear" className="text-base">High School Graduation Year</Label>
+                <Label htmlFor="gradYear" className="text-base font-semibold text-gray-700 mb-2 block">High School Graduation Year</Label>
                 <Input
                   id="gradYear"
                   type="text"
                   placeholder="2026"
                   value={formData.high_school_grad_year}
                   onChange={(e) => updateField('high_school_grad_year', e.target.value)}
-                  className="mt-2 text-lg"
+                  className="mt-2 text-lg h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300"
                 />
               </div>
               
               <div>
-                <Label htmlFor="enrollYear" className="text-base">Intended Enrollment Year</Label>
+                <Label htmlFor="enrollYear" className="text-base font-semibold text-gray-700 mb-2 block">Intended Enrollment Year</Label>
                 <Input
                   id="enrollYear"
                   type="text"
                   placeholder="2026"
                   value={formData.intended_enrollment_year}
                   onChange={(e) => updateField('intended_enrollment_year', e.target.value)}
-                  className="mt-2 text-lg"
+                  className="mt-2 text-lg h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300"
                 />
               </div>
               
               <div>
-                <Label htmlFor="enrollTerm" className="text-base">Enrollment Term</Label>
+                <Label htmlFor="enrollTerm" className="text-base font-semibold text-gray-700 mb-2 block">Enrollment Term</Label>
                 <select
                   id="enrollTerm"
                   value={formData.intended_enrollment_term}
                   onChange={(e) => updateField('intended_enrollment_term', e.target.value)}
-                  className="mt-2 w-full p-3 border border-gray-300 rounded-md text-lg"
+                  className="mt-2 w-full h-14 px-5 border-2 border-gray-200 rounded-xl text-lg focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 bg-white cursor-pointer"
                 >
                   <option value="Fall">Fall</option>
                   <option value="Spring">Spring</option>
