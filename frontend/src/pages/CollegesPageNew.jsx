@@ -716,10 +716,13 @@ const CollegesPageNew = () => {
                             </Button>
                           </Link>
                           <Button 
-                            onClick={() => handleWillYouGetAccepted(college.name)}
+                            onClick={() => {
+                              setSelectedCollege(college);
+                              setLeadModalOpen(true);
+                            }}
                             className="flex-1 bg-[#1a5d3a] hover:bg-[#155d35] text-white rounded-md font-semibold text-sm py-2"
                           >
-                            Will you get accepted?
+                            Request Info
                           </Button>
                         </div>
                       </div>
