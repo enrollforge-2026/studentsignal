@@ -20,7 +20,7 @@ from models import (
 )
 from auth import (
     get_password_hash, verify_password, create_access_token,
-    get_current_user_email, ACCESS_TOKEN_EXPIRE_MINUTES
+    get_current_user_email, get_current_admin_email, ACCESS_TOKEN_EXPIRE_MINUTES
 )
 from database import (
     db, colleges_collection, scholarships_collection,
