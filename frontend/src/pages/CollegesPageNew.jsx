@@ -10,6 +10,8 @@ import { Search, Bookmark, MapPin, ChevronDown, SlidersHorizontal, X } from 'luc
 
 const CollegesPageNew = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth();
   const initialSearch = searchParams.get('search') || '';
   
   const [colleges, setColleges] = useState([]);
