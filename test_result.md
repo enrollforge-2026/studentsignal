@@ -187,14 +187,10 @@ metadata:
   run_ui: true
 
 test_plan:
-  current_focus:
-    - "Remove K-12 and Places to Live from all navigation and content"
-    - "Add scholarship data to mockData"
-    - "Create ScholarshipsPage matching appily.com design"
-    - "Redesign CollegesPage to match appily.com design"
+  current_focus: []
   stuck_tasks: []
-  test_all: true
-  test_priority: "high_first"
+  test_all: false
+  test_priority: "completed"
 
 agent_communication:
   - agent: "main"
