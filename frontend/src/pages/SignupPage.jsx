@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
@@ -10,6 +11,7 @@ import { GraduationCap, Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
 
 const SignupPage = () => {
   const navigate = useNavigate();
+  const { register } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -18,18 +20,38 @@ const SignupPage = () => {
     password: '',
     agreeTerms: false
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock signup - store user in localStorage
-    const user = {
-      id: Date.now(),
-      ...formData,
-      savedColleges: [],
-      createdAt: new Date().toISOString()
-    };
-    localStorage.setItem('user', JSON.stringify(user));
-    navigate('/profile');
+    setError('');
+
+    if (!formData.agreeTerms) {
+      setError('Please agree to the terms and conditions');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const result = await register({
+        email: formData.email,
+        password: formData.password,
+        first_name: formData.firstName,
+        last_name: formData.lastName
+      });
+
+      if (result.success) {
+        navigate('/signal-hub');
+      } else {
+        setError(result.error || 'Registration failed. Please try again.');
+      }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
