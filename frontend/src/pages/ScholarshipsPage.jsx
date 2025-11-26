@@ -93,8 +93,8 @@ const ScholarshipsPage = () => {
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex gap-6">
             {/* Sidebar Filters */}
-            <aside className="hidden lg:block w-80 flex-shrink-0">
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sticky top-24">
+            <aside className="hidden lg:block w-72 flex-shrink-0">
+              <div className="bg-white rounded-md shadow-md border border-gray-200 p-5 sticky top-24">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="font-semibold text-gray-900">Filters</h3>
                   <button
