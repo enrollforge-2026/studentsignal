@@ -7,7 +7,10 @@ import { Button } from '../components/ui/button';
 import { Search, ChevronDown, Bookmark, DollarSign } from 'lucide-react';
 
 const ScholarshipsPage = () => {
-  const [filteredScholarships, setFilteredScholarships] = useState(scholarships);
+  const [scholarships, setScholarships] = useState([]);
+  const [filteredScholarships, setFilteredScholarships] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [filters, setFilters] = useState({
     deadline: '',
     minAmount: '',
@@ -16,6 +19,26 @@ const ScholarshipsPage = () => {
     searchQuery: ''
   });
   const [showMoreFilters, setShowMoreFilters] = useState(false);
+
+  // Fetch scholarships from backend
+  useEffect(() => {
+    const fetchScholarships = async () => {
+      try {
+        setLoading(true);
+        const response = await scholarshipsAPI.getScholarships();
+        setScholarships(response.scholarships || []);
+        setFilteredScholarships(response.scholarships || []);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching scholarships:', err);
+        setError('Failed to load scholarships. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchScholarships();
+  }, []);
 
   useEffect(() => {
     let filtered = scholarships;
