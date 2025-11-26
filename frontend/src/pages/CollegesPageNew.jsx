@@ -394,13 +394,36 @@ const CollegesPageNew = () => {
 
             {/* Main Content */}
             <div className="flex-1">
-              {/* Sort and Count */}
-              <div className="flex items-center justify-between mb-6 bg-white px-4 py-3 rounded-md shadow-sm border border-gray-200">
-                <div>
-                  <p className="text-sm font-medium text-gray-700">
-                    Showing All Colleges
-                  </p>
+              {/* Loading State */}
+              {loading && (
+                <div className="flex justify-center items-center py-20">
+                  <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#1a5d3a]"></div>
                 </div>
+              )}
+
+              {/* Error State */}
+              {error && !loading && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                  <p className="text-red-800 font-semibold mb-2">Error Loading Colleges</p>
+                  <p className="text-red-600">{error}</p>
+                  <button 
+                    onClick={() => window.location.reload()}
+                    className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                  >
+                    Retry
+                  </button>
+                </div>
+              )}
+
+              {/* Sort and Count */}
+              {!loading && !error && (
+                <>
+                  <div className="flex items-center justify-between mb-6 bg-white px-4 py-3 rounded-md shadow-sm border border-gray-200">
+                    <div>
+                      <p className="text-sm font-medium text-gray-700">
+                        Showing {filteredColleges.length} Colleges
+                      </p>
+                    </div>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
