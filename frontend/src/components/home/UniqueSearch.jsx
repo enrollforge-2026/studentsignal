@@ -4,58 +4,46 @@ import { BarChart3, Star, Heart } from 'lucide-react';
 
 const FeatureIcon = ({ type }) => {
   const icons = {
-    chart: <BarChart3 className="w-10 h-10 text-tangerine" />,
-    star: <Star className="w-10 h-10 text-turquoise" />,
-    heart: <Heart className="w-10 h-10 text-lavender" />
+    chart: <BarChart3 className="w-8 h-8 text-[#f5a623]" />,
+    star: <Star className="w-8 h-8 text-[#f5a623]" />,
+    heart: <Heart className="w-8 h-8 text-[#f5a623]" />
   };
   return icons[type] || icons.chart;
 };
 
 const UniqueSearch = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-sand-light to-sand">
+    <section className="py-20 bg-gradient-to-b from-white to-[#f5f0e8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-20">
-          <p className="text-sm font-bold tracking-widest text-emerald mb-3 uppercase">
+        <div className="text-center mb-16">
+          <p className="text-sm font-semibold tracking-wider text-[#1a5d3a] mb-2">
             {adminContent.searchSection.tagline}
           </p>
-          <h2 className="text-4xl lg:text-5xl font-extrabold mb-3">
-            <span className="text-gradient bg-gradient-to-r from-tangerine via-lavender to-turquoise">
-              {adminContent.searchSection.title}
-            </span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#f5a623] mb-2">
+            {adminContent.searchSection.title}
           </h2>
-          <h3 className="text-4xl lg:text-5xl font-extrabold mb-8">
-            <span className="text-gradient bg-gradient-to-r from-lavender via-turquoise to-emerald">
-              {adminContent.searchSection.subtitle}
-            </span>
+          <h3 className="text-3xl lg:text-4xl font-bold text-[#f5a623] mb-6">
+            {adminContent.searchSection.subtitle}
           </h3>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             {adminContent.searchSection.description}
           </p>
         </div>
 
         {/* Features */}
-        <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {adminContent.features.map((feature, index) => (
             <div key={index} className="text-center group">
-              <div className="mb-6 flex justify-center">
-                <div className={`w-24 h-24 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 ${
-                  index === 0 ? 'bg-tangerine/10 group-hover:shadow-glow-tangerine' :
-                  index === 1 ? 'bg-turquoise/10 group-hover:shadow-glow-turquoise' :
-                  'bg-lavender/10 group-hover:shadow-glow-lavender'
-                }`}>
+              <div className="mb-4 flex justify-center">
+                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
                   <FeatureIcon type={feature.icon} />
                 </div>
               </div>
-              <h4 className={`text-sm font-bold tracking-widest mb-3 ${
-                index === 0 ? 'text-tangerine' :
-                index === 1 ? 'text-turquoise' :
-                'text-lavender'
-              }`}>
+              <h4 className="text-sm font-bold text-[#1a5d3a] tracking-wider mb-2">
                 {feature.title}
               </h4>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 {feature.description}
               </p>
             </div>
@@ -63,19 +51,15 @@ const UniqueSearch = () => {
         </div>
 
         {/* Decorative illustration */}
-        <div className="flex justify-center mt-16">
+        <div className="flex justify-center mt-12">
           <div className="relative">
-            <div className="w-36 h-36 bg-gradient-to-br from-tangerine/20 via-lavender/20 to-turquoise/20 rounded-full flex items-center justify-center animate-float">
-              <div className="w-28 h-28 bg-gradient-to-br from-tangerine/30 via-lavender/30 to-turquoise/30 rounded-full flex items-center justify-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-tangerine via-lavender to-turquoise rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-white text-3xl font-bold">!</span>
+            <div className="w-32 h-32 bg-[#f5a623]/20 rounded-full flex items-center justify-center">
+              <div className="w-24 h-24 bg-[#f5a623]/40 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 bg-[#f5a623] rounded-full flex items-center justify-center">
+                  <span className="text-white text-2xl font-bold">!</span>
                 </div>
               </div>
             </div>
-            {/* Orbiting dots */}
-            <div className="absolute top-0 left-1/2 w-4 h-4 bg-tangerine rounded-full shadow-glow-tangerine animate-pulse"></div>
-            <div className="absolute bottom-0 right-0 w-3 h-3 bg-turquoise rounded-full shadow-glow-turquoise animate-pulse delay-300"></div>
-            <div className="absolute top-1/2 left-0 w-3 h-3 bg-lavender rounded-full shadow-glow-lavender animate-pulse delay-500"></div>
           </div>
         </div>
       </div>

@@ -6,42 +6,38 @@ import { Sparkles, ArrowRight } from 'lucide-react';
 
 const DirectAdmissions = () => {
   return (
-    <section className="py-24 bg-sand-light">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Left content */}
           <div className="w-full lg:w-1/2">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-xl font-extrabold text-emerald">STUDENT</span>
-              <span className="bg-emerald text-white text-xs px-2 py-1 rounded-lg font-bold tracking-wide">SIGNAL</span>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg font-bold text-[#1a5d3a]">STUDENT</span>
+              <span className="bg-[#1a5d3a] text-white text-xs px-1.5 py-0.5 rounded font-semibold">SIGNAL</span>
             </div>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="p-2 bg-lavender/20 rounded-xl">
-                <Sparkles className="text-lavender" size={28} />
-              </div>
-              <h2 className="text-3xl lg:text-4xl font-extrabold">
-                <span className="text-gradient bg-gradient-to-r from-lavender to-turquoise">
-                  {adminContent.directAdmissions.title}
-                </span>
+            <div className="flex items-center gap-2 mb-4">
+              <Sparkles className="text-[#f5a623]" size={24} />
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#1a5d3a] italic">
+                {adminContent.directAdmissions.title}
               </h2>
             </div>
-            <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-5">
+            <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">
               {adminContent.directAdmissions.tagline}
             </h3>
-            <p className="text-gray-600 mb-10 text-lg leading-relaxed">
+            <p className="text-gray-600 mb-8 text-lg leading-relaxed">
               {adminContent.directAdmissions.description}
             </p>
             
             <div className="flex flex-wrap gap-4">
               <Link to="/signup">
-                <Button className="bg-tangerine hover:bg-tangerine-dark text-white font-bold px-8 py-4 rounded-xl shadow-glow-tangerine hover:shadow-lg transition-all duration-300">
+                <Button className="bg-[#f5a623] hover:bg-[#e09000] text-white font-semibold px-6 py-3">
                   Create a Student Signal Profile
                 </Button>
               </Link>
               <Link to="/direct-admissions">
-                <Button variant="outline" className="border-2 border-emerald text-emerald hover:bg-emerald hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 group">
+                <Button variant="outline" className="border-[#1a5d3a] text-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white font-semibold px-6 py-3">
                   Learn more
-                  <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={18} className="ml-2" />
                 </Button>
               </Link>
             </div>
@@ -49,55 +45,49 @@ const DirectAdmissions = () => {
 
           {/* Right - Illustration */}
           <div className="w-full lg:w-1/2">
-            <div className="relative bg-gradient-to-br from-turquoise/10 via-lavender/10 to-sand rounded-3xl p-8 lg:p-12">
+            <div className="relative bg-gradient-to-br from-[#e8f5e9] to-[#c8e6c9] rounded-3xl p-8 lg:p-12">
               {/* Connection diagram illustration */}
               <div className="relative">
                 {/* Student node */}
-                <div className="absolute top-0 left-0 bg-white rounded-2xl p-4 shadow-lg border border-turquoise/30 hover:shadow-glow-turquoise transition-shadow">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-emerald rounded-xl flex items-center justify-center text-white text-sm font-bold">
+                <div className="absolute top-0 left-0 bg-white rounded-xl p-3 shadow-lg border border-gray-100">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-[#1a5d3a] rounded-full flex items-center justify-center text-white text-xs font-bold">
                       SS
                     </div>
-                    <span className="text-sm font-semibold text-gray-700">Student Signal Profile</span>
+                    <span className="text-xs font-medium text-gray-700">Student Signal Profile</span>
                   </div>
                 </div>
 
                 {/* Connection lines - SVG */}
                 <svg className="w-full h-[250px]" viewBox="0 0 400 250">
-                  {/* Curved lines with gradient */}
-                  <defs>
-                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#FF7518" />
-                      <stop offset="100%" stopColor="#9370DB" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M80 40 Q200 80 320 60" stroke="url(#lineGradient)" strokeWidth="3" fill="none" strokeDasharray="8,4" />
-                  <path d="M80 40 Q200 120 320 140" stroke="url(#lineGradient)" strokeWidth="3" fill="none" strokeDasharray="8,4" />
-                  <path d="M80 40 Q200 160 320 220" stroke="url(#lineGradient)" strokeWidth="3" fill="none" strokeDasharray="8,4" />
+                  {/* Curved lines */}
+                  <path d="M80 40 Q200 80 320 60" stroke="#f5a623" strokeWidth="2" fill="none" strokeDasharray="5,5" />
+                  <path d="M80 40 Q200 120 320 140" stroke="#f5a623" strokeWidth="2" fill="none" strokeDasharray="5,5" />
+                  <path d="M80 40 Q200 160 320 220" stroke="#f5a623" strokeWidth="2" fill="none" strokeDasharray="5,5" />
                   
-                  {/* Animated dots on lines */}
-                  <circle cx="150" cy="50" r="6" fill="#FF7518" className="animate-pulse" />
-                  <circle cx="200" cy="90" r="6" fill="#00CED1" className="animate-pulse" />
-                  <circle cx="250" cy="170" r="6" fill="#9370DB" className="animate-pulse" />
+                  {/* Dots on lines */}
+                  <circle cx="150" cy="50" r="4" fill="#f5a623" className="animate-pulse" />
+                  <circle cx="200" cy="90" r="4" fill="#f5a623" className="animate-pulse" />
+                  <circle cx="250" cy="170" r="4" fill="#f5a623" className="animate-pulse" />
                 </svg>
 
                 {/* School cards */}
-                <div className="absolute top-8 right-0 bg-white rounded-xl p-3 shadow-lg flex items-center gap-3 hover:shadow-glow-emerald transition-shadow">
-                  <div className="w-8 h-8 bg-turquoise rounded-lg flex items-center justify-center text-white text-xs font-bold">U</div>
-                  <span className="text-sm font-medium">Accepted at UCLA</span>
-                  <span className="text-xs bg-emerald/10 text-emerald px-3 py-1 rounded-full font-semibold">Accepted</span>
+                <div className="absolute top-8 right-0 bg-white rounded-lg p-2 shadow-md flex items-center gap-2">
+                  <div className="w-6 h-6 bg-blue-500 rounded flex items-center justify-center text-white text-xs">U</div>
+                  <span className="text-xs font-medium">Accepted at UCLA</span>
+                  <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Accepted</span>
                 </div>
 
-                <div className="absolute top-[45%] right-0 bg-white rounded-xl p-3 shadow-lg flex items-center gap-3 hover:shadow-glow-tangerine transition-shadow">
-                  <div className="w-8 h-8 bg-tangerine rounded-lg flex items-center justify-center text-white text-xs font-bold">K</div>
-                  <span className="text-sm font-medium">Kent State</span>
-                  <span className="text-xs bg-turquoise/10 text-turquoise px-3 py-1 rounded-full font-semibold">Pending</span>
+                <div className="absolute top-[45%] right-0 bg-white rounded-lg p-2 shadow-md flex items-center gap-2">
+                  <div className="w-6 h-6 bg-yellow-500 rounded flex items-center justify-center text-white text-xs">K</div>
+                  <span className="text-xs font-medium">Kent State</span>
+                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Pending</span>
                 </div>
 
-                <div className="absolute bottom-8 right-0 bg-white rounded-xl p-3 shadow-lg flex items-center gap-3 hover:shadow-glow-lavender transition-shadow">
-                  <div className="w-8 h-8 bg-lavender rounded-lg flex items-center justify-center text-white text-xs font-bold">A</div>
-                  <span className="text-sm font-medium">Adelphi University</span>
-                  <span className="text-xs bg-emerald/10 text-emerald px-3 py-1 rounded-full font-semibold">Accepted</span>
+                <div className="absolute bottom-8 right-0 bg-white rounded-lg p-2 shadow-md flex items-center gap-2">
+                  <div className="w-6 h-6 bg-purple-500 rounded flex items-center justify-center text-white text-xs">A</div>
+                  <span className="text-xs font-medium">Adelphi University</span>
+                  <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Accepted</span>
                 </div>
               </div>
             </div>
