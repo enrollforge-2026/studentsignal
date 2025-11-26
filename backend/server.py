@@ -220,10 +220,8 @@ async def create_college(
     email: str = Depends(get_current_admin_email)
 ):
     """Create a new college (admin only)"""
-    from auth import get_current_admin_email
-    
     college_dict = college_data.model_dump()
-    college_dict['id'] = str(uuid.uuid4())
+    college_dict['id'] = str(uuid4())
     college_dict['created_at'] = datetime.utcnow()
     college_dict['updated_at'] = datetime.utcnow()
     
