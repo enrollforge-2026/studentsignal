@@ -124,6 +124,28 @@ async def get_current_user(email: str = Depends(get_current_user_email)):
     return user
 
 
+@api_router.put("/users/onboarding")
+async def complete_onboarding(
+    onboarding_data: OnboardingData,
+    email: str = Depends(get_current_user_email)
+):
+    """Complete user onboarding and save profile data"""
+    # Update user with onboarding data
+    update_data = onboarding_data.dict(exclude_unset=True)
+    update_data['onboarding_completed'] = True
+    update_data['updated_at'] = datetime.utcnow()
+    
+    result = await users_collection.update_one(
+        {"email": email},
+        {"$set": update_data}
+    )
+    
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="User not found or no changes made")
+    
+    return {"message": "Onboarding completed successfully"}
+
+
 # ==================== College Routes ====================
 
 @api_router.get("/colleges", response_model=dict)
