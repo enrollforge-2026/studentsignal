@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
-import { colleges } from '../data/mockData';
+import { collegesAPI } from '../services/api';
 import { Button } from '../components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Progress } from '../components/ui/progress';
@@ -31,19 +31,55 @@ import {
 
 const CollegeDetailPage = () => {
   const { id } = useParams();
+  const [college, setCollege] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
-  
-  const college = colleges.find(c => c.id === parseInt(id));
 
-  if (!college) {
+  useEffect(() => {
+    const fetchCollege = async () => {
+      try {
+        setLoading(true);
+        const data = await collegesAPI.getCollege(id);
+        setCollege(data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching college:', err);
+        setError('Failed to load college details. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCollege();
+  }, [id]);
+
+  if (loading) {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">College not found</h1>
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#1a5d3a] mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading college details...</p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error || !college) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              {error || 'College not found'}
+            </h1>
             <Link to="/colleges">
-              <Button>Browse Colleges</Button>
+              <Button className="bg-[#1a5d3a] hover:bg-[#2d8659]">Browse Colleges</Button>
             </Link>
           </div>
         </main>
