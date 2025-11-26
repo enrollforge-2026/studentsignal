@@ -14,7 +14,7 @@ const Footer = () => {
             <span className="bg-[#1a5d3a] text-white text-xs px-1.5 py-0.5 rounded font-semibold ml-1">SIGNAL</span>
           </div>
           <p className="text-gray-600 text-sm max-w-md">
-            Discover the schools and neighborhoods that are right for you.
+            Discover the colleges and scholarships that are right for you.
           </p>
         </div>
 
