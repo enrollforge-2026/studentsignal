@@ -48,7 +48,13 @@ const CollegeForm = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (isEdit) {
+      loadCollege();
+    }
+  }, [isEdit, loadCollege]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
