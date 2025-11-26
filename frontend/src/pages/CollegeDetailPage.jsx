@@ -36,6 +36,7 @@ const CollegeDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
+  const [leadModalOpen, setLeadModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchCollege = async () => {
