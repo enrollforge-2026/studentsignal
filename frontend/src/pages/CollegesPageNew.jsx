@@ -485,7 +485,7 @@ const CollegesPageNew = () => {
                         </span>
                         <span className="text-gray-400">|</span>
                         <span className="font-bold text-[#1a5d3a]">
-                          {college.acceptance_rate || college.acceptanceRate}% Acceptance Rate
+                          {college.acceptanceRate || 0}% Acceptance Rate
                         </span>
                       </div>
 
@@ -493,14 +493,14 @@ const CollegesPageNew = () => {
                         <div className="flex items-baseline justify-between">
                           <span className="text-xs text-gray-600">Avg Net Price:</span>
                           <span className="text-base font-bold text-gray-900">
-                            ${(college.tuition_in_state || college.tuitionInState || 0).toLocaleString()}
+                            ${(college.tuitionInState || 0).toLocaleString()}
                           </span>
                         </div>
                         
                         <div className="flex items-baseline justify-between">
                           <span className="text-xs text-gray-600">Sticker Price:</span>
                           <span className="text-base font-bold text-gray-900">
-                            ${(college.tuition_out_state || college.tuitionOutState || 0).toLocaleString()}
+                            ${(college.tuitionOutState || 0).toLocaleString()}
                           </span>
                         </div>
                       </div>
@@ -510,7 +510,7 @@ const CollegesPageNew = () => {
                           <div className="flex items-baseline justify-between mb-1">
                             <span className="text-xs text-gray-600">Average ACT Composite:</span>
                             <span className="text-sm font-bold text-gray-900">
-                              {(college.act_range || college.actRange || '0-0').split('-')[0]}
+                              {(college.actRange || '0-0').split('-')[0]}
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
@@ -518,7 +518,7 @@ const CollegesPageNew = () => {
                             <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
                               <div 
                                 className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
-                                style={{ width: `${(parseInt((college.act_range || college.actRange || '0-0').split('-')[0]) / 36) * 100}%` }}
+                                style={{ width: `${(parseInt((college.actRange || '0-0').split('-')[0]) / 36) * 100}%` }}
                               ></div>
                             </div>
                             <span className="text-xs text-gray-500">36</span>
@@ -529,7 +529,7 @@ const CollegesPageNew = () => {
                           <div className="flex items-baseline justify-between mb-1">
                             <span className="text-xs text-gray-600">Average SAT Composite:</span>
                             <span className="text-sm font-bold text-gray-900">
-                              {(college.sat_range || college.satRange || '0-0').split('-')[0]}
+                              {(college.satRange || '0-0').split('-')[0]}
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
@@ -537,7 +537,7 @@ const CollegesPageNew = () => {
                             <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
                               <div 
                                 className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
-                                style={{ width: `${(parseInt((college.sat_range || college.satRange || '0-0').split('-')[0]) / 1600) * 100}%` }}
+                                style={{ width: `${(parseInt((college.satRange || '0-0').split('-')[0]) / 1600) * 100}%` }}
                               ></div>
                             </div>
                             <span className="text-xs text-gray-500">1600</span>
