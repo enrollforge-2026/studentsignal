@@ -49,6 +49,11 @@ const ScholarshipsPage = () => {
     });
   };
 
+  const handleStartApplying = (scholarshipName, deadline) => {
+    // You can replace this with navigation to application form
+    alert(`Start your application for ${scholarshipName}!\n\nDeadline: ${deadline}\n\nYou'll be redirected to the application portal where you can submit your documents and complete the application process.`);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
