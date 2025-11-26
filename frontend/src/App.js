@@ -35,6 +35,8 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/dashboard" element={<SignalHub />} />
+          <Route path="/signal-hub" element={<SignalHub />} />
           
           {/* Placeholder routes */}
           <Route path="/graduate" element={<CollegesPage />} />
