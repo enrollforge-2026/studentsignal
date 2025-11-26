@@ -177,7 +177,7 @@ const CollegesPageNew = () => {
             {/* Mobile Filter Button */}
             <button
               onClick={() => setShowMobileFilters(true)}
-              className="lg:hidden fixed bottom-6 right-6 z-40 bg-[#1a5d3a] text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-[#2d8659] transition-colors"
+              className="lg:hidden fixed bottom-20 right-4 z-[9999] bg-[#1a5d3a] text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-[#2d8659] transition-colors"
             >
               <SlidersHorizontal size={20} />
               <span className="font-medium">Filters</span>
