@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
@@ -9,38 +10,35 @@ import { GraduationCap, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock login - check localStorage
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      if (user.email === formData.email) {
-        navigate('/profile');
-        return;
-      }
-    }
-    // Demo login
-    if (formData.email && formData.password) {
-      const demoUser = {
-        id: 1,
-        firstName: 'Demo',
-        lastName: 'User',
+    setError('');
+    setLoading(true);
+
+    try {
+      const result = await login({
         email: formData.email,
-        savedColleges: [1, 2, 5],
-        createdAt: new Date().toISOString()
-      };
-      localStorage.setItem('user', JSON.stringify(demoUser));
-      navigate('/profile');
-    } else {
-      setError('Please enter valid credentials');
+        password: formData.password
+      });
+
+      if (result.success) {
+        navigate('/signal-hub');
+      } else {
+        setError(result.error || 'Login failed. Please check your credentials.');
+      }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
