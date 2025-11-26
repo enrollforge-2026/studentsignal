@@ -452,6 +452,8 @@ const ScholarshipsPage = () => {
                   Get Started
                 </Button>
               </div>
+              </>
+              )}
             </div>
           </div>
         </div>
