@@ -498,14 +498,14 @@ const OnboardingFlow = () => {
         <div className="w-full max-w-4xl">
           {renderStep()}
           
-          {/* Navigation Buttons */}
+          {/* Navigation Buttons - Modern Enterprise Style */}
           {currentStep > 1 && currentStep < 10 && (
-            <div className="flex gap-4 mt-8 max-w-xl mx-auto">
+            <div className="flex gap-4 mt-10 max-w-xl mx-auto">
               {currentStep > 1 && (
                 <Button
                   onClick={prevStep}
                   variant="outline"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 h-14 px-8 rounded-xl border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 text-gray-700 font-semibold transition-all shadow-sm"
                 >
                   <ChevronLeft size={20} />
                   Back
@@ -515,7 +515,7 @@ const OnboardingFlow = () => {
               {currentStep < 9 && (
                 <Button
                   onClick={nextStep}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                  className="flex-1 h-14 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
                 >
                   Next
                   <ChevronRight size={20} className="ml-2" />
@@ -526,9 +526,9 @@ const OnboardingFlow = () => {
                 <Button
                   onClick={handleSubmit}
                   disabled={loading}
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                  className="flex-1 h-14 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  {loading ? 'Completing...' : 'Complete Profile'}
+                  {loading ? 'Completing...' : 'Complete Profile ✨'}
                 </Button>
               )}
             </div>
