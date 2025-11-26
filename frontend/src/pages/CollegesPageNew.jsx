@@ -11,7 +11,10 @@ const CollegesPageNew = () => {
   const [searchParams] = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
   
-  const [filteredColleges, setFilteredColleges] = useState(colleges);
+  const [colleges, setColleges] = useState([]);
+  const [filteredColleges, setFilteredColleges] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [filters, setFilters] = useState({
     location: [],
     levelOfInstitution: [],
@@ -27,6 +30,26 @@ const CollegesPageNew = () => {
   const [sortBy, setSortBy] = useState('mostPopular');
   const [savedColleges, setSavedColleges] = useState([]);
   const [showMoreMajors, setShowMoreMajors] = useState(false);
+
+  // Fetch colleges from backend
+  useEffect(() => {
+    const fetchColleges = async () => {
+      try {
+        setLoading(true);
+        const response = await collegesAPI.getColleges();
+        setColleges(response.colleges || []);
+        setFilteredColleges(response.colleges || []);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching colleges:', err);
+        setError('Failed to load colleges. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchColleges();
+  }, []);
 
   useEffect(() => {
     let filtered = colleges;
