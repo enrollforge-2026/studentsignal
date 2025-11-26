@@ -50,12 +50,15 @@ function App() {
           <Route path="/for-schools" element={<HomePage />} />
           
           {/* Admin routes */}
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/colleges" element={<AdminColleges />} />
-          <Route path="/admin/content" element={<AdminContent />} />
-          <Route path="/admin/media" element={<AdminMedia />} />
-          <Route path="/admin/users" element={<AdminDashboard />} />
-          <Route path="/admin/settings" element={<AdminDashboard />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="colleges" element={<CollegesList />} />
+            <Route path="colleges/new" element={<CollegeForm />} />
+            <Route path="colleges/:id/edit" element={<CollegeForm />} />
+            <Route path="scholarships" element={<ScholarshipsList />} />
+            <Route path="scholarships/new" element={<ScholarshipForm />} />
+            <Route path="scholarships/:id/edit" element={<ScholarshipForm />} />
+          </Route>
           </Routes>
         </BrowserRouter>
       </div>
