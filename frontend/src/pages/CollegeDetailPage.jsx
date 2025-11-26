@@ -192,6 +192,57 @@ const CollegeDetailPage = () => {
                   </div>
 
                   <div className="bg-white rounded-2xl p-6 shadow-sm">
+                    <h2 className="text-xl font-bold text-gray-900 mb-6">Student Demographics</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4 text-center">Gender Distribution</h3>
+                        <ResponsiveContainer width="100%" height={250}>
+                          <PieChart>
+                            <Pie
+                              data={[
+                                { name: 'Male', value: 49, color: '#1a5d3a' },
+                                { name: 'Female', value: 51, color: '#f5a623' }
+                              ]}
+                              cx="50%"
+                              cy="50%"
+                              innerRadius={60}
+                              outerRadius={90}
+                              fill="#8884d8"
+                              paddingAngle={5}
+                              dataKey="value"
+                              label
+                            >
+                              <Cell fill="#1a5d3a" />
+                              <Cell fill="#f5a623" />
+                            </Pie>
+                            <Tooltip />
+                            <Legend />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4 text-center">Ethnic Diversity</h3>
+                        <ResponsiveContainer width="100%" height={250}>
+                          <BarChart data={[
+                            { name: 'White', value: 35, fill: '#1a5d3a' },
+                            { name: 'Asian', value: 25, fill: '#2d8659' },
+                            { name: 'Hispanic', value: 18, fill: '#4a9d6f' },
+                            { name: 'Black', value: 12, fill: '#f5a623' },
+                            { name: 'Other', value: 10, fill: '#e09000' }
+                          ]}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Bar dataKey="value" fill="#1a5d3a" />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-2xl p-6 shadow-sm">
                     <h2 className="text-xl font-bold text-gray-900 mb-4">Campus Life</h2>
                     <div className="flex flex-wrap gap-2">
                       {college.features.map((feature, idx) => (
