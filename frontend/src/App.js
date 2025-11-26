@@ -7,7 +7,7 @@ import { Toaster } from "sonner";
 // Pages
 import HomePage from "./pages/HomePage";
 import CollegesPage from "./pages/CollegesPageNew";
-import CollegeDetailPage from "./pages/CollegeDetailPageNew";
+import CollegeDetailPage from "./pages/CollegeDetailPage";
 import ScholarshipsPage from "./pages/ScholarshipsPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
