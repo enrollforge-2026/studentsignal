@@ -328,6 +328,69 @@ async def get_scholarship(scholarship_id: str):
     return scholarship
 
 
+# ==================== Admin Scholarship Routes ====================
+
+@api_router.post("/admin/scholarships", response_model=Scholarship)
+async def create_scholarship(
+    scholarship_data: ScholarshipCreate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Create a new scholarship (admin only)"""
+    from auth import get_current_admin_email
+    
+    scholarship_dict = scholarship_data.model_dump()
+    scholarship_dict['id'] = str(uuid.uuid4())
+    scholarship_dict['created_at'] = datetime.utcnow()
+    scholarship_dict['updated_at'] = datetime.utcnow()
+    
+    await scholarships_collection.insert_one(scholarship_dict)
+    
+    return scholarship_dict
+
+
+@api_router.put("/admin/scholarships/{scholarship_id}", response_model=Scholarship)
+async def update_scholarship(
+    scholarship_id: str,
+    scholarship_data: dict,
+    email: str = Depends(get_current_admin_email)
+):
+    """Update a scholarship (admin only)"""
+    from auth import get_current_admin_email
+    
+    # Check if scholarship exists
+    existing_scholarship = await scholarships_collection.find_one({"id": scholarship_id}, {"_id": 0})
+    if not existing_scholarship:
+        raise HTTPException(status_code=404, detail="Scholarship not found")
+    
+    # Update only provided fields
+    update_data = {k: v for k, v in scholarship_data.items() if v is not None}
+    if update_data:
+        update_data['updated_at'] = datetime.utcnow()
+        await scholarships_collection.update_one(
+            {"id": scholarship_id},
+            {"$set": update_data}
+        )
+    
+    # Return updated scholarship
+    updated_scholarship = await scholarships_collection.find_one({"id": scholarship_id}, {"_id": 0})
+    return updated_scholarship
+
+
+@api_router.delete("/admin/scholarships/{scholarship_id}")
+async def delete_scholarship(
+    scholarship_id: str,
+    email: str = Depends(get_current_admin_email)
+):
+    """Delete a scholarship (admin only)"""
+    from auth import get_current_admin_email
+    
+    result = await scholarships_collection.delete_one({"id": scholarship_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Scholarship not found")
+    
+    return {"message": "Scholarship deleted successfully", "id": scholarship_id}
+
+
 # ==================== User Saved Items Routes ====================
 
 @api_router.post("/users/saved-colleges")
