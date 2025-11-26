@@ -169,10 +169,10 @@ const SignupPage = () => {
 
               <Button
                 type="submit"
-                className="w-full bg-[#f5a623] hover:bg-[#e09000] text-white font-semibold py-6"
-                disabled={!formData.agreeTerms}
+                className="w-full bg-[#f5a623] hover:bg-[#e09000] text-white font-semibold py-6 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={!formData.agreeTerms || loading}
               >
-                Create Account
+                {loading ? 'Creating Account...' : 'Create Account'}
               </Button>
             </form>
 
