@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { scholarshipCategories } from '../data/mockData';
 import { scholarshipsAPI } from '../services/api';
 import Header from '../components/layout/Header';
@@ -7,10 +9,13 @@ import { Button } from '../components/ui/button';
 import { Search, ChevronDown, Bookmark, DollarSign } from 'lucide-react';
 
 const ScholarshipsPage = () => {
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth();
   const [scholarships, setScholarships] = useState([]);
   const [filteredScholarships, setFilteredScholarships] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [savedScholarships, setSavedScholarships] = useState([]);
   const [filters, setFilters] = useState({
     deadline: '',
     minAmount: '',
