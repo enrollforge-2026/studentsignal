@@ -145,13 +145,13 @@ const OnboardingFlow = () => {
                     updateField('self_description', desc);
                     nextStep();
                   }}
-                  className={`w-full p-4 text-left border-2 rounded-xl transition-all ${
+                  className={`w-full p-5 text-left border-2 rounded-2xl transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 ${
                     formData.self_description === desc
-                      ? 'border-purple-500 bg-purple-50'
-                      : 'border-gray-200 hover:border-purple-500 hover:bg-purple-50'
+                      ? 'border-purple-500 bg-gradient-to-r from-purple-50 to-indigo-50'
+                      : 'border-gray-200 hover:border-purple-500 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50'
                   }`}
                 >
-                  <span className="font-medium text-gray-900">{desc}</span>
+                  <span className="font-semibold text-gray-900 text-lg">{desc}</span>
                 </button>
               ))}
             </div>
