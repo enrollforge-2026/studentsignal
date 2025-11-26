@@ -12,6 +12,7 @@ colleges_collection = db.colleges
 scholarships_collection = db.scholarships
 users_collection = db.users
 ipeds_sync_collection = db.ipeds_sync
+leads_collection = db.leads
 
 
 async def get_db():
