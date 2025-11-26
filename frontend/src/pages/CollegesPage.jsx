@@ -25,8 +25,7 @@ import {
   SlidersHorizontal,
   Grid3X3,
   List,
-  ChevronDown,
-  Sparkles
+  ChevronDown
 } from 'lucide-react';
 
 const CollegesPage = () => {
@@ -65,44 +64,40 @@ const CollegesPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-sand-light">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
       
       <main className="flex-grow">
         {/* Hero Banner */}
-        <div className="bg-emerald relative overflow-hidden">
-          {/* Decorative elements */}
-          <div className="absolute top-10 right-20 w-40 h-40 bg-turquoise/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 left-20 w-32 h-32 bg-lavender/10 rounded-full blur-3xl"></div>
-          
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <h1 className="text-4xl lg:text-5xl font-extrabold text-white mb-4">
-              Find Your <span className="text-gradient bg-gradient-to-r from-tangerine to-lavender">Perfect College</span>
+        <div className="bg-[#1a5d3a] py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+              Find Your Perfect College
             </h1>
-            <p className="text-sand/90 mb-10 max-w-2xl text-lg">
+            <p className="text-white/80 mb-8 max-w-2xl">
               Explore thousands of colleges with detailed information, reviews, and direct admission opportunities.
             </p>
             
             {/* Search bar */}
             <div className="flex flex-col md:flex-row gap-4">
               <div className="relative flex-grow">
-                <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" size={22} />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
                 <Input
                   type="text"
                   placeholder="Search by college name, location, or major..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-14 py-7 text-lg rounded-2xl border-0 shadow-lg focus:ring-2 focus:ring-turquoise"
+                  className="pl-12 py-6 text-lg rounded-xl border-0"
                 />
               </div>
               <Button 
                 onClick={() => setShowFilters(!showFilters)}
                 variant="outline"
-                className="bg-white text-emerald hover:bg-sand px-8 py-7 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all"
+                className="bg-white text-[#1a5d3a] hover:bg-gray-100 px-6 py-6 rounded-xl font-semibold"
               >
                 <SlidersHorizontal size={20} className="mr-2" />
                 Filters
-                <ChevronDown size={16} className={`ml-2 transition-transform duration-300 ${showFilters ? 'rotate-180' : ''}`} />
+                <ChevronDown size={16} className={`ml-2 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
               </Button>
             </div>
           </div>
@@ -110,14 +105,14 @@ const CollegesPage = () => {
 
         {/* Filters panel */}
         {showFilters && (
-          <div className="bg-white border-b border-sand-dark py-8 animate-slideUp">
+          <div className="bg-white border-b border-gray-200 py-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {/* State filter */}
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-3">State</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">State</label>
                   <Select value={selectedState} onValueChange={setSelectedState}>
-                    <SelectTrigger className="rounded-xl border-2 border-sand-dark py-3">
+                    <SelectTrigger>
                       <SelectValue placeholder="All States" />
                     </SelectTrigger>
                     <SelectContent>
@@ -131,9 +126,9 @@ const CollegesPage = () => {
 
                 {/* Type filter */}
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-3">School Type</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">School Type</label>
                   <Select value={selectedType} onValueChange={setSelectedType}>
-                    <SelectTrigger className="rounded-xl border-2 border-sand-dark py-3">
+                    <SelectTrigger>
                       <SelectValue placeholder="All Types" />
                     </SelectTrigger>
                     <SelectContent>
@@ -146,28 +141,26 @@ const CollegesPage = () => {
 
                 {/* Tuition range */}
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-3">
-                    Tuition: <span className="text-tangerine">${tuitionRange[0].toLocaleString()}</span> - <span className="text-tangerine">${tuitionRange[1].toLocaleString()}</span>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Tuition: ${tuitionRange[0].toLocaleString()} - ${tuitionRange[1].toLocaleString()}
                   </label>
                   <Slider
                     value={tuitionRange}
                     onValueChange={setTuitionRange}
                     max={60000}
                     step={1000}
-                    className="mt-6"
+                    className="mt-4"
                   />
                 </div>
 
                 {/* Direct admission filter */}
-                <div className="flex items-center gap-3 pt-8">
+                <div className="flex items-center gap-2 pt-6">
                   <Checkbox
                     id="directAdmission"
                     checked={directAdmissionOnly}
                     onCheckedChange={setDirectAdmissionOnly}
-                    className="border-2 border-lavender data-[state=checked]:bg-lavender"
                   />
-                  <label htmlFor="directAdmission" className="text-sm font-bold text-gray-700 flex items-center gap-2">
-                    <Sparkles size={16} className="text-lavender" />
+                  <label htmlFor="directAdmission" className="text-sm font-medium text-gray-700">
                     Direct Admission Available
                   </label>
                 </div>
@@ -177,25 +170,24 @@ const CollegesPage = () => {
         )}
 
         {/* Results section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Results header */}
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-6">
             <div>
               <p className="text-gray-600">
-                <span className="font-extrabold text-emerald text-2xl">{filteredColleges.length}</span>
-                <span className="ml-2">colleges found</span>
+                <span className="font-semibold text-gray-900">{filteredColleges.length}</span> colleges found
               </p>
             </div>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-3 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-emerald text-white shadow-glow-emerald' : 'bg-white text-gray-600 hover:bg-sand'}`}
+                className={`p-2 rounded-lg ${viewMode === 'grid' ? 'bg-[#1a5d3a] text-white' : 'bg-gray-100 text-gray-600'}`}
               >
                 <Grid3X3 size={20} />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-3 rounded-xl transition-all ${viewMode === 'list' ? 'bg-emerald text-white shadow-glow-emerald' : 'bg-white text-gray-600 hover:bg-sand'}`}
+                className={`p-2 rounded-lg ${viewMode === 'list' ? 'bg-[#1a5d3a] text-white' : 'bg-gray-100 text-gray-600'}`}
               >
                 <List size={20} />
               </button>
@@ -203,98 +195,85 @@ const CollegesPage = () => {
           </div>
 
           {/* College cards */}
-          <div className={`grid gap-8 ${
+          <div className={`grid gap-6 ${
             viewMode === 'grid' 
               ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
               : 'grid-cols-1'
           }`}>
-            {filteredColleges.map((college, index) => (
+            {filteredColleges.map(college => (
               <div
                 key={college.id}
-                className={`bg-white rounded-3xl shadow-lg border border-sand overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
+                className={`bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow ${
                   viewMode === 'list' ? 'flex' : ''
-                } ${
-                  index % 3 === 0 ? 'hover:shadow-glow-emerald' :
-                  index % 3 === 1 ? 'hover:shadow-glow-turquoise' :
-                  'hover:shadow-glow-lavender'
                 }`}
               >
                 {/* Image */}
-                <div className={`relative ${viewMode === 'list' ? 'w-56 flex-shrink-0' : 'h-52'}`}>
+                <div className={`relative ${viewMode === 'list' ? 'w-48 flex-shrink-0' : 'h-48'}`}>
                   <img
                     src={college.image}
                     alt={college.name}
-                    className={`w-full object-cover ${viewMode === 'list' ? 'h-full' : 'h-52'}`}
+                    className={`w-full object-cover ${viewMode === 'list' ? 'h-full' : 'h-48'}`}
                   />
                   <button
                     onClick={() => toggleSaveCollege(college.id)}
-                    className="absolute top-4 right-4 p-2.5 bg-white/95 rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-110"
+                    className="absolute top-3 right-3 p-2 bg-white/90 rounded-full shadow-sm hover:bg-white transition-colors"
                   >
                     <Heart 
-                      size={20} 
-                      className={savedColleges.includes(college.id) ? 'fill-tangerine text-tangerine' : 'text-gray-400'} 
+                      size={18} 
+                      className={savedColleges.includes(college.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'} 
                     />
                   </button>
                   {college.directAdmission && (
-                    <div className="absolute top-4 left-4 bg-gradient-to-r from-lavender to-turquoise text-white text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1">
-                      <Sparkles size={12} />
+                    <div className="absolute top-3 left-3 bg-[#1a5d3a] text-white text-xs font-semibold px-2 py-1 rounded-full">
                       Direct Admission
                     </div>
                   )}
-                  <div className={`absolute bottom-4 right-4 text-white text-sm font-extrabold px-3 py-1.5 rounded-xl ${
-                    index % 3 === 0 ? 'bg-emerald' :
-                    index % 3 === 1 ? 'bg-turquoise' :
-                    'bg-lavender'
-                  }`}>
+                  <div className="absolute bottom-3 right-3 bg-[#f5a623] text-white text-sm font-bold px-2 py-1 rounded">
                     {college.rating}
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 flex-grow">
-                  <div className="flex items-start justify-between mb-3">
+                <div className="p-5 flex-grow">
+                  <div className="flex items-start justify-between mb-2">
                     <div>
                       <Link to={`/college/${college.id}`}>
-                        <h3 className="font-extrabold text-lg text-gray-900 hover:text-emerald transition-colors">
+                        <h3 className="font-bold text-lg text-gray-900 hover:text-[#1a5d3a] transition-colors">
                           {college.name}
                         </h3>
                       </Link>
-                      <div className="flex items-center gap-1.5 text-gray-500 text-sm mt-1">
+                      <div className="flex items-center gap-1 text-gray-500 text-sm mt-1">
                         <MapPin size={14} />
                         <span>{college.location}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mt-5 text-sm">
+                  <div className="grid grid-cols-2 gap-3 mt-4 text-sm">
                     <div className="flex items-center gap-2">
-                      <Users size={16} className="text-turquoise" />
-                      <span className="text-gray-600">{college.enrollment.toLocaleString()}</span>
+                      <Users size={16} className="text-gray-400" />
+                      <span className="text-gray-600">{college.enrollment.toLocaleString()} students</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <GraduationCap size={16} className="text-lavender" />
+                      <GraduationCap size={16} className="text-gray-400" />
                       <span className="text-gray-600">{college.acceptanceRate}% accept</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <DollarSign size={16} className="text-tangerine" />
+                      <DollarSign size={16} className="text-gray-400" />
                       <span className="text-gray-600">${college.tuitionInState.toLocaleString()}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Star size={16} className="text-emerald" />
-                      <span className="text-gray-600">#{college.ranking}</span>
+                      <Star size={16} className="text-gray-400" />
+                      <span className="text-gray-600">#{college.ranking} rank</span>
                     </div>
                   </div>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mt-5">
+                  <div className="flex flex-wrap gap-2 mt-4">
                     {college.features.slice(0, 3).map((feature, idx) => (
                       <span 
                         key={idx}
-                        className={`text-xs px-3 py-1.5 rounded-lg font-medium ${
-                          idx === 0 ? 'bg-emerald/10 text-emerald' :
-                          idx === 1 ? 'bg-turquoise/10 text-turquoise' :
-                          'bg-lavender/10 text-lavender'
-                        }`}
+                        className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full"
                       >
                         {feature}
                       </span>
@@ -303,11 +282,7 @@ const CollegesPage = () => {
 
                   {/* Action */}
                   <Link to={`/college/${college.id}`}>
-                    <Button className={`w-full mt-6 font-bold rounded-xl py-3 transition-all ${
-                      index % 3 === 0 ? 'bg-emerald hover:bg-emerald-dark hover:shadow-glow-emerald' :
-                      index % 3 === 1 ? 'bg-turquoise hover:bg-turquoise-dark hover:shadow-glow-turquoise' :
-                      'bg-lavender hover:bg-lavender-dark hover:shadow-glow-lavender'
-                    } text-white`}>
+                    <Button className="w-full mt-4 bg-[#1a5d3a] hover:bg-[#15472d] text-white font-semibold">
                       View Details
                     </Button>
                   </Link>
@@ -317,9 +292,9 @@ const CollegesPage = () => {
           </div>
 
           {filteredColleges.length === 0 && (
-            <div className="text-center py-20">
-              <GraduationCap size={56} className="mx-auto text-sand-dark mb-6" />
-              <h3 className="text-xl font-bold text-gray-900 mb-3">No colleges found</h3>
+            <div className="text-center py-16">
+              <GraduationCap size={48} className="mx-auto text-gray-300 mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">No colleges found</h3>
               <p className="text-gray-500">Try adjusting your filters or search terms</p>
             </div>
           )}
