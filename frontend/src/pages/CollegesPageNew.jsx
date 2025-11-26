@@ -385,107 +385,95 @@ const CollegesPageNew = () => {
                 </select>
               </div>
 
-              {/* College Cards */}
-              <div className="space-y-5">
+              {/* College Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filteredColleges.map((college) => (
                   <div
                     key={college.id}
-                    className="bg-white rounded-md shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-200"
+                    className="bg-white rounded-md shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-200 flex flex-col"
                   >
-                    <div className="flex flex-col md:flex-row">
-                      {/* College Image */}
-                      <div className="md:w-72 h-56 md:h-auto flex-shrink-0 relative">
-                        <img
-                          src={college.image}
-                          alt={college.name}
-                          className="w-full h-full object-cover"
-                        />
+                    {/* College Image */}
+                    <div className="relative h-48">
+                      <img
+                        src={college.image}
+                        alt={college.name}
+                        className="w-full h-full object-cover"
+                      />
+                      <button
+                        onClick={() => toggleSaveCollege(college.id)}
+                        className={`absolute top-3 right-3 bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors ${
+                          savedColleges.includes(college.id) ? 'text-[#f5a623]' : 'text-gray-400'
+                        }`}
+                      >
+                        <Bookmark size={18} fill={savedColleges.includes(college.id) ? '#f5a623' : 'none'} />
+                      </button>
+                    </div>
+
+                    {/* College Details */}
+                    <div className="p-4 flex flex-col flex-1">
+                      <Link to={`/college/${college.id}`}>
+                        <h3 className="text-lg font-bold text-gray-900 hover:text-[#1a5d3a] cursor-pointer mb-2 line-clamp-2">
+                          {college.name}
+                        </h3>
+                      </Link>
+                      
+                      <div className="flex items-center gap-1 text-sm text-gray-600 mb-3">
+                        <MapPin size={14} />
+                        <span>{college.location}</span>
                       </div>
 
-                      {/* College Details */}
-                      <div className="flex-1 p-5">
-                        <div className="flex items-start justify-between mb-2">
-                          <div className="flex-1">
-                            <Link to={`/college/${college.id}`}>
-                              <h3 className="text-xl font-bold text-gray-900 hover:text-[#1a5d3a] cursor-pointer mb-2">
-                                {college.name}
-                              </h3>
-                            </Link>
-                            <div className="flex items-center gap-1 text-sm text-gray-600 mb-3">
-                              <MapPin size={14} />
-                              <span>{college.location}</span>
-                            </div>
-                          </div>
-                          <button
-                            onClick={() => toggleSaveCollege(college.id)}
-                            className={`text-gray-400 hover:text-[#f5a623] transition-colors ${
-                              savedColleges.includes(college.id) ? 'text-[#f5a623]' : ''
-                            }`}
-                          >
-                            <Bookmark size={22} fill={savedColleges.includes(college.id) ? '#f5a623' : 'none'} />
-                          </button>
-                        </div>
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="inline-block px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full">
+                          {college.type}
+                        </span>
+                        <span className="text-sm font-bold text-[#1a5d3a]">
+                          {college.acceptanceRate}%
+                        </span>
+                      </div>
 
-                        <div className="flex items-center gap-3 mb-4">
-                          <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full">
-                            {college.type}
-                          </span>
-                          <span className="text-sm font-bold text-[#1a5d3a]">
-                            {college.acceptanceRate}% Acceptance Rate
-                          </span>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-6 mb-4">
-                          <div>
-                            <div className="text-xs text-gray-600 mb-1">Avg Net Price:</div>
-                            <div className="text-xl font-bold text-gray-900">
-                              ${college.tuitionInState.toLocaleString()}
-                            </div>
+                      <div className="space-y-3 mb-4">
+                        <div>
+                          <div className="text-xs text-gray-600">Avg Net Price:</div>
+                          <div className="text-lg font-bold text-gray-900">
+                            ${college.tuitionInState.toLocaleString()}
                           </div>
-                          <div>
-                            <div className="text-xs text-gray-600 mb-1">Sticker Price:</div>
-                            <div className="text-xl font-bold text-gray-900">
-                              ${college.tuitionOutState.toLocaleString()}
+                        </div>
+                        
+                        <div>
+                          <div className="text-xs text-gray-600 mb-1">Average ACT:</div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-base font-bold text-gray-900 w-8">
+                              {college.actRange.split('-')[0]}
+                            </span>
+                            <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
+                              <div 
+                                className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
+                                style={{ width: `${(parseInt(college.actRange.split('-')[0]) / 36) * 100}%` }}
+                              ></div>
                             </div>
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-6 mb-5">
-                          <div>
-                            <div className="text-xs text-gray-600 mb-2">Average ACT Composite:</div>
-                            <div className="flex items-center gap-2">
-                              <div className="text-lg font-bold text-gray-900">
-                                {college.actRange.split('-')[0]}
-                              </div>
-                              <div className="flex-1 h-2.5 bg-gray-200 rounded-full relative overflow-hidden">
-                                <div 
-                                  className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
-                                  style={{ width: `${(parseInt(college.actRange.split('-')[0]) / 36) * 100}%` }}
-                                ></div>
-                              </div>
-                              <div className="text-xs text-gray-500 whitespace-nowrap">0 - 36</div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="text-xs text-gray-600 mb-2">Average SAT Composite:</div>
-                            <div className="flex items-center gap-2">
-                              <div className="text-lg font-bold text-gray-900">
-                                {college.satRange.split('-')[0]}
-                              </div>
-                              <div className="flex-1 h-2.5 bg-gray-200 rounded-full relative overflow-hidden">
-                                <div 
-                                  className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
-                                  style={{ width: `${(parseInt(college.satRange.split('-')[0]) / 1600) * 100}%` }}
-                                ></div>
-                              </div>
-                              <div className="text-xs text-gray-500 whitespace-nowrap">0 - 1600</div>
+                        <div>
+                          <div className="text-xs text-gray-600 mb-1">Average SAT:</div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-base font-bold text-gray-900 w-8">
+                              {college.satRange.split('-')[0]}
+                            </span>
+                            <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
+                              <div 
+                                className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
+                                style={{ width: `${(parseInt(college.satRange.split('-')[0]) / 1600) * 100}%` }}
+                              ></div>
                             </div>
                           </div>
                         </div>
+                      </div>
 
+                      <div className="mt-auto">
                         <Button 
                           variant="outline" 
-                          className="text-[#1a5d3a] border-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white rounded-md font-semibold"
+                          className="w-full text-[#1a5d3a] border-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white rounded-md font-semibold text-sm"
                         >
                           Will you get accepted?
                         </Button>
