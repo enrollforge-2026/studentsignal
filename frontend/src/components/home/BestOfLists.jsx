@@ -5,61 +5,47 @@ import { Trophy, Building2, DollarSign, TreePine, PartyPopper, Users } from 'luc
 
 const BestOfIcon = ({ type }) => {
   const icons = {
-    trophy: <Trophy className="w-7 h-7" />,
-    building: <Building2 className="w-7 h-7" />,
-    dollar: <DollarSign className="w-7 h-7" />,
-    tree: <TreePine className="w-7 h-7" />,
-    party: <PartyPopper className="w-7 h-7" />,
-    users: <Users className="w-7 h-7" />
+    trophy: <Trophy className="w-6 h-6" />,
+    building: <Building2 className="w-6 h-6" />,
+    dollar: <DollarSign className="w-6 h-6" />,
+    tree: <TreePine className="w-6 h-6" />,
+    party: <PartyPopper className="w-6 h-6" />,
+    users: <Users className="w-6 h-6" />
   };
   return icons[type] || icons.trophy;
 };
 
 const BestOfLists = () => {
-  const getIconColor = (index) => {
-    const colors = ['text-tangerine', 'text-turquoise', 'text-lavender', 'text-emerald-light', 'text-tangerine-light', 'text-turquoise-light'];
-    return colors[index % colors.length];
-  };
-
-  const getGlowClass = (index) => {
-    const glows = ['hover:shadow-glow-tangerine', 'hover:shadow-glow-turquoise', 'hover:shadow-glow-lavender', 'hover:shadow-glow-emerald', 'hover:shadow-glow-tangerine', 'hover:shadow-glow-turquoise'];
-    return glows[index % glows.length];
-  };
-
   return (
-    <section className="py-24 bg-emerald relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-20 w-40 h-40 bg-turquoise/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-20 w-60 h-60 bg-lavender/10 rounded-full blur-3xl"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <section className="py-20 bg-[#1a5d3a]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-bold tracking-widest text-turquoise mb-3 uppercase">
+        <div className="text-center mb-12">
+          <p className="text-sm font-semibold tracking-wider text-white/80 mb-2">
             2025 RANKINGS
           </p>
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-5">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
             Browse schools & colleges by "best of" lists.
           </h2>
-          <p className="text-sand/80 max-w-2xl mx-auto text-lg">
+          <p className="text-white/80 max-w-2xl mx-auto">
             We combine the reviews and the data to put together these comprehensive lists to get you started.
           </p>
         </div>
 
         {/* Best of cards */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
-          {bestOfLists.map((list, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {bestOfLists.map((list) => (
             <Link
               key={list.id}
               to={`/rankings/${list.id}`}
-              className={`bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center transition-all duration-300 group hover:bg-white/20 hover:-translate-y-2 ${getGlowClass(index)}`}
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all group"
             >
-              <div className={`w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
-                <span className={getIconColor(index)}>
+              <div className="w-16 h-16 bg-[#f5a623] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <span className="text-white">
                   <BestOfIcon type={list.icon} />
                 </span>
               </div>
-              <p className="text-white font-semibold text-sm leading-tight">
+              <p className="text-white font-medium text-sm leading-tight">
                 {list.title}
               </p>
             </Link>
