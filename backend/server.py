@@ -263,7 +263,6 @@ async def delete_college(
     email: str = Depends(get_current_admin_email)
 ):
     """Delete a college (admin only)"""
-    from auth import get_current_admin_email
     
     result = await colleges_collection.delete_one({"id": college_id})
     if result.deleted_count == 0:
