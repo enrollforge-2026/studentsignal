@@ -35,6 +35,8 @@ const CollegesPageNew = () => {
   const [savedColleges, setSavedColleges] = useState([]);
   const [showMoreMajors, setShowMoreMajors] = useState(false);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [leadModalOpen, setLeadModalOpen] = useState(false);
+  const [selectedCollege, setSelectedCollege] = useState(null);
 
   // Fetch colleges from backend
   useEffect(() => {
