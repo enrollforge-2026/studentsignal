@@ -496,6 +496,15 @@ const CollegeDetailPage = () => {
       </main>
 
       <Footer />
+      
+      {/* Lead Capture Modal */}
+      {college && (
+        <LeadCaptureModal
+          isOpen={leadModalOpen}
+          onClose={() => setLeadModalOpen(false)}
+          college={college}
+        />
+      )}
     </div>
   );
 };
