@@ -117,12 +117,10 @@ async def login(user_data: UserLogin):
 @api_router.get("/auth/me", response_model=UserResponse)
 async def get_current_user(email: str = Depends(get_current_user_email)):
     """Get current user profile"""
-    user = await users_collection.find_one({"email": email})
+    user = await users_collection.find_one({"email": email}, {"_id": 0, "password_hash": 0})
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
-    user = serialize_doc(user)
-    user.pop('password_hash', None)
     return user
 
 
