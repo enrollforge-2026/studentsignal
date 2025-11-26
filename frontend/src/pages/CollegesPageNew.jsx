@@ -404,18 +404,16 @@ const CollegesPageNew = () => {
 
                       {/* College Details */}
                       <div className="flex-1 p-5">
-                        <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-start justify-between mb-2">
                           <div className="flex-1">
                             <Link to={`/college/${college.id}`}>
-                              <h3 className="text-xl font-bold text-gray-900 hover:text-[#1a5d3a] cursor-pointer mb-1">
+                              <h3 className="text-xl font-bold text-gray-900 hover:text-[#1a5d3a] cursor-pointer mb-2">
                                 {college.name}
                               </h3>
                             </Link>
-                            <div className="flex items-center gap-4 text-sm text-gray-600">
-                              <div className="flex items-center gap-1">
-                                <MapPin size={14} />
-                                {college.location}
-                              </div>
+                            <div className="flex items-center gap-1 text-sm text-gray-600 mb-3">
+                              <MapPin size={14} />
+                              <span>{college.location}</span>
                             </div>
                           </div>
                           <button
@@ -424,68 +422,71 @@ const CollegesPageNew = () => {
                               savedColleges.includes(college.id) ? 'text-[#f5a623]' : ''
                             }`}
                           >
-                            <Bookmark size={20} fill={savedColleges.includes(college.id) ? '#f5a623' : 'none'} />
+                            <Bookmark size={22} fill={savedColleges.includes(college.id) ? '#f5a623' : 'none'} />
                           </button>
                         </div>
 
-                        <div className="flex items-center gap-4 mb-4">
-                          <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full">
                             {college.type}
                           </span>
-                          <span className="text-sm font-semibold text-[#1a5d3a]">
+                          <span className="text-sm font-bold text-[#1a5d3a]">
                             {college.acceptanceRate}% Acceptance Rate
                           </span>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div className="grid grid-cols-2 gap-6 mb-4">
                           <div>
-                            <div className="text-sm text-gray-600 mb-1">Avg Net Price:</div>
-                            <div className="text-lg font-bold text-gray-900">
+                            <div className="text-xs text-gray-600 mb-1">Avg Net Price:</div>
+                            <div className="text-xl font-bold text-gray-900">
                               ${college.tuitionInState.toLocaleString()}
                             </div>
                           </div>
                           <div>
-                            <div className="text-sm text-gray-600 mb-1">Sticker Price:</div>
-                            <div className="text-lg font-bold text-gray-900">
+                            <div className="text-xs text-gray-600 mb-1">Sticker Price:</div>
+                            <div className="text-xl font-bold text-gray-900">
                               ${college.tuitionOutState.toLocaleString()}
                             </div>
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div className="grid grid-cols-2 gap-6 mb-5">
                           <div>
-                            <div className="text-sm text-gray-600 mb-1">Average ACT Composite:</div>
+                            <div className="text-xs text-gray-600 mb-2">Average ACT Composite:</div>
                             <div className="flex items-center gap-2">
-                              <div className="text-base font-semibold text-gray-900">
+                              <div className="text-lg font-bold text-gray-900">
                                 {college.actRange.split('-')[0]}
                               </div>
-                              <div className="flex-1 h-2 bg-gray-200 rounded-full relative">
+                              <div className="flex-1 h-2.5 bg-gray-200 rounded-full relative overflow-hidden">
                                 <div 
-                                  className="absolute left-0 top-0 h-full bg-[#1a5d3a] rounded-full"
+                                  className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
                                   style={{ width: `${(parseInt(college.actRange.split('-')[0]) / 36) * 100}%` }}
                                 ></div>
                               </div>
-                              <div className="text-xs text-gray-500">0 - 36</div>
+                              <div className="text-xs text-gray-500 whitespace-nowrap">0 - 36</div>
                             </div>
                           </div>
                           <div>
-                            <div className="text-sm text-gray-600 mb-1">Average SAT Composite:</div>
+                            <div className="text-xs text-gray-600 mb-2">Average SAT Composite:</div>
                             <div className="flex items-center gap-2">
-                              <div className="text-base font-semibold text-gray-900">
+                              <div className="text-lg font-bold text-gray-900">
                                 {college.satRange.split('-')[0]}
                               </div>
-                              <div className="flex-1 h-2 bg-gray-200 rounded-full relative">
+                              <div className="flex-1 h-2.5 bg-gray-200 rounded-full relative overflow-hidden">
                                 <div 
-                                  className="absolute left-0 top-0 h-full bg-[#1a5d3a] rounded-full"
+                                  className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
                                   style={{ width: `${(parseInt(college.satRange.split('-')[0]) / 1600) * 100}%` }}
                                 ></div>
                               </div>
-                              <div className="text-xs text-gray-500">0 - 1600</div>
+                              <div className="text-xs text-gray-500 whitespace-nowrap">0 - 1600</div>
                             </div>
                           </div>
                         </div>
 
-                        <Button variant="outline" className="text-[#1a5d3a] border-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white">
+                        <Button 
+                          variant="outline" 
+                          className="text-[#1a5d3a] border-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white rounded-md font-semibold"
+                        >
                           Will you get accepted?
                         </Button>
                       </div>
