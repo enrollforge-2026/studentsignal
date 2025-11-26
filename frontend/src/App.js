@@ -13,7 +13,7 @@ import ScholarshipsPage from "./pages/ScholarshipsPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
-import SignalHub from "./pages/SignalHub";
+import SignalHub from "./pages/SignalHubPremium";
 
 // Admin Pages
 import AdminDashboard from "./pages/admin/AdminDashboard";
