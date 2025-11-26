@@ -386,15 +386,15 @@ const CollegesPageNew = () => {
               </div>
 
               {/* College Cards */}
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {filteredColleges.map((college) => (
                   <div
                     key={college.id}
-                    className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+                    className="bg-white rounded-md shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-200"
                   >
                     <div className="flex flex-col md:flex-row">
                       {/* College Image */}
-                      <div className="md:w-80 h-48 md:h-auto flex-shrink-0">
+                      <div className="md:w-72 h-56 md:h-auto flex-shrink-0 relative">
                         <img
                           src={college.image}
                           alt={college.name}
@@ -403,7 +403,7 @@ const CollegesPageNew = () => {
                       </div>
 
                       {/* College Details */}
-                      <div className="flex-1 p-6">
+                      <div className="flex-1 p-5">
                         <div className="flex items-start justify-between mb-3">
                           <div className="flex-1">
                             <Link to={`/college/${college.id}`}>
