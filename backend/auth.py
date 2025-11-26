@@ -64,3 +64,20 @@ async def get_current_user_email(token: str = Depends(oauth2_scheme)) -> str:
             headers={"WWW-Authenticate": "Bearer"},
         )
     return email
+
+
+async def get_current_admin_email(token: str = Depends(oauth2_scheme)) -> str:
+    """Get current admin user email from token and verify admin role"""
+    from database import users_collection
+    
+    email = await get_current_user_email(token)
+    
+    # Check if user is admin
+    user = await users_collection.find_one({"email": email}, {"_id": 0})
+    if not user or user.get('role') != 'admin':
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin access required"
+        )
+    
+    return email
