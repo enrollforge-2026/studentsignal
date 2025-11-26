@@ -58,4 +58,9 @@ async def init_db():
     await users_collection.create_index("id", unique=True)
     await users_collection.create_index("email", unique=True)
     
+    await leads_collection.create_index("id", unique=True)
+    await leads_collection.create_index("email")
+    await leads_collection.create_index("college_id")
+    await leads_collection.create_index("created_at")
+    
     print("Database indexes created successfully")
