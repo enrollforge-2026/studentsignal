@@ -153,11 +153,11 @@ const CollegesPageNew = () => {
                 </div>
 
                 {/* Location */}
-                <div className="mb-6">
-                  <label className="block text-sm font-medium text-gray-900 mb-3">Location</label>
-                  <div className="space-y-2 max-h-48 overflow-y-auto">
+                <div className="mb-5 pb-5 border-b border-gray-200">
+                  <label className="block text-sm font-semibold text-gray-900 mb-3">Location</label>
+                  <div className="space-y-2.5 max-h-48 overflow-y-auto pr-2">
                     {states.slice(0, 10).map((state) => (
-                      <label key={state} className="flex items-center gap-2 cursor-pointer">
+                      <label key={state} className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
                         <input
                           type="checkbox"
                           checked={filters.location.includes(state)}
