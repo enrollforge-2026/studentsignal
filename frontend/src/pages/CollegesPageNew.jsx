@@ -171,10 +171,10 @@ const CollegesPageNew = () => {
                 </div>
 
                 {/* Level of Institution */}
-                <div className="mb-6 pb-6 border-b border-gray-200">
-                  <label className="block text-sm font-medium text-gray-900 mb-3">Level of Institution</label>
-                  <div className="space-y-2">
-                    <label className="flex items-center justify-between cursor-pointer">
+                <div className="mb-5 pb-5 border-b border-gray-200">
+                  <label className="block text-sm font-semibold text-gray-900 mb-3">Level of Institution</label>
+                  <div className="space-y-2.5">
+                    <label className="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-1 rounded">
                       <div className="flex items-center gap-2">
                         <input
                           type="checkbox"
@@ -182,9 +182,9 @@ const CollegesPageNew = () => {
                         />
                         <span className="text-sm text-gray-700">4 Year</span>
                       </div>
-                      <span className="text-sm text-gray-500">2,689</span>
+                      <span className="text-xs text-gray-500 font-medium">2,689</span>
                     </label>
-                    <label className="flex items-center justify-between cursor-pointer">
+                    <label className="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-1 rounded">
                       <div className="flex items-center gap-2">
                         <input
                           type="checkbox"
@@ -192,7 +192,7 @@ const CollegesPageNew = () => {
                         />
                         <span className="text-sm text-gray-700">2 Year</span>
                       </div>
-                      <span className="text-sm text-gray-500">1,042</span>
+                      <span className="text-xs text-gray-500 font-medium">1,042</span>
                     </label>
                   </div>
                 </div>
