@@ -72,6 +72,13 @@ const SignupPage = () => {
               </p>
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-50 text-red-600 text-sm p-3 rounded-lg mb-4">
+                {error}
+              </div>
+            )}
+
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-2 gap-4">
