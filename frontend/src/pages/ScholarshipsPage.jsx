@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { scholarships, scholarshipCategories } from '../data/mockData';
+import { scholarshipCategories } from '../data/mockData';
+import { scholarshipsAPI } from '../services/api';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
