@@ -94,6 +94,46 @@ const ScholarshipsPage = () => {
     });
   };
 
+  const toggleSaveScholarship = async (scholarshipId) => {
+    if (!isAuthenticated) {
+      // Show modal prompting user to log in
+      const modal = document.createElement('div');
+      modal.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 10000; max-width: 400px; width: 90%;';
+      modal.innerHTML = `
+        <h3 style="font-size: 22px; font-weight: bold; color: #f5a623; margin-bottom: 16px;">Log In Required</h3>
+        <p style="color: #4a5568; line-height: 1.6; margin-bottom: 20px;">Please log in to save scholarships to your list.</p>
+        <div style="display: flex; gap: 10px;">
+          <button onclick="window.location.href='/login'" style="flex: 1; background: #f5a623; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Log In</button>
+          <button onclick="this.parentElement.parentElement.remove(); document.getElementById('modal-overlay').remove();" style="flex: 1; background: #e5e7eb; color: #374151; padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Cancel</button>
+        </div>
+      `;
+      
+      const overlay = document.createElement('div');
+      overlay.id = 'modal-overlay';
+      overlay.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999;';
+      overlay.onclick = () => { modal.remove(); overlay.remove(); };
+      
+      document.body.appendChild(overlay);
+      document.body.appendChild(modal);
+      return;
+    }
+
+    try {
+      const isSaved = savedScholarships.includes(scholarshipId);
+      
+      if (isSaved) {
+        await scholarshipsAPI.unsaveScholarship(scholarshipId);
+        setSavedScholarships(prev => prev.filter(id => id !== scholarshipId));
+      } else {
+        await scholarshipsAPI.saveScholarship(scholarshipId);
+        setSavedScholarships(prev => [...prev, scholarshipId]);
+      }
+    } catch (error) {
+      console.error('Error saving/unsaving scholarship:', error);
+      alert('Failed to update saved status. Please try again.');
+    }
+  };
+
   const handleStartApplying = (scholarshipName, deadline) => {
     console.log('Start Applying clicked:', scholarshipName);
     // Create a visible modal/notification instead of alert
