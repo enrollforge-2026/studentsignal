@@ -45,6 +45,22 @@ const ScholarshipsPage = () => {
     fetchScholarships();
   }, []);
 
+  // Fetch user's saved scholarships
+  useEffect(() => {
+    const fetchSavedScholarships = async () => {
+      if (isAuthenticated) {
+        try {
+          const saved = await scholarshipsAPI.getSavedScholarships();
+          setSavedScholarships(saved.map(s => s.id));
+        } catch (error) {
+          console.error('Error fetching saved scholarships:', error);
+        }
+      }
+    };
+
+    fetchSavedScholarships();
+  }, [isAuthenticated]);
+
   useEffect(() => {
     let filtered = scholarships;
 
