@@ -257,23 +257,14 @@ export const footerLinks = {
   about: [
     { label: "About Us", href: "/about" },
     { label: "Student Signal for Schools", href: "/for-schools" },
-    { label: "K-12 for Colleges", href: "/k12-colleges" },
     { label: "Blog", href: "/blog" },
     { label: "College Rankings", href: "/rankings" },
     { label: "Data Privacy", href: "/privacy" },
     { label: "Contact Student Signal", href: "/contact" },
     { label: "Careers", href: "/careers" }
   ],
-  k12: [
-    { label: "K-12 Rankings", href: "/k12/rankings" },
-    { label: "Best School Districts", href: "/k12/districts" },
-    { label: "Best Public Schools", href: "/k12/public" },
-    { label: "Best Private Schools", href: "/k12/private" },
-    { label: "Best Charter Schools", href: "/k12/charter" },
-    { label: "Best Magnet Schools", href: "/k12/magnet" }
-  ],
   colleges: [
-    { label: "College Rankings", href: "/colleges/rankings" },
+    { label: "College Search", href: "/colleges" },
     { label: "Best Colleges", href: "/colleges/best" },
     { label: "Best Community Colleges", href: "/colleges/community" },
     { label: "Best Small Colleges", href: "/colleges/small" },
@@ -287,12 +278,13 @@ export const footerLinks = {
     { label: "Best Engineering Schools", href: "/graduate/engineering" },
     { label: "Best Nursing Schools", href: "/graduate/nursing" }
   ],
-  places: [
-    { label: "Best Places to Live", href: "/places/live" },
-    { label: "Best Suburbs", href: "/places/suburbs" },
-    { label: "Best Cities", href: "/places/cities" },
-    { label: "Safest Places to Live", href: "/places/safest" },
-    { label: "Best Places to Retire", href: "/places/retire" }
+  scholarships: [
+    { label: "All Scholarships", href: "/scholarships" },
+    { label: "Merit Scholarships", href: "/scholarships/merit" },
+    { label: "Need-Based Aid", href: "/scholarships/need-based" },
+    { label: "First Generation", href: "/scholarships/first-gen" },
+    { label: "STEM Scholarships", href: "/scholarships/stem" },
+    { label: "Athletic Scholarships", href: "/scholarships/athletic" }
   ]
 };
 
