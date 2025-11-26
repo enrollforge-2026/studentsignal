@@ -15,6 +15,7 @@ from models import (
     User, UserCreate, UserLogin, UserResponse, Token, SavedItem,
     OnboardingData,
     Lead, LeadCreate,
+    ChatMessage, ChatResponse,
     IPEDSSync, IPEDSStatus
 )
 from auth import (
