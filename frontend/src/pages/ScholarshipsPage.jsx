@@ -232,63 +232,61 @@ const ScholarshipsPage = () => {
                 </p>
               </div>
 
-              {/* Scholarship Cards */}
-              <div className="space-y-5">
+              {/* Scholarship Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filteredScholarships.map((scholarship) => (
                   <div
                     key={scholarship.id}
-                    className="bg-white rounded-md shadow-md border border-gray-200 p-5 hover:shadow-lg transition-all duration-200"
+                    className="bg-white rounded-md shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-200 flex flex-col"
                   >
-                    <div className="flex gap-5">
-                      {/* Award Amount */}
-                      <div className="flex-shrink-0">
-                        <div className="w-28 h-28 bg-gradient-to-br from-[#f5a623]/10 to-[#f5a623]/20 rounded-lg flex items-center justify-center border border-[#f5a623]/20">
-                          <div className="text-center">
-                            <DollarSign className="mx-auto text-[#f5a623] mb-1" size={24} />
-                            <div className="text-xl font-bold text-[#1a5d3a]">
-                              {scholarship.amount.replace('Up to ', '')}
-                            </div>
+                    {/* Award Amount Header */}
+                    <div className="bg-gradient-to-br from-[#f5a623]/10 to-[#f5a623]/20 p-4 border-b border-[#f5a623]/20">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <DollarSign className="text-[#f5a623]" size={24} />
+                          <div className="text-2xl font-bold text-[#1a5d3a]">
+                            {scholarship.amount.replace('Up to ', '')}
                           </div>
+                        </div>
+                        <button className="text-gray-400 hover:text-[#f5a623] transition-colors">
+                          <Bookmark size={20} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Scholarship Details */}
+                    <div className="p-4 flex flex-col flex-1">
+                      <h3 className="text-lg font-bold text-gray-900 hover:text-[#1a5d3a] cursor-pointer mb-2 line-clamp-2">
+                        {scholarship.name}
+                      </h3>
+                      
+                      <p className="text-sm text-gray-600 mb-4 leading-relaxed line-clamp-3">{scholarship.description}</p>
+                      
+                      <div className="space-y-2 mb-4 text-sm">
+                        <div className="flex items-start gap-2">
+                          <span className="font-semibold text-gray-700 min-w-[70px]">Deadline:</span>
+                          <span className="text-gray-600">{scholarship.deadline}</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="font-semibold text-gray-700 min-w-[70px]">Type:</span>
+                          <span className="text-gray-600">{scholarship.type}</span>
                         </div>
                       </div>
 
-                      {/* Scholarship Details */}
-                      <div className="flex-1">
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-xl font-bold text-gray-900 hover:text-[#1a5d3a] cursor-pointer">
-                            {scholarship.name}
-                          </h3>
-                          <button className="text-gray-400 hover:text-[#f5a623] transition-colors">
-                            <Bookmark size={22} />
-                          </button>
-                        </div>
-                        
-                        <p className="text-sm text-gray-600 mb-3 leading-relaxed">{scholarship.description}</p>
-                        
-                        <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
-                          <div>
-                            <span className="font-semibold">Deadline:</span> {scholarship.deadline}
-                          </div>
-                          <div>
-                            <span className="font-semibold">Type:</span> {scholarship.type}
-                          </div>
-                          <div>
-                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                              scholarship.renewable 
-                                ? 'bg-green-100 text-green-800' 
-                                : 'bg-gray-100 text-gray-800'
-                            }`}>
-                              {scholarship.renewable ? 'Renewable Award' : 'One Time Award'}
-                            </span>
-                          </div>
-                        </div>
+                      <div className="mb-4">
+                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+                          scholarship.renewable 
+                            ? 'bg-green-100 text-green-800' 
+                            : 'bg-gray-100 text-gray-800'
+                        }`}>
+                          {scholarship.renewable ? 'Renewable Award' : 'One Time Award'}
+                        </span>
+                      </div>
 
-                        <div className="flex items-center gap-3">
-                          <Button className="bg-[#f5a623] hover:bg-[#e09000] text-white rounded-md font-semibold shadow-sm">
-                            Start Applying
-                          </Button>
-                          <span className="text-xs text-gray-500">Application Required</span>
-                        </div>
+                      <div className="mt-auto">
+                        <Button className="w-full bg-[#f5a623] hover:bg-[#e09000] text-white rounded-md font-semibold shadow-sm">
+                          Start Applying
+                        </Button>
                       </div>
                     </div>
                   </div>
