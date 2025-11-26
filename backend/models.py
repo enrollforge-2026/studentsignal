@@ -233,6 +233,17 @@ class LeadCreate(BaseModel):
     consent_to_share: bool = False
 
 
+# Chat Models
+class ChatMessage(BaseModel):
+    message: str
+    session_id: Optional[str] = None
+
+
+class ChatResponse(BaseModel):
+    response: str
+    session_id: str
+
+
 # IPEDS Models
 class IPEDSSync(BaseModel):
     status: str
