@@ -29,6 +29,7 @@ const ScholarshipForm = () => {
     if (isEdit) {
       loadScholarship();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const loadScholarship = async () => {
