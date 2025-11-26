@@ -289,12 +289,21 @@ const ScholarshipsPage = () => {
                       </div>
 
                       <div className="mt-auto">
-                        <Button 
-                          onClick={() => handleStartApplying(scholarship.name, scholarship.deadline)}
-                          className="w-full bg-[#f5a623] hover:bg-[#e09000] text-white rounded-md font-semibold shadow-sm"
-                        >
-                          Start Applying
-                        </Button>
+                        <div className="flex gap-2">
+                          <Button 
+                            variant="outline" 
+                            onClick={() => window.open(`#`, '_self')}
+                            className="flex-1 text-gray-700 border-gray-300 hover:bg-gray-50 rounded-md font-medium text-sm py-2"
+                          >
+                            Learn More
+                          </Button>
+                          <Button 
+                            onClick={() => handleStartApplying(scholarship.name, scholarship.deadline)}
+                            className="flex-1 bg-[#f5a623] hover:bg-[#e09000] text-white rounded-md font-semibold text-sm py-2"
+                          >
+                            Start Applying
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
