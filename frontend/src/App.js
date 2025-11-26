@@ -49,9 +49,10 @@ function App() {
           <Route path="/admin/media" element={<AdminMedia />} />
           <Route path="/admin/users" element={<AdminDashboard />} />
           <Route path="/admin/settings" element={<AdminDashboard />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </AuthProvider>
   );
 }
 
