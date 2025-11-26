@@ -496,14 +496,14 @@ const CollegesPageNew = () => {
               </div>
 
               {/* Pagination */}
-              <div className="flex items-center justify-center gap-2 mt-8">
-                <button className="px-3 py-1 text-sm text-gray-500 hover:text-[#1a5d3a]">«</button>
-                <button className="px-3 py-1 text-sm text-gray-500 hover:text-[#1a5d3a]">‹</button>
-                <button className="px-3 py-1 text-sm bg-[#1a5d3a] text-white rounded">1</button>
-                <button className="px-3 py-1 text-sm text-gray-700 hover:text-[#1a5d3a]">2</button>
-                <button className="px-3 py-1 text-sm text-gray-700 hover:text-[#1a5d3a]">3</button>
-                <button className="px-3 py-1 text-sm text-gray-500 hover:text-[#1a5d3a]">›</button>
-                <button className="px-3 py-1 text-sm text-gray-500 hover:text-[#1a5d3a]">»</button>
+              <div className="flex items-center justify-center gap-1 mt-8">
+                <button className="px-3 py-2 text-sm text-gray-500 hover:text-[#1a5d3a] hover:bg-gray-100 rounded-md transition-colors">«</button>
+                <button className="px-3 py-2 text-sm text-gray-500 hover:text-[#1a5d3a] hover:bg-gray-100 rounded-md transition-colors">‹</button>
+                <button className="px-4 py-2 text-sm bg-[#1a5d3a] text-white rounded-md font-medium">1</button>
+                <button className="px-4 py-2 text-sm text-gray-700 hover:text-[#1a5d3a] hover:bg-gray-100 rounded-md transition-colors">2</button>
+                <button className="px-4 py-2 text-sm text-gray-700 hover:text-[#1a5d3a] hover:bg-gray-100 rounded-md transition-colors">3</button>
+                <button className="px-3 py-2 text-sm text-gray-500 hover:text-[#1a5d3a] hover:bg-gray-100 rounded-md transition-colors">›</button>
+                <button className="px-3 py-2 text-sm text-gray-500 hover:text-[#1a5d3a] hover:bg-gray-100 rounded-md transition-colors">»</button>
               </div>
             </div>
           </div>
