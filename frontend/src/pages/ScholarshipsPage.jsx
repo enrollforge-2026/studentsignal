@@ -285,8 +285,31 @@ const ScholarshipsPage = () => {
 
             {/* Main Content */}
             <div className="flex-1">
+              {/* Loading State */}
+              {loading && (
+                <div className="flex justify-center items-center py-20">
+                  <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#f5a623]"></div>
+                </div>
+              )}
+
+              {/* Error State */}
+              {error && !loading && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                  <p className="text-red-800 font-semibold mb-2">Error Loading Scholarships</p>
+                  <p className="text-red-600">{error}</p>
+                  <button 
+                    onClick={() => window.location.reload()}
+                    className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                  >
+                    Retry
+                  </button>
+                </div>
+              )}
+
               {/* Category Pills */}
-              <div className="flex flex-wrap gap-2 mb-6">
+              {!loading && !error && (
+                <>
+                  <div className="flex flex-wrap gap-2 mb-6">
                 {scholarshipCategories.map((cat) => (
                   <button
                     key={cat.id}
