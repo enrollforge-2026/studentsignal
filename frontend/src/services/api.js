@@ -57,11 +57,30 @@ export const authAPI = {
   },
 };
 
+// Helper function to convert snake_case to camelCase
+const toCamelCase = (obj) => {
+  if (Array.isArray(obj)) {
+    return obj.map(v => toCamelCase(v));
+  } else if (obj !== null && obj.constructor === Object) {
+    return Object.keys(obj).reduce((result, key) => {
+      const camelKey = key.replace(/_([a-z])/g, (g) => g[1].toUpperCase());
+      result[camelKey] = toCamelCase(obj[key]);
+      return result;
+    }, {});
+  }
+  return obj;
+};
+
 // Colleges API calls
 export const collegesAPI = {
   getColleges: async (params = {}) => {
     const response = await api.get('/api/colleges', { params });
-    return response.data;
+    const data = response.data;
+    // Transform snake_case to camelCase
+    if (data.colleges) {
+      data.colleges = toCamelCase(data.colleges);
+    }
+    return data;
   },
   
   getCollege: async (id) => {
