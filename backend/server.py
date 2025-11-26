@@ -211,6 +211,69 @@ async def get_college(college_id: str):
     return college
 
 
+# ==================== Admin College Routes ====================
+
+@api_router.post("/admin/colleges", response_model=College)
+async def create_college(
+    college_data: CollegeCreate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Create a new college (admin only)"""
+    from auth import get_current_admin_email
+    
+    college_dict = college_data.model_dump()
+    college_dict['id'] = str(uuid.uuid4())
+    college_dict['created_at'] = datetime.utcnow()
+    college_dict['updated_at'] = datetime.utcnow()
+    
+    await colleges_collection.insert_one(college_dict)
+    
+    return college_dict
+
+
+@api_router.put("/admin/colleges/{college_id}", response_model=College)
+async def update_college(
+    college_id: str,
+    college_data: CollegeUpdate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Update a college (admin only)"""
+    from auth import get_current_admin_email
+    
+    # Check if college exists
+    existing_college = await colleges_collection.find_one({"id": college_id}, {"_id": 0})
+    if not existing_college:
+        raise HTTPException(status_code=404, detail="College not found")
+    
+    # Update only provided fields
+    update_data = {k: v for k, v in college_data.model_dump().items() if v is not None}
+    if update_data:
+        update_data['updated_at'] = datetime.utcnow()
+        await colleges_collection.update_one(
+            {"id": college_id},
+            {"$set": update_data}
+        )
+    
+    # Return updated college
+    updated_college = await colleges_collection.find_one({"id": college_id}, {"_id": 0})
+    return updated_college
+
+
+@api_router.delete("/admin/colleges/{college_id}")
+async def delete_college(
+    college_id: str,
+    email: str = Depends(get_current_admin_email)
+):
+    """Delete a college (admin only)"""
+    from auth import get_current_admin_email
+    
+    result = await colleges_collection.delete_one({"id": college_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="College not found")
+    
+    return {"message": "College deleted successfully", "id": college_id}
+
+
 # ==================== Scholarship Routes ====================
 
 @api_router.get("/scholarships", response_model=dict)
