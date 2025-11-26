@@ -17,10 +17,12 @@ import SignalHub from "./pages/SignalHubPremium";
 import OnboardingFlow from "./pages/OnboardingFlow";
 
 // Admin Pages
+import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminColleges from "./pages/admin/AdminColleges";
-import AdminContent from "./pages/admin/AdminContent";
-import AdminMedia from "./pages/admin/AdminMedia";
+import CollegesList from "./pages/admin/CollegesList";
+import CollegeForm from "./pages/admin/CollegeForm";
+import ScholarshipsList from "./pages/admin/ScholarshipsList";
+import ScholarshipForm from "./pages/admin/ScholarshipForm";
 
 function App() {
   return (
