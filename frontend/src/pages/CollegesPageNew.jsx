@@ -5,6 +5,7 @@ import { states, majorsList } from '../data/mockData';
 import { collegesAPI } from '../services/api';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import LeadCaptureModal from '../components/LeadCaptureModal';
 import { Button } from '../components/ui/button';
 import { Search, Bookmark, MapPin, ChevronDown, SlidersHorizontal, X } from 'lucide-react';
 
