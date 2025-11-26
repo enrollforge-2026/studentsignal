@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { navLinks } from '../../data/mockData';
-import { Search, Menu, X, ChevronDown } from 'lucide-react';
+import { Search, Menu, X, ChevronDown, LayoutDashboard } from 'lucide-react';
 import { Button } from '../ui/button';
+import { useAuth } from '../../context/AuthContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
