@@ -297,19 +297,26 @@ const ScholarshipsPage = () => {
 
                       <div className="mt-auto">
                         <div className="flex gap-2">
-                          <Button 
-                            variant="outline" 
-                            onClick={() => handleLearnMore(scholarship)}
-                            className="flex-1 text-gray-700 border-gray-300 hover:bg-gray-50 rounded-md font-medium text-sm py-2"
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleLearnMore(scholarship);
+                            }}
+                            className="flex-1 text-gray-700 border border-gray-300 hover:bg-gray-50 rounded-md font-medium text-sm py-2 px-4 transition-colors cursor-pointer"
                           >
                             Learn More
-                          </Button>
-                          <Button 
-                            onClick={() => handleStartApplying(scholarship.name, scholarship.deadline)}
-                            className="flex-1 bg-[#f5a623] hover:bg-[#e09000] text-white rounded-md font-semibold text-sm py-2"
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleStartApplying(scholarship.name, scholarship.deadline);
+                            }}
+                            className="flex-1 bg-[#f5a623] hover:bg-[#e09000] text-white rounded-md font-semibold text-sm py-2 px-4 transition-colors cursor-pointer"
                           >
                             Start Applying
-                          </Button>
+                          </button>
                         </div>
                       </div>
                     </div>
