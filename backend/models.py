@@ -120,6 +120,26 @@ class User(BaseDBModel):
     role: str = "user"  # user/admin
     saved_colleges: List[str] = []
     saved_scholarships: List[str] = []
+    
+    # Onboarding fields
+    onboarding_completed: bool = False
+    user_role: Optional[str] = None  # Prospective Student, Parent/Guardian, Other
+    self_description: Optional[str] = None  # Middle School, High School, College Student, Adult Learner
+    high_school_grad_year: Optional[str] = None
+    intended_enrollment_year: Optional[str] = None
+    intended_enrollment_term: Optional[str] = None  # Fall, Spring, Summer
+    birthdate: Optional[str] = None
+    country: Optional[str] = None
+    postal_code: Optional[str] = None
+    high_school_name: Optional[str] = None
+    intended_major: Optional[str] = None
+    sat_score: Optional[str] = None
+    act_score: Optional[str] = None
+    gpa: Optional[str] = None
+    phone: Optional[str] = None
+    gender: Optional[str] = None
+    ethnicity: Optional[str] = None
+    
     created_at: datetime = Field(default_factory=lambda: datetime.utcnow())
     updated_at: datetime = Field(default_factory=lambda: datetime.utcnow())
 
