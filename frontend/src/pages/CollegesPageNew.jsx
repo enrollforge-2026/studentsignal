@@ -174,7 +174,40 @@ const CollegesPageNew = () => {
       <main className="flex-1 bg-gray-50">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex gap-6">
-            {/* Sidebar Filters */}
+            {/* Mobile Filter Button */}
+            <button
+              onClick={() => setShowMobileFilters(true)}
+              className="lg:hidden fixed bottom-6 right-6 z-40 bg-[#1a5d3a] text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-[#2d8659] transition-colors"
+            >
+              <SlidersHorizontal size={20} />
+              <span className="font-medium">Filters</span>
+            </button>
+
+            {/* Mobile Filter Overlay */}
+            {showMobileFilters && (
+              <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50" onClick={() => setShowMobileFilters(false)}>
+                <aside 
+                  className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-xl overflow-y-auto"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center justify-between z-10">
+                    <h3 className="font-semibold text-gray-900 text-lg">Filters</h3>
+                    <button
+                      onClick={() => setShowMobileFilters(false)}
+                      className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                    >
+                      <X size={24} />
+                    </button>
+                  </div>
+                  <div className="p-5">
+                    {/* Filter content will be rendered here - same as desktop */}
+                    <FilterContent />
+                  </div>
+                </aside>
+              </div>
+            )}
+
+            {/* Desktop Sidebar Filters */}
             <aside className="hidden lg:block w-72 flex-shrink-0">
               <div className="bg-white rounded-md shadow-md border border-gray-200 p-5 sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
                 <div className="flex items-center justify-between mb-6">
