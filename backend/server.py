@@ -333,10 +333,8 @@ async def create_scholarship(
     email: str = Depends(get_current_admin_email)
 ):
     """Create a new scholarship (admin only)"""
-    from auth import get_current_admin_email
-    
     scholarship_dict = scholarship_data.model_dump()
-    scholarship_dict['id'] = str(uuid.uuid4())
+    scholarship_dict['id'] = str(uuid4())
     scholarship_dict['created_at'] = datetime.utcnow()
     scholarship_dict['updated_at'] = datetime.utcnow()
     
