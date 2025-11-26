@@ -114,9 +114,10 @@ const LoginPage = () => {
 
               <Button
                 type="submit"
-                className="w-full bg-[#1a5d3a] hover:bg-[#15472d] text-white font-semibold py-6"
+                disabled={loading}
+                className="w-full bg-[#1a5d3a] hover:bg-[#15472d] text-white font-semibold py-6 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Log In
+                {loading ? 'Logging in...' : 'Log In'}
               </Button>
             </form>
 
