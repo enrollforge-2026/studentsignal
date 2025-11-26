@@ -14,6 +14,7 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import SignalHub from "./pages/SignalHubPremium";
+import OnboardingFlow from "./pages/OnboardingFlow";
 
 // Admin Pages
 import AdminDashboard from "./pages/admin/AdminDashboard";
