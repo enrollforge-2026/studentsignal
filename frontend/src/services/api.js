@@ -111,12 +111,17 @@ export const collegesAPI = {
 export const scholarshipsAPI = {
   getScholarships: async (params = {}) => {
     const response = await api.get('/api/scholarships', { params });
-    return response.data;
+    const data = response.data;
+    // Transform snake_case to camelCase
+    if (data.scholarships) {
+      data.scholarships = toCamelCase(data.scholarships);
+    }
+    return data;
   },
   
   getScholarship: async (id) => {
     const response = await api.get(`/api/scholarships/${id}`);
-    return response.data;
+    return toCamelCase(response.data);
   },
   
   saveScholarship: async (scholarshipId) => {
