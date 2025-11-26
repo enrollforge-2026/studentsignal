@@ -434,7 +434,11 @@ const CollegeDetailPage = () => {
                   <Button className="w-full bg-[#f5a623] hover:bg-[#e09000] text-white font-semibold">
                     Apply Now
                   </Button>
-                  <Button variant="outline" className="w-full border-[#1a5d3a] text-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white">
+                  <Button 
+                    onClick={() => setLeadModalOpen(true)}
+                    variant="outline" 
+                    className="w-full border-[#1a5d3a] text-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white"
+                  >
                     Request Info
                   </Button>
                 </div>
