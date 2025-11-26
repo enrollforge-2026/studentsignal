@@ -5,7 +5,7 @@ import { collegesAPI } from '../services/api';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
-import { Search, Bookmark, MapPin, ChevronDown } from 'lucide-react';
+import { Search, Bookmark, MapPin, ChevronDown, SlidersHorizontal, X } from 'lucide-react';
 
 const CollegesPageNew = () => {
   const [searchParams] = useSearchParams();
@@ -30,6 +30,7 @@ const CollegesPageNew = () => {
   const [sortBy, setSortBy] = useState('mostPopular');
   const [savedColleges, setSavedColleges] = useState([]);
   const [showMoreMajors, setShowMoreMajors] = useState(false);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // Fetch colleges from backend
   useEffect(() => {
