@@ -366,16 +366,16 @@ const CollegesPageNew = () => {
             {/* Main Content */}
             <div className="flex-1">
               {/* Sort and Count */}
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-6 bg-white px-4 py-3 rounded-md shadow-sm border border-gray-200">
                 <div>
-                  <p className="text-sm text-gray-600">
-                    Showing <span className="font-semibold">{filteredColleges.length}</span> Colleges
+                  <p className="text-sm font-medium text-gray-700">
+                    Showing All Colleges
                   </p>
                 </div>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
+                  className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a] bg-white"
                 >
                   <option value="mostPopular">Most Popular</option>
                   <option value="mostSelective">Most Selective to Least Selective</option>
