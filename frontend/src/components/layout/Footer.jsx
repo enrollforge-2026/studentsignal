@@ -19,20 +19,7 @@ const Footer = () => {
         </div>
 
         {/* Footer links grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-4">K-12</h3>
-            <ul className="space-y-2">
-              {footerLinks.k12.map((link) => (
-                <li key={link.label}>
-                  <Link to={link.href} className="text-sm text-gray-600 hover:text-[#1a5d3a] transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">COLLEGES</h3>
             <ul className="space-y-2">
@@ -60,9 +47,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">PLACES TO LIVE</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">SCHOLARSHIPS</h3>
             <ul className="space-y-2">
-              {footerLinks.places.map((link) => (
+              {footerLinks.scholarships.map((link) => (
                 <li key={link.label}>
                   <Link to={link.href} className="text-sm text-gray-600 hover:text-[#1a5d3a] transition-colors">
                     {link.label}
@@ -75,7 +62,7 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">ABOUT</h3>
             <ul className="space-y-2">
-              {footerLinks.about.slice(0, 6).map((link) => (
+              {footerLinks.about.map((link) => (
                 <li key={link.label}>
                   <Link to={link.href} className="text-sm text-gray-600 hover:text-[#1a5d3a] transition-colors">
                     {link.label}
