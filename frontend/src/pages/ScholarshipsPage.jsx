@@ -226,18 +226,18 @@ const ScholarshipsPage = () => {
               </div>
 
               {/* Results Count */}
-              <div className="mb-4">
-                <p className="text-sm text-gray-600">
-                  Showing <span className="font-semibold">{filteredScholarships.length}</span> Scholarships
+              <div className="mb-5 bg-white px-4 py-3 rounded-md shadow-sm border border-gray-200">
+                <p className="text-sm font-medium text-gray-700">
+                  Showing All Scholarships
                 </p>
               </div>
 
               {/* Scholarship Cards */}
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {filteredScholarships.map((scholarship) => (
                   <div
                     key={scholarship.id}
-                    className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+                    className="bg-white rounded-md shadow-md border border-gray-200 p-5 hover:shadow-lg transition-all duration-200"
                   >
                     <div className="flex gap-6">
                       {/* Award Amount */}
