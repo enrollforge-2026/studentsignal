@@ -391,6 +391,9 @@ const SignalHubPremium = () => {
       </main>
 
       <Footer />
+      
+      {/* Elon AI Chatbot */}
+      <ElonChat />
     </div>
   );
 };
