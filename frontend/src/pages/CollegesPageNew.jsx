@@ -494,13 +494,22 @@ const CollegesPageNew = () => {
                       </div>
 
                       <div className="mt-auto pt-2 border-t border-gray-100">
-                        <Button 
-                          variant="outline" 
-                          onClick={() => handleWillYouGetAccepted(college.name)}
-                          className="w-full text-[#1a5d3a] border-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white rounded-md font-semibold text-sm py-2"
-                        >
-                          Will you get accepted?
-                        </Button>
+                        <div className="flex gap-2">
+                          <Link to={`/college/${college.id}`} className="flex-1">
+                            <Button 
+                              variant="outline" 
+                              className="w-full text-gray-700 border-gray-300 hover:bg-gray-50 rounded-md font-medium text-sm py-2"
+                            >
+                              Learn More
+                            </Button>
+                          </Link>
+                          <Button 
+                            onClick={() => handleWillYouGetAccepted(college.name)}
+                            className="flex-1 bg-[#1a5d3a] hover:bg-[#155d35] text-white rounded-md font-semibold text-sm py-2"
+                          >
+                            Will you get accepted?
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
