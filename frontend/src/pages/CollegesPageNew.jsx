@@ -496,6 +496,7 @@ const CollegesPageNew = () => {
                       <div className="mt-auto pt-2 border-t border-gray-100">
                         <Button 
                           variant="outline" 
+                          onClick={() => handleWillYouGetAccepted(college.name)}
                           className="w-full text-[#1a5d3a] border-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white rounded-md font-semibold text-sm py-2"
                         >
                           Will you get accepted?
