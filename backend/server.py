@@ -350,7 +350,6 @@ async def update_scholarship(
     email: str = Depends(get_current_admin_email)
 ):
     """Update a scholarship (admin only)"""
-    from auth import get_current_admin_email
     
     # Check if scholarship exists
     existing_scholarship = await scholarships_collection.find_one({"id": scholarship_id}, {"_id": 0})
