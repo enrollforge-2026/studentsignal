@@ -126,8 +126,22 @@ const CollegesPageNew = () => {
   };
 
   const handleWillYouGetAccepted = (collegeName) => {
-    // You can replace this with navigation to a form or modal
-    alert(`Check your admission chances for ${collegeName}!\n\nThis feature will help you assess your probability of acceptance based on your academic profile, test scores, and extracurricular activities.`);
+    // Create a visible modal/notification instead of alert
+    const modal = document.createElement('div');
+    modal.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 10000; max-width: 500px; width: 90%;';
+    modal.innerHTML = `
+      <h3 style="font-size: 22px; font-weight: bold; color: #1a5d3a; margin-bottom: 16px;">Check Your Admission Chances</h3>
+      <p style="color: #4a5568; line-height: 1.6; margin-bottom: 20px;">Assess your probability of acceptance to <strong>${collegeName}</strong> based on your academic profile, test scores, and extracurricular activities.</p>
+      <button onclick="this.parentElement.remove(); document.getElementById('modal-overlay').remove();" style="background: #1a5d3a; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s;" onmouseover="this.style.background='#2d8659'" onmouseout="this.style.background='#1a5d3a'">Got It!</button>
+    `;
+    
+    const overlay = document.createElement('div');
+    overlay.id = 'modal-overlay';
+    overlay.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999;';
+    overlay.onclick = () => { modal.remove(); overlay.remove(); };
+    
+    document.body.appendChild(overlay);
+    document.body.appendChild(modal);
   };
 
   return (
