@@ -376,7 +376,6 @@ async def delete_scholarship(
     email: str = Depends(get_current_admin_email)
 ):
     """Delete a scholarship (admin only)"""
-    from auth import get_current_admin_email
     
     result = await scholarships_collection.delete_one({"id": scholarship_id})
     if result.deleted_count == 0:
