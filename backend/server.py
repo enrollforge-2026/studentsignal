@@ -237,7 +237,6 @@ async def update_college(
     email: str = Depends(get_current_admin_email)
 ):
     """Update a college (admin only)"""
-    from auth import get_current_admin_email
     
     # Check if college exists
     existing_college = await colleges_collection.find_one({"id": college_id}, {"_id": 0})
