@@ -2,19 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 body {
     margin: 0;
-    font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-    font-family:
-        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+/* Campus Glow-Up Palette */
+:root {
+    /* Primary Colors */
+    --emerald: #228B22;
+    --emerald-dark: #1a6b1a;
+    --emerald-light: #2ea62e;
+    --tangerine: #FF7518;
+    --tangerine-dark: #e56510;
+    --tangerine-light: #ff9045;
+    --turquoise: #00CED1;
+    --turquoise-dark: #00a8ab;
+    --turquoise-light: #33d8da;
+    --lavender: #9370DB;
+    --lavender-dark: #7b5bc9;
+    --lavender-light: #a989e2;
+    --sand: #F4E1D2;
+    --sand-dark: #e8d0bc;
+    --sand-light: #faf3ec;
+    
+    /* Gradient definitions */
+    --gradient-hero: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dark) 100%);
+    --gradient-cta: linear-gradient(135deg, var(--tangerine) 0%, var(--lavender) 100%);
+    --gradient-card: linear-gradient(180deg, var(--sand-light) 0%, var(--sand) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--turquoise) 0%, var(--lavender) 100%);
 }
 
 @layer base {
