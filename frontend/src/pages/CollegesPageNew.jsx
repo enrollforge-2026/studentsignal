@@ -749,6 +749,18 @@ const CollegesPageNew = () => {
       </main>
 
       <Footer />
+      
+      {/* Lead Capture Modal */}
+      {selectedCollege && (
+        <LeadCaptureModal
+          isOpen={leadModalOpen}
+          onClose={() => {
+            setLeadModalOpen(false);
+            setSelectedCollege(null);
+          }}
+          college={selectedCollege}
+        />
+      )}
     </div>
   );
 };
