@@ -7,6 +7,7 @@ import logging
 from pathlib import Path
 from typing import List, Optional
 from datetime import datetime, timedelta
+from uuid import uuid4
 
 # Import local modules
 from models import (
