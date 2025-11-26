@@ -200,8 +200,66 @@ const CollegesPageNew = () => {
                     </button>
                   </div>
                   <div className="p-5">
-                    {/* Filter content will be rendered here - same as desktop */}
-                    <FilterContent />
+                    {/* Clear all button */}
+                    <button
+                      onClick={() => {
+                        clearFilters();
+                        setShowMobileFilters(false);
+                      }}
+                      className="w-full mb-4 px-4 py-2 text-sm text-[#1a5d3a] border border-[#1a5d3a] rounded-md hover:bg-[#1a5d3a] hover:text-white transition-colors"
+                    >
+                      Clear all
+                    </button>
+
+                    {/* Location */}
+                    <div className="mb-5 pb-5 border-b border-gray-200">
+                      <label className="block text-sm font-semibold text-gray-900 mb-3">Location</label>
+                      <div className="space-y-2.5 max-h-48 overflow-y-auto pr-2">
+                        {states.slice(0, 10).map((state) => (
+                          <label key={state} className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded">
+                            <input
+                              type="checkbox"
+                              checked={filters.location.includes(state)}
+                              onChange={() => toggleFilter('location', state)}
+                              className="w-4 h-4 text-[#1a5d3a] border-gray-300 rounded focus:ring-[#1a5d3a]"
+                            />
+                            <span className="text-sm text-gray-700">{state}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Institution Type */}
+                    <div className="mb-6 pb-6 border-b border-gray-200">
+                      <label className="block text-sm font-medium text-gray-900 mb-3">Institution Type</label>
+                      <div className="space-y-2">
+                        {['Public', 'Private'].map((type) => {
+                          const count = colleges.filter(c => c.type === type).length;
+                          return (
+                            <label key={type} className="flex items-center justify-between cursor-pointer">
+                              <div className="flex items-center gap-2">
+                                <input
+                                  type="checkbox"
+                                  checked={filters.institutionType.includes(type)}
+                                  onChange={() => toggleFilter('institutionType', type)}
+                                  className="w-4 h-4 text-[#1a5d3a] border-gray-300 rounded focus:ring-[#1a5d3a]"
+                                />
+                                <span className="text-sm text-gray-700">{type}</span>
+                              </div>
+                              <span className="text-sm text-gray-500">{count}</span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Apply button */}
+                    <button
+                      onClick={() => setShowMobileFilters(false)}
+                      className="w-full px-4 py-3 bg-[#1a5d3a] text-white rounded-md hover:bg-[#2d8659] transition-colors font-medium"
+                    >
+                      Apply Filters
+                    </button>
                   </div>
                 </aside>
               </div>
