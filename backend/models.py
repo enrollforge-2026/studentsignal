@@ -162,6 +162,37 @@ class SavedItem(BaseModel):
     item_type: str  # college or scholarship
 
 
+# Lead Models
+class Lead(BaseDBModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_id: Optional[str] = None  # If user is logged in
+    college_id: str
+    college_name: str
+    first_name: str
+    last_name: str
+    email: EmailStr
+    phone: Optional[str] = None
+    high_school_grad_year: Optional[str] = None
+    interested_major: Optional[str] = None
+    consent_to_contact: bool = True
+    consent_to_share: bool = False
+    source: str = "website"  # website, mobile, etc.
+    created_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+
+
+class LeadCreate(BaseModel):
+    college_id: str
+    college_name: str
+    first_name: str
+    last_name: str
+    email: EmailStr
+    phone: Optional[str] = None
+    high_school_grad_year: Optional[str] = None
+    interested_major: Optional[str] = None
+    consent_to_contact: bool = True
+    consent_to_share: bool = False
+
+
 # IPEDS Models
 class IPEDSSync(BaseModel):
     status: str
