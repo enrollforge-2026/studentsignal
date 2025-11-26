@@ -289,7 +289,10 @@ const ScholarshipsPage = () => {
                       </div>
 
                       <div className="mt-auto">
-                        <Button className="w-full bg-[#f5a623] hover:bg-[#e09000] text-white rounded-md font-semibold shadow-sm">
+                        <Button 
+                          onClick={() => handleStartApplying(scholarship.name, scholarship.deadline)}
+                          className="w-full bg-[#f5a623] hover:bg-[#e09000] text-white rounded-md font-semibold shadow-sm"
+                        >
                           Start Applying
                         </Button>
                       </div>
