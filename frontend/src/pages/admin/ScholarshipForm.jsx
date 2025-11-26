@@ -37,7 +37,13 @@ const ScholarshipForm = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (isEdit) {
+      loadScholarship();
+    }
+  }, [isEdit, loadScholarship]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
