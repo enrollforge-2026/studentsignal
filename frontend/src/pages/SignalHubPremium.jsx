@@ -67,6 +67,19 @@ const SignalHubPremium = () => {
     { name: 'ACT', value: (testScores.act.current / testScores.act.goal) * 100, fill: '#FF8A5B' }
   ];
 
+  // Show loading spinner while auth is being checked
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-teal-50">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#1A535C]"></div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   if (!user) {
     return (
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-teal-50">
