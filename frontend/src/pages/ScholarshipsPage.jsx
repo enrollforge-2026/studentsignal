@@ -409,8 +409,11 @@ const ScholarshipsPage = () => {
                             {scholarship.amount.replace('Up to ', '')}
                           </div>
                         </div>
-                        <button className="text-gray-400 hover:text-[#f5a623] transition-colors">
-                          <Bookmark size={20} />
+                        <button 
+                          onClick={() => toggleSaveScholarship(scholarship.id)}
+                          className={`transition-colors ${savedScholarships.includes(scholarship.id) ? 'text-[#f5a623]' : 'text-gray-400 hover:text-[#f5a623]'}`}
+                        >
+                          <Bookmark size={20} fill={savedScholarships.includes(scholarship.id) ? '#f5a623' : 'none'} />
                         </button>
                       </div>
                     </div>
