@@ -39,6 +39,7 @@ const CollegeForm = () => {
     if (isEdit) {
       loadCollege();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const loadCollege = async () => {
