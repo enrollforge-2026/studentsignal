@@ -208,20 +208,6 @@ const ScholarshipsPage = () => {
 
             {/* Main Content */}
             <div className="flex-1">
-              {/* Search Bar */}
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-                  <input
-                    type="text"
-                    placeholder="Search scholarships..."
-                    value={filters.searchQuery}
-                    onChange={(e) => setFilters({ ...filters, searchQuery: e.target.value })}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
-                  />
-                </div>
-              </div>
-
               {/* Category Pills */}
               <div className="flex flex-wrap gap-2 mb-6">
                 {scholarshipCategories.map((cat) => (
