@@ -573,6 +573,8 @@ const CollegesPageNew = () => {
                 <button className="px-3 py-2 text-sm text-gray-500 hover:text-[#1a5d3a] hover:bg-gray-100 rounded-md transition-colors">›</button>
                 <button className="px-3 py-2 text-sm text-gray-500 hover:text-[#1a5d3a] hover:bg-gray-100 rounded-md transition-colors">»</button>
               </div>
+              </>
+              )}
             </div>
           </div>
         </div>
