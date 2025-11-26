@@ -347,40 +347,40 @@ const OnboardingFlow = () => {
               <p className="text-lg text-gray-600">Share your scores (all optional)</p>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
-                <Label htmlFor="sat">SAT Score (optional)</Label>
+                <Label htmlFor="sat" className="text-base font-semibold text-gray-700 mb-2 block">SAT Score <span className="text-sm text-gray-400 font-normal">(optional)</span></Label>
                 <Input
                   id="sat"
                   type="text"
                   placeholder="1400"
                   value={formData.sat_score}
                   onChange={(e) => updateField('sat_score', e.target.value)}
-                  className="mt-1"
+                  className="mt-2 h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 text-lg"
                 />
               </div>
               
               <div>
-                <Label htmlFor="act">ACT Score (optional)</Label>
+                <Label htmlFor="act" className="text-base font-semibold text-gray-700 mb-2 block">ACT Score <span className="text-sm text-gray-400 font-normal">(optional)</span></Label>
                 <Input
                   id="act"
                   type="text"
                   placeholder="32"
                   value={formData.act_score}
                   onChange={(e) => updateField('act_score', e.target.value)}
-                  className="mt-1"
+                  className="mt-2 h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 text-lg"
                 />
               </div>
               
               <div>
-                <Label htmlFor="gpa">GPA (optional)</Label>
+                <Label htmlFor="gpa" className="text-base font-semibold text-gray-700 mb-2 block">GPA <span className="text-sm text-gray-400 font-normal">(optional)</span></Label>
                 <Input
                   id="gpa"
                   type="text"
                   placeholder="3.8"
                   value={formData.gpa}
                   onChange={(e) => updateField('gpa', e.target.value)}
-                  className="mt-1"
+                  className="mt-2 h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 text-lg"
                 />
               </div>
             </div>
