@@ -316,18 +316,18 @@ const OnboardingFlow = () => {
             </div>
             
             <div>
-              <Label htmlFor="major">Choose a major (or skip if undecided)</Label>
+              <Label htmlFor="major" className="text-base font-semibold text-gray-700 mb-2 block">Choose a major (or skip if undecided)</Label>
               <Input
                 id="major"
                 type="text"
                 placeholder="e.g., Computer Science"
                 value={formData.intended_major}
                 onChange={(e) => updateField('intended_major', e.target.value)}
-                className="mt-1"
+                className="mt-2 h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 text-lg"
               />
               <button
                 onClick={nextStep}
-                className="mt-3 text-sm text-blue-600 hover:text-blue-700 underline"
+                className="mt-4 text-sm font-medium text-indigo-600 hover:text-indigo-700 underline underline-offset-4 transition-colors"
               >
                 Skip - I'm undecided
               </button>
