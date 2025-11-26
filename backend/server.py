@@ -454,6 +454,112 @@ async def export_leads_json(email: str = Depends(get_current_user_email)):
     }
 
 
+# ==================== Chat Routes (Elon AI) ====================
+
+@api_router.post("/chat", response_model=ChatResponse)
+async def chat_with_elon(
+    chat_message: ChatMessage,
+    email: str = Depends(get_current_user_email)
+):
+    """Chat with Elon AI assistant (authenticated users)"""
+    from emergentintegrations.llm.chat import LlmChat, UserMessage
+    from uuid import uuid4
+    
+    try:
+        # Get user info for personalization
+        user = await users_collection.find_one({"email": email}, {"_id": 0})
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+        
+        first_name = user.get('first_name', 'there')
+        
+        # Generate session ID if not provided
+        session_id = chat_message.session_id or str(uuid4())
+        
+        # Create system message with Student Signal context
+        system_message = f"""You are Elon, a friendly AI assistant for Student Signal, a college search and scholarship platform.
+
+User Context:
+- Name: {first_name}
+- Role: Helping students find colleges and scholarships
+- Platform: Student Signal (https://studentsignal.com)
+
+Your Responsibilities:
+1. Greet users warmly using their first name
+2. Help with navigation: colleges page, scholarships page, Signal Hub (dashboard)
+3. Answer questions about the platform features
+4. Provide guidance on college search and scholarship applications
+5. Keep responses brief, friendly, and helpful
+6. Stay focused on Student Signal features and college/scholarship topics
+
+Key Platform Features:
+- Colleges: Browse 8,000+ colleges with filters for location, major, test scores
+- Scholarships: Find scholarships by category (Merit, Need-Based, STEM, Athletic)
+- Signal Hub: Personal dashboard to track saved colleges, scholarships, and applications
+- Lead Capture: Request information directly from colleges
+
+Be conversational, supportive, and encouraging. Keep responses under 3-4 sentences unless more detail is specifically requested."""
+
+        # Initialize chat
+        chat = LlmChat(
+            api_key="sk-emergent-032766e07518853893",
+            session_id=session_id,
+            system_message=system_message
+        ).with_model("gemini", "gemini-2.0-flash")
+        
+        # Send message
+        user_message = UserMessage(text=chat_message.message)
+        response_text = await chat.send_message(user_message)
+        
+        return ChatResponse(response=response_text, session_id=session_id)
+        
+    except Exception as e:
+        print(f"Chat error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Chat service temporarily unavailable")
+
+
+@api_router.post("/chat/guest", response_model=ChatResponse)
+async def chat_with_elon_guest(chat_message: ChatMessage):
+    """Limited chat for guest users (FAQ mode)"""
+    from emergentintegrations.llm.chat import LlmChat, UserMessage
+    from uuid import uuid4
+    
+    try:
+        session_id = chat_message.session_id or str(uuid4())
+        
+        # Limited system message for guests
+        system_message = """You are Elon, a helpful assistant for Student Signal.
+
+You're talking to a guest user (not logged in). Your role:
+1. Answer basic questions about Student Signal platform
+2. Encourage them to sign up for full access
+3. Explain key features: college search, scholarship search, personalized recommendations
+4. Keep responses brief and friendly
+
+Platform Overview:
+- Student Signal helps students find colleges and scholarships
+- Free to sign up and explore 8,000+ colleges
+- Personalized dashboard to track favorites and applications
+- Direct connection to colleges via request info feature
+
+For detailed help, suggest they create a free account. Keep responses under 3 sentences."""
+
+        chat = LlmChat(
+            api_key="sk-emergent-032766e07518853893",
+            session_id=session_id,
+            system_message=system_message
+        ).with_model("gemini", "gemini-2.0-flash")
+        
+        user_message = UserMessage(text=chat_message.message)
+        response_text = await chat.send_message(user_message)
+        
+        return ChatResponse(response=response_text, session_id=session_id)
+        
+    except Exception as e:
+        print(f"Guest chat error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Chat service temporarily unavailable")
+
+
 # ==================== IPEDS Routes ====================
 
 @api_router.post("/ipeds/sync")
