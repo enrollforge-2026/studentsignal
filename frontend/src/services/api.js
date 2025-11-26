@@ -85,7 +85,7 @@ export const collegesAPI = {
   
   getCollege: async (id) => {
     const response = await api.get(`/api/colleges/${id}`);
-    return response.data;
+    return toCamelCase(response.data);
   },
   
   saveCollege: async (collegeId) => {
