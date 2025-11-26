@@ -1,159 +1,151 @@
-import React from 'react';
-import AdminLayout from '../../components/admin/AdminLayout';
-import { colleges } from '../../data/mockData';
-import {
-  GraduationCap,
-  Users,
-  FileText,
-  TrendingUp,
-  ArrowUp,
-  ArrowDown,
-  Eye,
-  Heart
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { GraduationCap, Award, Users, Mail, Plus, TrendingUp } from 'lucide-react';
+import api from '../../services/api';
 
 const AdminDashboard = () => {
-  const stats = [
-    {
-      label: 'Total Colleges',
-      value: colleges.length,
-      change: '+12%',
-      trend: 'up',
-      icon: GraduationCap,
-      color: 'bg-blue-500'
-    },
-    {
-      label: 'Active Users',
-      value: '2,847',
-      change: '+18%',
-      trend: 'up',
-      icon: Users,
-      color: 'bg-green-500'
-    },
-    {
-      label: 'Page Views',
-      value: '45.2K',
-      change: '+25%',
-      trend: 'up',
-      icon: Eye,
-      color: 'bg-purple-500'
-    },
-    {
-      label: 'Saved Schools',
-      value: '8,392',
-      change: '-3%',
-      trend: 'down',
-      icon: Heart,
-      color: 'bg-red-500'
+  const [stats, setStats] = useState({
+    colleges: 0,
+    scholarships: 0,
+    users: 0,
+    leads: 0,
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadStats();
+  }, []);
+
+  const loadStats = async () => {
+    try {
+      const [collegesRes, scholarshipsRes, leadsRes] = await Promise.all([
+        api.get('/colleges?limit=1'),
+        api.get('/scholarships?limit=1'),
+        api.get('/admin/leads'),
+      ]);
+
+      setStats({
+        colleges: collegesRes.data.total || 0,
+        scholarships: scholarshipsRes.data.total || 0,
+        users: 0, // Not implemented yet
+        leads: leadsRes.data.length || 0,
+      });
+    } catch (error) {
+      console.error('Failed to load stats:', error);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const statCards = [
+    {
+      title: 'Total Colleges',
+      value: stats.colleges,
+      icon: GraduationCap,
+      color: 'bg-blue-500',
+      link: '/admin/colleges',
+    },
+    {
+      title: 'Total Scholarships',
+      value: stats.scholarships,
+      icon: Award,
+      color: 'bg-orange-500',
+      link: '/admin/scholarships',
+    },
+    {
+      title: 'Total Users',
+      value: stats.users || 'N/A',
+      icon: Users,
+      color: 'bg-green-500',
+      link: null,
+    },
+    {
+      title: 'Total Leads',
+      value: stats.leads,
+      icon: Mail,
+      color: 'bg-purple-500',
+      link: null,
+    },
   ];
 
-  const recentActivity = [
-    { action: 'New user registered', user: 'john@example.com', time: '2 min ago' },
-    { action: 'College updated', user: 'admin@studentsignal.com', time: '15 min ago' },
-    { action: 'Content edited', user: 'editor@studentsignal.com', time: '1 hour ago' },
-    { action: 'New media uploaded', user: 'admin@studentsignal.com', time: '3 hours ago' },
-  ];
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-gray-500">Loading dashboard...</div>
+      </div>
+    );
+  }
 
   return (
-    <AdminLayout>
-      <div className="space-y-6">
-        {/* Page header */}
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-500">Welcome back! Here's what's happening with Student Signal.</p>
-        </div>
+    <div className="space-y-8">
+      {/* Header */}
+      <div>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+        <p className="text-gray-600">Manage your Student Signal content and data</p>
+      </div>
 
-        {/* Stats grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`w-12 h-12 ${stat.color} rounded-lg flex items-center justify-center`}>
-                    <Icon className="text-white" size={24} />
-                  </div>
-                  <div className={`flex items-center gap-1 text-sm ${
-                    stat.trend === 'up' ? 'text-green-600' : 'text-red-600'
-                  }`}>
-                    {stat.trend === 'up' ? <ArrowUp size={16} /> : <ArrowDown size={16} />}
-                    {stat.change}
-                  </div>
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {statCards.map((stat) => {
+          const Icon = stat.icon;
+          const card = (
+            <div
+              key={stat.title}
+              className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className={`${stat.color} w-12 h-12 rounded-lg flex items-center justify-center`}>
+                  <Icon className="text-white" size={24} />
                 </div>
-                <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                <p className="text-sm text-gray-500">{stat.label}</p>
+                <TrendingUp className="text-green-500" size={20} />
               </div>
-            );
-          })}
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-6">
-          {/* Recent activity */}
-          <div className="bg-white rounded-xl p-6 shadow-sm">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Recent Activity</h2>
-            <div className="space-y-4">
-              {recentActivity.map((activity, index) => (
-                <div key={index} className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
-                  <div>
-                    <p className="font-medium text-gray-900">{activity.action}</p>
-                    <p className="text-sm text-gray-500">{activity.user}</p>
-                  </div>
-                  <span className="text-sm text-gray-400">{activity.time}</span>
-                </div>
-              ))}
+              <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+              <div className="text-sm text-gray-600">{stat.title}</div>
             </div>
-          </div>
+          );
 
-          {/* Top colleges */}
-          <div className="bg-white rounded-xl p-6 shadow-sm">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Top Viewed Colleges</h2>
-            <div className="space-y-4">
-              {colleges.slice(0, 4).map((college, index) => (
-                <div key={college.id} className="flex items-center gap-4">
-                  <span className="text-lg font-bold text-gray-400 w-6">#{index + 1}</span>
-                  <img
-                    src={college.image}
-                    alt={college.name}
-                    className="w-12 h-12 rounded-lg object-cover"
-                  />
-                  <div className="flex-grow">
-                    <p className="font-medium text-gray-900">{college.shortName}</p>
-                    <p className="text-sm text-gray-500">{college.location}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-semibold text-[#1a5d3a]">{Math.floor(Math.random() * 5000 + 1000)} views</p>
-                  </div>
-                </div>
-              ))}
+          return stat.link ? (
+            <Link to={stat.link} key={stat.title}>
+              {card}
+            </Link>
+          ) : (
+            <div key={stat.title}>{card}</div>
+          );
+        })}
+      </div>
+
+      {/* Quick Actions */}
+      <div className="bg-white rounded-xl shadow-sm p-6">
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Actions</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link
+            to="/admin/colleges/new"
+            className="flex items-center gap-3 p-4 border-2 border-gray-200 rounded-xl hover:border-green-500 hover:bg-green-50 transition-all group"
+          >
+            <div className="bg-green-100 group-hover:bg-green-200 w-12 h-12 rounded-lg flex items-center justify-center transition-colors">
+              <Plus className="text-green-700" size={24} />
             </div>
-          </div>
-        </div>
+            <div>
+              <div className="font-semibold text-gray-900">Add New College</div>
+              <div className="text-sm text-gray-600">Create a new college entry</div>
+            </div>
+          </Link>
 
-        {/* Quick actions */}
-        <div className="bg-white rounded-xl p-6 shadow-sm">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Quick Actions</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <button className="p-4 border border-gray-200 rounded-lg hover:border-[#1a5d3a] hover:bg-[#1a5d3a]/5 transition-colors text-center">
-              <GraduationCap className="mx-auto mb-2 text-[#1a5d3a]" size={24} />
-              <span className="text-sm font-medium text-gray-700">Add College</span>
-            </button>
-            <button className="p-4 border border-gray-200 rounded-lg hover:border-[#1a5d3a] hover:bg-[#1a5d3a]/5 transition-colors text-center">
-              <FileText className="mx-auto mb-2 text-[#1a5d3a]" size={24} />
-              <span className="text-sm font-medium text-gray-700">Edit Content</span>
-            </button>
-            <button className="p-4 border border-gray-200 rounded-lg hover:border-[#1a5d3a] hover:bg-[#1a5d3a]/5 transition-colors text-center">
-              <Users className="mx-auto mb-2 text-[#1a5d3a]" size={24} />
-              <span className="text-sm font-medium text-gray-700">Manage Users</span>
-            </button>
-            <button className="p-4 border border-gray-200 rounded-lg hover:border-[#1a5d3a] hover:bg-[#1a5d3a]/5 transition-colors text-center">
-              <TrendingUp className="mx-auto mb-2 text-[#1a5d3a]" size={24} />
-              <span className="text-sm font-medium text-gray-700">View Reports</span>
-            </button>
-          </div>
+          <Link
+            to="/admin/scholarships/new"
+            className="flex items-center gap-3 p-4 border-2 border-gray-200 rounded-xl hover:border-orange-500 hover:bg-orange-50 transition-all group"
+          >
+            <div className="bg-orange-100 group-hover:bg-orange-200 w-12 h-12 rounded-lg flex items-center justify-center transition-colors">
+              <Plus className="text-orange-700" size={24} />
+            </div>
+            <div>
+              <div className="font-semibold text-gray-900">Add New Scholarship</div>
+              <div className="text-sm text-gray-600">Create a new scholarship entry</div>
+            </div>
+          </Link>
         </div>
       </div>
-    </AdminLayout>
+    </div>
   );
 };
 
