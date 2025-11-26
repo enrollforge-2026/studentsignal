@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import ElonChat from '../components/ElonChat';
 import HeroSection from '../components/home/HeroSection';
 import DirectAdmissions from '../components/home/DirectAdmissions';
 import UniqueSearch from '../components/home/UniqueSearch';
