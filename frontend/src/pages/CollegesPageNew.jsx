@@ -99,9 +99,46 @@ const CollegesPageNew = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       
+      {/* Hero Section with Search */}
+      <section className="relative bg-gradient-to-br from-blue-50 to-cyan-50 py-16">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920" 
+            alt="College campus" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              College Search
+            </h1>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              Appily makes finding and comparing with the best colleges and universities easy. Browse using our 
+              college search engine and see reviews, virtual tours, admission rates, and other insights to help you build 
+              your college list.
+            </p>
+          </div>
+          
+          {/* Search Bar */}
+          <div className="max-w-3xl mx-auto">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={24} />
+              <input
+                type="text"
+                placeholder="Search Colleges"
+                value={filters.searchQuery}
+                onChange={(e) => setFilters({ ...filters, searchQuery: e.target.value })}
+                className="w-full pl-14 pr-4 py-4 text-lg border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a] focus:border-[#1a5d3a] bg-white"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <main className="flex-1 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex gap-8">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex gap-6">
             {/* Sidebar Filters */}
             <aside className="hidden lg:block w-80 flex-shrink-0">
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
