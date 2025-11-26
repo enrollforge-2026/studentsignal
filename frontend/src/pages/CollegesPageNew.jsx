@@ -55,6 +55,22 @@ const CollegesPageNew = () => {
     fetchColleges();
   }, []);
 
+  // Fetch user's saved colleges
+  useEffect(() => {
+    const fetchSavedColleges = async () => {
+      if (isAuthenticated) {
+        try {
+          const saved = await collegesAPI.getSavedColleges();
+          setSavedColleges(saved.map(c => c.id));
+        } catch (error) {
+          console.error('Error fetching saved colleges:', error);
+        }
+      }
+    };
+
+    fetchSavedColleges();
+  }, [isAuthenticated]);
+
   useEffect(() => {
     if (!colleges || colleges.length === 0) {
       setFilteredColleges([]);
