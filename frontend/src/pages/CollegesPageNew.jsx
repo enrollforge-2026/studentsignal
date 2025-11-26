@@ -412,68 +412,86 @@ const CollegesPageNew = () => {
                     {/* College Details */}
                     <div className="p-4 flex flex-col flex-1">
                       <Link to={`/college/${college.id}`}>
-                        <h3 className="text-lg font-bold text-gray-900 hover:text-[#1a5d3a] cursor-pointer mb-2 line-clamp-2">
+                        <h3 className="text-base font-bold text-gray-900 hover:text-[#1a5d3a] cursor-pointer mb-1 line-clamp-2 leading-tight">
                           {college.name}
                         </h3>
                       </Link>
                       
-                      <div className="flex items-center gap-1 text-sm text-gray-600 mb-3">
-                        <MapPin size={14} />
+                      <div className="flex items-center gap-1 text-xs text-gray-600 mb-3">
+                        <MapPin size={12} />
                         <span>{college.location}</span>
                       </div>
 
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="inline-block px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full">
+                      <div className="flex items-center gap-2 mb-3 text-xs">
+                        <span className="text-gray-700 font-medium">
                           {college.type}
                         </span>
-                        <span className="text-sm font-bold text-[#1a5d3a]">
-                          {college.acceptanceRate}%
+                        <span className="text-gray-400">|</span>
+                        <span className="font-bold text-[#1a5d3a]">
+                          {college.acceptanceRate}% Acceptance Rate
                         </span>
                       </div>
 
-                      <div className="space-y-3 mb-4">
-                        <div>
-                          <div className="text-xs text-gray-600">Avg Net Price:</div>
-                          <div className="text-lg font-bold text-gray-900">
+                      <div className="space-y-2 mb-3">
+                        <div className="flex items-baseline justify-between">
+                          <span className="text-xs text-gray-600">Avg Net Price:</span>
+                          <span className="text-base font-bold text-gray-900">
                             ${college.tuitionInState.toLocaleString()}
-                          </div>
+                          </span>
                         </div>
                         
+                        <div className="flex items-baseline justify-between">
+                          <span className="text-xs text-gray-600">Sticker Price:</span>
+                          <span className="text-base font-bold text-gray-900">
+                            ${college.tuitionOutState.toLocaleString()}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 mb-3">
                         <div>
-                          <div className="text-xs text-gray-600 mb-1">Average ACT:</div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-base font-bold text-gray-900 w-8">
+                          <div className="flex items-baseline justify-between mb-1">
+                            <span className="text-xs text-gray-600">Average ACT Composite:</span>
+                            <span className="text-sm font-bold text-gray-900">
                               {college.actRange.split('-')[0]}
                             </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs text-gray-500">0</span>
                             <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
                               <div 
                                 className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
                                 style={{ width: `${(parseInt(college.actRange.split('-')[0]) / 36) * 100}%` }}
                               ></div>
                             </div>
+                            <span className="text-xs text-gray-500">36</span>
                           </div>
                         </div>
 
                         <div>
-                          <div className="text-xs text-gray-600 mb-1">Average SAT:</div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-base font-bold text-gray-900 w-8">
+                          <div className="flex items-baseline justify-between mb-1">
+                            <span className="text-xs text-gray-600">Average SAT Composite:</span>
+                            <span className="text-sm font-bold text-gray-900">
                               {college.satRange.split('-')[0]}
                             </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs text-gray-500">0</span>
                             <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
                               <div 
                                 className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
                                 style={{ width: `${(parseInt(college.satRange.split('-')[0]) / 1600) * 100}%` }}
                               ></div>
                             </div>
+                            <span className="text-xs text-gray-500">1600</span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="mt-auto">
+                      <div className="mt-auto pt-2 border-t border-gray-100">
                         <Button 
                           variant="outline" 
-                          className="w-full text-[#1a5d3a] border-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white rounded-md font-semibold text-sm"
+                          className="w-full text-[#1a5d3a] border-[#1a5d3a] hover:bg-[#1a5d3a] hover:text-white rounded-md font-semibold text-sm py-2"
                         >
                           Will you get accepted?
                         </Button>
