@@ -288,15 +288,131 @@ export const footerLinks = {
   ]
 };
 
+export const scholarships = [
+  {
+    id: 1,
+    name: "National Merit Scholarship",
+    amount: "Up to $2,500",
+    deadline: "October 15, 2025",
+    type: "Merit-Based",
+    category: "Academic Excellence",
+    description: "Awarded to top-performing students based on PSAT/NMSQT scores.",
+    eligibility: ["High school seniors", "U.S. citizens", "Top PSAT scores"],
+    renewable: true,
+    applicationRequired: true,
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800"
+  },
+  {
+    id: 2,
+    name: "Coca-Cola Scholars Program",
+    amount: "$20,000",
+    deadline: "October 31, 2025",
+    type: "Merit-Based",
+    category: "Leadership",
+    description: "Recognizes students who demonstrate leadership, service, and academic achievement.",
+    eligibility: ["High school seniors", "Minimum 3.0 GPA", "Leadership experience"],
+    renewable: false,
+    applicationRequired: true,
+    image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800"
+  },
+  {
+    id: 3,
+    name: "Gates Scholarship",
+    amount: "Full Cost of Attendance",
+    deadline: "September 15, 2025",
+    type: "Need-Based",
+    category: "Minority Students",
+    description: "Covers the full cost of attendance for exceptional minority students with financial need.",
+    eligibility: ["High school seniors", "Pell Grant eligible", "Minority students"],
+    renewable: true,
+    applicationRequired: true,
+    image: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800"
+  },
+  {
+    id: 4,
+    name: "STEM Excellence Scholarship",
+    amount: "$5,000",
+    deadline: "January 15, 2026",
+    type: "Merit-Based",
+    category: "STEM",
+    description: "For students pursuing degrees in Science, Technology, Engineering, or Mathematics.",
+    eligibility: ["College students", "STEM major", "Minimum 3.5 GPA"],
+    renewable: true,
+    applicationRequired: true,
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800"
+  },
+  {
+    id: 5,
+    name: "First Generation College Scholarship",
+    amount: "$10,000",
+    deadline: "December 1, 2025",
+    type: "Need-Based",
+    category: "First Generation",
+    description: "Supporting first-generation college students in their educational journey.",
+    eligibility: ["First-generation college students", "Financial need", "Minimum 2.5 GPA"],
+    renewable: true,
+    applicationRequired: true,
+    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800"
+  },
+  {
+    id: 6,
+    name: "Athletic Excellence Scholarship",
+    amount: "$15,000",
+    deadline: "November 30, 2025",
+    type: "Athletic",
+    category: "Sports",
+    description: "For student-athletes demonstrating excellence in their sport and academics.",
+    eligibility: ["High school seniors", "Varsity athlete", "Minimum 3.0 GPA"],
+    renewable: true,
+    applicationRequired: true,
+    image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800"
+  },
+  {
+    id: 7,
+    name: "Women in Technology Scholarship",
+    amount: "$7,500",
+    deadline: "February 28, 2026",
+    type: "Merit-Based",
+    category: "Women in STEM",
+    description: "Encouraging women to pursue careers in technology and computer science.",
+    eligibility: ["Female students", "Technology or CS major", "Minimum 3.0 GPA"],
+    renewable: false,
+    applicationRequired: true,
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800"
+  },
+  {
+    id: 8,
+    name: "Community Service Leadership Award",
+    amount: "$3,000",
+    deadline: "March 31, 2026",
+    type: "Merit-Based",
+    category: "Community Service",
+    description: "Recognizes students with outstanding community service contributions.",
+    eligibility: ["College students", "100+ volunteer hours", "Leadership roles"],
+    renewable: false,
+    applicationRequired: true,
+    image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800"
+  }
+];
+
+export const scholarshipCategories = [
+  { id: 1, name: "All Scholarships", count: 8, icon: "award" },
+  { id: 2, name: "Merit-Based", count: 4, icon: "star" },
+  { id: 3, name: "Need-Based", count: 2, icon: "dollar" },
+  { id: 4, name: "STEM", count: 2, icon: "flask" },
+  { id: 5, name: "Athletic", count: 1, icon: "trophy" },
+  { id: 6, name: "First Generation", count: 1, icon: "users" }
+];
+
 export const adminContent = {
   heroSection: {
     title: "FIND THE SCHOOL",
     subtitle: "THAT FITS YOU BEST",
-    description: "Finding the right school shouldn't be hard. From K-12 to college to grad school, we'll help you find and connect with the best ones for you.",
+    description: "Finding the right college or graduate school shouldn't be hard. We'll help you find and connect with the best ones for you.",
     ctaButtons: [
-      { label: "K-12 Schools", href: "/k12", variant: "outline" },
       { label: "Colleges", href: "/colleges", variant: "primary" },
-      { label: "Grad Schools", href: "/graduate", variant: "outline" }
+      { label: "Grad Schools", href: "/graduate", variant: "outline" },
+      { label: "Scholarships", href: "/scholarships", variant: "outline" }
     ]
   },
   directAdmissions: {
