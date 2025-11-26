@@ -101,12 +101,52 @@ code {
 }
 
 @layer base {
-    * {
-        @apply border-border;
+  * {
+    @apply border-border;
     }
-    body {
-        @apply bg-background text-foreground;
+  body {
+    @apply bg-background text-foreground;
     }
+}
+
+/* Custom gradient utilities */
+@layer utilities {
+  .gradient-hero {
+    background: linear-gradient(135deg, #228B22 0%, #1a6b1a 100%);
+  }
+  .gradient-cta {
+    background: linear-gradient(135deg, #FF7518 0%, #9370DB 100%);
+  }
+  .gradient-accent {
+    background: linear-gradient(135deg, #00CED1 0%, #9370DB 100%);
+  }
+  .gradient-warm {
+    background: linear-gradient(135deg, #FF7518 0%, #F4E1D2 100%);
+  }
+  .gradient-sand {
+    background: linear-gradient(180deg, #faf3ec 0%, #F4E1D2 100%);
+  }
+  .gradient-lavender-glow {
+    background: linear-gradient(135deg, #9370DB20 0%, #00CED120 100%);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, #FF7518 0%, #9370DB 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glow-emerald {
+    box-shadow: 0 0 20px rgba(34, 139, 34, 0.3);
+  }
+  .glow-tangerine {
+    box-shadow: 0 0 20px rgba(255, 117, 24, 0.3);
+  }
+  .glow-turquoise {
+    box-shadow: 0 0 20px rgba(0, 206, 209, 0.3);
+  }
+  .glow-lavender {
+    box-shadow: 0 0 20px rgba(147, 112, 219, 0.3);
+  }
 }
 
 @layer base {
