@@ -63,17 +63,36 @@ const Header = () => {
               </div>
             </form>
 
-            <Link to="/login">
-              <Button variant="ghost" size="sm" className="text-gray-700 hover:text-[#1a5d3a]">
-                Log In
-              </Button>
-            </Link>
+            {user ? (
+              <>
+                <Link to="/signal-hub">
+                  <Button variant="ghost" size="sm" className="text-gray-700 hover:text-[#1a5d3a] flex items-center gap-2">
+                    <LayoutDashboard size={18} />
+                    Signal Hub
+                  </Button>
+                </Link>
+                <button
+                  onClick={logout}
+                  className="text-sm font-medium text-gray-700 hover:text-red-600 transition-colors"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button variant="ghost" size="sm" className="text-gray-700 hover:text-[#1a5d3a]">
+                    Log In
+                  </Button>
+                </Link>
 
-            <Link to="/signup">
-              <Button size="sm" className="bg-[#f5a623] hover:bg-[#e09000] text-white font-semibold">
-                Join Free
-              </Button>
-            </Link>
+                <Link to="/signup">
+                  <Button size="sm" className="bg-[#f5a623] hover:bg-[#e09000] text-white font-semibold">
+                    Join Free
+                  </Button>
+                </Link>
+              </>
+            )}
 
             {/* Mobile menu button */}
             <button
