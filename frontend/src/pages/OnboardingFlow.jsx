@@ -54,14 +54,41 @@ const OnboardingFlow = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await api.put('/api/users/onboarding', formData);
+      const token = localStorage.getItem('token');
+      console.log('Submitting onboarding with token:', token ? 'Present' : 'Missing');
+      console.log('Onboarding data:', formData);
+      
+      const response = await api.put('/api/users/onboarding', formData);
+      console.log('Onboarding response:', response.data);
+      
       setCurrentStep(totalSteps); // Show personalizing screen
       setTimeout(() => {
         navigate('/signal-hub');
       }, 2500);
     } catch (error) {
-      console.error('Onboarding error:', error);
-      alert('Failed to complete onboarding. Please try again.');
+      console.error('Onboarding submission failed:', error);
+      console.error('Error details:', error.response?.data);
+      
+      // Show user-friendly error
+      const errorMsg = error.response?.data?.detail || 'Failed to complete onboarding. Please try again.';
+      
+      // Create error modal instead of alert
+      const modal = document.createElement('div');
+      modal.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 10000; max-width: 400px; width: 90%;';
+      modal.innerHTML = `
+        <h3 style="font-size: 20px; font-weight: bold; color: #ef4444; margin-bottom: 16px;">Submission Error</h3>
+        <p style="color: #4a5568; line-height: 1.6; margin-bottom: 20px;">${errorMsg}</p>
+        <button onclick="this.parentElement.remove(); document.getElementById('error-overlay').remove();" style="width: 100%; background: #ef4444; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Try Again</button>
+      `;
+      
+      const overlay = document.createElement('div');
+      overlay.id = 'error-overlay';
+      overlay.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999;';
+      overlay.onclick = () => { modal.remove(); overlay.remove(); };
+      
+      document.body.appendChild(overlay);
+      document.body.appendChild(modal);
+      
       setLoading(false);
     }
   };
