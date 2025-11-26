@@ -13,6 +13,7 @@ from models import (
     College, CollegeCreate, CollegeUpdate,
     Scholarship, ScholarshipCreate,
     User, UserCreate, UserLogin, UserResponse, Token, SavedItem,
+    Lead, LeadCreate,
     IPEDSSync, IPEDSStatus
 )
 from auth import (
@@ -21,7 +22,7 @@ from auth import (
 )
 from database import (
     db, colleges_collection, scholarships_collection,
-    users_collection, ipeds_sync_collection, serialize_doc, prepare_for_mongo
+    users_collection, ipeds_sync_collection, leads_collection, serialize_doc, prepare_for_mongo
 )
 from ipeds import IPEDSIntegration
 
