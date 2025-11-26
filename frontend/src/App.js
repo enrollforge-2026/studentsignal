@@ -22,10 +22,11 @@ import AdminMedia from "./pages/admin/AdminMedia";
 
 function App() {
   return (
-    <div className="App">
-      <Toaster position="top-right" richColors />
-      <BrowserRouter>
-        <Routes>
+    <AuthProvider>
+      <div className="App">
+        <Toaster position="top-right" richColors />
+        <BrowserRouter>
+          <Routes>
           {/* Public routes */}
           <Route path="/" element={<HomePage />} />
           <Route path="/colleges" element={<CollegesPage />} />
