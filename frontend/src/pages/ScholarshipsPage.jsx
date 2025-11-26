@@ -54,6 +54,11 @@ const ScholarshipsPage = () => {
     alert(`Start your application for ${scholarshipName}!\n\nDeadline: ${deadline}\n\nYou'll be redirected to the application portal where you can submit your documents and complete the application process.`);
   };
 
+  const handleLearnMore = (scholarship) => {
+    // Show detailed scholarship information
+    alert(`${scholarship.name}\n\nAmount: ${scholarship.amount}\nDeadline: ${scholarship.deadline}\nType: ${scholarship.type}\nCategory: ${scholarship.category}\n\nDescription: ${scholarship.description}\n\nEligibility:\n${scholarship.eligibility.join('\n')}\n\n${scholarship.renewable ? 'This is a renewable award.' : 'This is a one-time award.'}`);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
