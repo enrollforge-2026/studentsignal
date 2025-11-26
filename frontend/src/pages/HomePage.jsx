@@ -28,6 +28,9 @@ const HomePage = () => {
         <CTASection />
       </main>
       <Footer />
+      
+      {/* Elon AI Chatbot for guests */}
+      <ElonChat />
     </div>
   );
 };
