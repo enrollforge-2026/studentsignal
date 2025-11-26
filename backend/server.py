@@ -343,6 +343,93 @@ async def get_saved_scholarships(email: str = Depends(get_current_user_email)):
     return scholarships
 
 
+# ==================== Lead Routes ====================
+
+@api_router.post("/leads", response_model=dict)
+async def create_lead(lead_data: LeadCreate):
+    """Create a new lead (request info from college)"""
+    try:
+        # Create lead document
+        lead_dict = lead_data.dict()
+        lead = Lead(**lead_dict)
+        
+        # Insert into database
+        await leads_collection.insert_one(prepare_for_mongo(lead.dict()))
+        
+        return {
+            "message": "Lead submitted successfully",
+            "lead_id": lead.id
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@api_router.get("/admin/leads", response_model=List[Lead])
+async def get_all_leads(
+    skip: int = Query(0, ge=0),
+    limit: int = Query(100, le=1000),
+    email: str = Depends(get_current_user_email)
+):
+    """Get all leads (admin only)"""
+    # Check if user is admin
+    user = await users_collection.find_one({"email": email})
+    if not user or user.get('role') != 'admin':
+        raise HTTPException(status_code=403, detail="Admin access required")
+    
+    leads = await leads_collection.find({}, {"_id": 0}).sort("created_at", -1).skip(skip).limit(limit).to_list(limit)
+    return leads
+
+
+@api_router.get("/admin/leads/export")
+async def export_leads_csv(email: str = Depends(get_current_user_email)):
+    """Export all leads as CSV (admin only)"""
+    from fastapi.responses import StreamingResponse
+    import io
+    import csv
+    
+    # Check if user is admin
+    user = await users_collection.find_one({"email": email})
+    if not user or user.get('role') != 'admin':
+        raise HTTPException(status_code=403, detail="Admin access required")
+    
+    # Fetch all leads
+    leads = await leads_collection.find({}, {"_id": 0}).sort("created_at", -1).to_list(10000)
+    
+    # Create CSV in memory
+    output = io.StringIO()
+    if leads:
+        fieldnames = list(leads[0].keys())
+        writer = csv.DictWriter(output, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(leads)
+    
+    output.seek(0)
+    
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=leads_export.csv"}
+    )
+
+
+@api_router.get("/admin/leads/json")
+async def export_leads_json(email: str = Depends(get_current_user_email)):
+    """Export all leads as JSON for CRM integration (admin only)"""
+    # Check if user is admin
+    user = await users_collection.find_one({"email": email})
+    if not user or user.get('role') != 'admin':
+        raise HTTPException(status_code=403, detail="Admin access required")
+    
+    # Fetch all leads
+    leads = await leads_collection.find({}, {"_id": 0}).sort("created_at", -1).to_list(10000)
+    
+    return {
+        "total": len(leads),
+        "leads": leads,
+        "exported_at": datetime.utcnow().isoformat()
+    }
+
+
 # ==================== IPEDS Routes ====================
 
 @api_router.post("/ipeds/sync")
