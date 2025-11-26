@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { states, majorsList } from '../data/mockData';
 import { collegesAPI } from '../services/api';
 import Header from '../components/layout/Header';
