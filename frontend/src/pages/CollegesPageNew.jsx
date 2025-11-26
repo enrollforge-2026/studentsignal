@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { colleges, states, majorsList } from '../data/mockData';
+import { states, majorsList } from '../data/mockData';
+import { collegesAPI } from '../services/api';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
