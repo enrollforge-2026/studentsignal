@@ -399,26 +399,26 @@ const OnboardingFlow = () => {
               <p className="text-lg text-gray-600">Just a few more details</p>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
-                <Label htmlFor="phone">Phone (optional)</Label>
+                <Label htmlFor="phone" className="text-base font-semibold text-gray-700 mb-2 block">Phone <span className="text-sm text-gray-400 font-normal">(optional)</span></Label>
                 <Input
                   id="phone"
                   type="tel"
                   placeholder="(555) 123-4567"
                   value={formData.phone}
                   onChange={(e) => updateField('phone', e.target.value)}
-                  className="mt-1"
+                  className="mt-2 h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 text-lg"
                 />
               </div>
               
               <div>
-                <Label htmlFor="gender">Gender</Label>
+                <Label htmlFor="gender" className="text-base font-semibold text-gray-700 mb-2 block">Gender</Label>
                 <select
                   id="gender"
                   value={formData.gender}
                   onChange={(e) => updateField('gender', e.target.value)}
-                  className="mt-1 w-full p-2 border border-gray-300 rounded-md"
+                  className="mt-2 w-full h-14 px-5 border-2 border-gray-200 rounded-xl text-lg focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 bg-white cursor-pointer"
                 >
                   <option value="">Select...</option>
                   <option value="Male">Male</option>
@@ -429,12 +429,12 @@ const OnboardingFlow = () => {
               </div>
               
               <div>
-                <Label htmlFor="ethnicity">Ethnicity (optional)</Label>
+                <Label htmlFor="ethnicity" className="text-base font-semibold text-gray-700 mb-2 block">Ethnicity <span className="text-sm text-gray-400 font-normal">(optional)</span></Label>
                 <select
                   id="ethnicity"
                   value={formData.ethnicity}
                   onChange={(e) => updateField('ethnicity', e.target.value)}
-                  className="mt-1 w-full p-2 border border-gray-300 rounded-md"
+                  className="mt-2 w-full h-14 px-5 border-2 border-gray-200 rounded-xl text-lg focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 bg-white cursor-pointer"
                 >
                   <option value="">Select...</option>
                   <option value="Asian">Asian</option>
