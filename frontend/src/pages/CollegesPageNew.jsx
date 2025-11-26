@@ -52,7 +52,12 @@ const CollegesPageNew = () => {
   }, []);
 
   useEffect(() => {
-    let filtered = colleges;
+    if (!colleges || colleges.length === 0) {
+      setFilteredColleges([]);
+      return;
+    }
+
+    let filtered = [...colleges];
 
     // Location filter
     if (filters.location.length > 0) {
@@ -68,24 +73,24 @@ const CollegesPageNew = () => {
     if (filters.searchQuery) {
       const query = filters.searchQuery.toLowerCase();
       filtered = filtered.filter(c => 
-        c.name.toLowerCase().includes(query) ||
-        c.shortName.toLowerCase().includes(query) ||
-        c.location.toLowerCase().includes(query) ||
-        c.majors.some(m => m.toLowerCase().includes(query))
+        (c.name && c.name.toLowerCase().includes(query)) ||
+        (c.short_name && c.short_name.toLowerCase().includes(query)) ||
+        (c.location && c.location.toLowerCase().includes(query)) ||
+        (c.majors && Array.isArray(c.majors) && c.majors.some(m => m.toLowerCase().includes(query)))
       );
     }
 
     // Sort
     if (sortBy === 'mostSelective') {
-      filtered = [...filtered].sort((a, b) => a.acceptanceRate - b.acceptanceRate);
+      filtered = [...filtered].sort((a, b) => (a.acceptance_rate || 0) - (b.acceptance_rate || 0));
     } else if (sortBy === 'leastSelective') {
-      filtered = [...filtered].sort((a, b) => b.acceptanceRate - a.acceptanceRate);
+      filtered = [...filtered].sort((a, b) => (b.acceptance_rate || 0) - (a.acceptance_rate || 0));
     } else if (sortBy === 'lowestNetPrice') {
-      filtered = [...filtered].sort((a, b) => a.tuitionInState - b.tuitionInState);
+      filtered = [...filtered].sort((a, b) => (a.tuition_in_state || 0) - (b.tuition_in_state || 0));
     }
 
     setFilteredColleges(filtered);
-  }, [filters, sortBy]);
+  }, [colleges, filters, sortBy]);
 
   const clearFilters = () => {
     setFilters({
