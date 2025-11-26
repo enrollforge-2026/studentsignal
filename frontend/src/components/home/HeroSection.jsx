@@ -71,29 +71,19 @@ const HeroSection = () => {
                 START YOUR SEARCH
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link to="/k12">
-                  <Button 
-                    variant="outline" 
-                    className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1a5d3a] font-semibold px-6 transition-all"
-                  >
-                    K-12 Schools
-                  </Button>
-                </Link>
-                <Link to="/colleges">
-                  <Button 
-                    className="bg-[#f5a623] hover:bg-[#e09000] text-white font-semibold px-6 border-0"
-                  >
-                    Colleges
-                  </Button>
-                </Link>
-                <Link to="/graduate">
-                  <Button 
-                    variant="outline" 
-                    className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1a5d3a] font-semibold px-6 transition-all"
-                  >
-                    Grad Schools
-                  </Button>
-                </Link>
+                {adminContent.heroSection.ctaButtons.map((button, index) => (
+                  <Link key={index} to={button.href}>
+                    <Button 
+                      variant={button.variant === 'primary' ? 'default' : 'outline'}
+                      className={button.variant === 'primary' 
+                        ? 'bg-[#f5a623] hover:bg-[#e09000] text-white font-semibold px-6 border-0'
+                        : 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1a5d3a] font-semibold px-6 transition-all'
+                      }
+                    >
+                      {button.label}
+                    </Button>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
