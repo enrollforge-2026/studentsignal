@@ -250,27 +250,27 @@ const OnboardingFlow = () => {
               <h1 className="text-3xl font-bold text-gray-900 mb-4">Where are you from?</h1>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
-                <Label htmlFor="country">Country</Label>
+                <Label htmlFor="country" className="text-base font-semibold text-gray-700 mb-2 block">Country</Label>
                 <Input
                   id="country"
                   type="text"
                   value={formData.country}
                   onChange={(e) => updateField('country', e.target.value)}
-                  className="mt-1"
+                  className="mt-2 h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 text-lg"
                 />
               </div>
               
               <div>
-                <Label htmlFor="postalCode">Postal Code</Label>
+                <Label htmlFor="postalCode" className="text-base font-semibold text-gray-700 mb-2 block">Postal Code</Label>
                 <Input
                   id="postalCode"
                   type="text"
                   placeholder="12345"
                   value={formData.postal_code}
                   onChange={(e) => updateField('postal_code', e.target.value)}
-                  className="mt-1"
+                  className="mt-2 h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 text-lg"
                 />
               </div>
             </div>
