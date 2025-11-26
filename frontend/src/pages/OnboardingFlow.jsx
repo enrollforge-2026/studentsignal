@@ -116,9 +116,9 @@ const OnboardingFlow = () => {
                     updateField('user_role', role);
                     nextStep();
                   }}
-                  className="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all"
+                  className="w-full p-5 text-left border-2 border-gray-200 rounded-2xl hover:border-indigo-500 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
                 >
-                  <span className="font-medium text-gray-900">{role}</span>
+                  <span className="font-semibold text-gray-900 text-lg">{role}</span>
                 </button>
               ))}
             </div>
