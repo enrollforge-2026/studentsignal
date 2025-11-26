@@ -474,18 +474,18 @@ const OnboardingFlow = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex flex-col">
-      {/* Progress Bar */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex flex-col">
+      {/* Progress Bar - Modern Enterprise Style */}
       {currentStep < 10 && (
-        <div className="w-full bg-white shadow-sm">
-          <div className="max-w-4xl mx-auto px-4 py-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-gray-600">Step {currentStep} of {totalSteps - 1}</span>
-              <span className="text-sm font-medium text-gray-600">{Math.round(progress)}%</span>
+        <div className="w-full bg-white/80 backdrop-blur-sm shadow-sm border-b border-gray-100">
+          <div className="max-w-4xl mx-auto px-6 py-5">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-semibold text-gray-700 tracking-wide">STEP {currentStep} OF {totalSteps - 1}</span>
+              <span className="text-sm font-semibold text-indigo-600">{Math.round(progress)}% Complete</span>
             </div>
-            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div className="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden shadow-inner">
               <div 
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300"
+                className="h-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-full transition-all duration-500 ease-out shadow-lg"
                 style={{ width: `${progress}%` }}
               />
             </div>
