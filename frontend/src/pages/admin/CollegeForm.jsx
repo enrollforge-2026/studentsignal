@@ -35,13 +35,7 @@ const CollegeForm = () => {
   const [majorsInput, setMajorsInput] = useState('');
   const [featuresInput, setFeaturesInput] = useState('');
 
-  useEffect(() => {
-    if (isEdit) {
-      loadCollege();
-    }
-  }, [id, isEdit]);
-
-  const loadCollege = async () => {
+  const loadCollege = useCallback(async () => {
     try {
       const response = await api.get(`/colleges/${id}`);
       const college = response.data;
