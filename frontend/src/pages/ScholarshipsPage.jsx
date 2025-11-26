@@ -50,11 +50,13 @@ const ScholarshipsPage = () => {
   };
 
   const handleStartApplying = (scholarshipName, deadline) => {
+    console.log('Start Applying clicked:', scholarshipName);
     // You can replace this with navigation to application form
     alert(`Start your application for ${scholarshipName}!\n\nDeadline: ${deadline}\n\nYou'll be redirected to the application portal where you can submit your documents and complete the application process.`);
   };
 
   const handleLearnMore = (scholarship) => {
+    console.log('Learn More clicked:', scholarship.name);
     // Show detailed scholarship information
     alert(`${scholarship.name}\n\nAmount: ${scholarship.amount}\nDeadline: ${scholarship.deadline}\nType: ${scholarship.type}\nCategory: ${scholarship.category}\n\nDescription: ${scholarship.description}\n\nEligibility:\n${scholarship.eligibility.join('\n')}\n\n${scholarship.renewable ? 'This is a renewable award.' : 'This is a one-time award.'}`);
   };
