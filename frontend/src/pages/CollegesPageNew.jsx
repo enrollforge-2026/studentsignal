@@ -95,6 +95,11 @@ const CollegesPageNew = () => {
     );
   };
 
+  const handleWillYouGetAccepted = (collegeName) => {
+    // You can replace this with navigation to a form or modal
+    alert(`Check your admission chances for ${collegeName}!\n\nThis feature will help you assess your probability of acceptance based on your academic profile, test scores, and extracurricular activities.`);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
