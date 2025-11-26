@@ -143,4 +143,12 @@ export const scholarshipsAPI = {
   },
 };
 
+// Leads API calls
+export const leadsAPI = {
+  createLead: async (leadData) => {
+    const response = await api.post('/api/leads', leadData);
+    return response.data;
+  },
+};
+
 export default api;
