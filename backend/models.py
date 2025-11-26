@@ -164,7 +164,27 @@ class UserResponse(BaseDBModel):
     role: str
     saved_colleges: List[str]
     saved_scholarships: List[str]
+    onboarding_completed: bool
     created_at: datetime
+
+
+class OnboardingData(BaseModel):
+    user_role: Optional[str] = None
+    self_description: Optional[str] = None
+    high_school_grad_year: Optional[str] = None
+    intended_enrollment_year: Optional[str] = None
+    intended_enrollment_term: Optional[str] = None
+    birthdate: Optional[str] = None
+    country: Optional[str] = None
+    postal_code: Optional[str] = None
+    high_school_name: Optional[str] = None
+    intended_major: Optional[str] = None
+    sat_score: Optional[str] = None
+    act_score: Optional[str] = None
+    gpa: Optional[str] = None
+    phone: Optional[str] = None
+    gender: Optional[str] = None
+    ethnicity: Optional[str] = None
 
 
 class Token(BaseModel):
