@@ -43,7 +43,7 @@ const SignupPage = () => {
       });
 
       if (result.success) {
-        navigate('/signal-hub');
+        navigate('/onboarding');
       } else {
         setError(result.error || 'Registration failed. Please try again.');
       }
