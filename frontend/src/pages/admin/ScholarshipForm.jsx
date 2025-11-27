@@ -34,7 +34,7 @@ const ScholarshipForm = () => {
       setEligibilityInput(scholarship.eligibility.join(', '));
     } catch (error) {
       console.error('Failed to load scholarship:', error);
-      alert('Failed to load scholarship data');
+      toast.error('Failed to load scholarship data');
     } finally {
       setLoading(false);
     }
