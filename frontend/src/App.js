@@ -22,6 +22,12 @@ import ForSchools from "./pages/ForSchools";
 import ArticlesHub from "./pages/ArticlesHub";
 import ArticleDetail from "./pages/ArticleDetail";
 
+// Placeholder Pages
+import OnlineColleges from "./pages/placeholders/OnlineColleges";
+import MilitaryPrograms from "./pages/placeholders/MilitaryPrograms";
+import InternationalStudents from "./pages/placeholders/InternationalStudents";
+import TransferStudents from "./pages/placeholders/TransferStudents";
+
 // Admin Pages
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
