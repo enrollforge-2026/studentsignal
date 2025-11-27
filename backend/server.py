@@ -748,6 +748,153 @@ async def get_analytics(email: str = Depends(get_current_admin_email)):
         raise HTTPException(status_code=500, detail="Failed to load analytics data")
 
 
+# ==================== Public Articles Routes ====================
+
+@api_router.get("/articles", response_model=dict)
+async def get_articles(
+    featured: bool = Query(False),
+    is_video: bool = Query(False),
+    category: Optional[str] = Query(None),
+    limit: int = Query(20)
+):
+    """Get published articles with optional filtering"""
+    query = {"is_published": True}
+    
+    if featured:
+        query["is_featured"] = True
+    if is_video:
+        query["is_video"] = True
+    if category:
+        query["category"] = category
+    
+    articles = await articles_collection.find(query, {"_id": 0}).sort("published_at", -1).limit(limit).to_list(limit)
+    total = await articles_collection.count_documents(query)
+    
+    return {
+        "articles": articles,
+        "total": total
+    }
+
+
+@api_router.get("/articles/{slug}", response_model=Article)
+async def get_article_by_slug(slug: str):
+    """Get single published article by slug"""
+    article = await articles_collection.find_one({"slug": slug, "is_published": True}, {"_id": 0})
+    if not article:
+        raise HTTPException(status_code=404, detail="Article not found")
+    return article
+
+
+# ==================== Admin Articles Routes ====================
+
+@api_router.get("/admin/articles", response_model=dict)
+async def get_all_articles_admin(
+    email: str = Depends(get_current_admin_email),
+    search: Optional[str] = Query(None),
+    category: Optional[str] = Query(None)
+):
+    """Get all articles (admin only)"""
+    query = {}
+    
+    if search:
+        query["$or"] = [
+            {"title": {"$regex": search, "$options": "i"}},
+            {"summary": {"$regex": search, "$options": "i"}}
+        ]
+    if category:
+        query["category"] = category
+    
+    articles = await articles_collection.find(query, {"_id": 0}).sort("created_at", -1).to_list(None)
+    return {
+        "articles": articles,
+        "total": len(articles)
+    }
+
+
+@api_router.post("/admin/articles", response_model=Article)
+async def create_article(
+    article_data: ArticleCreate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Create a new article (admin only)"""
+    # Check if slug already exists
+    existing = await articles_collection.find_one({"slug": article_data.slug}, {"_id": 0})
+    if existing:
+        raise HTTPException(status_code=400, detail="Slug already exists")
+    
+    article_dict = article_data.model_dump()
+    article_dict['id'] = str(uuid4())
+    article_dict['created_at'] = datetime.utcnow()
+    article_dict['updated_at'] = datetime.utcnow()
+    
+    # Set published_at if not provided
+    if article_dict.get('is_published') and not article_dict.get('published_at'):
+        article_dict['published_at'] = datetime.utcnow()
+    
+    await articles_collection.insert_one(article_dict)
+    
+    return article_dict
+
+
+@api_router.get("/admin/articles/{article_id}", response_model=Article)
+async def get_article_admin(
+    article_id: str,
+    email: str = Depends(get_current_admin_email)
+):
+    """Get single article by ID (admin only)"""
+    article = await articles_collection.find_one({"id": article_id}, {"_id": 0})
+    if not article:
+        raise HTTPException(status_code=404, detail="Article not found")
+    return article
+
+
+@api_router.put("/admin/articles/{article_id}", response_model=Article)
+async def update_article(
+    article_id: str,
+    article_data: ArticleUpdate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Update an article (admin only)"""
+    existing_article = await articles_collection.find_one({"id": article_id}, {"_id": 0})
+    if not existing_article:
+        raise HTTPException(status_code=404, detail="Article not found")
+    
+    # Check slug uniqueness if changed
+    if article_data.slug and article_data.slug != existing_article.get('slug'):
+        slug_exists = await articles_collection.find_one({"slug": article_data.slug, "id": {"$ne": article_id}}, {"_id": 0})
+        if slug_exists:
+            raise HTTPException(status_code=400, detail="Slug already exists")
+    
+    update_data = {k: v for k, v in article_data.model_dump().items() if v is not None}
+    if update_data:
+        update_data['updated_at'] = datetime.utcnow()
+        
+        # Set published_at when publishing
+        if update_data.get('is_published') and not existing_article.get('published_at'):
+            update_data['published_at'] = datetime.utcnow()
+        
+        await articles_collection.update_one(
+            {"id": article_id},
+            {"$set": update_data}
+        )
+    
+    updated_article = await articles_collection.find_one({"id": article_id}, {"_id": 0})
+    return updated_article
+
+
+@api_router.delete("/admin/articles/{article_id}")
+async def delete_article(
+    article_id: str,
+    email: str = Depends(get_current_admin_email)
+):
+    """Delete an article (admin only)"""
+    result = await articles_collection.delete_one({"id": article_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Article not found")
+    
+    return {"message": "Article deleted successfully", "id": article_id}
+
+
 # ==================== IPEDS Routes ====================
 
 @api_router.post("/ipeds/sync")
