@@ -55,6 +55,7 @@ function App() {
           {/* Admin routes */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
+            <Route path="analytics" element={<Analytics />} />
             <Route path="colleges" element={<CollegesList />} />
             <Route path="colleges/new" element={<CollegeForm />} />
             <Route path="colleges/:id/edit" element={<CollegeForm />} />
