@@ -6,6 +6,7 @@ import api from '../../services/api';
 const MegaMenu = ({ label, menuKey, children, className = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [feature, setFeature] = useState(null);
+  const closeTimeoutRef = React.useRef(null);
 
   useEffect(() => {
     if (menuKey) {
@@ -22,11 +23,36 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
     }
   };
 
+  const handleMouseEnter = () => {
+    // Clear any pending close timeout
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    // Add a delay before closing to allow mouse to move to dropdown
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 150); // 150ms delay
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div
       className="relative"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <button className={`flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-[#1a5d3a] transition-colors ${className}`}>
         {label}
