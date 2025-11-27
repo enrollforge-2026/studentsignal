@@ -257,3 +257,53 @@ class IPEDSStatus(BaseModel):
     last_sync: Optional[datetime] = None
     total_records: int
     status: str
+
+
+# ==================== Article Models ====================
+
+class ArticleCreate(BaseModel):
+    title: str
+    slug: str
+    summary: str
+    body: str
+    main_image_url: Optional[str] = None
+    video_url: Optional[str] = None
+    category: str
+    tags: List[str] = []
+    is_featured: bool = False
+    is_video: bool = False
+    is_published: bool = False
+    published_at: Optional[datetime] = None
+
+
+class ArticleUpdate(BaseModel):
+    title: Optional[str] = None
+    slug: Optional[str] = None
+    summary: Optional[str] = None
+    body: Optional[str] = None
+    main_image_url: Optional[str] = None
+    video_url: Optional[str] = None
+    category: Optional[str] = None
+    tags: Optional[List[str]] = None
+    is_featured: Optional[bool] = None
+    is_video: Optional[bool] = None
+    is_published: Optional[bool] = None
+    published_at: Optional[datetime] = None
+
+
+class Article(BaseDBModel):
+    id: str
+    title: str
+    slug: str
+    summary: str
+    body: str
+    main_image_url: Optional[str] = None
+    video_url: Optional[str] = None
+    category: str
+    tags: List[str] = []
+    is_featured: bool = False
+    is_video: bool = False
+    is_published: bool = False
+    published_at: Optional[datetime] = None
+    created_at: datetime
+    updated_at: datetime
