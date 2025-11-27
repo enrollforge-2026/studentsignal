@@ -489,6 +489,196 @@ async def get_saved_scholarships(email: str = Depends(get_current_user_email)):
     return scholarships
 
 
+
+# ==================== Profile & Badge Routes ====================
+
+@api_router.put("/user/profile")
+async def update_profile(
+    profile_data: ProfileUpdate,
+    email: str = Depends(get_current_user_email)
+):
+    """Update user profile"""
+    user = await users_collection.find_one({"email": email})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    update_data = {k: v for k, v in profile_data.model_dump().items() if v is not None}
+    update_data["updated_at"] = datetime.utcnow()
+    
+    await users_collection.update_one(
+        {"email": email},
+        {"$set": update_data}
+    )
+    
+    return {"message": "Profile updated successfully"}
+
+
+@api_router.get("/user/badges")
+async def get_user_badges(email: str = Depends(get_current_user_email)):
+    """Get user's earned badges"""
+    user = await users_collection.find_one({"email": email}, {"_id": 0})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    badges = []
+    
+    # Check "Profile Complete" badge
+    required_fields = ["first_name", "last_name", "email", "high_school_grad_year", "intended_major", "gpa"]
+    if all(user.get(field) for field in required_fields):
+        badges.append("Profile Complete")
+    
+    # Check "Photo Uploaded" badge
+    if user.get("profile_picture_url"):
+        badges.append("Photo Uploaded")
+    
+    # Check "First Application" badge
+    saved_colleges = user.get("saved_colleges", [])
+    if saved_colleges:
+        # Check if any college has status "Applied" or "Accepted"
+        colleges_with_status = await colleges_collection.find(
+            {"id": {"$in": saved_colleges}}, 
+            {"_id": 0}
+        ).to_list(100)
+        # For now, we'll award badge if user has saved any colleges
+        # TODO: Check actual status when we implement SavedCollegeItem structure
+        if len(saved_colleges) > 0:
+            badges.append("First Application")
+    
+    # Update user's badges in database
+    await users_collection.update_one(
+        {"email": email},
+        {"$set": {"badges": badges}}
+    )
+    
+    return {"badges": badges}
+
+
+# ==================== College Status Routes ====================
+
+@api_router.put("/saved-colleges/{college_id}/status")
+async def update_college_status(
+    college_id: str,
+    status_update: SavedCollegeUpdate,
+    email: str = Depends(get_current_user_email)
+):
+    """Update status for a saved college"""
+    user = await users_collection.find_one({"email": email})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # For now, just store status separately
+    # TODO: Migrate saved_colleges to SavedCollegeItem structure
+    saved_colleges = user.get("saved_colleges", [])
+    if college_id not in saved_colleges:
+        raise HTTPException(status_code=404, detail="College not in saved list")
+    
+    # Store status in a separate field for now
+    college_statuses = user.get("college_statuses", {})
+    college_statuses[college_id] = status_update.status
+    
+    await users_collection.update_one(
+        {"email": email},
+        {"$set": {"college_statuses": college_statuses, "updated_at": datetime.utcnow()}}
+    )
+    
+    return {"message": "College status updated", "status": status_update.status}
+
+
+@api_router.get("/saved-colleges/{college_id}/status")
+async def get_college_status(
+    college_id: str,
+    email: str = Depends(get_current_user_email)
+):
+    """Get status for a saved college"""
+    user = await users_collection.find_one({"email": email})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    college_statuses = user.get("college_statuses", {})
+    status = college_statuses.get(college_id, "Considering")
+    
+    return {"college_id": college_id, "status": status}
+
+
+# ==================== ToDo Routes ====================
+
+@api_router.get("/todos")
+async def get_todos(email: str = Depends(get_current_user_email)):
+    """Get all todos for current user"""
+    user = await users_collection.find_one({"email": email})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    todos = await todos_collection.find({"user_id": user["id"]}, {"_id": 0}).to_list(1000)
+    return {"todos": todos}
+
+
+@api_router.post("/todos", response_model=ToDo)
+async def create_todo(
+    todo_data: ToDoCreate,
+    email: str = Depends(get_current_user_email)
+):
+    """Create a new todo"""
+    user = await users_collection.find_one({"email": email})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    todo_dict = todo_data.model_dump()
+    todo_dict["id"] = str(uuid4())
+    todo_dict["user_id"] = user["id"]
+    todo_dict["created_at"] = datetime.utcnow()
+    todo_dict["updated_at"] = datetime.utcnow()
+    
+    await todos_collection.insert_one(todo_dict)
+    
+    return todo_dict
+
+
+@api_router.put("/todos/{todo_id}", response_model=ToDo)
+async def update_todo(
+    todo_id: str,
+    todo_data: ToDoUpdate,
+    email: str = Depends(get_current_user_email)
+):
+    """Update a todo"""
+    user = await users_collection.find_one({"email": email})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    todo = await todos_collection.find_one({"id": todo_id, "user_id": user["id"]}, {"_id": 0})
+    if not todo:
+        raise HTTPException(status_code=404, detail="Todo not found")
+    
+    update_data = {k: v for k, v in todo_data.model_dump().items() if v is not None}
+    update_data["updated_at"] = datetime.utcnow()
+    
+    await todos_collection.update_one(
+        {"id": todo_id, "user_id": user["id"]},
+        {"$set": update_data}
+    )
+    
+    updated_todo = await todos_collection.find_one({"id": todo_id}, {"_id": 0})
+    return updated_todo
+
+
+@api_router.delete("/todos/{todo_id}")
+async def delete_todo(
+    todo_id: str,
+    email: str = Depends(get_current_user_email)
+):
+    """Delete a todo"""
+    user = await users_collection.find_one({"email": email})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    result = await todos_collection.delete_one({"id": todo_id, "user_id": user["id"]})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Todo not found")
+    
+    return {"message": "Todo deleted successfully"}
+
+
+
 # ==================== Lead Routes ====================
 
 @api_router.post("/leads", response_model=dict)
