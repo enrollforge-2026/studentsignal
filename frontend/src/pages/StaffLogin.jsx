@@ -33,8 +33,7 @@ const StaffLogin = () => {
       
       if (result.success) {
         // Check if user is admin/staff
-        const currentUser = JSON.parse(localStorage.getItem('user'));
-        if (currentUser?.role === 'admin') {
+        if (result.user?.role === 'admin') {
           navigate('/admin');
         } else {
           setError('Access denied. This portal is for staff and administrators only.');
