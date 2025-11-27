@@ -376,3 +376,98 @@ class ProfileUpdate(BaseModel):
     interests: Optional[List[str]] = None
     profile_picture_url: Optional[str] = None
 
+
+
+# Institution Reference Models (Canonical Colleges/Universities)
+class Institution(BaseDBModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    ipeds_id: Optional[str] = None  # IPEDS UnitID
+    name: str
+    city: str
+    state: str  # 2-letter code
+    level: Optional[str] = None  # "2-year", "4-year", etc.
+    control: Optional[str] = None  # "Public", "Private nonprofit", "Private for-profit"
+    website_url: Optional[str] = None
+    created_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+    updated_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+
+
+class InstitutionCreate(BaseModel):
+    ipeds_id: Optional[str] = None
+    name: str
+    city: str
+    state: str
+    level: Optional[str] = None
+    control: Optional[str] = None
+    website_url: Optional[str] = None
+
+
+# High School Reference Models
+class HighSchool(BaseDBModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    nces_id: Optional[str] = None  # NCES School ID
+    name: str
+    district: Optional[str] = None
+    city: str
+    state: str  # 2-letter code
+    created_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+    updated_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+
+
+class HighSchoolCreate(BaseModel):
+    nces_id: Optional[str] = None
+    name: str
+    district: Optional[str] = None
+    city: str
+    state: str
+
+
+# U.S. States Reference
+US_STATES = {
+    "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas",
+    "CA": "California", "CO": "Colorado", "CT": "Connecticut", "DE": "Delaware",
+    "FL": "Florida", "GA": "Georgia", "HI": "Hawaii", "ID": "Idaho",
+    "IL": "Illinois", "IN": "Indiana", "IA": "Iowa", "KS": "Kansas",
+    "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland",
+    "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota", "MS": "Mississippi",
+    "MO": "Missouri", "MT": "Montana", "NE": "Nebraska", "NV": "Nevada",
+    "NH": "New Hampshire", "NJ": "New Jersey", "NM": "New Mexico", "NY": "New York",
+    "NC": "North Carolina", "ND": "North Dakota", "OH": "Ohio", "OK": "Oklahoma",
+    "OR": "Oregon", "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina",
+    "SD": "South Dakota", "TN": "Tennessee", "TX": "Texas", "UT": "Utah",
+    "VT": "Vermont", "VA": "Virginia", "WA": "Washington", "WV": "West Virginia",
+    "WI": "Wisconsin", "WY": "Wyoming", "DC": "District of Columbia",
+    "PR": "Puerto Rico", "VI": "U.S. Virgin Islands", "GU": "Guam",
+    "AS": "American Samoa", "MP": "Northern Mariana Islands"
+}
+
+
+# GPA Options (1.0 to 4.0 in 0.1 increments)
+GPA_OPTIONS = [round(x * 0.1, 1) for x in range(0, 41)]  # 0.0 to 4.0
+
+
+# Validation Functions
+def validate_state(state: str) -> bool:
+    """Validate that state is a valid 2-letter U.S. state code"""
+    return state.upper() in US_STATES
+
+
+def validate_gpa(gpa: str) -> bool:
+    """Validate that GPA is within 0.0-4.0 range"""
+    try:
+        gpa_float = float(gpa)
+        return 0.0 <= gpa_float <= 4.0 and round(gpa_float, 1) == gpa_float
+    except (ValueError, TypeError):
+        return False
+
+
+def validate_date_string(date_str: str) -> bool:
+    """Validate that date string is in valid ISO format"""
+    if not date_str:
+        return True  # Optional dates are valid
+    try:
+        datetime.fromisoformat(date_str.replace('Z', '+00:00'))
+        return True
+    except (ValueError, AttributeError):
+        return False
+
