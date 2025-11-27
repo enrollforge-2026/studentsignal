@@ -265,15 +265,12 @@ const ToDoView = () => {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Due Date</label>
-                <input
-                  type="date"
-                  value={newTodo.due_date}
-                  onChange={(e) => setNewTodo({ ...newTodo, due_date: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A535C] focus:border-transparent"
-                />
-              </div>
+              <DatePicker
+                value={newTodo.due_date}
+                onChange={(value) => setNewTodo({ ...newTodo, due_date: value })}
+                label="Due Date"
+                placeholder="Select due date"
+              />
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Color Theme</label>
