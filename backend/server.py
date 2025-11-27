@@ -677,6 +677,76 @@ For detailed help, suggest they create a free account. Keep responses under 3 se
         raise HTTPException(status_code=500, detail="Chat service temporarily unavailable")
 
 
+# ==================== Admin Analytics Routes ====================
+
+@api_router.get("/admin/analytics")
+async def get_analytics(email: str = Depends(get_current_admin_email)):
+    """Get admin analytics data"""
+    try:
+        # Get total counts
+        total_users = await users_collection.count_documents({})
+        total_colleges = await colleges_collection.count_documents({})
+        total_scholarships = await scholarships_collection.count_documents({})
+        total_leads = await leads_collection.count_documents({})
+        
+        # Get leads over time (last 7 days)
+        seven_days_ago = datetime.utcnow() - timedelta(days=7)
+        
+        # Aggregate leads by date
+        leads_pipeline = [
+            {
+                "$match": {
+                    "created_at": {"$gte": seven_days_ago.isoformat()}
+                }
+            },
+            {
+                "$group": {
+                    "_id": {
+                        "$dateToString": {
+                            "format": "%Y-%m-%d",
+                            "date": {
+                                "$dateFromString": {
+                                    "dateString": "$created_at"
+                                }
+                            }
+                        }
+                    },
+                    "count": {"$sum": 1}
+                }
+            },
+            {
+                "$sort": {"_id": 1}
+            }
+        ]
+        
+        leads_by_date = await leads_collection.aggregate(leads_pipeline).to_list(None)
+        
+        # Fill in missing days with zero counts
+        leads_over_time = []
+        for i in range(7):
+            date = (datetime.utcnow() - timedelta(days=6-i)).strftime("%Y-%m-%d")
+            count = 0
+            for item in leads_by_date:
+                if item["_id"] == date:
+                    count = item["count"]
+                    break
+            leads_over_time.append({"date": date, "count": count})
+        
+        return {
+            "stats": {
+                "total_users": total_users,
+                "total_colleges": total_colleges,
+                "total_scholarships": total_scholarships,
+                "total_leads": total_leads
+            },
+            "leads_over_time": leads_over_time
+        }
+        
+    except Exception as e:
+        print(f"Analytics error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to load analytics data")
+
+
 # ==================== IPEDS Routes ====================
 
 @api_router.post("/ipeds/sync")
