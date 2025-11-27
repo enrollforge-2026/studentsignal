@@ -177,14 +177,15 @@ const OnboardingFlow = () => {
             
             <div className="space-y-6">
               <div>
-                <Label htmlFor="gradYear" className="text-base font-semibold text-gray-700 mb-2 block">High School Graduation Year</Label>
-                <Input
-                  id="gradYear"
-                  type="text"
-                  placeholder="2026"
+                <YearPicker
                   value={formData.high_school_grad_year}
-                  onChange={(e) => updateField('high_school_grad_year', e.target.value)}
-                  className="mt-2 text-lg h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300"
+                  onChange={(value) => updateField('high_school_grad_year', value)}
+                  label="High School Graduation Year"
+                  placeholder="Select graduation year"
+                  required
+                  minYear={new Date().getFullYear() - 10}
+                  maxYear={new Date().getFullYear() + 10}
+                  className="mt-2"
                 />
               </div>
               
