@@ -165,17 +165,12 @@ const ForSchools = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Institution Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="school"
+              <InstitutionSearch
                 value={formData.school}
-                onChange={handleChange}
+                onChange={(value) => setFormData({ ...formData, school: value })}
+                label="Institution Name"
+                placeholder="Search for your institution..."
                 required
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
-                placeholder="State University"
               />
             </div>
 
