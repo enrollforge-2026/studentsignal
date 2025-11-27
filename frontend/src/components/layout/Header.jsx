@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { useAuth } from '../../context/AuthContext';
 import MegaMenu, { MegaMenuSection } from '../navigation/MegaMenu';
 
-const HeaderWithMegaMenu = () => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
