@@ -19,6 +19,8 @@ import OnboardingFlow from "./pages/OnboardingFlow";
 import HowItWorks from "./pages/HowItWorks";
 import PrivacyBasics from "./pages/PrivacyBasics";
 import ForSchools from "./pages/ForSchools";
+import ArticlesHub from "./pages/ArticlesHub";
+import ArticleDetail from "./pages/ArticleDetail";
 
 // Admin Pages
 import AdminLayout from "./pages/admin/AdminLayout";
