@@ -159,6 +159,16 @@ const LoginPage = () => {
                 Sign Up Free
               </Link>
             </p>
+
+            {/* Staff Login Link */}
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <p className="text-center text-sm text-gray-600">
+                Staff or Administrator?{' '}
+                <Link to="/staff-login" className="text-indigo-600 font-semibold hover:underline">
+                  Staff Login →
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </main>
