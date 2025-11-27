@@ -77,6 +77,9 @@ function App() {
             <Route path="scholarships" element={<ScholarshipsList />} />
             <Route path="scholarships/new" element={<ScholarshipForm />} />
             <Route path="scholarships/:id/edit" element={<ScholarshipForm />} />
+            <Route path="articles" element={<ArticlesList />} />
+            <Route path="articles/new" element={<ArticleForm />} />
+            <Route path="articles/:id/edit" element={<ArticleForm />} />
           </Route>
           </Routes>
         </BrowserRouter>
