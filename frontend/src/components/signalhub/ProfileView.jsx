@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Edit2, Award, Upload, X } from 'lucide-react';
 import api from '../../services/api';
 import { toast } from 'sonner';
+import GPADropdown from '../forms/GPADropdown';
+import HighSchoolSearch from '../forms/HighSchoolSearch';
 
 const ProfileView = ({ user, refreshUser }) => {
   const [badges, setBadges] = useState([]);
