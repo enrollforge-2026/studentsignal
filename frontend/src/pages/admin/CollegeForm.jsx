@@ -181,17 +181,12 @@ const CollegeForm = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                State <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="state"
+              <StateDropdown
                 value={formData.state}
-                onChange={handleChange}
+                onChange={(value) => setFormData({ ...formData, state: value })}
+                label="State"
                 required
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
-                placeholder="e.g., CA"
+                className="mt-0"
               />
             </div>
 
