@@ -121,6 +121,10 @@ class User(BaseDBModel):
     saved_colleges: List[str] = []
     saved_scholarships: List[str] = []
     
+    # Profile enhancements
+    profile_picture_url: Optional[str] = None
+    badges: List[str] = []
+    
     # Onboarding fields
     onboarding_completed: bool = False
     user_role: Optional[str] = None  # Prospective Student, Parent/Guardian, Other
@@ -139,6 +143,9 @@ class User(BaseDBModel):
     phone: Optional[str] = None
     gender: Optional[str] = None
     ethnicity: Optional[str] = None
+    address: Optional[str] = None
+    alternate_major: Optional[str] = None
+    interests: List[str] = []
     
     created_at: datetime = Field(default_factory=lambda: datetime.utcnow())
     updated_at: datetime = Field(default_factory=lambda: datetime.utcnow())
