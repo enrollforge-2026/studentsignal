@@ -23,10 +23,11 @@ import {
 } from 'lucide-react';
 
 const SignalHubPremium = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, refreshUser } = useAuth();
   const [savedColleges, setSavedColleges] = useState([]);
   const [savedScholarships, setSavedScholarships] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeView, setActiveView] = useState('dashboard');
 
   const applications = [
     { id: 1, college: 'Stanford University', status: 'In Progress', deadline: '2025-01-15', progress: 75, color: '#FF8A5B' },
