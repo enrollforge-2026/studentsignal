@@ -30,6 +30,8 @@ import CollegesList from "./pages/admin/CollegesList";
 import CollegeForm from "./pages/admin/CollegeForm";
 import ScholarshipsList from "./pages/admin/ScholarshipsList";
 import ScholarshipForm from "./pages/admin/ScholarshipForm";
+import ArticlesList from "./pages/admin/ArticlesList";
+import ArticleForm from "./pages/admin/ArticleForm";
 
 function App() {
   return (
