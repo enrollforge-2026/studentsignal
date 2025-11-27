@@ -9,15 +9,53 @@ import MegaMenu, { MegaMenuSection } from '../navigation/MegaMenu';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const searchInputRef = React.useRef(null);
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/colleges?search=${encodeURIComponent(searchQuery)}`);
+      setIsSearchExpanded(false);
+      setSearchQuery('');
     }
   };
+
+  const toggleSearch = () => {
+    setIsSearchExpanded(!isSearchExpanded);
+    if (!isSearchExpanded) {
+      setTimeout(() => searchInputRef.current?.focus(), 100);
+    }
+  };
+
+  const closeSearch = () => {
+    setIsSearchExpanded(false);
+    setSearchQuery('');
+  };
+
+  // Handle ESC key to close search
+  React.useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isSearchExpanded) {
+        closeSearch();
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isSearchExpanded]);
+
+  // Handle click outside to close search
+  React.useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isSearchExpanded && searchInputRef.current && !searchInputRef.current.parentElement.contains(e.target)) {
+        closeSearch();
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isSearchExpanded]);
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
