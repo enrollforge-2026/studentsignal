@@ -115,10 +115,9 @@ const SignalHubPremium = () => {
     );
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-teal-50">
-      <Header />
-
+  // Render the dashboard content as a component
+  const DashboardView = () => (
+    <div className="flex-1 bg-gradient-to-br from-gray-50 via-white to-teal-50 overflow-y-auto">
       {/* Decorative Wave */}
       <div className="absolute top-0 left-0 w-full overflow-hidden" style={{ height: '400px', zIndex: 0 }}>
         <svg viewBox="0 0 1440 320" className="absolute bottom-0" style={{ width: '100%', height: '100%' }}>
