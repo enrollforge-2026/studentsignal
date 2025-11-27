@@ -4,6 +4,7 @@ import Footer from '../components/layout/Footer';
 import { Building2, Users, TrendingUp, Mail, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import api from '../services/api';
+import InstitutionSearch from '../components/forms/InstitutionSearch';
 
 const ForSchools = () => {
   const [formData, setFormData] = useState({
