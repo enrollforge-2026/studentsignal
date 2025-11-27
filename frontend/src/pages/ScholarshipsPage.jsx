@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { scholarshipCategories } from '../data/mockData';
 import { scholarshipsAPI } from '../services/api';
+import { toast } from 'sonner';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
