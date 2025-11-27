@@ -85,14 +85,16 @@ const CollegeForm = () => {
 
       if (isEdit) {
         await api.put(`/admin/colleges/${id}`, dataToSubmit);
+        toast.success('College updated successfully');
       } else {
         await api.post('/admin/colleges', dataToSubmit);
+        toast.success('College created successfully');
       }
 
       navigate('/admin/colleges');
     } catch (error) {
       console.error('Failed to save college:', error);
-      alert('Failed to save college. Please try again.');
+      toast.error('Failed to save college. Please try again.');
     } finally {
       setSaving(false);
     }
