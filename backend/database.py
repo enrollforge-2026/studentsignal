@@ -14,6 +14,7 @@ users_collection = db.users
 ipeds_sync_collection = db.ipeds_sync
 leads_collection = db.leads
 articles_collection = db.articles
+todos_collection = db.todos
 
 
 async def get_db():
