@@ -829,6 +829,11 @@ async def get_all_articles_admin(
         query["category"] = category
     
     articles = await articles_collection.find(query, {"_id": 0}).sort("created_at", -1).to_list(None)
+    
+    # Add reading time to each article
+    for article in articles:
+        enrich_article_with_reading_time(article)
+    
     return {
         "articles": articles,
         "total": len(articles)
