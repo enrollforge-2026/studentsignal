@@ -48,12 +48,16 @@ function App() {
           <Route path="/dashboard" element={<SignalHub />} />
           <Route path="/signal-hub" element={<SignalHub />} />
           
+          {/* Help & Info Pages */}
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/privacy" element={<PrivacyBasics />} />
+          <Route path="/for-schools" element={<ForSchools />} />
+          
           {/* Placeholder routes */}
           <Route path="/graduate" element={<CollegesPage />} />
           <Route path="/scholarships" element={<ScholarshipsPage />} />
           <Route path="/quiz" element={<HomePage />} />
           <Route path="/direct-admissions" element={<HomePage />} />
-          <Route path="/for-schools" element={<HomePage />} />
           
           {/* Admin routes */}
           <Route path="/admin" element={<AdminLayout />}>
