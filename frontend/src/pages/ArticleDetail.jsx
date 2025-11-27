@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
-import { Calendar, Tag, Play, X, ArrowRight } from 'lucide-react';
+import { Calendar, Tag, Play, X, ArrowRight, Clock } from 'lucide-react';
 import api from '../services/api';
 
 const ArticleDetail = () => {
@@ -12,6 +12,9 @@ const ArticleDetail = () => {
   const [loading, setLoading] = useState(true);
   const [showVideo, setShowVideo] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  
+  // Check if article is long (more than 3 paragraphs worth of content)
+  const isLongArticle = article?.body && article.body.split('\n').filter(p => p.trim()).length > 8;
 
   useEffect(() => {
     loadArticle();
