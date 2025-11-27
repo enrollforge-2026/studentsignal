@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Search, Edit, Trash2, Eye } from 'lucide-react';
+import { toast } from 'sonner';
 import api from '../../services/api';
 
 const CollegesList = () => {
