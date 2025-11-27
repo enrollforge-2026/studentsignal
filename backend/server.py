@@ -974,6 +974,90 @@ For detailed help, suggest they create a free account. Keep responses under 3 se
         raise HTTPException(status_code=500, detail="Chat service temporarily unavailable")
 
 
+
+
+# ==================== Mega Menu Feature Tiles Routes ====================
+
+@api_router.get("/mega-menu/features/{menu_key}")
+async def get_mega_menu_feature(menu_key: str):
+    """Get active feature tile for a specific menu"""
+    feature = await mega_menu_features_collection.find_one(
+        {"menu_key": menu_key, "is_active": True},
+        {"_id": 0}
+    )
+    return {"feature": feature}
+
+
+@api_router.get("/admin/mega-menu/features")
+async def get_all_mega_menu_features(email: str = Depends(get_current_admin_email)):
+    """Get all mega menu features (admin only)"""
+    features = await mega_menu_features_collection.find({}, {"_id": 0}).to_list(100)
+    return {"features": features}
+
+
+@api_router.post("/admin/mega-menu/features", response_model=MegaMenuFeature)
+async def create_mega_menu_feature(
+    feature_data: MegaMenuFeatureCreate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Create a new mega menu feature tile (admin only)"""
+    # Deactivate any existing active features for this menu_key
+    await mega_menu_features_collection.update_many(
+        {"menu_key": feature_data.menu_key},
+        {"$set": {"is_active": False}}
+    )
+    
+    feature_dict = feature_data.model_dump()
+    feature_dict["id"] = str(uuid4())
+    feature_dict["created_at"] = datetime.utcnow()
+    feature_dict["updated_at"] = datetime.utcnow()
+    
+    await mega_menu_features_collection.insert_one(feature_dict)
+    return feature_dict
+
+
+@api_router.put("/admin/mega-menu/features/{feature_id}", response_model=MegaMenuFeature)
+async def update_mega_menu_feature(
+    feature_id: str,
+    feature_data: MegaMenuFeatureUpdate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Update a mega menu feature tile (admin only)"""
+    feature = await mega_menu_features_collection.find_one({"id": feature_id}, {"_id": 0})
+    if not feature:
+        raise HTTPException(status_code=404, detail="Feature not found")
+    
+    update_data = {k: v for k, v in feature_data.model_dump().items() if v is not None}
+    update_data["updated_at"] = datetime.utcnow()
+    
+    # If activating this feature, deactivate others for same menu_key
+    if update_data.get("is_active"):
+        await mega_menu_features_collection.update_many(
+            {"menu_key": feature["menu_key"], "id": {"$ne": feature_id}},
+            {"$set": {"is_active": False}}
+        )
+    
+    await mega_menu_features_collection.update_one(
+        {"id": feature_id},
+        {"$set": update_data}
+    )
+    
+    updated_feature = await mega_menu_features_collection.find_one({"id": feature_id}, {"_id": 0})
+    return updated_feature
+
+
+@api_router.delete("/admin/mega-menu/features/{feature_id}")
+async def delete_mega_menu_feature(
+    feature_id: str,
+    email: str = Depends(get_current_admin_email)
+):
+    """Delete a mega menu feature tile (admin only)"""
+    result = await mega_menu_features_collection.delete_one({"id": feature_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Feature not found")
+    return {"message": "Feature deleted successfully"}
+
+
 # ==================== Admin Analytics Routes ====================
 
 @api_router.get("/admin/analytics")
