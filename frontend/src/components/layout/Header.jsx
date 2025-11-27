@@ -189,23 +189,10 @@ const Header = () => {
             </nav>
           </div>
         )}
-
-        {/* Expanded Search Bar - Below Main Nav */}
-        {isSearchExpanded && (
-          <div className="border-t border-gray-100 py-3 hidden md:block">
-            <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
-              <input
-                ref={searchInputRef}
-                type="text"
-                placeholder="Search schools..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 text-sm border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a] transition-all"
-              />
-            </form>
-          </div>
-        )}
       </div>
+
+      {/* Enterprise Search Panel */}
+      <EnterpriseSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   );
 };
