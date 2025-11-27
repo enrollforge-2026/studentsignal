@@ -12,6 +12,7 @@ import CollegeDetailPage from "./pages/CollegeDetailPage";
 import ScholarshipsPage from "./pages/ScholarshipsPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import StaffLogin from "./pages/StaffLogin";
 import ProfilePage from "./pages/ProfilePage";
 import SignalHub from "./pages/SignalHubPremium";
 import OnboardingFlow from "./pages/OnboardingFlow";
