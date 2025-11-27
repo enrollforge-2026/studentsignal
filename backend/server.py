@@ -21,7 +21,11 @@ from models import (
     Article, ArticleCreate, ArticleUpdate,
     SavedCollegeItem, SavedCollegeUpdate,
     ToDo, ToDoCreate, ToDoUpdate,
-    ProfileUpdate
+    ProfileUpdate,
+    Institution, InstitutionCreate,
+    HighSchool, HighSchoolCreate,
+    US_STATES, GPA_OPTIONS,
+    validate_state, validate_gpa, validate_date_string
 )
 from auth import (
     get_password_hash, verify_password, create_access_token,
@@ -30,6 +34,7 @@ from auth import (
 from database import (
     db, colleges_collection, scholarships_collection,
     users_collection, ipeds_sync_collection, leads_collection, articles_collection, todos_collection,
+    institutions_collection, high_schools_collection,
     serialize_doc, prepare_for_mongo
 )
 from ipeds import IPEDSIntegration
