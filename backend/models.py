@@ -315,3 +315,64 @@ class Article(BaseDBModel):
     created_at: datetime
     updated_at: datetime
     read_time_minutes: Optional[int] = None
+
+
+# SavedCollege Models (with status tracking)
+class SavedCollegeItem(BaseModel):
+    college_id: str
+    status: str = "Considering"  # Considering, Applied, Accepted, Waitlisted, Denied, Attending
+    saved_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+
+
+class SavedCollegeUpdate(BaseModel):
+    status: str
+
+
+# ToDo Models
+class ToDo(BaseDBModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_id: str
+    title: str
+    description: Optional[str] = None
+    due_date: Optional[datetime] = None
+    status: str = "Not Started"  # Not Started, In Progress, Completed
+    color_theme: str = "yellow"  # yellow, blue, green, pink, purple
+    created_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+    updated_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+
+
+class ToDoCreate(BaseModel):
+    title: str
+    description: Optional[str] = None
+    due_date: Optional[datetime] = None
+    status: str = "Not Started"
+    color_theme: str = "yellow"
+
+
+class ToDoUpdate(BaseModel):
+    title: Optional[str] = None
+    description: Optional[str] = None
+    due_date: Optional[datetime] = None
+    status: Optional[str] = None
+    color_theme: Optional[str] = None
+
+
+# Profile Update Models
+class ProfileUpdate(BaseModel):
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    phone: Optional[str] = None
+    address: Optional[str] = None
+    high_school_grad_year: Optional[str] = None
+    high_school_name: Optional[str] = None
+    gpa: Optional[str] = None
+    intended_major: Optional[str] = None
+    alternate_major: Optional[str] = None
+    sat_score: Optional[str] = None
+    act_score: Optional[str] = None
+    gender: Optional[str] = None
+    ethnicity: Optional[str] = None
+    interests: Optional[List[str]] = None
+    profile_picture_url: Optional[str] = None
+
