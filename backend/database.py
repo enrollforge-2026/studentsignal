@@ -13,6 +13,7 @@ scholarships_collection = db.scholarships
 users_collection = db.users
 ipeds_sync_collection = db.ipeds_sync
 leads_collection = db.leads
+articles_collection = db.articles
 
 
 async def get_db():
