@@ -31,9 +31,10 @@ const ScholarshipsList = () => {
       await api.delete(`/admin/scholarships/${scholarshipId}`);
       setScholarships(scholarships.filter((s) => s.id !== scholarshipId));
       setDeleteConfirm(null);
+      toast.success('Scholarship deleted successfully');
     } catch (error) {
       console.error('Failed to delete scholarship:', error);
-      alert('Failed to delete scholarship. Please try again.');
+      toast.error('Failed to delete scholarship. Please try again.');
     }
   };
 
