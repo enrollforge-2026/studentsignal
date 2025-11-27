@@ -20,6 +20,7 @@ import OnboardingFlow from "./pages/OnboardingFlow";
 // Admin Pages
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import Analytics from "./pages/admin/Analytics";
 import CollegesList from "./pages/admin/CollegesList";
 import CollegeForm from "./pages/admin/CollegeForm";
 import ScholarshipsList from "./pages/admin/ScholarshipsList";
