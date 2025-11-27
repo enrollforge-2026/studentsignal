@@ -91,6 +91,12 @@ const Header = () => {
                     Join Free
                   </Button>
                 </Link>
+
+                <Link to="/staff-login">
+                  <Button variant="ghost" size="sm" className="text-indigo-600 hover:text-indigo-700 border border-indigo-200 hover:border-indigo-300">
+                    Staff Login
+                  </Button>
+                </Link>
               </>
             )}
 
