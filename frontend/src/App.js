@@ -67,11 +67,24 @@ function App() {
           <Route path="/articles" element={<ArticlesHub />} />
           <Route path="/articles/:slug" element={<ArticleDetail />} />
           
-          {/* Placeholder routes */}
-          <Route path="/graduate" element={<CollegesPage />} />
+          {/* Scholarships */}
           <Route path="/scholarships" element={<ScholarshipsPage />} />
-          <Route path="/quiz" element={<HomePage />} />
+          
+          {/* Student Pathways */}
+          <Route path="/online-colleges" element={<OnlineColleges />} />
+          <Route path="/military-programs" element={<MilitaryPrograms />} />
+          <Route path="/international-students" element={<InternationalStudents />} />
+          <Route path="/transfer-students" element={<TransferStudents />} />
+          
+          {/* Tools & Resources - Placeholders for now */}
+          <Route path="/career-finder" element={<HomePage />} />
           <Route path="/direct-admissions" element={<HomePage />} />
+          <Route path="/school-match-quiz" element={<HomePage />} />
+          <Route path="/rankings" element={<ArticlesHub />} />
+          <Route path="/financial-aid" element={<ArticlesHub />} />
+          <Route path="/test-alternatives" element={<ArticlesHub />} />
+          <Route path="/application-tips" element={<ArticlesHub />} />
+          <Route path="/student-stories" element={<ArticlesHub />} />
           
           {/* Admin routes */}
           <Route path="/admin" element={<AdminLayout />}>
