@@ -232,13 +232,12 @@ const OnboardingFlow = () => {
             
             <div className="space-y-4">
               <div>
-                <Label htmlFor="birthdate" className="text-base font-semibold text-gray-700 mb-2 block">Birthdate</Label>
-                <Input
-                  id="birthdate"
-                  type="date"
+                <DatePicker
                   value={formData.birthdate}
-                  onChange={(e) => updateField('birthdate', e.target.value)}
-                  className="mt-2 h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 text-lg"
+                  onChange={(value) => updateField('birthdate', value)}
+                  label="Birthdate"
+                  required
+                  className="mt-2"
                 />
               </div>
             </div>
