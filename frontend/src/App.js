@@ -16,6 +16,9 @@ import StaffLogin from "./pages/StaffLogin";
 import ProfilePage from "./pages/ProfilePage";
 import SignalHub from "./pages/SignalHubPremium";
 import OnboardingFlow from "./pages/OnboardingFlow";
+import HowItWorks from "./pages/HowItWorks";
+import PrivacyBasics from "./pages/PrivacyBasics";
+import ForSchools from "./pages/ForSchools";
 
 // Admin Pages
 import AdminLayout from "./pages/admin/AdminLayout";
