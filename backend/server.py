@@ -35,7 +35,7 @@ from auth import (
 from database import (
     db, colleges_collection, scholarships_collection,
     users_collection, ipeds_sync_collection, leads_collection, articles_collection, todos_collection,
-    institutions_collection, high_schools_collection,
+    institutions_collection, high_schools_collection, mega_menu_features_collection,
     serialize_doc, prepare_for_mongo
 )
 from ipeds import IPEDSIntegration
