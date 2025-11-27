@@ -229,4 +229,4 @@ const Header = () => {
   );
 };
 
-export default HeaderWithMegaMenu;
+export default Header;
