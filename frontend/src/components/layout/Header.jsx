@@ -121,39 +121,16 @@ const Header = () => {
             )}
           </nav>
 
-          {/* Search & Auth */}
+          {/* Search Icon & Auth */}
           <div className="flex items-center gap-3">
-            {/* Expandable Search */}
-            <div className="hidden md:block relative">
-              {isSearchExpanded ? (
-                <form onSubmit={handleSearch} className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                  <input
-                    ref={searchInputRef}
-                    type="text"
-                    placeholder="Search schools..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 pr-10 py-2 text-sm border border-gray-300 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a] transition-all"
-                  />
-                  <button
-                    type="button"
-                    onClick={closeSearch}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <X size={18} />
-                  </button>
-                </form>
-              ) : (
-                <button
-                  onClick={toggleSearch}
-                  className="p-2 text-gray-700 hover:text-[#1a5d3a] transition-colors rounded-full hover:bg-gray-50"
-                  aria-label="Search schools"
-                >
-                  <Search size={20} />
-                </button>
-              )}
-            </div>
+            {/* Search Icon Button */}
+            <button
+              onClick={toggleSearch}
+              className="hidden md:block p-2 text-gray-700 hover:text-[#1a5d3a] transition-colors rounded-lg hover:bg-gray-50"
+              aria-label="Search schools"
+            >
+              <Search size={20} />
+            </button>
 
             {user ? (
               <>
