@@ -18,7 +18,10 @@ from models import (
     Lead, LeadCreate,
     ChatMessage, ChatResponse,
     IPEDSSync, IPEDSStatus,
-    Article, ArticleCreate, ArticleUpdate
+    Article, ArticleCreate, ArticleUpdate,
+    SavedCollegeItem, SavedCollegeUpdate,
+    ToDo, ToDoCreate, ToDoUpdate,
+    ProfileUpdate
 )
 from auth import (
     get_password_hash, verify_password, create_access_token,
@@ -26,7 +29,8 @@ from auth import (
 )
 from database import (
     db, colleges_collection, scholarships_collection,
-    users_collection, ipeds_sync_collection, leads_collection, articles_collection, serialize_doc, prepare_for_mongo
+    users_collection, ipeds_sync_collection, leads_collection, articles_collection, todos_collection,
+    serialize_doc, prepare_for_mongo
 )
 from ipeds import IPEDSIntegration
 
