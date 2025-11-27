@@ -42,18 +42,20 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
               </div>
 
               {feature && (
-                <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-6 border-2 border-gray-100 hover:border-[#1a5d3a]/20 transition-all">
-                  <span className="inline-block px-2 py-1 bg-[#1a5d3a] text-white text-xs font-bold rounded mb-3">
-                    {feature.label}
-                  </span>
+                <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-5 border-2 border-gray-100 hover:border-[#1a5d3a]/20 transition-all">
                   {feature.image_url && (
-                    <img
-                      src={feature.image_url}
-                      alt={feature.title}
-                      className="w-full h-32 object-cover rounded-lg mb-4"
-                    />
+                    <div className="relative mb-3">
+                      <img
+                        src={feature.image_url}
+                        alt={feature.title}
+                        className="w-full h-32 object-cover rounded-lg"
+                      />
+                      <span className="absolute top-2 right-2 px-2 py-1 bg-[#1a5d3a] text-white text-xs font-bold rounded shadow-md">
+                        {feature.label}
+                      </span>
+                    </div>
                   )}
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">{feature.title}</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{feature.title}</h3>
                   <Link
                     to={feature.cta_url}
                     className="inline-flex items-center gap-2 text-[#1a5d3a] font-semibold text-sm hover:gap-3 transition-all"
