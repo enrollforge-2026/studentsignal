@@ -492,3 +492,39 @@ def validate_address(street: str, city: str, state: str, zip_code: str) -> tuple
         return False, "Invalid ZIP code format (use 5 digits or 5+4 format)"
     return True, ""
 
+
+# Mega Menu Feature Tile Models
+class MegaMenuFeature(BaseDBModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    menu_key: str  # "student_pathways", "tools", "resources"
+    label: str  # e.g., "FEATURED", "UPCOMING WEBINAR"
+    title: str
+    subtitle: str  # description/summary
+    cta_text: str  # Button text
+    cta_url: str
+    image_url: Optional[str] = None
+    is_active: bool = True
+    created_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+    updated_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+
+
+class MegaMenuFeatureCreate(BaseModel):
+    menu_key: str
+    label: str
+    title: str
+    subtitle: str
+    cta_text: str
+    cta_url: str
+    image_url: Optional[str] = None
+    is_active: bool = True
+
+
+class MegaMenuFeatureUpdate(BaseModel):
+    label: Optional[str] = None
+    title: Optional[str] = None
+    subtitle: Optional[str] = None
+    cta_text: Optional[str] = None
+    cta_url: Optional[str] = None
+    image_url: Optional[str] = None
+    is_active: Optional[bool] = None
+
