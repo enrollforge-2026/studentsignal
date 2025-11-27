@@ -45,7 +45,7 @@ const CollegeForm = () => {
       setFeaturesInput(college.features.join(', '));
     } catch (error) {
       console.error('Failed to load college:', error);
-      alert('Failed to load college data');
+      toast.error('Failed to load college data');
     } finally {
       setLoading(false);
     }
