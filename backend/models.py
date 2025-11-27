@@ -307,3 +307,4 @@ class Article(BaseDBModel):
     published_at: Optional[datetime] = None
     created_at: datetime
     updated_at: datetime
+    read_time_minutes: Optional[int] = None
