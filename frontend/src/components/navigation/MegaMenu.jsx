@@ -53,8 +53,7 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
                       className="w-full h-32 object-cover rounded-lg mb-4"
                     />
                   )}
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
-                  <p className="text-sm text-gray-600 mb-4">{feature.subtitle}</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-4">{feature.title}</h3>
                   <Link
                     to={feature.cta_url}
                     className="inline-flex items-center gap-2 text-[#1a5d3a] font-semibold text-sm hover:gap-3 transition-all"
