@@ -162,14 +162,14 @@ const LeadCaptureModal = ({ isOpen, onClose, college }) => {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="gradYear">Graduation Year (Optional)</Label>
-                <Input
-                  id="gradYear"
-                  type="text"
+                <YearPicker
                   value={formData.highSchoolGradYear}
-                  onChange={(e) => setFormData({...formData, highSchoolGradYear: e.target.value})}
+                  onChange={(value) => setFormData({...formData, highSchoolGradYear: value})}
+                  label="Graduation Year (Optional)"
+                  placeholder="Select year"
+                  minYear={new Date().getFullYear() - 10}
+                  maxYear={new Date().getFullYear() + 10}
                   className="mt-1"
-                  placeholder="2026"
                 />
               </div>
               <div>
