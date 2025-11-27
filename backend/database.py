@@ -15,6 +15,8 @@ ipeds_sync_collection = db.ipeds_sync
 leads_collection = db.leads
 articles_collection = db.articles
 todos_collection = db.todos
+institutions_collection = db.institutions
+high_schools_collection = db.high_schools
 
 
 async def get_db():
