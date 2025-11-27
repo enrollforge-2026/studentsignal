@@ -31,7 +31,12 @@ const LoginPage = () => {
       });
 
       if (result.success) {
-        navigate('/signal-hub');
+        // Redirect based on user role
+        if (result.user?.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/signal-hub');
+        }
       } else {
         setError(result.error || 'Login failed. Please check your credentials.');
       }
