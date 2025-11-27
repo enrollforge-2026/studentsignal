@@ -6,6 +6,11 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import api from '../services/api';
+import YearPicker from '../components/forms/YearPicker';
+import DatePicker from '../components/forms/DatePicker';
+import StateDropdown from '../components/forms/StateDropdown';
+import GPADropdown from '../components/forms/GPADropdown';
+import HighSchoolSearch from '../components/forms/HighSchoolSearch';
 
 const OnboardingFlow = () => {
   const navigate = useNavigate();
