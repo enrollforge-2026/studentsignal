@@ -66,14 +66,16 @@ const ScholarshipForm = () => {
 
       if (isEdit) {
         await api.put(`/admin/scholarships/${id}`, dataToSubmit);
+        toast.success('Scholarship updated successfully');
       } else {
         await api.post('/admin/scholarships', dataToSubmit);
+        toast.success('Scholarship created successfully');
       }
 
       navigate('/admin/scholarships');
     } catch (error) {
       console.error('Failed to save scholarship:', error);
-      alert('Failed to save scholarship. Please try again.');
+      toast.error('Failed to save scholarship. Please try again.');
     } finally {
       setSaving(false);
     }
