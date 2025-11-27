@@ -376,15 +376,14 @@ const OnboardingFlow = () => {
               </div>
               
               <div>
-                <Label htmlFor="gpa" className="text-base font-semibold text-gray-700 mb-2 block">GPA <span className="text-sm text-gray-400 font-normal">(optional)</span></Label>
-                <Input
-                  id="gpa"
-                  type="text"
-                  placeholder="3.8"
+                <GPADropdown
                   value={formData.gpa}
-                  onChange={(e) => updateField('gpa', e.target.value)}
-                  className="mt-2 h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 text-lg"
+                  onChange={(value) => updateField('gpa', value)}
+                  label="GPA"
+                  placeholder="Select your GPA"
+                  className="mt-2"
                 />
+                <p className="text-sm text-gray-400 mt-1 ml-1">Optional</p>
               </div>
             </div>
           </div>
