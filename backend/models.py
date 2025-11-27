@@ -471,3 +471,24 @@ def validate_date_string(date_str: str) -> bool:
     except (ValueError, AttributeError):
         return False
 
+
+def validate_zip_code(zip_code: str) -> bool:
+    """Validate U.S. ZIP code format (5 digits or 5+4)"""
+    import re
+    if not zip_code:
+        return False
+    return bool(re.match(r'^\d{5}(-\d{4})?$', zip_code))
+
+
+def validate_address(street: str, city: str, state: str, zip_code: str) -> tuple[bool, str]:
+    """Validate complete address. Returns (is_valid, error_message)"""
+    if not street or not street.strip():
+        return False, "Street address is required"
+    if not city or not city.strip():
+        return False, "City is required"
+    if not validate_state(state):
+        return False, "Invalid state code"
+    if not validate_zip_code(zip_code):
+        return False, "Invalid ZIP code format (use 5 digits or 5+4 format)"
+    return True, ""
+
