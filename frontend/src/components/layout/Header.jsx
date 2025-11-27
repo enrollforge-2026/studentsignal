@@ -24,8 +24,12 @@ const Header = () => {
   };
 
   const toggleSearch = () => {
-    setIsSearchExpanded(!isSearchExpanded);
-    if (!isSearchExpanded) {
+    if (isSearchExpanded) {
+      // If already open, close it
+      closeSearch();
+    } else {
+      // If closed, open it
+      setIsSearchExpanded(true);
       setTimeout(() => searchInputRef.current?.focus(), 100);
     }
   };
