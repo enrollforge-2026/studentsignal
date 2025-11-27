@@ -197,15 +197,12 @@ const ProfileView = ({ user, refreshUser }) => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A535C] focus:border-transparent"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">GPA</label>
-                  <input
-                    type="text"
-                    value={formData.gpa || ''}
-                    onChange={(e) => setFormData({ ...formData, gpa: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A535C] focus:border-transparent"
-                  />
-                </div>
+                <GPADropdown
+                  value={formData.gpa || ''}
+                  onChange={(value) => setFormData({ ...formData, gpa: value })}
+                  label="GPA"
+                  placeholder="Select GPA"
+                />
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">SAT Score</label>
                   <input
