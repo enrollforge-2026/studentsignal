@@ -15,7 +15,7 @@ const Analytics = () => {
   const loadAnalytics = async () => {
     try {
       setLoading(true);
-      const response = await api.get('/admin/analytics');
+      const response = await api.get('/api/admin/analytics');
       setAnalytics(response.data);
     } catch (error) {
       console.error('Failed to load analytics:', error);
