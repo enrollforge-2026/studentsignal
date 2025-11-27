@@ -393,8 +393,44 @@ const SignalHubPremium = () => {
           </div>
         </div>
       </main>
+    </div>
+  );
 
-      <Footer />
+  // Main return with sidebar
+  return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header />
+      
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <Sidebar activeView={activeView} setActiveView={setActiveView} user={user} />
+        
+        {/* Main Content Area */}
+        <div className="flex-1 overflow-auto">
+          {activeView === 'dashboard' && <DashboardView />}
+          {activeView === 'profile' && <ProfileView user={user} refreshUser={refreshUser} />}
+          {activeView === 'schools' && <SchoolsView />}
+          {activeView === 'scholarships' && (
+            <div className="p-8">
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">Scholarships</h1>
+              <p className="text-gray-600">View coming soon. For now, visit the <Link to="/scholarships" className="text-[#1A535C] font-semibold hover:underline">Scholarships page</Link>.</p>
+            </div>
+          )}
+          {activeView === 'todo' && <ToDoView />}
+          {activeView === 'bookmarks' && (
+            <div className="p-8">
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">Bookmarks</h1>
+              <p className="text-gray-600">Bookmarks feature coming soon.</p>
+            </div>
+          )}
+          {activeView === 'offers' && (
+            <div className="p-8">
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">Offers</h1>
+              <p className="text-gray-600">Offers feature coming soon.</p>
+            </div>
+          )}
+        </div>
+      </div>
       
       {/* Elon AI Chatbot */}
       <ElonChat />
