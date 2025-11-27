@@ -23,20 +23,22 @@ const Header = () => {
     }
   };
 
-  const toggleSearch = () => {
-    if (isSearchExpanded) {
-      // If already open, close it
-      closeSearch();
-    } else {
-      // If closed, open it
-      setIsSearchExpanded(true);
-      setTimeout(() => searchInputRef.current?.focus(), 100);
-    }
-  };
-
   const closeSearch = () => {
     setIsSearchExpanded(false);
     setSearchQuery('');
+  };
+
+  const toggleSearch = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    
+    if (isSearchExpanded) {
+      // If open, close and clear
+      closeSearch();
+    } else {
+      // If closed, open and focus
+      setIsSearchExpanded(true);
+      setTimeout(() => searchInputRef.current?.focus(), 100);
+    }
   };
 
   // Handle ESC key to close search
@@ -46,19 +48,37 @@ const Header = () => {
         closeSearch();
       }
     };
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    
+    if (isSearchExpanded) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
   }, [isSearchExpanded]);
 
-  // Handle click outside to close search
+  // Handle click outside to close search (but not the icon button)
   React.useEffect(() => {
     const handleClickOutside = (e) => {
-      if (isSearchExpanded && searchInputRef.current && !searchInputRef.current.parentElement.contains(e.target)) {
-        closeSearch();
+      if (!isSearchExpanded) return;
+      
+      // Don't close if clicking the search icon button
+      const searchButton = document.querySelector('button[aria-label="Search schools"]');
+      if (searchButton && searchButton.contains(e.target)) {
+        return;
       }
+      
+      // Don't close if clicking inside the search form
+      if (searchInputRef.current && searchInputRef.current.closest('form').contains(e.target)) {
+        return;
+      }
+      
+      // Close if clicking anywhere else
+      closeSearch();
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    
+    if (isSearchExpanded) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
   }, [isSearchExpanded]);
 
   return (
