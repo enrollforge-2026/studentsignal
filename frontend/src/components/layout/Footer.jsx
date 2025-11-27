@@ -71,6 +71,27 @@ const Footer = () => {
               ))}
             </ul>
           </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-4">HELP & RESOURCES</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/how-it-works" className="text-sm text-gray-600 hover:text-[#1a5d3a] transition-colors">
+                  How It Works
+                </Link>
+              </li>
+              <li>
+                <Link to="/for-schools" className="text-sm text-gray-600 hover:text-[#1a5d3a] transition-colors">
+                  For Schools
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="text-sm text-gray-600 hover:text-[#1a5d3a] transition-colors">
+                  Privacy & Data
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Social links and work link */}
