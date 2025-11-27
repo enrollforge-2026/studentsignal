@@ -103,13 +103,14 @@ const Header = () => {
 
           {/* Search Icon & Auth */}
           <div className="flex items-center gap-3">
-            {/* Search Icon Button */}
+            {/* Enterprise Search Icon */}
             <button
               onClick={toggleSearch}
-              className="hidden md:block p-2 text-gray-700 hover:text-[#1a5d3a] transition-colors rounded-lg hover:bg-gray-50"
+              className="hidden md:flex items-center justify-center w-10 h-10 text-gray-700 hover:text-[#1a5d3a] transition-all duration-180 rounded-lg hover:bg-gray-50 hover:scale-105 hover:shadow-md"
+              style={{ boxShadow: isSearchOpen ? 'none' : undefined }}
               aria-label="Search schools"
             >
-              <Search size={20} />
+              <Search size={22} strokeWidth={2} />
             </button>
 
             {user ? (
