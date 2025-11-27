@@ -26,17 +26,26 @@ const StaffLogin = () => {
     setLoading(true);
 
     try {
-      const result = await login(formData.email, formData.password);
+      const result = await login({
+        email: formData.email,
+        password: formData.password
+      });
       
-      // Check if user is admin/staff
-      if (result.user.role === 'admin') {
-        navigate('/admin');
+      if (result.success) {
+        // Check if user is admin/staff
+        const currentUser = JSON.parse(localStorage.getItem('user'));
+        if (currentUser?.role === 'admin') {
+          navigate('/admin');
+        } else {
+          setError('Access denied. This portal is for staff and administrators only.');
+          logout();
+        }
       } else {
-        setError('Access denied. This portal is for staff and administrators only.');
-        setLoading(false);
+        setError(result.error || 'Invalid email or password');
       }
     } catch (err) {
-      setError(err.response?.data?.detail || 'Invalid email or password');
+      setError('Invalid email or password');
+    } finally {
       setLoading(false);
     }
   };
