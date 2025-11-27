@@ -5,6 +5,10 @@ import { collegesAPI, scholarshipsAPI } from '../services/api';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import ElonChat from '../components/ElonChat';
+import Sidebar from '../components/signalhub/Sidebar';
+import ProfileView from '../components/signalhub/ProfileView';
+import SchoolsView from '../components/signalhub/SchoolsView';
+import ToDoView from '../components/signalhub/ToDoView';
 import { motion } from 'framer-motion';
 import {
   BarChart, Bar, PieChart, Pie, Cell, LineChart, Line, RadialBarChart, RadialBar,
