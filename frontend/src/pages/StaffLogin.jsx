@@ -5,7 +5,7 @@ import { Shield, Mail, Lock, ArrowLeft } from 'lucide-react';
 
 const StaffLogin = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
