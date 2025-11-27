@@ -4,6 +4,7 @@ import { navLinks } from '../../data/mockData';
 import { Search, Menu, X, ChevronDown, LayoutDashboard } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useAuth } from '../../context/AuthContext';
+import MegaMenu, { MegaMenuSection } from '../navigation/MegaMenu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
