@@ -23,6 +23,7 @@ const AdminLayout = () => {
     { path: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
     { path: '/admin/colleges', label: 'Colleges', icon: GraduationCap },
     { path: '/admin/scholarships', label: 'Scholarships', icon: Award },
+    { path: '/admin/articles', label: 'Articles', icon: FileText },
   ];
 
   return (
