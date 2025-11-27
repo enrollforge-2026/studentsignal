@@ -684,6 +684,102 @@ async def delete_todo(
 
 
 
+
+
+# ==================== Reference Data Routes ====================
+
+@api_router.get("/reference/states")
+async def get_states():
+    """Get list of U.S. states"""
+    return {
+        "states": [{"code": code, "name": name} for code, name in US_STATES.items()]
+    }
+
+
+@api_router.get("/reference/gpa-options")
+async def get_gpa_options():
+    """Get list of valid GPA values"""
+    return {
+        "gpa_options": [str(gpa) for gpa in GPA_OPTIONS]
+    }
+
+
+@api_router.get("/reference/institutions")
+async def search_institutions(
+    q: str = Query("", description="Search query"),
+    state: Optional[str] = Query(None, description="Filter by state"),
+    limit: int = Query(20, le=100)
+):
+    """Search institutions (colleges/universities)"""
+    query = {}
+    
+    if q:
+        query["name"] = {"$regex": q, "$options": "i"}
+    if state:
+        query["state"] = state.upper()
+    
+    institutions = await institutions_collection.find(query, {"_id": 0}).limit(limit).to_list(limit)
+    return {"institutions": institutions}
+
+
+@api_router.post("/reference/institutions", response_model=Institution)
+async def create_institution(
+    institution_data: InstitutionCreate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Create a new institution (admin only)"""
+    # Validate state
+    if not validate_state(institution_data.state):
+        raise HTTPException(status_code=400, detail="Invalid state code")
+    
+    institution_dict = institution_data.model_dump()
+    institution_dict["id"] = str(uuid4())
+    institution_dict["state"] = institution_data.state.upper()
+    institution_dict["created_at"] = datetime.utcnow()
+    institution_dict["updated_at"] = datetime.utcnow()
+    
+    await institutions_collection.insert_one(institution_dict)
+    return institution_dict
+
+
+@api_router.get("/reference/high-schools")
+async def search_high_schools(
+    q: str = Query("", description="Search query"),
+    state: Optional[str] = Query(None, description="Filter by state"),
+    limit: int = Query(20, le=100)
+):
+    """Search high schools"""
+    query = {}
+    
+    if q:
+        query["name"] = {"$regex": q, "$options": "i"}
+    if state:
+        query["state"] = state.upper()
+    
+    high_schools = await high_schools_collection.find(query, {"_id": 0}).limit(limit).to_list(limit)
+    return {"high_schools": high_schools}
+
+
+@api_router.post("/reference/high-schools", response_model=HighSchool)
+async def create_high_school(
+    high_school_data: HighSchoolCreate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Create a new high school (admin only)"""
+    # Validate state
+    if not validate_state(high_school_data.state):
+        raise HTTPException(status_code=400, detail="Invalid state code")
+    
+    high_school_dict = high_school_data.model_dump()
+    high_school_dict["id"] = str(uuid4())
+    high_school_dict["state"] = high_school_data.state.upper()
+    high_school_dict["created_at"] = datetime.utcnow()
+    high_school_dict["updated_at"] = datetime.utcnow()
+    
+    await high_schools_collection.insert_one(high_school_dict)
+    return high_school_dict
+
+
 # ==================== Lead Routes ====================
 
 @api_router.post("/leads", response_model=dict)
