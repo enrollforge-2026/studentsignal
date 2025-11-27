@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { leadsAPI } from '../services/api';
+import YearPicker from './forms/YearPicker';
 
 const LeadCaptureModal = ({ isOpen, onClose, college }) => {
   const [formData, setFormData] = useState({
