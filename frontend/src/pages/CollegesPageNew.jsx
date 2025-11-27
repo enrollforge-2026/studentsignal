@@ -3,6 +3,7 @@ import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { states, majorsList } from '../data/mockData';
 import { collegesAPI } from '../services/api';
+import { toast } from 'sonner';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import LeadCaptureModal from '../components/LeadCaptureModal';
