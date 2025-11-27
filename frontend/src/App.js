@@ -57,6 +57,10 @@ function App() {
           <Route path="/privacy" element={<PrivacyBasics />} />
           <Route path="/for-schools" element={<ForSchools />} />
           
+          {/* Articles */}
+          <Route path="/articles" element={<ArticlesHub />} />
+          <Route path="/articles/:slug" element={<ArticleDetail />} />
+          
           {/* Placeholder routes */}
           <Route path="/graduate" element={<CollegesPage />} />
           <Route path="/scholarships" element={<ScholarshipsPage />} />
