@@ -11,6 +11,7 @@ const ArticleDetail = () => {
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showVideo, setShowVideo] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     loadArticle();
