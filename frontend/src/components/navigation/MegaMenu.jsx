@@ -60,7 +60,9 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-screen max-w-4xl z-50">
+        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-screen max-w-4xl z-50">
+          {/* Invisible bridge to prevent gap issues */}
+          <div className="h-2 -mt-2" />
           <div className="bg-white rounded-xl shadow-2xl p-8 border border-gray-100">
             <div className={`grid ${feature ? 'grid-cols-3' : 'grid-cols-1'} gap-8`}>
               <div className={feature ? 'col-span-2' : 'col-span-1'}>
