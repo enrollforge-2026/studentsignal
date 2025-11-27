@@ -294,16 +294,14 @@ const OnboardingFlow = () => {
             </div>
             
             <div>
-              <Label htmlFor="hsName" className="text-base font-semibold text-gray-700 mb-2 block">High School Name</Label>
-              <Input
-                id="hsName"
-                type="text"
-                placeholder="Enter your high school name"
+              <HighSchoolSearch
                 value={formData.high_school_name}
-                onChange={(e) => updateField('high_school_name', e.target.value)}
-                className="mt-2 h-14 px-5 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all shadow-sm hover:border-gray-300 text-lg"
+                onChange={(value) => updateField('high_school_name', value)}
+                label="High School Name"
+                placeholder="Search for your high school..."
+                required
+                className="mt-2"
               />
-              <p className="text-sm text-gray-500 mt-3 ml-1">Start typing to search...</p>
             </div>
           </div>
         );
