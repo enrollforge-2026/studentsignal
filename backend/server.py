@@ -874,6 +874,10 @@ async def get_article_admin(
     article = await articles_collection.find_one({"id": article_id}, {"_id": 0})
     if not article:
         raise HTTPException(status_code=404, detail="Article not found")
+    
+    # Add reading time
+    enrich_article_with_reading_time(article)
+    
     return article
 
 
