@@ -188,15 +188,12 @@ const ProfileView = ({ user, refreshUser }) => {
 
             {editMode === 'academics' ? (
               <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">High School</label>
-                  <input
-                    type="text"
-                    value={formData.high_school_name || ''}
-                    onChange={(e) => setFormData({ ...formData, high_school_name: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1A535C] focus:border-transparent"
-                  />
-                </div>
+                <HighSchoolSearch
+                  value={formData.high_school_name || ''}
+                  onChange={(value) => setFormData({ ...formData, high_school_name: value })}
+                  label="High School"
+                  placeholder="Search for your high school..."
+                />
                 <GPADropdown
                   value={formData.gpa || ''}
                   onChange={(value) => setFormData({ ...formData, gpa: value })}
