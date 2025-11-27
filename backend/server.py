@@ -750,6 +750,22 @@ async def get_analytics(email: str = Depends(get_current_admin_email)):
 
 # ==================== Public Articles Routes ====================
 
+def calculate_reading_time(text: str) -> int:
+    """Calculate estimated reading time in minutes (based on ~200 words per minute)"""
+    if not text:
+        return 1
+    word_count = len(text.split())
+    minutes = max(1, round(word_count / 200))
+    return minutes
+
+
+def enrich_article_with_reading_time(article: dict) -> dict:
+    """Add reading time to article if not already present"""
+    if article and "read_time_minutes" not in article:
+        article["read_time_minutes"] = calculate_reading_time(article.get("body", ""))
+    return article
+
+
 @api_router.get("/articles", response_model=dict)
 async def get_articles(
     featured: bool = Query(False),
@@ -770,6 +786,10 @@ async def get_articles(
     articles = await articles_collection.find(query, {"_id": 0}).sort("published_at", -1).limit(limit).to_list(limit)
     total = await articles_collection.count_documents(query)
     
+    # Add reading time to each article
+    for article in articles:
+        enrich_article_with_reading_time(article)
+    
     return {
         "articles": articles,
         "total": total
@@ -782,6 +802,10 @@ async def get_article_by_slug(slug: str):
     article = await articles_collection.find_one({"slug": slug, "is_published": True}, {"_id": 0})
     if not article:
         raise HTTPException(status_code=404, detail="Article not found")
+    
+    # Add reading time calculation
+    enrich_article_with_reading_time(article)
+    
     return article
 
 
