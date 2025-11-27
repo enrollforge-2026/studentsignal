@@ -17,7 +17,8 @@ from models import (
     OnboardingData,
     Lead, LeadCreate,
     ChatMessage, ChatResponse,
-    IPEDSSync, IPEDSStatus
+    IPEDSSync, IPEDSStatus,
+    Article, ArticleCreate, ArticleUpdate
 )
 from auth import (
     get_password_hash, verify_password, create_access_token,
