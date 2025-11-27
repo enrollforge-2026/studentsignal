@@ -125,13 +125,15 @@ const ScholarshipsPage = () => {
       if (isSaved) {
         await scholarshipsAPI.unsaveScholarship(scholarshipId);
         setSavedScholarships(prev => prev.filter(id => id !== scholarshipId));
+        toast.success('Scholarship removed from saved list');
       } else {
         await scholarshipsAPI.saveScholarship(scholarshipId);
         setSavedScholarships(prev => [...prev, scholarshipId]);
+        toast.success('Scholarship saved successfully');
       }
     } catch (error) {
       console.error('Error saving/unsaving scholarship:', error);
-      alert('Failed to update saved status. Please try again.');
+      toast.error('Failed to update saved status. Please try again.');
     }
   };
 
