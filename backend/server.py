@@ -769,6 +769,44 @@ async def create_high_school(
     """Create a new high school (admin only)"""
     # Validate state
     if not validate_state(high_school_data.state):
+
+
+# ==================== Smart Search / Autocomplete Routes ====================
+
+@api_router.get("/search/autocomplete")
+async def search_autocomplete(q: str = Query("", min_length=1)):
+    """Smart autocomplete search across colleges, scholarships, and majors"""
+    if len(q) < 2:
+        return {"colleges": [], "scholarships": [], "majors": []}
+    
+    # Search colleges
+    colleges = await colleges_collection.find(
+        {"name": {"$regex": q, "$options": "i"}},
+        {"_id": 0, "name": 1, "location": 1, "acceptance_rate": 1, "image": 1, "id": 1}
+    ).limit(5).to_list(5)
+    
+    # Search scholarships
+    scholarships = await scholarships_collection.find(
+        {"name": {"$regex": q, "$options": "i"}},
+        {"_id": 0, "name": 1, "amount": 1, "deadline": 1, "id": 1}
+    ).limit(5).to_list(5)
+    
+    # Generate major suggestions (hardcoded for now, can be database later)
+    major_keywords = [
+        "Psychology Programs", "Computer Science Degrees", "Pre-Nursing",
+        "Business Administration", "Engineering Programs", "Biology Degrees",
+        "English Literature", "Political Science", "Economics Programs",
+        "Pre-Med Track", "Education Degrees", "Communications Programs"
+    ]
+    majors = [m for m in major_keywords if q.lower() in m.lower()][:5]
+    
+    return {
+        "colleges": colleges,
+        "scholarships": scholarships,
+        "majors": majors
+    }
+
+
         raise HTTPException(status_code=400, detail="Invalid state code")
     
     high_school_dict = high_school_data.model_dump()
