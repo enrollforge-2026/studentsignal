@@ -35,18 +35,51 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                className="text-sm font-medium text-gray-700 hover:text-[#1a5d3a] transition-colors"
-              >
-                {link.label}
+            <Link to="/colleges" className="text-sm font-medium text-gray-700 hover:text-[#1a5d3a] transition-colors">
+              College Search
+            </Link>
+
+            <MegaMenu label="Student Pathways" menuKey="student_pathways">
+              <MegaMenuSection title="Pathways" links={[
+                { label: 'K-12 Counselors & Districts', href: '/for-schools' },
+                { label: 'Online Colleges', href: '/online-colleges' },
+                { label: 'Military & Veteran Programs', href: '/military-programs' },
+                { label: 'International Students', href: '/international-students' },
+                { label: 'Transfer Students', href: '/transfer-students' },
+              ]} />
+            </MegaMenu>
+
+            <MegaMenu label="Tools" menuKey="tools">
+              <div className="grid grid-cols-2 gap-8">
+                <MegaMenuSection title="Planning Tools" links={[
+                  { label: 'Scholarships', href: '/scholarships' },
+                  { label: 'Compare Schools', href: '/colleges' },
+                  { label: 'Saved Schools', href: '/signal-hub' },
+                ]} />
+                <MegaMenuSection title="Discovery Tools" links={[
+                  { label: 'Career Finder', href: '/career-finder' },
+                  { label: 'Direct Admissions', href: '/direct-admissions' },
+                  { label: 'School Match Quiz', href: '/school-match-quiz' },
+                ]} />
+              </div>
+            </MegaMenu>
+
+            <MegaMenu label="Resources" menuKey="resources">
+              <MegaMenuSection title="Learn & Explore" links={[
+                { label: 'Articles & Guides', href: '/articles' },
+                { label: 'Rankings', href: '/rankings' },
+                { label: 'Financial Aid', href: '/financial-aid' },
+                { label: 'SAT/ACT Alternatives', href: '/test-alternatives' },
+                { label: 'Application Tips', href: '/application-tips' },
+                { label: 'Student Stories', href: '/student-stories' },
+              ]} />
+            </MegaMenu>
+
+            {user && (
+              <Link to="/signal-hub" className="text-sm font-medium text-gray-700 hover:text-[#1a5d3a] transition-colors">
+                Signal Hub
               </Link>
-            ))}
-            <button className="text-sm font-medium text-gray-700 hover:text-[#1a5d3a] flex items-center gap-1">
-              <ChevronDown size={16} />
-            </button>
+            )}
           </nav>
 
           {/* Search & Auth */}
