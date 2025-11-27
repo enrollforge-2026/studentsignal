@@ -170,13 +170,15 @@ const CollegesPageNew = () => {
       if (isSaved) {
         await collegesAPI.unsaveCollege(collegeId);
         setSavedColleges(prev => prev.filter(id => id !== collegeId));
+        toast.success('College removed from saved list');
       } else {
         await collegesAPI.saveCollege(collegeId);
         setSavedColleges(prev => [...prev, collegeId]);
+        toast.success('College saved successfully');
       }
     } catch (error) {
       console.error('Error saving/unsaving college:', error);
-      alert('Failed to update saved status. Please try again.');
+      toast.error('Failed to update saved status. Please try again.');
     }
   };
 
