@@ -9,78 +9,33 @@ import EnterpriseSearch from '../navigation/EnterpriseSearch';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  const searchInputRef = React.useRef(null);
 
-  const handleSearch = (e) => {
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
+  const handleMobileSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/colleges?search=${encodeURIComponent(searchQuery)}`);
-      setIsSearchExpanded(false);
       setSearchQuery('');
     }
   };
 
-  const closeSearch = () => {
-    setIsSearchExpanded(false);
-    setSearchQuery('');
-  };
-
-  const toggleSearch = (e) => {
-    e.stopPropagation(); // Prevent event bubbling
-    
-    if (isSearchExpanded) {
-      // If open, close and clear
-      closeSearch();
-    } else {
-      // If closed, open and focus
-      setIsSearchExpanded(true);
-      setTimeout(() => searchInputRef.current?.focus(), 100);
-    }
-  };
-
-  // Handle ESC key to close search
+  // Handle ESC to close search
   React.useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && isSearchExpanded) {
-        closeSearch();
+      if (e.key === 'Escape' && isSearchOpen) {
+        setIsSearchOpen(false);
       }
     };
-    
-    if (isSearchExpanded) {
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
-    }
-  }, [isSearchExpanded]);
-
-  // Handle click outside to close search (but not the icon button)
-  React.useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!isSearchExpanded) return;
-      
-      // Don't close if clicking the search icon button
-      const searchButton = document.querySelector('button[aria-label="Search schools"]');
-      if (searchButton && searchButton.contains(e.target)) {
-        return;
-      }
-      
-      // Don't close if clicking inside the search form
-      if (searchInputRef.current && searchInputRef.current.closest('form').contains(e.target)) {
-        return;
-      }
-      
-      // Close if clicking anywhere else
-      closeSearch();
-    };
-    
-    if (isSearchExpanded) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
-    }
-  }, [isSearchExpanded]);
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isSearchOpen]);
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
