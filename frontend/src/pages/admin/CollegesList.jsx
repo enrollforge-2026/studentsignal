@@ -31,9 +31,10 @@ const CollegesList = () => {
       await api.delete(`/admin/colleges/${collegeId}`);
       setColleges(colleges.filter((c) => c.id !== collegeId));
       setDeleteConfirm(null);
+      toast.success('College deleted successfully');
     } catch (error) {
       console.error('Failed to delete college:', error);
-      alert('Failed to delete college. Please try again.');
+      toast.error('Failed to delete college. Please try again.');
     }
   };
 
