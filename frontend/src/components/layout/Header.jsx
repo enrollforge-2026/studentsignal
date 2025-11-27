@@ -208,6 +208,30 @@ const Header = () => {
             </nav>
           </div>
         )}
+
+        {/* Expanded Search Bar - Below Main Nav */}
+        {isSearchExpanded && (
+          <div className="border-t border-gray-100 py-3 hidden md:block">
+            <form onSubmit={handleSearch} className="max-w-2xl mx-auto relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                ref={searchInputRef}
+                type="text"
+                placeholder="Search schools..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-12 py-3 text-sm border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a] transition-all"
+              />
+              <button
+                type="button"
+                onClick={closeSearch}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </form>
+          </div>
+        )}
       </div>
     </header>
   );
