@@ -769,6 +769,16 @@ async def create_high_school(
     """Create a new high school (admin only)"""
     # Validate state
     if not validate_state(high_school_data.state):
+        raise HTTPException(status_code=400, detail="Invalid state code")
+    
+    high_school_dict = high_school_data.model_dump()
+    high_school_dict["id"] = str(uuid4())
+    high_school_dict["state"] = high_school_data.state.upper()
+    high_school_dict["created_at"] = datetime.utcnow()
+    high_school_dict["updated_at"] = datetime.utcnow()
+    
+    await high_schools_collection.insert_one(high_school_dict)
+    return high_school_dict
 
 
 # ==================== Smart Search / Autocomplete Routes ====================
