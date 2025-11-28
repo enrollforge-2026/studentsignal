@@ -48,6 +48,7 @@ const OnboardingFlow = () => {
     const newErrors = {};
     
     if (step === 1) {
+      if (!formData.studentType) newErrors.studentType = 'Student type is required';
       if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
       if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
       if (!formData.email.trim()) newErrors.email = 'Email is required';
@@ -55,13 +56,14 @@ const OnboardingFlow = () => {
     }
     
     if (step === 2) {
-      if (!formData.highSchoolName.trim()) newErrors.highSchoolName = 'High school name is required';
-      if (!formData.graduationYear) newErrors.graduationYear = 'Graduation year is required';
+      if (!formData.highSchool.trim()) newErrors.highSchool = 'High school is required';
+      if (!formData.startTerm) newErrors.startTerm = 'Start term is required';
+      if (!formData.startYear) newErrors.startYear = 'Start year is required';
     }
     
     if (step === 3) {
-      if (!formData.country.trim()) newErrors.country = 'Country is required';
-      if (!formData.postalCode.trim()) newErrors.postalCode = 'Postal code is required';
+      if (!formData.collegeSize) newErrors.collegeSize = 'College size preference is required';
+      if (!formData.distanceFromHome) newErrors.distanceFromHome = 'Distance preference is required';
     }
     
     setErrors(newErrors);
