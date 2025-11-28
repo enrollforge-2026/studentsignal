@@ -61,7 +61,7 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-screen max-w-4xl" style={{ zIndex: 45 }}>
+        <div className="fixed left-1/2 -translate-x-1/2 pt-2" style={{ top: '104px', zIndex: 45, width: '1220px', maxWidth: 'calc(100vw - 32px)' }}>
           {/* Invisible bridge to prevent gap issues */}
           <div className="h-2 -mt-2" />
           <div className={`bg-white ${topLayerTokens.radius.panel} ${topLayerTokens.shadow.panel} ${topLayerTokens.padding.panel} border border-gray-100`}>
