@@ -59,7 +59,7 @@ const StaffLogin = () => {
           className="bg-white w-full mx-auto"
           style={{ 
             maxWidth: '420px', 
-            padding: '48px',
+            padding: '60px 48px 48px 48px',
             borderRadius: '12px',
             boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
             border: '1px solid #E1E4E8'
