@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { 
   Search, 
   Award, 
@@ -20,8 +21,17 @@ import {
 const Sidebar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
 
   const navigation = [
+    {
+      section: 'ACCOUNT',
+      items: [
+        { name: 'Profile', href: '/account/profile', icon: User },
+        { name: 'Settings', href: '/account/settings', icon: Settings },
+        { name: 'Documents Vault', href: '/account/documents', icon: FolderOpen },
+      ],
+    },
     {
       section: 'EXPLORE',
       items: [
@@ -44,14 +54,6 @@ const Sidebar = () => {
         { name: 'AI Coach', href: '/tools/coach', icon: MessageSquare },
         { name: 'Cost Calculator', href: '/tools/cost', icon: Calculator },
         { name: 'Compare Colleges', href: '/tools/compare', icon: TrendingUp },
-      ],
-    },
-    {
-      section: 'ACCOUNT',
-      items: [
-        { name: 'Profile', href: '/account/profile', icon: User },
-        { name: 'Settings', href: '/account/settings', icon: Settings },
-        { name: 'Documents Vault', href: '/account/documents', icon: FolderOpen },
       ],
     },
   ];
