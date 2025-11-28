@@ -52,7 +52,7 @@ const TopExperienceLayer = () => {
 
         {/* Header */}
         <div style={{ zIndex: 50 }}>
-          <Header onSearchOpen={handleSearchOpen} />
+          <Header onSearchOpen={handleSearchOpen} announcementVisible={showAnnouncement} />
         </div>
       </div>
 
