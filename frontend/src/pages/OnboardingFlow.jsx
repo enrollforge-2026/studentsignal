@@ -100,11 +100,11 @@ const OnboardingFlow = () => {
     return (
       <div className="min-h-screen" style={{ backgroundColor: '#F5F7F9' }}>
         <div className="flex min-h-screen">
-          {/* Left Panel - Progress */}
+          {/* Left Panel - Static Brand Panel */}
           <div className="hidden lg:flex lg:w-1/2 relative" style={{ backgroundColor: '#004C3F' }}>
-            <div className="flex flex-col justify-center items-center w-full px-16">
+            <div className="flex flex-col justify-center items-start w-full px-16">
               {/* Logo */}
-              <div className="mb-16">
+              <div className="mb-8">
                 <div className="flex items-center">
                   <span className="text-4xl font-bold text-white">STUDENT</span>
                   <div className="flex items-center ml-2">
@@ -113,11 +113,19 @@ const OnboardingFlow = () => {
                 </div>
               </div>
               
-              {/* Progress Steps */}
-              <div className="space-y-6 w-full max-w-sm">
-                <StepIndicator number={1} title="Identity" active />
-                <StepIndicator number={2} title="Academics" />
-                <StepIndicator number={3} title="Preferences" />
+              {/* Headline */}
+              <h2 className="text-3xl font-bold text-white mb-4 leading-tight">
+                Find colleges and scholarships that actually fit you.
+              </h2>
+              
+              {/* Subtext */}
+              <p className="text-lg text-white/80 mb-8">
+                One profile. Smarter matches. No spam.
+              </p>
+              
+              {/* Optional Tip */}
+              <div className="text-sm text-white/60 italic">
+                💡 Takes less than 5 minutes to complete
               </div>
             </div>
           </div>
