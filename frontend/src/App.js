@@ -29,6 +29,21 @@ import MilitaryPrograms from "./pages/placeholders/MilitaryPrograms";
 import InternationalStudents from "./pages/placeholders/InternationalStudents";
 import TransferStudents from "./pages/placeholders/TransferStudents";
 
+// Authenticated Student Pages
+import AuthenticatedLayout from "./components/layout/AuthenticatedLayout";
+import AccountProfile from "./pages/account/AccountProfile";
+import AccountSettings from "./pages/account/AccountSettings";
+import DocumentsVault from "./pages/account/DocumentsVault";
+import ExploreColleges from "./pages/explore/ExploreColleges";
+import ExploreScholarships from "./pages/explore/ExploreScholarships";
+import ExploreMajors from "./pages/explore/ExploreMajors";
+import ApplicationTracker from "./pages/plan/ApplicationTracker";
+import DeadlineCalendar from "./pages/plan/DeadlineCalendar";
+import TasksEssays from "./pages/plan/TasksEssays";
+import AICoach from "./pages/tools/AICoach";
+import CostCalculator from "./pages/tools/CostCalculator";
+import CompareColleges from "./pages/tools/CompareColleges";
+
 // Admin Pages
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
