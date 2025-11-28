@@ -99,6 +99,7 @@ export const AuthProvider = ({ children }) => {
     token,
     loading,
     login,
+    staffLogin,
     register,
     logout,
     isAuthenticated: !!user,
