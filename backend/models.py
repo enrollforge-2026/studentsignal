@@ -375,6 +375,12 @@ class ProfileUpdate(BaseModel):
     ethnicity: Optional[str] = None
     interests: Optional[List[str]] = None
     profile_picture_url: Optional[str] = None
+    birthdate: Optional[str] = None
+    country: Optional[str] = None
+    postal_code: Optional[str] = None
+    intended_enrollment_term: Optional[str] = None
+    intended_enrollment_year: Optional[str] = None
+    onboarding_completed: Optional[bool] = None
 
 
 
