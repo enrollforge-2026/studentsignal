@@ -97,18 +97,18 @@ const Sidebar = () => {
       {/* Profile Identity Block */}
       <div className="px-4 py-4 border-b border-gray-200">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#004C3F' }}>
             {user?.profile_picture_url ? (
-              <img src={user.profile_picture_url} alt={user.first_name} className="w-full h-full object-cover" />
+              <img src={user.profile_picture_url} alt={getUserDisplayName()} className="w-full h-full object-cover" />
             ) : (
-              <User size={20} className="text-gray-500" />
+              <span className="text-sm font-semibold text-white">
+                {getUserInitials()}
+              </span>
             )}
           </div>
           <div className="flex-1 min-w-0">
             <div className="text-sm font-semibold text-gray-900 truncate">
-              {user?.first_name && user?.last_name 
-                ? `${user.first_name} ${user.last_name}` 
-                : user?.email || 'Student'}
+              {getUserDisplayName()}
             </div>
             <Link 
               to="/account/profile" 
