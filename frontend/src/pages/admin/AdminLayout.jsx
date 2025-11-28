@@ -54,17 +54,23 @@ const AdminLayout = () => {
             <div className="flex items-center gap-4">
               <Link
                 to="/"
-                className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:text-green-700 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm transition-colors"
+                style={{ color: '#1A1A1A' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#10614E'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#1A1A1A'}
               >
                 <Home size={18} />
                 <span>View Site</span>
               </Link>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm" style={{ color: '#6B7280' }}>
                 {user?.first_name} {user?.last_name}
               </div>
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm transition-colors"
+                style={{ color: '#EF4444', borderRadius: '6px' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FEF2F2'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
               >
                 <LogOut size={18} />
                 <span>Logout</span>
