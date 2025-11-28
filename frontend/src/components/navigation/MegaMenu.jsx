@@ -100,7 +100,6 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
                 )}
               </div>
             </div>
-          </div>
         </div>
       )}
     </div>
