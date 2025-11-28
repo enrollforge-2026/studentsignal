@@ -12,25 +12,27 @@ const OnboardingFlow = () => {
   const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
-    studentType: '',
-    firstName: '',
-    lastName: '',
+    // Step 1: Identity - matches User model
+    first_name: '',
+    last_name: '',
     email: user?.email || '',
     phone: '',
-    dateOfBirth: '',
+    birthdate: '',
     gender: '',
-    firstGen: '',
     ethnicity: '',
     consent: false,
-    highSchool: '',
-    intendedMajors: [],
-    startTerm: '',
-    startYear: '',
+    // Step 2: Academics - matches User model
+    high_school_name: '',
+    intended_major: '',
+    alternate_major: '',
+    intended_enrollment_term: '',
+    intended_enrollment_year: '',
+    high_school_grad_year: '',
     gpa: '',
-    collegesConsidering: '',
-    collegeSize: '',
-    distanceFromHome: '',
-    homeAddress: '',
+    // Step 3: Preferences - matches User model
+    address: '',
+    country: 'United States',
+    postal_code: '',
   });
 
   const handleInputChange = (field, value) => {
