@@ -39,6 +39,7 @@ import ScholarshipsList from "./pages/admin/ScholarshipsList";
 import ScholarshipForm from "./pages/admin/ScholarshipForm";
 import ArticlesList from "./pages/admin/ArticlesList";
 import ArticleForm from "./pages/admin/ArticleForm";
+import AnnouncementBarCMS from "./pages/admin/AnnouncementBarCMS";
 
 function App() {
   return (
