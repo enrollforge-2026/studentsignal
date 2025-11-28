@@ -77,7 +77,7 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
                       <img
                         src={feature.image_url}
                         alt={feature.title}
-                        className="w-full h-32 object-cover rounded-lg"
+                        className={`w-full h-32 object-cover ${topLayerTokens.radius.button}`}
                       />
                       <span className="absolute top-2 right-2 px-2 py-1 bg-[#1a5d3a] text-white text-xs font-bold rounded shadow-md">
                         {feature.label}
