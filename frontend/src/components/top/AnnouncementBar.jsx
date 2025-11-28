@@ -49,6 +49,16 @@ const AnnouncementBar = ({ onDismiss }) => {
 
   if (!isVisible || !announcement) return null;
 
+  // Color mapping
+  const colorMap = {
+    green: { bg: '#10614E', text: '#FFFFFF' },
+    yellow: { bg: '#FCD34D', text: '#1A1A1A' },
+    red: { bg: '#EF4444', text: '#FFFFFF' },
+    blue: { bg: '#3B82F6', text: '#FFFFFF' }
+  };
+
+  const colors = colorMap[announcement.color] || colorMap.green;
+
   return (
     <div
       className="w-full overflow-hidden transition-all"
@@ -60,22 +70,27 @@ const AnnouncementBar = ({ onDismiss }) => {
     >
       <div
         className="h-[40px] flex items-center justify-center"
-        style={{ backgroundColor: '#004C3F' }}
+        style={{ backgroundColor: colors.bg }}
       >
         <div className="w-full max-w-[1220px] mx-auto px-4 flex items-center justify-between">
-          {/* Center: Emoji + Message + CTA */}
+          {/* Center: Message + Link */}
           <div className="flex-1 flex items-center justify-center gap-4 min-w-0">
-            <div className="flex items-center gap-2">
-              <span className="text-base flex-shrink-0">{announcement.emoji || '🎓'}</span>
-              <span className="text-sm font-medium text-white truncate">{announcement.message}</span>
-            </div>
-            {announcement.ctaText && announcement.ctaUrl && (
+            <span 
+              className="text-sm font-medium truncate" 
+              style={{ color: colors.text }}
+              dangerouslySetInnerHTML={{ __html: announcement.body }}
+            />
+            {announcement.link_url && (
               <a
-                href={announcement.ctaUrl}
-                className="text-sm font-medium text-white underline hover:text-gray-100 transition-colors flex-shrink-0"
-                style={{ textDecorationThickness: '1px', textUnderlineOffset: '2px' }}
+                href={announcement.link_url}
+                className="text-sm font-medium underline hover:opacity-80 transition-opacity flex-shrink-0"
+                style={{ 
+                  color: colors.text,
+                  textDecorationThickness: '1px', 
+                  textUnderlineOffset: '2px' 
+                }}
               >
-                {announcement.ctaText}
+                Learn More
               </a>
             )}
           </div>
