@@ -335,6 +335,11 @@ const OnboardingFlow = () => {
                 border: '1px solid #E1E4E8'
               }}
             >
+            {/* Step Progress */}
+            <div className="text-sm font-medium mb-6" style={{ color: '#6B7280' }}>
+              STEP 2 OF 3
+            </div>
+            
             <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>Academics</h1>
             <p className="text-base mb-8" style={{ color: '#6B7280' }}>Your educational background</p>
 
