@@ -20,8 +20,8 @@ const AdminLayout = () => {
     );
   }
 
-  // Check if user is admin
-  if (!isAuthenticated || user?.role !== 'admin') {
+  // Check if user is admin or superadmin
+  if (!isAuthenticated || !['admin', 'superadmin'].includes(user?.role)) {
     return <Navigate to="/staff-login" replace />;
   }
 
