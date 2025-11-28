@@ -192,10 +192,14 @@ metadata:
   testing_date: "2025-01-26"
 
 test_plan:
-  current_focus: []
+  current_focus:
+    - "Unified Top Experience Layer System - Announcement Bar"
+    - "Unified Top Experience Layer System - Enterprise Search Overlay"
+    - "Unified Top Experience Layer System - Header Navigation"
+    - "Unified Top Experience Layer System - Mobile Behavior"
   stuck_tasks: []
   test_all: false
-  test_priority: "completed"
+  test_priority: "high_first"
 
 agent_communication:
   - agent: "main"
