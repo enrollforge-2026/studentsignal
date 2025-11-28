@@ -149,7 +149,7 @@ const StaffLogin = () => {
               className="text-sm font-medium transition-colors"
               style={{ color: '#004C3F' }}
             >
-              ← Return to Student Login
+              Return to Student Login
             </Link>
           </div>
         </div>
