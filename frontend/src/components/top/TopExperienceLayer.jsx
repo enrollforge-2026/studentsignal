@@ -9,14 +9,6 @@ const TopExperienceLayer = () => {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
   const containerRef = useRef(null);
 
-  const currentAnnouncement = {
-    id: 'spring-2025-deadline',
-    emoji: '🎓',
-    message: 'Spring 2025 Applications Close in 7 Days',
-    ctaText: 'Browse Colleges',
-    ctaUrl: '/colleges',
-  };
-
   const handleAnnouncementDismiss = () => {
     setShowAnnouncement(false);
     setAnnouncementHeight(0);
