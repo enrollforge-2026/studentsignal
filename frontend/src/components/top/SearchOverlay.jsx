@@ -249,6 +249,7 @@ const SearchOverlay = ({ isOpen, onClose, topOffset }) => {
                 type="button"
                 onClick={onClose}
                 className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-150"
+                style={{ zIndex: 10 }}
                 aria-label="Close search"
               >
                 <X size={20} />
