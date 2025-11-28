@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { User, GraduationCap, MapPin, Mail, Phone, Calendar, Building2, BookOpen, Target, Home, ArrowRight, Check } from 'lucide-react';
+import { User, Mail, Phone, Calendar, Users, Building2, GraduationCap, BookOpen, Target, ArrowRight } from 'lucide-react';
 import api from '../services/api';
 
 const OnboardingFlow = () => {
@@ -13,25 +13,28 @@ const OnboardingFlow = () => {
 
   const [formData, setFormData] = useState({
     // Step 1: Identity
+    studentType: '',
     firstName: '',
     lastName: '',
     email: user?.email || '',
     phone: '',
     dateOfBirth: '',
+    gender: '',
+    firstGen: '',
+    ethnicity: '',
     
     // Step 2: Academics
-    highSchoolName: '',
-    graduationYear: '',
+    highSchool: '',
+    intendedMajors: [],
+    startTerm: '',
+    startYear: '',
     gpa: '',
-    intendedMajor: '',
+    collegesConsidering: '',
     
-    // Step 3: Preferences & Address
-    country: 'United States',
-    state: '',
-    city: '',
-    postalCode: '',
-    preferredCollegeType: '',
-    financialAidInterest: false,
+    // Step 3: Preferences
+    collegeSize: '',
+    distanceFromHome: '',
+    homeAddress: '',
   });
 
   const handleInputChange = (field, value) => {
