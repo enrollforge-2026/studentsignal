@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { Button } from '../ui/button';
 import {
   LayoutDashboard,
@@ -19,6 +20,16 @@ const AdminLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const { user } = useAuth();
+
+  // Protect admin routes - redirect non-admins
+  useEffect(() => {
+    if (!user) {
+      navigate('/staff-login');
+    } else if (user.role !== 'admin') {
+      navigate('/signal-hub');
+    }
+  }, [user, navigate]);
 
   const navItems = [
     { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
