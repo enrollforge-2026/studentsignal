@@ -53,6 +53,23 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const staffLogin = async (credentials) => {
+    try {
+      const data = await authAPI.staffLogin(credentials);
+      setUser(data.user);
+      setToken(data.token);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      return { success: true, user: data.user };
+    } catch (error) {
+      console.error('Staff login error:', error);
+      return { 
+        success: false, 
+        error: error.response?.data?.detail || 'Staff login failed' 
+      };
+    }
+  };
+
   const register = async (userData) => {
     try {
       const data = await authAPI.register(userData);
