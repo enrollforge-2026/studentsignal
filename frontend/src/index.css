@@ -16,11 +16,33 @@ code {
         monospace;
 }
 
-/* Enterprise Search Animations */
+/* Top Experience Layer Animations */
 @keyframes slideDown {
   from {
     opacity: 0;
     transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
   }
   to {
     opacity: 1;
@@ -39,6 +61,10 @@ code {
 
 .animate-slideDown {
   animation: slideDown 180ms ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 180ms ease-out;
 }
 
 .animate-fadeIn {
