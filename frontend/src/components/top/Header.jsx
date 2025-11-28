@@ -5,9 +5,11 @@ import { Button } from '../ui/button';
 import { useAuth } from '../../context/AuthContext';
 import MegaMenu, { MegaMenuSection } from '../navigation/MegaMenu';
 
-const Header = ({ onSearchOpen }) => {
+const Header = ({ onSearchOpen, announcementVisible = true }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, logout } = useAuth();
+  
+  const megaMenuTop = announcementVisible ? 104 : 64;
 
   return (
     <header className="bg-white border-b border-gray-100 shadow-sm" style={{ zIndex: 50 }}>
