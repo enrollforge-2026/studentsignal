@@ -53,6 +53,11 @@ const OnboardingFlow = () => {
       if (!formData.startTerm) newErrors.startTerm = 'Start term is required';
       if (!formData.startYear) newErrors.startYear = 'Start year is required';
     }
+    if (step === 3) {
+      if (!formData.collegeSize) newErrors.collegeSize = 'College size preference is required';
+      if (!formData.distanceFromHome) newErrors.distanceFromHome = 'Distance preference is required';
+      if (!formData.homeAddress.trim()) newErrors.homeAddress = 'Home address is required';
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
