@@ -21,6 +21,7 @@ const OnboardingFlow = () => {
     gender: '',
     firstGen: '',
     ethnicity: '',
+    consent: false,
     highSchool: '',
     intendedMajors: [],
     startTerm: '',
