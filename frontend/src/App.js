@@ -91,6 +91,7 @@ function App() {
           {/* Admin routes */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
+            <Route path="announcement-bar" element={<AnnouncementBarCMS />} />
             <Route path="analytics" element={<Analytics />} />
             <Route path="colleges" element={<CollegesList />} />
             <Route path="colleges/new" element={<CollegeForm />} />
