@@ -34,14 +34,9 @@ const StaffLogin = () => {
     
     setLoading(true);
     try {
-      const result = await login(formData);
+      const result = await staffLogin(formData);
       if (result.success) {
-        // Check if user is admin
-        if (result.user.role === 'admin') {
-          navigate('/admin/dashboard');
-        } else {
-          setErrors({ submit: 'Unauthorized. Admin access required.' });
-        }
+        navigate('/admin/dashboard');
       } else {
         setErrors({ submit: result.error || 'Invalid email or password. Please try again.' });
       }
