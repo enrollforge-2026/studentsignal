@@ -35,7 +35,7 @@ const Header = ({ onSearchOpen, announcementVisible = true }) => {
               College Search
             </Link>
 
-            <MegaMenu label="Student Pathways" menuKey="student_pathways">
+            <MegaMenu label="Student Pathways" menuKey="student_pathways" topPosition={megaMenuTop}>
               <MegaMenuSection
                 title="Pathways"
                 links={[
@@ -48,7 +48,7 @@ const Header = ({ onSearchOpen, announcementVisible = true }) => {
               />
             </MegaMenu>
 
-            <MegaMenu label="Tools" menuKey="tools">
+            <MegaMenu label="Tools" menuKey="tools" topPosition={megaMenuTop}>
               <div className="grid grid-cols-2 gap-8">
                 <MegaMenuSection
                   title="Planning Tools"
@@ -69,7 +69,7 @@ const Header = ({ onSearchOpen, announcementVisible = true }) => {
               </div>
             </MegaMenu>
 
-            <MegaMenu label="Resources" menuKey="resources">
+            <MegaMenu label="Resources" menuKey="resources" topPosition={megaMenuTop}>
               <MegaMenuSection
                 title="Learn & Explore"
                 links={[
