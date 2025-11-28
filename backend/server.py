@@ -1433,6 +1433,108 @@ async def get_ipeds_status():
 
 # ==================== Test Route ====================
 
+
+
+# ==================== Announcement Bar Routes ====================
+
+@api_router.post("/announcement/create")
+async def create_announcement(
+    announcement_data: AnnouncementBarCreate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Create a new announcement bar (admin only)"""
+    announcement_dict = announcement_data.model_dump()
+    announcement_dict['id'] = str(uuid4())
+    announcement_dict['created_at'] = datetime.utcnow()
+    announcement_dict['updated_at'] = datetime.utcnow()
+    
+    await announcement_bars_collection.insert_one(announcement_dict)
+    
+    # Return without _id
+    announcement_dict.pop('_id', None)
+    announcement_dict = serialize_doc(announcement_dict)
+    
+    return announcement_dict
+
+
+@api_router.get("/announcement/current")
+async def get_current_announcement():
+    """Get the currently active announcement (public endpoint)"""
+    now = datetime.utcnow()
+    
+    announcement = await announcement_bars_collection.find_one(
+        {
+            "status": "active",
+            "start_date": {"$lte": now},
+            "end_date": {"$gte": now}
+        },
+        {"_id": 0},
+        sort=[("created_at", -1)]
+    )
+    
+    if not announcement:
+        return None
+    
+    return serialize_doc(announcement)
+
+
+@api_router.get("/admin/announcements")
+async def get_all_announcements(
+    email: str = Depends(get_current_admin_email)
+):
+    """Get all announcements (admin only)"""
+    announcements = await announcement_bars_collection.find(
+        {},
+        {"_id": 0}
+    ).sort("created_at", -1).to_list(100)
+    
+    return [serialize_doc(a) for a in announcements]
+
+
+@api_router.patch("/announcement/update/{announcement_id}")
+async def update_announcement(
+    announcement_id: str,
+    announcement_data: AnnouncementBarUpdate,
+    email: str = Depends(get_current_admin_email)
+):
+    """Update an announcement (admin only)"""
+    update_data = announcement_data.model_dump(exclude_unset=True)
+    
+    if update_data:
+        update_data['updated_at'] = datetime.utcnow()
+        
+        result = await announcement_bars_collection.update_one(
+            {"id": announcement_id},
+            {"$set": update_data}
+        )
+        
+        if result.matched_count == 0:
+            raise HTTPException(status_code=404, detail="Announcement not found")
+    
+    updated_announcement = await announcement_bars_collection.find_one(
+        {"id": announcement_id},
+        {"_id": 0}
+    )
+    return serialize_doc(updated_announcement)
+
+
+@api_router.delete("/announcement/archive/{announcement_id}")
+async def archive_announcement(
+    announcement_id: str,
+    email: str = Depends(get_current_admin_email)
+):
+    """Archive an announcement (admin only)"""
+    result = await announcement_bars_collection.update_one(
+        {"id": announcement_id},
+        {"$set": {"status": "archived", "updated_at": datetime.utcnow()}}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Announcement not found")
+    
+    return {"message": "Announcement archived successfully", "id": announcement_id}
+
+
 @api_router.get("/")
 async def root():
     return {
