@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar';
-import Footer from './Footer';
+import LoggedInFooter from './LoggedInFooter';
 
 const AuthenticatedLayout = ({ children }) => {
   return (
@@ -12,7 +12,7 @@ const AuthenticatedLayout = ({ children }) => {
           {children}
         </main>
         
-        <Footer />
+        <LoggedInFooter />
       </div>
     </div>
   );
