@@ -4,7 +4,7 @@ import { ChevronDown, ArrowRight } from 'lucide-react';
 import api from '../../services/api';
 import { topLayerTokens } from '../../styles/topLayerTokens';
 
-const MegaMenu = ({ label, menuKey, children, className = '' }) => {
+const MegaMenu = ({ label, menuKey, children, className = '', topPosition = 104 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [feature, setFeature] = useState(null);
   const closeTimeoutRef = React.useRef(null);
