@@ -35,10 +35,7 @@ const TopExperienceLayer = () => {
         {/* Announcement Bar */}
         {showAnnouncement && (
           <div style={{ zIndex: 60 }}>
-            <AnnouncementBar
-              announcement={currentAnnouncement}
-              onDismiss={handleAnnouncementDismiss}
-            />
+            <AnnouncementBar onDismiss={handleAnnouncementDismiss} />
           </div>
         )}
 
