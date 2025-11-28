@@ -65,7 +65,7 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
           {/* Invisible bridge to prevent gap issues */}
           <div className="h-2 -mt-2" />
           <div className={`bg-white ${topLayerTokens.radius.panel} ${topLayerTokens.shadow.panel} ${topLayerTokens.padding.panel} border border-gray-100`}>
-            <div className={`grid ${feature ? 'grid-cols-3' : 'grid-cols-1'} gap-8`}>
+            <div className={`grid ${feature ? 'grid-cols-3' : 'grid-cols-1'} ${topLayerTokens.spacing.section}`}>
               <div className={feature ? 'col-span-2' : 'col-span-1'}>
                 {children}
               </div>
