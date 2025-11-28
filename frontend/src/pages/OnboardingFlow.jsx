@@ -11,6 +11,13 @@ const OnboardingFlow = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // Redirect admins/staff away from onboarding
+  React.useEffect(() => {
+    if (user && user.role === 'admin') {
+      navigate('/admin/dashboard');
+    }
+  }, [user, navigate]);
+
   const [formData, setFormData] = useState({
     // Step 1: Identity - matches User model
     first_name: '',
