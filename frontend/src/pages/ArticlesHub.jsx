@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/top/TopExperienceLayer';
+import TopExperienceLayer from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { ArrowRight, Play, BookOpen, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import api from '../services/api';

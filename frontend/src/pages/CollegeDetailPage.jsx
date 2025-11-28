@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Header from '../components/top/TopExperienceLayer';
+import TopExperienceLayer from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import LeadCaptureModal from '../components/LeadCaptureModal';
 import { collegesAPI } from '../services/api';

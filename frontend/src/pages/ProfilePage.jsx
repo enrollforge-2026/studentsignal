@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Header from '../components/top/TopExperienceLayer';
+import TopExperienceLayer from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { colleges } from '../data/mockData';
 import { Button } from '../components/ui/button';

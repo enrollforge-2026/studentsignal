@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { collegesAPI, scholarshipsAPI } from '../services/api';
-import Header from '../components/top/TopExperienceLayer';
+import TopExperienceLayer from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import ElonChat from '../components/ElonChat';
 import Sidebar from '../components/signalhub/Sidebar';

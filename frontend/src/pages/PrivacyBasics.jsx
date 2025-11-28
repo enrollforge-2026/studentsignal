@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/top/TopExperienceLayer';
+import TopExperienceLayer from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { Shield, Lock, Eye, Mail } from 'lucide-react';
 

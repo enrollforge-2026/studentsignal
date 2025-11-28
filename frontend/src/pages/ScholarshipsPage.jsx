@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { scholarshipCategories } from '../data/mockData';
 import { scholarshipsAPI } from '../services/api';
 import { toast } from 'sonner';
-import Header from '../components/top/TopExperienceLayer';
+import TopExperienceLayer from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
 import { Search, ChevronDown, Bookmark, DollarSign } from 'lucide-react';

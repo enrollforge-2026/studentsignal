@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../components/top/TopExperienceLayer';
+import TopExperienceLayer from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { Building2, Users, TrendingUp, Mail, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
