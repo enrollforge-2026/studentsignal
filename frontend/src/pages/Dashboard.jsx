@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
+import AuthenticatedLayout from '../components/layout/AuthenticatedLayout';
 import MetricsRow from '../components/dashboard/MetricsRow';
 import SignalsFeed from '../components/dashboard/SignalsFeed';
 import NextBestActions from '../components/dashboard/NextBestActions';
@@ -11,7 +12,7 @@ const Dashboard = () => {
   const { user } = useAuth();
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F5F7F9' }}>
+    <AuthenticatedLayout>
       <div className="max-w-[1280px] mx-auto px-6 py-8 space-y-8">
         {/* A) Metrics Row */}
         <MetricsRow />
@@ -31,7 +32,7 @@ const Dashboard = () => {
         {/* F) Scholarships To Focus On */}
         <ScholarshipsToFocus />
       </div>
-    </div>
+    </AuthenticatedLayout>
   );
 };
 
