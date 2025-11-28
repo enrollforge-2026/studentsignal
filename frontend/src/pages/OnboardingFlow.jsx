@@ -209,7 +209,57 @@ const OnboardingFlow = () => {
     );
   }
 
-  return <div>Step 3 - To be built</div>;
+  // STEP 3
+  if (currentStep === 3) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: '#F5F7F9' }}>
+        <div className="flex min-h-screen">
+          <BrandPanel />
+          <div className="flex-1 flex items-center justify-center px-6 py-12">
+            <div className="bg-white w-full" style={{ maxWidth: '552px', padding: '48px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', border: '1px solid #E1E4E8' }}>
+              <div className="text-sm font-medium mb-6" style={{ color: '#6B7280' }}>STEP 3 OF 3</div>
+              <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>Preferences</h1>
+              <p className="text-base mb-8" style={{ color: '#6B7280' }}>Your college preferences</p>
+              {errors.submit && <div className="mb-6 p-4 text-sm" style={{ backgroundColor: '#FEF2F2', color: '#D92D20', border: '1px solid #FECACA', borderRadius: '12px' }}>{errors.submit}</div>}
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium mb-3" style={{ color: '#2A2F35' }}>
+                    College Size <span style={{ color: '#D92D20' }}>*</span>
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {['Small (<2,000)', 'Medium (2,000-10,000)', 'Large (10,000-20,000)', 'Very Large (>20,000)'].map(size => (
+                      <button key={size} onClick={() => handleInputChange('collegeSize', size)} className="py-3 px-4 text-sm font-medium transition-all" style={{ borderRadius: '12px', border: formData.collegeSize === size ? '2px solid #004C3F' : '1px solid #E1E4E8', backgroundColor: formData.collegeSize === size ? '#F0FDF4' : 'white', color: formData.collegeSize === size ? '#004C3F' : '#2A2F35' }}>{size}</button>
+                    ))}
+                  </div>
+                  {errors.collegeSize && <p className="text-xs mt-1" style={{ color: '#D92D20' }}>{errors.collegeSize}</p>}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-3" style={{ color: '#2A2F35' }}>
+                    Distance From Home <span style={{ color: '#D92D20' }}>*</span>
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {['Close (<50 miles)', 'Moderate (50-250 miles)', 'Far (250-500 miles)', 'Anywhere (>500 miles)'].map(distance => (
+                      <button key={distance} onClick={() => handleInputChange('distanceFromHome', distance)} className="py-3 px-4 text-sm font-medium transition-all" style={{ borderRadius: '12px', border: formData.distanceFromHome === distance ? '2px solid #004C3F' : '1px solid #E1E4E8', backgroundColor: formData.distanceFromHome === distance ? '#F0FDF4' : 'white', color: formData.distanceFromHome === distance ? '#004C3F' : '#2A2F35' }}>{distance}</button>
+                    ))}
+                  </div>
+                  {errors.distanceFromHome && <p className="text-xs mt-1" style={{ color: '#D92D20' }}>{errors.distanceFromHome}</p>}
+                </div>
+
+                <InputField label="Home Address" value={formData.homeAddress} onChange={(e) => handleInputChange('homeAddress', e.target.value)} error={errors.homeAddress} icon={<MapPin size={20} />} placeholder="123 Main St, City, State ZIP" />
+              </div>
+              <div className="flex items-center justify-between mt-8 pt-6" style={{ borderTop: '1px solid #E1E4E8' }}>
+                <button onClick={handleBack} className="px-6 py-3 font-medium text-sm transition-all" style={{ color: '#2A2F35', backgroundColor: 'transparent', border: '1px solid #E1E4E8', borderRadius: '8px' }}>Back</button>
+                <button onClick={handleSubmit} disabled={loading} className="px-6 py-3 font-medium text-sm flex items-center gap-2 transition-all disabled:opacity-50" style={{ backgroundColor: '#004C3F', color: 'white', height: '48px', borderRadius: '8px' }}>{loading ? 'Completing...' : 'Complete Profile'}<ArrowRight size={18} /></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
 };
 
 const InputField = ({ label, error, icon, required, ...props }) => (
