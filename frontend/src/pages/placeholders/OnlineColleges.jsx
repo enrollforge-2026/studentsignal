@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../../components/top/TopExperienceLayer';
+import TopExperienceLayer from '../../components/top/TopExperienceLayer';
 import Footer from '../../components/layout/Footer';
 import { GraduationCap, Mail } from 'lucide-react';
 import { toast } from 'sonner';
