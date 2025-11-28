@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/layout/Header';
+import TopExperienceLayer from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import ElonChat from '../components/ElonChat';
 import HeroSection from '../components/home/HeroSection';
@@ -15,7 +15,7 @@ import CTASection from '../components/home/CTASection';
 const HomePage = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <TopExperienceLayer />
       <main className="flex-grow">
         <HeroSection />
         <DirectAdmissions />
