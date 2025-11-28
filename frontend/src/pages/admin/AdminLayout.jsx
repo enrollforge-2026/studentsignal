@@ -84,7 +84,7 @@ const AdminLayout = () => {
         <div className="flex gap-6">
           {/* Sidebar */}
           <aside className="w-64 flex-shrink-0">
-            <nav className="bg-white rounded-xl shadow-sm p-4 sticky top-24">
+            <nav className="bg-white p-4 sticky top-24" style={{ borderRadius: '6px', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
               <ul className="space-y-1">
                 {navItems.map((item) => {
                   const Icon = item.icon;
@@ -93,14 +93,22 @@ const AdminLayout = () => {
                     <li key={item.path}>
                       <Link
                         to={item.path}
-                        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
-                          isActive
-                            ? 'bg-green-700 text-white shadow-md'
-                            : 'text-gray-700 hover:bg-gray-100'
-                        }`}
+                        className="flex items-center gap-3 px-4 py-3 transition-all font-medium"
+                        style={{
+                          borderRadius: '6px',
+                          backgroundColor: isActive ? '#10614E' : 'transparent',
+                          color: isActive ? '#FFFFFF' : '#1A1A1A',
+                          boxShadow: isActive ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!isActive) e.currentTarget.style.backgroundColor = '#F5F7F8';
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!isActive) e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
                       >
                         <Icon size={20} />
-                        <span className="font-medium">{item.label}</span>
+                        <span>{item.label}</span>
                       </Link>
                     </li>
                   );
