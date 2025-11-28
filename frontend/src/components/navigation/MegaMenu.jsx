@@ -61,39 +61,45 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
       </button>
 
       {isOpen && (
-        <div className="fixed left-1/2 -translate-x-1/2 pt-2" style={{ top: '104px', zIndex: 45, width: '1220px', maxWidth: 'calc(100vw - 32px)' }}>
-          {/* Invisible bridge to prevent gap issues */}
-          <div className="h-2 -mt-2" />
-          <div className={`bg-white ${topLayerTokens.radius.panel} ${topLayerTokens.shadow.panel} ${topLayerTokens.padding.panel} border border-gray-100`}>
-            <div className={`grid ${feature ? 'grid-cols-3' : 'grid-cols-1'} ${topLayerTokens.spacing.section}`}>
-              <div className={feature ? 'col-span-2' : 'col-span-1'}>
+        <div className="fixed left-1/2 -translate-x-1/2" style={{ top: '104px', zIndex: 45, width: '915px', maxWidth: 'calc(100vw - 32px)' }}>
+          <div className={`bg-white ${topLayerTokens.radius.panel} ${topLayerTokens.shadow.panel} border border-gray-100`} style={{ padding: '32px' }}>
+            <div className="grid grid-cols-3 gap-8" style={{ minHeight: '280px' }}>
+              <div className="col-span-2">
                 {children}
               </div>
 
-              {feature && (
-                <div className={`bg-gradient-to-br from-gray-50 to-white ${topLayerTokens.radius.panel} p-5 border-2 border-gray-100 hover:border-[#1a5d3a]/20 ${topLayerTokens.animation.timing} ${topLayerTokens.animation.duration}`}>
-                  {feature.image_url && (
-                    <div className="relative mb-3">
-                      <img
-                        src={feature.image_url}
-                        alt={feature.title}
-                        className={`w-full h-32 object-cover ${topLayerTokens.radius.button}`}
-                      />
-                      <span className="absolute top-2 right-2 px-2 py-1 bg-[#1a5d3a] text-white text-xs font-bold rounded shadow-md">
-                        {feature.label}
-                      </span>
-                    </div>
-                  )}
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{feature.title}</h3>
-                  <Link
-                    to={feature.cta_url}
-                    className="inline-flex items-center gap-2 text-[#1a5d3a] font-semibold text-sm hover:gap-3 transition-all"
-                  >
-                    {feature.cta_text}
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
-              )}
+              <div className={`bg-gradient-to-br from-gray-50 to-white ${topLayerTokens.radius.panel} p-5 border-2 border-gray-100 hover:border-[#1a5d3a]/20 ${topLayerTokens.animation.timing} ${topLayerTokens.animation.duration} flex flex-col`}>
+                {feature ? (
+                  <>
+                    {feature.image_url && (
+                      <div className="relative mb-3">
+                        <img
+                          src={feature.image_url}
+                          alt={feature.title}
+                          className={`w-full h-32 object-cover ${topLayerTokens.radius.button}`}
+                        />
+                        <span className="absolute top-2 right-2 px-2 py-1 bg-[#1a5d3a] text-white text-xs font-bold rounded shadow-md">
+                          {feature.label}
+                        </span>
+                      </div>
+                    )}
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">{feature.title}</h3>
+                    <Link
+                      to={feature.cta_url}
+                      className="inline-flex items-center gap-2 text-[#1a5d3a] font-semibold text-sm hover:gap-3 transition-all mt-auto"
+                    >
+                      {feature.cta_text}
+                      <ArrowRight size={16} />
+                    </Link>
+                  </>
+                ) : (
+                  <div className="flex flex-col justify-center items-center h-full text-center">
+                    <div className="text-4xl mb-3">🎯</div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Featured</h3>
+                    <p className="text-sm text-gray-600">More coming soon</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
