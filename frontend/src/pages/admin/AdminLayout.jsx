@@ -32,6 +32,7 @@ const AdminLayout = () => {
 
   const navItems = [
     { path: '/admin', label: 'Dashboard', icon: LayoutDashboard },
+    { path: '/admin/announcement-bar', label: 'Announcement Bar', icon: Megaphone },
     { path: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
     { path: '/admin/colleges', label: 'Colleges', icon: GraduationCap },
     { path: '/admin/scholarships', label: 'Scholarships', icon: Award },
