@@ -60,6 +60,30 @@ const Sidebar = () => {
 
   const isActive = (href) => location.pathname === href;
 
+  // Get user initials for avatar
+  const getUserInitials = () => {
+    if (user?.first_name && user?.last_name) {
+      return `${user.first_name[0]}${user.last_name[0]}`.toUpperCase();
+    } else if (user?.first_name) {
+      return user.first_name.substring(0, 2).toUpperCase();
+    } else if (user?.email) {
+      return user.email.substring(0, 2).toUpperCase();
+    }
+    return 'SS';
+  };
+
+  // Get user display name
+  const getUserDisplayName = () => {
+    if (user?.first_name && user?.last_name) {
+      return `${user.first_name} ${user.last_name}`;
+    } else if (user?.first_name) {
+      return user.first_name;
+    } else if (user?.email) {
+      return user.email.split('@')[0];
+    }
+    return 'Student';
+  };
+
   const SidebarContent = () => (
     <div className="flex flex-col h-full">
       {/* Logo */}
