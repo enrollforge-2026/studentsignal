@@ -534,3 +534,38 @@ class MegaMenuFeatureUpdate(BaseModel):
     image_url: Optional[str] = None
     is_active: Optional[bool] = None
 
+
+
+# ==================== Announcement Bar Models ====================
+
+class AnnouncementBarCreate(BaseModel):
+    title: str = Field(..., max_length=200)
+    body: str = Field(..., max_length=200)
+    start_date: datetime
+    end_date: datetime
+    color: str = "green"  # green, yellow, red, blue
+    link_url: Optional[str] = None
+    status: str = "active"  # active, archived
+
+
+class AnnouncementBarUpdate(BaseModel):
+    title: Optional[str] = Field(None, max_length=200)
+    body: Optional[str] = Field(None, max_length=200)
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
+    color: Optional[str] = None
+    link_url: Optional[str] = None
+    status: Optional[str] = None
+
+
+class AnnouncementBar(BaseDBModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    body: str
+    start_date: datetime
+    end_date: datetime
+    color: str = "green"
+    link_url: Optional[str] = None
+    status: str = "active"
+    created_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+    updated_at: datetime = Field(default_factory=lambda: datetime.utcnow())
