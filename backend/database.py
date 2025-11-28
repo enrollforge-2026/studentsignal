@@ -18,6 +18,7 @@ todos_collection = db.todos
 institutions_collection = db.institutions
 high_schools_collection = db.high_schools
 mega_menu_features_collection = db.mega_menu_features
+announcement_bars_collection = db.announcement_bars
 
 
 async def get_db():
