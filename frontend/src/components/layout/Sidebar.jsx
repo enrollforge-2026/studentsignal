@@ -70,6 +70,32 @@ const Sidebar = () => {
         </Link>
       </div>
 
+      {/* Profile Identity Block */}
+      <div className="px-4 py-4 border-b border-gray-200">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+            {user?.profile_picture_url ? (
+              <img src={user.profile_picture_url} alt={user.first_name} className="w-full h-full object-cover" />
+            ) : (
+              <User size={20} className="text-gray-500" />
+            )}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-sm font-semibold text-gray-900 truncate">
+              {user?.first_name && user?.last_name 
+                ? `${user.first_name} ${user.last_name}` 
+                : user?.email || 'Student'}
+            </div>
+            <Link 
+              to="/account/profile" 
+              className="text-xs text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              View Profile
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto py-4">
         {navigation.map((group) => (
