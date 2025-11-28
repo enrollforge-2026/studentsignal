@@ -132,7 +132,7 @@ const StaffLogin = () => {
           </form>
 
           {/* Forgot Password Link */}
-          <div className="mt-6 text-center">
+          <div className="text-center" style={{ marginTop: '24px' }}>
             <Link 
               to="/forgot-password" 
               className="text-sm font-medium transition-colors"
