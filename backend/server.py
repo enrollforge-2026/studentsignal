@@ -70,6 +70,8 @@ async def register(user_data: UserCreate):
     user_dict['role'] = 'user'
     user_dict['saved_colleges'] = []
     user_dict['saved_scholarships'] = []
+    user_dict['onboarding_completed'] = False
+    user_dict['badges'] = []
     user_dict['created_at'] = datetime.utcnow().isoformat()
     user_dict['updated_at'] = datetime.utcnow().isoformat()
     
