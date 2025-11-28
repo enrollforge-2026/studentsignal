@@ -71,7 +71,7 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
               </div>
 
               {feature && (
-                <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-5 border-2 border-gray-100 hover:border-[#1a5d3a]/20 transition-all">
+                <div className={`bg-gradient-to-br from-gray-50 to-white ${topLayerTokens.radius.panel} p-5 border-2 border-gray-100 hover:border-[#1a5d3a]/20 ${topLayerTokens.animation.timing} ${topLayerTokens.animation.duration}`}>
                   {feature.image_url && (
                     <div className="relative mb-3">
                       <img
