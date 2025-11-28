@@ -178,8 +178,8 @@ const OnboardingFlow = () => {
                       style={{ borderColor: errors.consent ? '#D92D20' : '#E1E4E8' }}
                     />
                     <div>
-                      <span className="text-xs" style={{ color: '#6B7280', lineHeight: '1.5' }}>
-                        By selecting this box, I consent to Student Signal sharing my ethnicity, religion, and citizenship status with its higher education institutional partners for enrollment marketing, as well as with its uniformed personnel recruitment partners for enlistment purposes.
+                      <span className="text-xs" style={{ color: '#2A2F35', lineHeight: '1.5' }}>
+                        By selecting this box, I authorize StudentSignal to share my profile and academic information with partner colleges and scholarship programs so they can contact me about opportunities.
                       </span>
                     </div>
                   </label>
