@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import LeadCaptureModal from '../components/LeadCaptureModal';
 import { collegesAPI } from '../services/api';
@@ -59,7 +59,7 @@ const CollegeDetailPage = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col">
-        <Header />
+        <TopExperienceLayer />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
             <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#1a5d3a] mx-auto mb-4"></div>
@@ -74,7 +74,7 @@ const CollegeDetailPage = () => {
   if (error || !college) {
     return (
       <div className="min-h-screen flex flex-col">
-        <Header />
+        <TopExperienceLayer />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">
@@ -92,7 +92,7 @@ const CollegeDetailPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header />
+      <TopExperienceLayer />
       
       <main className="flex-grow">
         {/* Hero section */}

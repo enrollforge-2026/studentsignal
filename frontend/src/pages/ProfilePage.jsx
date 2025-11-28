@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { colleges } from '../data/mockData';
 import { Button } from '../components/ui/button';
@@ -67,7 +67,7 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header />
+      <TopExperienceLayer />
       
       <main className="flex-grow">
         {/* Profile header */}

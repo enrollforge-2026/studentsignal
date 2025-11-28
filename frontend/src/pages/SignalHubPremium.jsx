@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { collegesAPI, scholarshipsAPI } from '../services/api';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import ElonChat from '../components/ElonChat';
 import Sidebar from '../components/signalhub/Sidebar';
@@ -77,7 +77,7 @@ const SignalHubPremium = () => {
   if (authLoading) {
     return (
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-teal-50">
-        <Header />
+        <TopExperienceLayer />
         <main className="flex-1 flex items-center justify-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#1A535C]"></div>
         </main>
@@ -89,7 +89,7 @@ const SignalHubPremium = () => {
   if (!user) {
     return (
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-teal-50">
-        <Header />
+        <TopExperienceLayer />
         <main className="flex-1 flex items-center justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -399,7 +399,7 @@ const SignalHubPremium = () => {
   // Main return with sidebar
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header />
+      <TopExperienceLayer />
       
       <div className="flex flex-1">
         {/* Sidebar */}

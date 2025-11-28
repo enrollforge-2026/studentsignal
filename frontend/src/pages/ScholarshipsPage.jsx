@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { scholarshipCategories } from '../data/mockData';
 import { scholarshipsAPI } from '../services/api';
 import { toast } from 'sonner';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
 import { Search, ChevronDown, Bookmark, DollarSign } from 'lucide-react';
@@ -192,7 +192,7 @@ const ScholarshipsPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <TopExperienceLayer />
       
       {/* Hero Section with Search */}
       <section className="relative bg-gradient-to-br from-amber-50 to-orange-50 py-16">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { GraduationCap, Search, Bookmark, MessageCircle, TrendingUp, Award } from 'lucide-react';
 
@@ -30,7 +30,7 @@ const HowItWorks = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <TopExperienceLayer />
       
       <main className="max-w-5xl mx-auto px-4 py-16">
         {/* Hero Section */}

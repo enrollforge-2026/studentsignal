@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { states, majorsList } from '../data/mockData';
 import { collegesAPI } from '../services/api';
 import { toast } from 'sonner';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import LeadCaptureModal from '../components/LeadCaptureModal';
 import { Button } from '../components/ui/button';
@@ -203,7 +203,7 @@ const CollegesPageNew = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <TopExperienceLayer />
       
       {/* Hero Section with Search */}
       <section className="relative bg-gradient-to-br from-blue-50 to-cyan-50 py-16">

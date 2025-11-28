@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { Building2, Users, TrendingUp, Mail, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
@@ -68,7 +68,7 @@ const ForSchools = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <TopExperienceLayer />
       
       <main className="max-w-5xl mx-auto px-4 py-16">
         {/* Hero */}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { collegesAPI, scholarshipsAPI } from '../services/api';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
 import {
@@ -96,7 +96,7 @@ const SignalHub = () => {
   if (!user) {
     return (
       <div className="min-h-screen flex flex-col">
-        <Header />
+        <TopExperienceLayer />
         <main className="flex-1 flex items-center justify-center bg-gray-50">
           <div className="text-center">
             <GraduationCap className="mx-auto text-gray-400 mb-4" size={64} />
@@ -116,7 +116,7 @@ const SignalHub = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header />
+      <TopExperienceLayer />
 
       <main className="flex-1">
         {/* Hero Header */}

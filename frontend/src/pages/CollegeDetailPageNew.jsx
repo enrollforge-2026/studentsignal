@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { colleges } from '../data/mockData';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
 import {
@@ -73,7 +73,7 @@ const CollegeDetailPageNew = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header />
+      <TopExperienceLayer />
 
       {/* Hero Section */}
       <div className="relative h-96">

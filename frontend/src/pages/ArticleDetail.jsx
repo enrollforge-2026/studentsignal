@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { Calendar, Tag, Play, X, ArrowRight, Clock } from 'lucide-react';
 import api from '../services/api';
@@ -60,7 +60,7 @@ const ArticleDetail = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header />
+        <TopExperienceLayer />
         <div className="flex items-center justify-center h-64">
           <div className="text-gray-500">Loading article...</div>
         </div>
@@ -72,7 +72,7 @@ const ArticleDetail = () => {
   if (!article) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header />
+        <TopExperienceLayer />
         <div className="max-w-4xl mx-auto px-4 py-16 text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Article Not Found</h1>
           <Link to="/articles" className="text-green-700 font-semibold hover:underline">
@@ -119,7 +119,7 @@ const ArticleDetail = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <TopExperienceLayer />
 
       <article className="max-w-4xl mx-auto px-4 py-12">
         {/* Breadcrumb */}

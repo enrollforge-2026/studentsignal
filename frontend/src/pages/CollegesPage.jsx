@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import Header from '../components/layout/Header';
+import Header from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { colleges, states } from '../data/mockData';
 import { Button } from '../components/ui/button';
@@ -65,7 +65,7 @@ const CollegesPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header />
+      <TopExperienceLayer />
       
       <main className="flex-grow">
         {/* Hero Banner */}
