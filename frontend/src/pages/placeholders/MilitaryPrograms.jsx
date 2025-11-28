@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../../components/layout/Header';
+import Header from '../../components/top/TopExperienceLayer';
 import Footer from '../../components/layout/Footer';
 import { Shield } from 'lucide-react';
 import { toast } from 'sonner';
@@ -31,7 +31,7 @@ const MilitaryPrograms = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <TopExperienceLayer />
       <main className="max-w-4xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <Shield className="mx-auto mb-4 text-[#1a5d3a]" size={64} />
