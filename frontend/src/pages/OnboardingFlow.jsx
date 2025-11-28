@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { User, Mail, Phone, Calendar, Users, Building2, GraduationCap, BookOpen, Target, ArrowRight } from 'lucide-react';
+import { User, Mail, Phone, Calendar, Users, Building2, GraduationCap, BookOpen, Target, ArrowRight, MapPin } from 'lucide-react';
 import api from '../services/api';
 
 const OnboardingFlow = () => {
@@ -31,7 +31,7 @@ const OnboardingFlow = () => {
     gpa: '',
     collegesConsidering: '',
     
-    // Step 3: Preferences
+    // Step 3: Preferences  
     collegeSize: '',
     distanceFromHome: '',
     homeAddress: '',
@@ -95,112 +95,75 @@ const OnboardingFlow = () => {
     }
   };
 
-  const steps = [
-    { number: 1, title: 'Identity', subtitle: 'Tell us about yourself' },
-    { number: 2, title: 'Academics', subtitle: 'Your educational background' },
-    { number: 3, title: 'Preferences', subtitle: 'Location and interests' },
-  ];
-
-  return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F5F7F9' }}>
-      <div className="flex min-h-screen">
-        {/* Left Column - Illustration/Pattern */}
-        <div className="hidden lg:flex lg:w-1/2 relative" style={{ backgroundColor: '#004C3F' }}>
-          <div className="flex flex-col justify-center items-center w-full px-16">
-            {/* Logo */}
-            <div className="mb-12">
-              <div className="flex items-center">
-                <span className="text-4xl font-bold text-white">STUDENT</span>
-                <div className="flex items-center ml-2">
-                  <span className="bg-white text-[#004C3F] text-sm px-2 py-1 rounded font-bold">SIGNAL</span>
+  // STEP 1 - Two Column Layout with Left Panel
+  if (currentStep === 1) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: '#F5F7F9' }}>
+        <div className="flex min-h-screen">
+          {/* Left Panel - Progress */}
+          <div className="hidden lg:flex lg:w-1/2 relative" style={{ backgroundColor: '#004C3F' }}>
+            <div className="flex flex-col justify-center items-center w-full px-16">
+              {/* Logo */}
+              <div className="mb-16">
+                <div className="flex items-center">
+                  <span className="text-4xl font-bold text-white">STUDENT</span>
+                  <div className="flex items-center ml-2">
+                    <span className="bg-white text-[#004C3F] text-sm px-2 py-1 rounded font-bold">SIGNAL</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Progress Steps - Vertical */}
-            <div className="space-y-8 w-full max-w-sm">
-              {steps.map((step) => (
-                <div key={step.number} className="flex items-start gap-4">
-                  <div 
-                    className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center font-semibold transition-all ${
-                      currentStep === step.number 
-                        ? 'bg-white text-[#004C3F]' 
-                        : currentStep > step.number
-                        ? 'bg-[#007B63] text-white'
-                        : 'bg-[#004C3F] border-2 border-white/30 text-white/70'
-                    }`}
-                  >
-                    {currentStep > step.number ? <Check size={24} /> : step.number}
-                  </div>
-                  <div className="flex-1 pt-2">
-                    <h3 className={`font-semibold text-lg ${
-                      currentStep >= step.number ? 'text-white' : 'text-white/50'
-                    }`}>
-                      {step.title}
-                    </h3>
-                    <p className={`text-sm mt-1 ${
-                      currentStep >= step.number ? 'text-white/80' : 'text-white/40'
-                    }`}>
-                      {step.subtitle}
-                    </p>
-                  </div>
-                </div>
-              ))}
+              
+              {/* Progress Steps */}
+              <div className="space-y-6 w-full max-w-sm">
+                <StepIndicator number={1} title="Identity" active />
+                <StepIndicator number={2} title="Academics" />
+                <StepIndicator number={3} title="Preferences" />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Right Column - Form Card */}
-        <div className="flex-1 flex items-center justify-center px-6 py-12">
-          <div 
-            className="bg-white rounded-xl w-full"
-            style={{ 
-              maxWidth: '480px', 
-              padding: '48px',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06)',
-              border: '1px solid #E1E4E8'
-            }}
-          >
-            {/* Mobile Progress */}
-            <div className="lg:hidden mb-8">
-              <div className="flex items-center gap-2 mb-2">
-                {steps.map((step, idx) => (
-                  <React.Fragment key={step.number}>
-                    <div 
-                      className={`h-2 flex-1 rounded-full transition-all ${
-                        currentStep >= step.number ? 'bg-[#004C3F]' : 'bg-[#E1E4E8]'
-                      }`}
-                    />
-                  </React.Fragment>
-                ))}
-              </div>
-              <p className="text-sm font-medium" style={{ color: '#2A2F35' }}>
-                Step {currentStep} of {steps.length}
-              </p>
-            </div>
+          {/* Right Column - Form */}
+          <div className="flex-1 flex items-center justify-center px-6 py-12">
+            <div 
+              className="bg-white w-full"
+              style={{ 
+                maxWidth: '480px', 
+                padding: '48px',
+                borderRadius: '12px',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                border: '1px solid #E1E4E8'
+              }}
+            >
+              <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>Identity</h1>
+              <p className="text-base mb-8" style={{ color: '#6B7280' }}>Tell us about yourself</p>
 
-            {/* Form Content */}
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>
-                {steps[currentStep - 1].title}
-              </h1>
-              <p className="text-base" style={{ color: '#6B7280' }}>
-                {steps[currentStep - 1].subtitle}
-              </p>
-            </div>
-
-            {errors.submit && (
-              <div 
-                className="mb-6 p-4 rounded-lg text-sm"
-                style={{ backgroundColor: '#FEF2F2', color: '#D92D20', border: '1px solid #FECACA' }}
-              >
-                {errors.submit}
-              </div>
-            )}
-
-            {/* Step 1: Identity */}
-            {currentStep === 1 && (
               <div className="space-y-6">
+                {/* Student Type */}
+                <div>
+                  <label className="block text-sm font-medium mb-3" style={{ color: '#2A2F35' }}>
+                    Student Type <span style={{ color: '#D92D20' }}>*</span>
+                  </label>
+                  <div className="flex gap-3">
+                    {['High School', 'Transfer', 'Graduate'].map(type => (
+                      <button
+                        key={type}
+                        onClick={() => handleInputChange('studentType', type)}
+                        className="flex-1 py-3 px-4 text-sm font-medium transition-all"
+                        style={{
+                          borderRadius: '12px',
+                          border: formData.studentType === type ? '2px solid #004C3F' : '1px solid #E1E4E8',
+                          backgroundColor: formData.studentType === type ? '#F0FDF4' : 'white',
+                          color: formData.studentType === type ? '#004C3F' : '#2A2F35',
+                        }}
+                      >
+                        {type}
+                      </button>
+                    ))}
+                  </div>
+                  {errors.studentType && <p className="text-xs mt-1" style={{ color: '#D92D20' }}>{errors.studentType}</p>}
+                </div>
+
+                {/* Name Fields */}
                 <div className="grid grid-cols-2 gap-4">
                   <InputField
                     label="First Name"
@@ -219,7 +182,7 @@ const OnboardingFlow = () => {
                     required
                   />
                 </div>
-                
+
                 <InputField
                   label="Email Address"
                   type="email"
@@ -230,17 +193,16 @@ const OnboardingFlow = () => {
                   required
                   disabled={!!user?.email}
                 />
-                
+
                 <InputField
                   label="Phone Number"
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
-                  error={errors.phone}
                   icon={<Phone size={20} />}
                   placeholder="(555) 123-4567"
                 />
-                
+
                 <InputField
                   label="Date of Birth"
                   type="date"
@@ -250,187 +212,224 @@ const OnboardingFlow = () => {
                   icon={<Calendar size={20} />}
                   required
                 />
-              </div>
-            )}
 
-            {/* Step 2: Academics */}
-            {currentStep === 2 && (
-              <div className="space-y-6">
-                <InputField
-                  label="High School Name"
-                  value={formData.highSchoolName}
-                  onChange={(e) => handleInputChange('highSchoolName', e.target.value)}
-                  error={errors.highSchoolName}
-                  icon={<Building2 size={20} />}
-                  placeholder="Enter your high school"
-                  required
-                />
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <SelectField
-                    label="Graduation Year"
-                    value={formData.graduationYear}
-                    onChange={(e) => handleInputChange('graduationYear', e.target.value)}
-                    error={errors.graduationYear}
-                    icon={<GraduationCap size={20} />}
-                    required
-                  >
-                    <option value="">Select year</option>
-                    {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map(year => (
-                      <option key={year} value={year}>{year}</option>
-                    ))}
-                  </SelectField>
-                  
-                  <InputField
-                    label="GPA (Optional)"
-                    type="number"
-                    step="0.01"
-                    min="0"
-                    max="4.0"
-                    value={formData.gpa}
-                    onChange={(e) => handleInputChange('gpa', e.target.value)}
-                    error={errors.gpa}
-                    icon={<Target size={20} />}
-                    placeholder="3.5"
-                  />
-                </div>
-                
-                <InputField
-                  label="Intended Major"
-                  value={formData.intendedMajor}
-                  onChange={(e) => handleInputChange('intendedMajor', e.target.value)}
-                  error={errors.intendedMajor}
-                  icon={<BookOpen size={20} />}
-                  placeholder="e.g., Computer Science, Biology"
-                />
-              </div>
-            )}
-
-            {/* Step 3: Preferences & Address */}
-            {currentStep === 3 && (
-              <div className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <InputField
-                    label="Country"
-                    value={formData.country}
-                    onChange={(e) => handleInputChange('country', e.target.value)}
-                    error={errors.country}
-                    icon={<MapPin size={20} />}
-                    required
-                  />
-                  
-                  <InputField
-                    label="Postal Code"
-                    value={formData.postalCode}
-                    onChange={(e) => handleInputChange('postalCode', e.target.value)}
-                    error={errors.postalCode}
-                    icon={<Home size={20} />}
-                    placeholder="12345"
-                    required
-                  />
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <InputField
-                    label="State/Province"
-                    value={formData.state}
-                    onChange={(e) => handleInputChange('state', e.target.value)}
-                    error={errors.state}
-                    placeholder="California"
-                  />
-                  
-                  <InputField
-                    label="City"
-                    value={formData.city}
-                    onChange={(e) => handleInputChange('city', e.target.value)}
-                    error={errors.city}
-                    placeholder="Los Angeles"
-                  />
-                </div>
-                
                 <SelectField
-                  label="Preferred College Type"
-                  value={formData.preferredCollegeType}
-                  onChange={(e) => handleInputChange('preferredCollegeType', e.target.value)}
-                  error={errors.preferredCollegeType}
+                  label="Gender"
+                  value={formData.gender}
+                  onChange={(e) => handleInputChange('gender', e.target.value)}
+                  icon={<Users size={20} />}
                 >
-                  <option value="">Select preference</option>
-                  <option value="public">Public University</option>
-                  <option value="private">Private University</option>
-                  <option value="liberal-arts">Liberal Arts College</option>
-                  <option value="community">Community College</option>
-                  <option value="online">Online Programs</option>
+                  <option value="">Prefer not to say</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="non-binary">Non-binary</option>
+                  <option value="other">Other</option>
                 </SelectField>
-                
-                <label className="flex items-start gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.financialAidInterest}
-                    onChange={(e) => handleInputChange('financialAidInterest', e.target.checked)}
-                    className="mt-1 w-5 h-5 rounded border-2 accent-[#004C3F]"
-                    style={{ borderColor: '#E1E4E8' }}
-                  />
-                  <div>
-                    <span className="font-medium text-sm" style={{ color: '#2A2F35' }}>
-                      I'm interested in financial aid and scholarships
-                    </span>
-                    <p className="text-xs mt-1" style={{ color: '#6B7280' }}>
-                      We'll help you discover funding opportunities
-                    </p>
-                  </div>
-                </label>
-              </div>
-            )}
 
-            {/* Navigation Buttons */}
-            <div className="flex items-center justify-between mt-8 pt-6" style={{ borderTop: '1px solid #E1E4E8' }}>
-              {currentStep > 1 ? (
-                <button
-                  onClick={handleBack}
-                  className="px-6 py-3 font-medium text-sm rounded-lg transition-all"
-                  style={{ color: '#2A2F35', backgroundColor: 'transparent', border: '1px solid #E1E4E8' }}
+                <SelectField
+                  label="Are you a first-generation college student?"
+                  value={formData.firstGen}
+                  onChange={(e) => handleInputChange('firstGen', e.target.value)}
                 >
-                  Back
-                </button>
-              ) : (
-                <div />
-              )}
-              
-              {currentStep < 3 ? (
-                <button
-                  onClick={handleNext}
-                  className="px-6 py-3 font-medium text-sm rounded-lg flex items-center gap-2 transition-all"
-                  style={{ 
-                    backgroundColor: '#004C3F', 
-                    color: 'white',
-                    height: '48px'
-                  }}
+                  <option value="">Select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                  <option value="unsure">Not sure</option>
+                </SelectField>
+
+                <SelectField
+                  label="Ethnicity"
+                  value={formData.ethnicity}
+                  onChange={(e) => handleInputChange('ethnicity', e.target.value)}
                 >
-                  Continue
-                  <ArrowRight size={18} />
-                </button>
-              ) : (
-                <button
-                  onClick={handleSubmit}
-                  disabled={loading}
-                  className="px-6 py-3 font-medium text-sm rounded-lg flex items-center gap-2 transition-all disabled:opacity-50"
-                  style={{ 
-                    backgroundColor: '#004C3F', 
-                    color: 'white',
-                    height: '48px'
-                  }}
-                >
-                  {loading ? 'Completing...' : 'Complete Setup'}
-                  <ArrowRight size={18} />
-                </button>
-              )}
+                  <option value="">Prefer not to say</option>
+                  <option value="asian">Asian</option>
+                  <option value="black">Black or African American</option>
+                  <option value="hispanic">Hispanic or Latino</option>
+                  <option value="white">White</option>
+                  <option value="native">Native American or Alaska Native</option>
+                  <option value="pacific">Native Hawaiian or Pacific Islander</option>
+                  <option value="multiple">Two or more races</option>
+                </SelectField>
+              </div>
+
+              {/* Continue Button */}
+              <button
+                onClick={handleNext}
+                className="w-full mt-8 flex items-center justify-center gap-2 font-medium text-sm transition-all"
+                style={{ 
+                  backgroundColor: '#004C3F', 
+                  color: 'white',
+                  height: '48px',
+                  borderRadius: '8px'
+                }}
+              >
+                Continue
+                <ArrowRight size={18} />
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  // STEP 2 - Appily Style (No Left Panel, Breadcrumb)
+  if (currentStep === 2) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: '#F5F7F9' }}>
+        <div className="flex flex-col items-center px-6 py-12">
+          {/* Breadcrumb */}
+          <div className="text-sm font-medium mb-8" style={{ color: '#6B7280' }}>
+            STEP 2 OF 3
+          </div>
+
+          {/* Form Card */}
+          <div 
+            className="bg-white w-full"
+            style={{ 
+              maxWidth: '600px', 
+              padding: '48px',
+              borderRadius: '12px',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+              border: '1px solid #E1E4E8'
+            }}
+          >
+            <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>Academics</h1>
+            <p className="text-base mb-8" style={{ color: '#6B7280' }}>Your educational background</p>
+
+            {errors.submit && (
+              <div 
+                className="mb-6 p-4 text-sm"
+                style={{ backgroundColor: '#FEF2F2', color: '#D92D20', border: '1px solid #FECACA', borderRadius: '12px' }}
+              >
+                {errors.submit}
+              </div>
+            )}
+
+            <div className="space-y-6">
+              <InputField
+                label="High School"
+                value={formData.highSchool}
+                onChange={(e) => handleInputChange('highSchool', e.target.value)}
+                error={errors.highSchool}
+                icon={<Building2 size={20} />}
+                placeholder="Search for your high school"
+                required
+              />
+
+              <InputField
+                label="Intended Majors"
+                value={formData.intendedMajors}
+                onChange={(e) => handleInputChange('intendedMajors', e.target.value)}
+                icon={<BookOpen size={20} />}
+                placeholder="e.g., Computer Science, Biology"
+              />
+
+              <div className="grid grid-cols-2 gap-4">
+                <SelectField
+                  label="Start Term"
+                  value={formData.startTerm}
+                  onChange={(e) => handleInputChange('startTerm', e.target.value)}
+                  error={errors.startTerm}
+                  required
+                >
+                  <option value="">Select term</option>
+                  <option value="fall">Fall</option>
+                  <option value="spring">Spring</option>
+                  <option value="summer">Summer</option>
+                </SelectField>
+
+                <SelectField
+                  label="Start Year"
+                  value={formData.startYear}
+                  onChange={(e) => handleInputChange('startYear', e.target.value)}
+                  error={errors.startYear}
+                  required
+                >
+                  <option value="">Select year</option>
+                  {Array.from({ length: 5 }, (_, i) => new Date().getFullYear() + i).map(year => (
+                    <option key={year} value={year}>{year}</option>
+                  ))}
+                </SelectField>
+              </div>
+
+              <InputField
+                label="GPA"
+                type="number"
+                step="0.01"
+                min="0"
+                max="4.0"
+                value={formData.gpa}
+                onChange={(e) => handleInputChange('gpa', e.target.value)}
+                icon={<Target size={20} />}
+                placeholder="3.5"
+              />
+
+              <InputField
+                label="Colleges You're Considering"
+                value={formData.collegesConsidering}
+                onChange={(e) => handleInputChange('collegesConsidering', e.target.value)}
+                icon={<GraduationCap size={20} />}
+                placeholder="e.g., Stanford, MIT, UC Berkeley"
+              />
+            </div>
+
+            {/* Navigation */}
+            <div className="flex items-center justify-between mt-8 pt-6" style={{ borderTop: '1px solid #E1E4E8' }}>
+              <button
+                onClick={handleBack}
+                className="px-6 py-3 font-medium text-sm transition-all"
+                style={{ color: '#2A2F35', backgroundColor: 'transparent', border: '1px solid #E1E4E8', borderRadius: '8px' }}
+              >
+                Back
+              </button>
+
+              <button
+                onClick={handleNext}
+                className="px-6 py-3 font-medium text-sm flex items-center gap-2 transition-all"
+                style={{ 
+                  backgroundColor: '#004C3F', 
+                  color: 'white',
+                  height: '48px',
+                  borderRadius: '8px'
+                }}
+              >
+                Continue
+                <ArrowRight size={18} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // STEP 3 will be built after screenshot approval
+  return <div>Step 3 - To be built</div>;
 };
+
+// Step Indicator Component (for Step 1 left panel)
+const StepIndicator = ({ number, title, active = false }) => (
+  <div className="flex items-center gap-4">
+    <div 
+      className="flex-shrink-0 w-12 h-12 flex items-center justify-center font-semibold transition-all"
+      style={{
+        borderRadius: '8px',
+        backgroundColor: active ? 'white' : 'transparent',
+        color: active ? '#004C3F' : 'rgba(255,255,255,0.5)',
+        border: active ? 'none' : '2px solid rgba(255,255,255,0.3)',
+      }}
+    >
+      {number}
+    </div>
+    <div>
+      <h3 className="font-semibold text-lg" style={{ color: active ? 'white' : 'rgba(255,255,255,0.5)' }}>
+        {title}
+      </h3>
+    </div>
+  </div>
+);
 
 // Input Field Component
 const InputField = ({ label, error, icon, required, ...props }) => (
@@ -446,10 +445,11 @@ const InputField = ({ label, error, icon, required, ...props }) => (
       )}
       <input
         {...props}
-        className={`w-full rounded-lg text-sm transition-all ${icon ? 'pl-12' : 'pl-4'} pr-4`}
+        className={`w-full text-sm transition-all ${icon ? 'pl-12' : 'pl-4'} pr-4`}
         style={{
           height: '48px',
           border: error ? '2px solid #D92D20' : '1px solid #E1E4E8',
+          borderRadius: '12px',
           color: '#2A2F35',
           backgroundColor: props.disabled ? '#F5F7F9' : 'white',
           outline: 'none',
@@ -484,10 +484,11 @@ const SelectField = ({ label, error, icon, required, children, ...props }) => (
       )}
       <select
         {...props}
-        className={`w-full rounded-lg text-sm transition-all ${icon ? 'pl-12' : 'pl-4'} pr-4`}
+        className={`w-full text-sm transition-all ${icon ? 'pl-12' : 'pl-4'} pr-4`}
         style={{
           height: '48px',
           border: error ? '2px solid #D92D20' : '1px solid #E1E4E8',
+          borderRadius: '12px',
           color: '#2A2F35',
           backgroundColor: 'white',
           outline: 'none',
