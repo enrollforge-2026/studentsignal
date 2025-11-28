@@ -1,19 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
+import axios from 'axios';
 
-const AnnouncementBar = ({ announcement, onDismiss }) => {
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+
+const AnnouncementBar = ({ onDismiss }) => {
+  const [announcement, setAnnouncement] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    if (announcement?.id) {
-      const dismissed = localStorage.getItem(`announcement_dismissed_${announcement.id}`);
-      if (dismissed) {
+    // Fetch current announcement from API
+    const fetchAnnouncement = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/api/announcement/current`);
+        if (response.data) {
+          setAnnouncement(response.data);
+          // Check if dismissed
+          const dismissed = localStorage.getItem(`announcement_dismissed_${response.data.id}`);
+          if (dismissed) {
+            setIsVisible(false);
+            if (onDismiss) onDismiss();
+          }
+        } else {
+          setIsVisible(false);
+          if (onDismiss) onDismiss();
+        }
+      } catch (error) {
+        console.error('Failed to fetch announcement:', error);
         setIsVisible(false);
         if (onDismiss) onDismiss();
       }
-    }
-  }, [announcement]);
+    };
+
+    fetchAnnouncement();
+  }, []);
 
   const handleDismiss = () => {
     setIsExiting(true);
