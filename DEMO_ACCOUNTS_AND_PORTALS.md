@@ -95,13 +95,15 @@
 
 ## ⚠️ Known Issues
 
-1. **Admin Portal Access**
-   - Race condition in AuthContext causes redirects before user data loads
-   - Need to add loading state check in AdminLayout
+1. ~~**Admin Portal Access**~~ ✅ FIXED
+   - ~~Race condition in AuthContext causes redirects before user data loads~~
+   - ~~Need to add loading state check in AdminLayout~~
+   - **Resolution:** Added loading state check to AdminLayout - admin portal now fully accessible
    
-2. **Announcement Bar**
-   - Currently hardcoded: "Spring 2025 Applications Close in 7 Days"
+2. **Announcement Bar** 🔴 CRITICAL P0
+   - Currently hardcoded: "Spring 2025 Applications Close in 7 Days" 
    - **NEW P0:** Must build CMS interface to control this dynamically
+   - **Location:** Need to add to `/admin` with fields for: message text, visibility toggle, link URL, color theme
    
 3. **Onboarding Flow**
    - Cannot easily navigate between steps via screenshots due to form validation
