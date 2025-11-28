@@ -113,7 +113,7 @@ const OnboardingFlow = () => {
         <div className="flex min-h-screen">
           <BrandPanel />
           <div className="flex-1 flex items-center justify-center px-6 py-12">
-            <div className="bg-white w-full" style={{ maxWidth: '480px', padding: '48px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', border: '1px solid #E1E4E8' }}>
+            <div className="bg-white w-full" style={{ maxWidth: '552px', padding: '48px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', border: '1px solid #E1E4E8' }}>
               <div className="text-sm font-medium mb-6" style={{ color: '#6B7280' }}>STEP 1 OF 3</div>
               <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>Identity</h1>
               <p className="text-base mb-8" style={{ color: '#6B7280' }}>Tell us about yourself</p>
@@ -175,7 +175,7 @@ const OnboardingFlow = () => {
         <div className="flex min-h-screen">
           <BrandPanel />
           <div className="flex-1 flex items-center justify-center px-6 py-12">
-            <div className="bg-white w-full" style={{ maxWidth: '480px', padding: '48px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', border: '1px solid #E1E4E8' }}>
+            <div className="bg-white w-full" style={{ maxWidth: '552px', padding: '48px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', border: '1px solid #E1E4E8' }}>
               <div className="text-sm font-medium mb-6" style={{ color: '#6B7280' }}>STEP 2 OF 3</div>
               <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>Academics</h1>
               <p className="text-base mb-8" style={{ color: '#6B7280' }}>Your educational background</p>
