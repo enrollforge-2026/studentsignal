@@ -51,6 +51,11 @@ export const authAPI = {
     return response.data;
   },
   
+  staffLogin: async (credentials) => {
+    const response = await api.post('/api/auth/staff-login', credentials);
+    return response.data;
+  },
+  
   getCurrentUser: async () => {
     const response = await api.get('/api/auth/me');
     return response.data;
