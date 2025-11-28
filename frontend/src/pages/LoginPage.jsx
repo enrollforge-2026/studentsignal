@@ -34,8 +34,12 @@ const LoginPage = () => {
     
     setLoading(true);
     try {
-      await login(formData.email, formData.password);
-      navigate('/signal-hub');
+      const result = await login(formData);
+      if (result.success) {
+        navigate('/signal-hub');
+      } else {
+        setErrors({ submit: result.error || 'Invalid email or password. Please try again.' });
+      }
     } catch (error) {
       setErrors({ submit: 'Invalid email or password. Please try again.' });
     } finally {
