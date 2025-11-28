@@ -164,6 +164,25 @@ const OnboardingFlow = () => {
                   <option value="pacific">Native Hawaiian or Pacific Islander</option>
                   <option value="multiple">Two or more races</option>
                 </SelectField>
+
+                {/* Consent Checkbox */}
+                <div className="pt-4">
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.consent}
+                      onChange={(e) => handleInputChange('consent', e.target.checked)}
+                      className="mt-1 w-5 h-5 rounded border-2 accent-[#004C3F] flex-shrink-0"
+                      style={{ borderColor: errors.consent ? '#D92D20' : '#E1E4E8' }}
+                    />
+                    <div>
+                      <span className="text-xs" style={{ color: '#6B7280', lineHeight: '1.5' }}>
+                        By selecting this box, I consent to Student Signal sharing my ethnicity, religion, and citizenship status with its higher education institutional partners for enrollment marketing, as well as with its uniformed personnel recruitment partners for enlistment purposes.
+                      </span>
+                    </div>
+                  </label>
+                  {errors.consent && <p className="text-xs mt-1 ml-8" style={{ color: '#D92D20' }}>{errors.consent}</p>}
+                </div>
               </div>
               <button onClick={handleNext} className="w-full mt-8 flex items-center justify-center gap-2 font-medium text-sm transition-all" style={{ backgroundColor: '#004C3F', color: 'white', height: '48px', borderRadius: '8px' }}>Continue<ArrowRight size={18} /></button>
             </div>
