@@ -98,7 +98,8 @@ const AnnouncementBar = ({ onDismiss }) => {
           {/* Right: Dismiss */}
           <button
             onClick={handleDismiss}
-            className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-white hover:bg-white/20 rounded-lg transition-all duration-150"
+            className="flex-shrink-0 w-8 h-8 flex items-center justify-center hover:bg-white/20 rounded-lg transition-all duration-150"
+            style={{ color: colors.text }}
             aria-label="Dismiss announcement"
           >
             <X size={16} strokeWidth={2} />
