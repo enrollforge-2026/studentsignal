@@ -287,27 +287,54 @@ const OnboardingFlow = () => {
     );
   }
 
-  // STEP 2 - Appily Style (No Left Panel, Breadcrumb)
+  // STEP 2 - Same layout as Step 1 (with static left panel)
   if (currentStep === 2) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: '#F5F7F9' }}>
-        <div className="flex flex-col items-center px-6 py-12">
-          {/* Breadcrumb */}
-          <div className="text-sm font-medium mb-8" style={{ color: '#6B7280' }}>
-            STEP 2 OF 3
+        <div className="flex min-h-screen">
+          {/* Left Panel - Same Static Brand Panel */}
+          <div className="hidden lg:flex lg:w-1/2 relative" style={{ backgroundColor: '#004C3F' }}>
+            <div className="flex flex-col justify-center items-start w-full px-16">
+              {/* Logo */}
+              <div className="mb-8">
+                <div className="flex items-center">
+                  <span className="text-4xl font-bold text-white">STUDENT</span>
+                  <div className="flex items-center ml-2">
+                    <span className="bg-white text-[#004C3F] text-sm px-2 py-1 rounded font-bold">SIGNAL</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Headline */}
+              <h2 className="text-3xl font-bold text-white mb-4 leading-tight">
+                Find colleges and scholarships that actually fit you.
+              </h2>
+              
+              {/* Subtext */}
+              <p className="text-lg text-white/80 mb-8">
+                One profile. Smarter matches. No spam.
+              </p>
+              
+              {/* Optional Tip */}
+              <div className="text-sm text-white/60 italic">
+                💡 Takes less than 5 minutes to complete
+              </div>
+            </div>
           </div>
 
-          {/* Form Card */}
-          <div 
-            className="bg-white w-full"
-            style={{ 
-              maxWidth: '600px', 
-              padding: '48px',
-              borderRadius: '12px',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
-              border: '1px solid #E1E4E8'
-            }}
-          >
+          {/* Right Column - Form */}
+          <div className="flex-1 flex items-center justify-center px-6 py-12">
+            {/* Form Card */}
+            <div 
+              className="bg-white w-full"
+              style={{ 
+                maxWidth: '480px', 
+                padding: '48px',
+                borderRadius: '12px',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                border: '1px solid #E1E4E8'
+              }}
+            >
             <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>Academics</h1>
             <p className="text-base mb-8" style={{ color: '#6B7280' }}>Your educational background</p>
 
