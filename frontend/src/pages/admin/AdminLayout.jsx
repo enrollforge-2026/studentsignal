@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, GraduationCap, Award, BarChart3, FileText, LogOut, Home } from 'lucide-react';
+import { LayoutDashboard, GraduationCap, Award, BarChart3, FileText, LogOut, Home, Megaphone } from 'lucide-react';
 
 const AdminLayout = () => {
   const { user, isAuthenticated, loading, logout } = useAuth();
