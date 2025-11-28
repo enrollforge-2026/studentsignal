@@ -77,7 +77,8 @@ const OnboardingFlow = () => {
     if (!validateStep(currentStep)) return;
     setLoading(true);
     try {
-      await api.put('/api/user/profile', formData);
+      const submitData = { ...formData, onboarding_completed: true };
+      await api.put('/api/user/profile', submitData);
       navigate('/signal-hub');
     } catch (error) {
       console.error('Profile update failed:', error);
