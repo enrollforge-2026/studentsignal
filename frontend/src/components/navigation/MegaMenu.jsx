@@ -104,7 +104,7 @@ const MegaMenu = ({ label, menuKey, children, className = '' }) => {
 
 export const MegaMenuSection = ({ title, links }) => (
   <div>
-    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">{title}</h3>
+    <h3 className={`${topLayerTokens.typography.sectionTitle} text-gray-500 mb-3`}>{title}</h3>
     <div className="space-y-2">
       {links.map((link, index) => (
         <Link
