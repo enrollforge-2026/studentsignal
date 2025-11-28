@@ -26,7 +26,8 @@ from models import (
     HighSchool, HighSchoolCreate,
     US_STATES, GPA_OPTIONS,
     validate_state, validate_gpa, validate_date_string, validate_zip_code, validate_address,
-    MegaMenuFeature, MegaMenuFeatureCreate, MegaMenuFeatureUpdate
+    MegaMenuFeature, MegaMenuFeatureCreate, MegaMenuFeatureUpdate,
+    AnnouncementBar, AnnouncementBarCreate, AnnouncementBarUpdate
 )
 from auth import (
     get_password_hash, verify_password, create_access_token,
