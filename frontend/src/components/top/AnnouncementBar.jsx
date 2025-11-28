@@ -42,14 +42,12 @@ const AnnouncementBar = ({ announcement, onDismiss }) => {
         style={{ backgroundColor: '#004C3F' }}
       >
         <div className="w-full max-w-[1220px] mx-auto px-4 flex items-center justify-between">
-          {/* Left: Emoji */}
-          <div className="flex-shrink-0">
-            <span className="text-base">{announcement.emoji || '🎓'}</span>
-          </div>
-
-          {/* Center: Message + CTA */}
-          <div className="flex-1 flex items-center justify-center gap-4 min-w-0 px-4">
-            <span className="text-sm font-medium text-white truncate">{announcement.message}</span>
+          {/* Center: Emoji + Message + CTA */}
+          <div className="flex-1 flex items-center justify-center gap-4 min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="text-base flex-shrink-0">{announcement.emoji || '🎓'}</span>
+              <span className="text-sm font-medium text-white truncate">{announcement.message}</span>
+            </div>
             {announcement.ctaText && announcement.ctaUrl && (
               <a
                 href={announcement.ctaUrl}
