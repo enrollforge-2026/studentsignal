@@ -45,22 +45,19 @@ const OnboardingFlow = () => {
   const validateStep = (step) => {
     const newErrors = {};
     if (step === 1) {
-      if (!formData.studentType) newErrors.studentType = 'Student type is required';
-      if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
-      if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
+      if (!formData.first_name.trim()) newErrors.first_name = 'First name is required';
+      if (!formData.last_name.trim()) newErrors.last_name = 'Last name is required';
       if (!formData.email.trim()) newErrors.email = 'Email is required';
-      if (!formData.dateOfBirth) newErrors.dateOfBirth = 'Date of birth is required';
+      if (!formData.birthdate) newErrors.birthdate = 'Date of birth is required';
       if (!formData.consent) newErrors.consent = 'You must consent to continue';
     }
     if (step === 2) {
-      if (!formData.highSchool.trim()) newErrors.highSchool = 'High school is required';
-      if (!formData.startTerm) newErrors.startTerm = 'Start term is required';
-      if (!formData.startYear) newErrors.startYear = 'Start year is required';
+      if (!formData.high_school_name.trim()) newErrors.high_school_name = 'High school is required';
+      if (!formData.intended_enrollment_term) newErrors.intended_enrollment_term = 'Start term is required';
+      if (!formData.intended_enrollment_year) newErrors.intended_enrollment_year = 'Start year is required';
     }
     if (step === 3) {
-      if (!formData.collegeSize) newErrors.collegeSize = 'College size preference is required';
-      if (!formData.distanceFromHome) newErrors.distanceFromHome = 'Distance preference is required';
-      if (!formData.homeAddress.trim()) newErrors.homeAddress = 'Home address is required';
+      if (!formData.address.trim()) newErrors.address = 'Home address is required';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
