@@ -56,7 +56,7 @@ function App() {
           <Route path="/staff-login" element={<StaffLogin />} />
           <Route path="/onboarding" element={<OnboardingFlow />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/dashboard" element={<SignalHub />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/signal-hub" element={<SignalHub />} />
           
           {/* Help & Info Pages */}
