@@ -48,6 +48,7 @@ const OnboardingFlow = () => {
       if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
       if (!formData.email.trim()) newErrors.email = 'Email is required';
       if (!formData.dateOfBirth) newErrors.dateOfBirth = 'Date of birth is required';
+      if (!formData.consent) newErrors.consent = 'You must consent to continue';
     }
     if (step === 2) {
       if (!formData.highSchool.trim()) newErrors.highSchool = 'High school is required';
