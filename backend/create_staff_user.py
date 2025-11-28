@@ -17,12 +17,13 @@ def get_password_hash(password):
     return pwd_context.hash(password)
 
 async def create_staff_user(email, password, first_name, last_name):
-    # Get MongoDB URL from environment or use default
+    # Get MongoDB URL and DB name from environment or use defaults
     mongo_url = os.getenv('MONGO_URL', 'mongodb://localhost:27017')
+    db_name = os.getenv('DB_NAME', 'student_signal')
     
     # Connect to MongoDB
     client = AsyncIOMotorClient(mongo_url)
-    db = client['studentsignal']
+    db = client[db_name]
     users_collection = db['users']
     
     # Check if user already exists
