@@ -2,31 +2,22 @@ import React from 'react';
 
 const MetricsRow = () => {
   const metrics = [
-    { label: 'Profile Strength', value: '85%', color: '#004C3F' },
-    { label: 'Major Fit Score', value: '92', color: '#004C3F' },
-    { label: 'Scholarship Fit Score', value: '78', color: '#004C3F' },
-    { label: 'College Interest Index', value: '4.2', color: '#004C3F' },
-    { label: 'Momentum (7-day)', value: '12', color: '#004C3F' },
+    { label: 'Profile Strength', value: '85%' },
+    { label: 'Major Fit Score', value: '92' },
+    { label: 'Scholarship Fit Score', value: '78' },
+    { label: 'College Interest Index', value: '4.2' },
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {metrics.map((metric, index) => (
-        <MetricCard key={index} label={metric.label} value={metric.value} color={metric.color} />
+        <div key={index} className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+          <div className="text-sm text-gray-600 mb-2">{metric.label}</div>
+          <div className="text-3xl font-bold text-gray-900">{metric.value}</div>
+        </div>
       ))}
     </div>
   );
 };
-
-const MetricCard = ({ label, value, color }) => (
-  <div className="bg-white rounded-xl shadow-sm p-5">
-    <div className="text-3xl font-bold" style={{ color }}>
-      {value}
-    </div>
-    <div className="text-sm text-gray-600 mt-1">
-      {label}
-    </div>
-  </div>
-);
 
 export default MetricsRow;

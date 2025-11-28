@@ -2,7 +2,6 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
 const ApplicationPreview = () => {
-  // Mock application data
   const applications = [
     {
       id: '1',
@@ -31,9 +30,9 @@ const ApplicationPreview = () => {
   ];
 
   return (
-    <div className="bg-white rounded-xl shadow-sm p-5">
+    <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-base font-semibold text-gray-900">Application Tracker</h2>
+        <h2 className="text-lg font-semibold text-gray-800">Application Tracker</h2>
         <a
           href="/applications"
           className="text-sm font-medium flex items-center gap-1 transition-colors"
@@ -45,47 +44,41 @@ const ApplicationPreview = () => {
       </div>
       <div className="space-y-4">
         {applications.map((app) => (
-          <ApplicationItem key={app.id} app={app} />
+          <div key={app.id} className="flex items-start gap-3 p-3 rounded-lg border border-gray-100 hover:border-gray-200 transition-colors">
+            <img
+              src={app.logoUrl}
+              alt={app.collegeName}
+              className="w-12 h-12 rounded-lg object-cover bg-gray-100"
+              onError={(e) => {
+                e.target.src = 'https://via.placeholder.com/48?text=' + app.collegeName.charAt(0);
+              }}
+            />
+            <div className="flex-1 min-w-0">
+              <div className="text-sm font-semibold text-gray-900">{app.collegeName}</div>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="inline-block px-2 py-0.5 text-xs font-medium rounded" style={{ backgroundColor: '#F0FDF4', color: '#004C3F' }}>
+                  {app.stage}
+                </span>
+                <span className="text-xs text-gray-600">Due {app.deadline}</span>
+              </div>
+              <div className="mt-3">
+                <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
+                  <span>Progress</span>
+                  <span>{app.progress}%</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-1.5">
+                  <div
+                    className="h-1.5 rounded-full transition-all"
+                    style={{ width: `${app.progress}%`, backgroundColor: '#004C3F' }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
   );
 };
-
-const ApplicationItem = ({ app }) => (
-  <div className="border border-gray-200 rounded-lg p-4">
-    <div className="flex items-start gap-3">
-      <img
-        src={app.logoUrl}
-        alt={app.collegeName}
-        className="w-12 h-12 rounded-lg object-cover bg-gray-100"
-        onError={(e) => {
-          e.target.src = 'https://via.placeholder.com/48?text=' + app.collegeName.charAt(0);
-        }}
-      />
-      <div className="flex-1 min-w-0">
-        <div className="text-sm font-semibold text-gray-900">{app.collegeName}</div>
-        <div className="flex items-center gap-2 mt-1">
-          <span className="inline-block px-2 py-0.5 text-xs font-medium rounded" style={{ backgroundColor: '#F0FDF4', color: '#004C3F' }}>
-            {app.stage}
-          </span>
-          <span className="text-xs text-gray-600">Due {app.deadline}</span>
-        </div>
-        <div className="mt-3">
-          <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
-            <span>Progress</span>
-            <span>{app.progress}%</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div
-              className="h-2 rounded-full transition-all"
-              style={{ width: `${app.progress}%`, backgroundColor: '#004C3F' }}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
 
 export default ApplicationPreview;
