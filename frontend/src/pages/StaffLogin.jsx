@@ -5,7 +5,7 @@ import { Mail, Lock } from 'lucide-react';
 
 const StaffLogin = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { staffLogin } = useAuth();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
