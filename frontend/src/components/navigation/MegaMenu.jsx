@@ -61,7 +61,7 @@ const MegaMenu = ({ label, menuKey, children, className = '', topPosition = 104 
       </button>
 
       {isOpen && (
-        <div className="fixed left-1/2 -translate-x-1/2 bg-white border-x border-b border-gray-100 rounded-b-xl shadow-2xl" style={{ top: '104px', zIndex: 45, width: '915px', maxWidth: 'calc(100vw - 32px)', padding: '32px' }}>
+        <div className="fixed left-1/2 -translate-x-1/2 bg-white border-x border-b border-gray-100 rounded-b-xl shadow-2xl transition-all duration-150" style={{ top: `${topPosition}px`, zIndex: 45, width: '915px', maxWidth: 'calc(100vw - 32px)', padding: '32px' }}>
             <div className="grid grid-cols-3 gap-8" style={{ minHeight: '280px' }}>
               <div className="col-span-2">
                 {children}
