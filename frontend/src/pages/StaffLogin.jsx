@@ -69,8 +69,11 @@ const StaffLogin = () => {
           <h1 className="text-3xl font-bold mb-2 text-center" style={{ color: '#2A2F35' }}>
             Staff Login
           </h1>
-          <p className="text-base mb-8 text-center" style={{ color: '#6B7280' }}>
+          <p className="text-base mb-1 text-center" style={{ color: '#6B7280' }}>
             Access your StudentSignal admin portal.
+          </p>
+          <p className="text-sm mb-8 text-center" style={{ color: '#6B7280', fontWeight: 400 }}>
+            Authorized personnel only.
           </p>
 
           {/* Error Message */}
