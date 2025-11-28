@@ -4,13 +4,25 @@ import { useAuth } from '../../context/AuthContext';
 import { LayoutDashboard, GraduationCap, Award, BarChart3, FileText, LogOut, Home } from 'lucide-react';
 
 const AdminLayout = () => {
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, loading, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Show loading state while checking auth
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-700 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   // Check if user is admin
   if (!isAuthenticated || user?.role !== 'admin') {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/staff-login" replace />;
   }
 
   const handleLogout = () => {
