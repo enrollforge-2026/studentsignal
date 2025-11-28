@@ -125,6 +125,43 @@ async def login(user_data: UserLogin):
     }
 
 
+
+@api_router.post("/auth/staff-login", response_model=dict)
+async def staff_login(user_data: UserLogin):
+    """Login endpoint specifically for staff/admin users"""
+    user = await users_collection.find_one({"email": user_data.email})
+    
+    if not user or not verify_password(user_data.password, user['password_hash']):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    # Check if user has admin role
+    if user.get('role') != 'admin':
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access denied. Admin privileges required.",
+        )
+    
+    # Create access token
+    access_token = create_access_token(
+        data={"sub": user_data.email},
+        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
+    
+    # Remove sensitive data
+    user.pop('password_hash')
+    user = serialize_doc(user)
+    
+    return {
+        "user": user,
+        "token": access_token,
+        "token_type": "bearer"
+    }
+
+
 @api_router.get("/auth/me", response_model=UserResponse)
 async def get_current_user(email: str = Depends(get_current_user_email)):
     """Get current user profile"""
