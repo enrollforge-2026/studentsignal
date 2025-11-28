@@ -71,9 +71,33 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/staff-login" element={<StaffLogin />} />
           <Route path="/onboarding" element={<OnboardingFlow />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/signal-hub" element={<SignalHub />} />
+          
+          {/* Authenticated Student Routes */}
+          <Route element={<AuthenticatedLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/signal-hub" element={<SignalHub />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            
+            {/* Account Section */}
+            <Route path="/account/profile" element={<AccountProfile />} />
+            <Route path="/account/settings" element={<AccountSettings />} />
+            <Route path="/account/documents" element={<DocumentsVault />} />
+            
+            {/* Explore Section */}
+            <Route path="/explore/colleges" element={<ExploreColleges />} />
+            <Route path="/explore/scholarships" element={<ExploreScholarships />} />
+            <Route path="/explore/majors" element={<ExploreMajors />} />
+            
+            {/* Plan Section */}
+            <Route path="/plan/applications" element={<ApplicationTracker />} />
+            <Route path="/plan/deadlines" element={<DeadlineCalendar />} />
+            <Route path="/plan/tasks" element={<TasksEssays />} />
+            
+            {/* Tools Section */}
+            <Route path="/tools/coach" element={<AICoach />} />
+            <Route path="/tools/cost" element={<CostCalculator />} />
+            <Route path="/tools/compare" element={<CompareColleges />} />
+          </Route>
           
           {/* Help & Info Pages */}
           <Route path="/how-it-works" element={<HowItWorks />} />
