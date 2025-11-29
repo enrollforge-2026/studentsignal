@@ -132,16 +132,6 @@ const Header = ({ onSearchOpen, announcementVisible = true }) => {
                     Join Free
                   </Button>
                 </Link>
-
-                <Link to="/staff-login">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="hidden lg:flex text-indigo-600 hover:text-indigo-700 border border-indigo-200 hover:border-indigo-300"
-                  >
-                    Staff Login
-                  </Button>
-                </Link>
               </>
             )}
 
