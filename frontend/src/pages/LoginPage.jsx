@@ -218,20 +218,13 @@ const LoginPage = () => {
           </div>
 
           {/* Links */}
-          <div className="mt-6 text-center space-y-2">
+          <div className="mt-6 text-center">
             <p className="text-sm" style={{ color: '#6B7280' }}>
               Don't have an account?{' '}
               <Link to="/signup" className="font-medium" style={{ color: '#10614E' }}>
                 Create account
               </Link>
             </p>
-            <Link 
-              to="/staff-login" 
-              className="text-sm font-medium inline-flex items-center gap-1" 
-              style={{ color: '#10614E' }}
-            >
-              Staff Login <ArrowRight size={14} />
-            </Link>
           </div>
         </div>
       </div>
