@@ -126,7 +126,7 @@ const OnboardingFlow = () => {
       <div className="min-h-screen" style={{ backgroundColor: '#F5F7F9' }}>
         <div className="flex min-h-screen">
           <BrandPanel />
-          <div className="flex-1 flex items-center justify-center px-6 py-12">
+          <div className="flex-1 flex items-start justify-center px-6 py-12 overflow-y-auto">
             <div className="bg-white w-full" style={{ maxWidth: '552px', padding: '48px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', border: '1px solid #E1E4E8' }}>
               <div className="text-sm font-medium mb-6" style={{ color: '#6B7280' }}>STEP 1 OF 3</div>
               <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>Identity</h1>
