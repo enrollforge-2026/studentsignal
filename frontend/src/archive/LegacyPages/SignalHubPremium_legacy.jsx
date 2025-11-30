@@ -1,3 +1,6 @@
+// Legacy SignalHubPremium implementation (pre-NORAD cleanup).
+// Archived for reference. Do not import into production.
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
