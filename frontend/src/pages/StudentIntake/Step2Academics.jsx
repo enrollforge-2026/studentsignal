@@ -3,13 +3,34 @@
 
 import React from 'react';
 import { GraduationCap, Building2, Target, BookOpen } from 'lucide-react';
+import SelectField from '../../components/ui/SelectField';
 
 const Step2Academics = ({ formData, updateField }) => {
   // Generate years 2000-2030
   const gradYears = [];
   for (let year = 2000; year <= 2030; year++) {
-    gradYears.push(year);
+    gradYears.push(year.toString());
   }
+
+  const studentTypeOptions = [
+    'High School Student',
+    'Transfer Student',
+    'Adult Learner',
+    'College Student',
+    'Graduate Candidate'
+  ];
+
+  const gpaOptions = ['4.0', '3.75', '3.5', '3.25', '3.0', '2.75', '2.5', '2.0'];
+
+  const rotcOptions = ['Yes', 'No'];
+
+  const educationFormatOptions = [
+    'On Campus',
+    'Online',
+    'Hybrid',
+    'HyFlex',
+    'Learn Anywhere'
+  ];
 
   return (
     <div>
@@ -31,17 +52,12 @@ const Step2Academics = ({ formData, updateField }) => {
             <SelectField
               label="Student Type"
               value={formData.student_type}
-              onChange={(e) => updateField('student_type', e.target.value)}
+              onChange={(value) => updateField('student_type', value)}
+              options={studentTypeOptions}
               icon={<GraduationCap size={20} />}
+              placeholder="Select student type"
               required
-            >
-              <option value="">Select student type</option>
-              <option value="High School Student">High School Student</option>
-              <option value="Transfer Student">Transfer Student</option>
-              <option value="Adult Learner">Adult Learner</option>
-              <option value="College Student">College Student</option>
-              <option value="Graduate Candidate">Graduate Candidate</option>
-            </SelectField>
+            />
 
             {/* High School Name */}
             <InputField
@@ -57,33 +73,22 @@ const Step2Academics = ({ formData, updateField }) => {
             <SelectField
               label="High School Graduation Year"
               value={formData.high_school_grad_year}
-              onChange={(e) => updateField('high_school_grad_year', e.target.value)}
+              onChange={(value) => updateField('high_school_grad_year', value)}
+              options={gradYears}
+              placeholder="Select year"
               required
-            >
-              <option value="">Select year</option>
-              {gradYears.map(year => (
-                <option key={year} value={year}>{year}</option>
-              ))}
-            </SelectField>
+            />
 
             {/* GPA */}
             <SelectField
               label="GPA"
               value={formData.gpa}
-              onChange={(e) => updateField('gpa', e.target.value)}
+              onChange={(value) => updateField('gpa', value)}
+              options={gpaOptions}
               icon={<Target size={20} />}
+              placeholder="Select GPA"
               required
-            >
-              <option value="">Select GPA</option>
-              <option value="2.0">2.0</option>
-              <option value="2.5">2.5</option>
-              <option value="2.75">2.75</option>
-              <option value="3.0">3.0</option>
-              <option value="3.25">3.25</option>
-              <option value="3.5">3.5</option>
-              <option value="3.75">3.75</option>
-              <option value="4.0">4.0</option>
-            </SelectField>
+            />
 
             {/* SAT Score */}
             <InputField
@@ -134,27 +139,20 @@ const Step2Academics = ({ formData, updateField }) => {
             <SelectField
               label="ROTC"
               value={formData.rotc}
-              onChange={(e) => updateField('rotc', e.target.value)}
-            >
-              <option value="">Select</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </SelectField>
+              onChange={(value) => updateField('rotc', value)}
+              options={rotcOptions}
+              placeholder="Select"
+            />
 
             {/* Preferred Learning Mode */}
             <SelectField
               label="Education Format"
               value={formData.preferred_learning_mode}
-              onChange={(e) => updateField('preferred_learning_mode', e.target.value)}
+              onChange={(value) => updateField('preferred_learning_mode', value)}
+              options={educationFormatOptions}
+              placeholder="Select format"
               required
-            >
-              <option value="">Select format</option>
-              <option value="On Campus">On Campus</option>
-              <option value="Online">Online</option>
-              <option value="Hybrid">Hybrid</option>
-              <option value="HyFlex">HyFlex</option>
-              <option value="Learn Anywhere">Learn Anywhere</option>
-            </SelectField>
+            />
           </div>
         </div>
       </div>
@@ -191,42 +189,6 @@ const InputField = ({ label, icon, required, ...props }) => (
           e.target.style.border = '1px solid #E1E4E8';
         }}
       />
-    </div>
-  </div>
-);
-
-const SelectField = ({ label, icon, required, children, ...props }) => (
-  <div>
-    <label className="block text-sm font-medium mb-2" style={{ color: '#2A2F35' }}>
-      {label} {required && <span style={{ color: '#D92D20' }}>*</span>}
-    </label>
-    <div className="relative">
-      {icon && (
-        <div className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: '#6B7280' }}>
-          {icon}
-        </div>
-      )}
-      <select
-        {...props}
-        className={`w-full text-sm transition-all ${icon ? 'pl-12' : 'pl-4'} pr-10`}
-        style={{
-          height: '48px',
-          border: '1px solid #E1E4E8',
-          borderRadius: '12px',
-          color: '#2A2F35',
-          backgroundColor: 'white',
-          outline: 'none',
-          maxHeight: '280px',
-        }}
-        onFocus={(e) => {
-          e.target.style.border = '2px solid #004C3F';
-        }}
-        onBlur={(e) => {
-          e.target.style.border = '1px solid #E1E4E8';
-        }}
-      >
-        {children}
-      </select>
     </div>
   </div>
 );
