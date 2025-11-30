@@ -97,105 +97,89 @@ const StudentIntakeController = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F5F7F9' }}>
-      <div className="flex min-h-screen">
-        {/* Brand Panel (Left Side) */}
-        <div className="hidden lg:flex lg:w-1/2 relative" style={{ backgroundColor: '#004C3F' }}>
-          <div className="flex flex-col justify-center items-start w-full px-16">
-            <div className="mb-8">
-              <div className="flex items-center">
-                <span className="text-4xl font-bold text-white">STUDENT</span>
-                <div className="flex items-center ml-2">
-                  <span className="bg-white text-[#004C3F] text-sm px-2 py-1 rounded font-bold">SIGNAL</span>
-                </div>
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F5F7F9' }}>
+      <div className="w-full px-6 py-12">
+        <div 
+          className="bg-white w-full mx-auto"
+          style={{ 
+            maxWidth: '552px', 
+            padding: '48px',
+            borderRadius: '12px',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+            border: '1px solid #E1E4E8'
+          }}
+        >
+          {/* Logo */}
+          <div className="mb-8 flex justify-center">
+            <div className="flex items-center">
+              <span className="text-3xl font-bold" style={{ color: '#004C3F' }}>STUDENT</span>
+              <div className="flex items-center ml-1">
+                <span className="text-xs px-2 py-1 rounded font-bold text-white" style={{ backgroundColor: '#004C3F' }}>SIGNAL</span>
               </div>
             </div>
-            <h2 className="text-3xl font-bold text-white mb-4 leading-tight">
-              Find colleges and scholarships that actually fit you.
-            </h2>
-            <p className="text-lg text-white/80 mb-8">
-              One profile. Smarter matches. No spam.
-            </p>
-            <div className="text-sm text-white/60 italic">
-              💡 Takes less than 5 minutes to complete
-            </div>
           </div>
-        </div>
 
-        {/* Form Panel (Right Side) */}
-        <div className="flex-1 flex items-start justify-center px-6 py-12 overflow-y-auto">
+          {/* Step Indicator */}
+          <div className="text-sm font-medium mb-6" style={{ color: '#6B7280' }}>
+            STEP {currentStep} OF 4
+          </div>
+
+          {/* Step Content */}
+          {renderStep()}
+
+          {/* Navigation Buttons */}
           <div 
-            className="bg-white w-full" 
-            style={{ 
-              maxWidth: '552px', 
-              padding: '48px', 
-              borderRadius: '12px', 
-              boxShadow: '0 1px 3px rgba(0,0,0,0.04)', 
-              border: '1px solid #E1E4E8' 
-            }}
+            className="flex items-center justify-between mt-8 pt-6" 
+            style={{ borderTop: '1px solid #E1E4E8' }}
           >
-            {/* Step Indicator */}
-            <div className="text-sm font-medium mb-6" style={{ color: '#6B7280' }}>
-              STEP {currentStep} OF 4
-            </div>
+            {/* Back Button */}
+            {currentStep > 1 && (
+              <button
+                onClick={prevStep}
+                className="px-6 py-3 font-medium text-sm transition-all"
+                style={{
+                  color: '#2A2F35',
+                  backgroundColor: 'transparent',
+                  border: '1px solid #E1E4E8',
+                  borderRadius: '8px'
+                }}
+              >
+                Back
+              </button>
+            )}
 
-            {/* Step Content */}
-            {renderStep()}
+            {/* Spacer for first step */}
+            {currentStep === 1 && <div></div>}
 
-            {/* Navigation Buttons */}
-            <div 
-              className="flex items-center justify-between mt-8 pt-6" 
-              style={{ borderTop: '1px solid #E1E4E8' }}
-            >
-              {/* Back Button */}
-              {currentStep > 1 && (
-                <button
-                  onClick={prevStep}
-                  className="px-6 py-3 font-medium text-sm transition-all"
-                  style={{
-                    color: '#2A2F35',
-                    backgroundColor: 'transparent',
-                    border: '1px solid #E1E4E8',
-                    borderRadius: '8px'
-                  }}
-                >
-                  Back
-                </button>
-              )}
-
-              {/* Spacer for first step */}
-              {currentStep === 1 && <div></div>}
-
-              {/* Continue or Submit Button */}
-              {currentStep < 4 ? (
-                <button
-                  onClick={nextStep}
-                  className="px-6 py-3 font-medium text-sm flex items-center gap-2 transition-all"
-                  style={{
-                    backgroundColor: '#004C3F',
-                    color: 'white',
-                    height: '48px',
-                    borderRadius: '8px'
-                  }}
-                >
-                  Continue
-                </button>
-              ) : (
-                <button
-                  onClick={handleSubmit}
-                  disabled={loading}
-                  className="px-6 py-3 font-medium text-sm flex items-center gap-2 transition-all disabled:opacity-50"
-                  style={{
-                    backgroundColor: '#004C3F',
-                    color: 'white',
-                    height: '48px',
-                    borderRadius: '8px'
-                  }}
-                >
-                  {loading ? 'Completing...' : 'Complete Profile'}
-                </button>
-              )}
-            </div>
+            {/* Continue or Submit Button */}
+            {currentStep < 4 ? (
+              <button
+                onClick={nextStep}
+                className="px-6 py-3 font-medium text-sm flex items-center gap-2 transition-all"
+                style={{
+                  backgroundColor: '#004C3F',
+                  color: 'white',
+                  height: '48px',
+                  borderRadius: '8px'
+                }}
+              >
+                Continue
+              </button>
+            ) : (
+              <button
+                onClick={handleSubmit}
+                disabled={loading}
+                className="px-6 py-3 font-medium text-sm flex items-center gap-2 transition-all disabled:opacity-50"
+                style={{
+                  backgroundColor: '#004C3F',
+                  color: 'white',
+                  height: '48px',
+                  borderRadius: '8px'
+                }}
+              >
+                {loading ? 'Completing...' : 'Complete Profile'}
+              </button>
+            )}
           </div>
         </div>
       </div>
