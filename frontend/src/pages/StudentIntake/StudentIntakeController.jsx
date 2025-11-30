@@ -62,10 +62,49 @@ const StudentIntakeController = () => {
     setFormData(prev => ({ ...prev, [key]: value }));
   };
 
+  // Validation logic
+  const validateStep = (step) => {
+    const newErrors = {};
+    
+    if (step === 1) {
+      // Step 1: All required
+      if (!formData.first_name.trim()) newErrors.first_name = 'First name is required';
+      if (!formData.last_name.trim()) newErrors.last_name = 'Last name is required';
+      if (!formData.email.trim()) newErrors.email = 'Email is required';
+      if (!formData.birthdate) newErrors.birthdate = 'Date of birth is required';
+      if (!formData.gender) newErrors.gender = 'Gender is required';
+    }
+    
+    if (step === 2) {
+      // Step 2: Required fields
+      if (!formData.student_type) newErrors.student_type = 'Student type is required';
+      if (!formData.high_school_name.trim()) newErrors.high_school_name = 'High school name is required';
+      if (!formData.high_school_grad_year) newErrors.high_school_grad_year = 'Graduation year is required';
+      if (!formData.gpa) newErrors.gpa = 'GPA is required';
+      if (!formData.intended_major.trim()) newErrors.intended_major = 'Intended major is required';
+      if (!formData.preferred_learning_mode) newErrors.preferred_learning_mode = 'Preferred learning mode is required';
+    }
+    
+    if (step === 3) {
+      // Step 3: No required fields
+    }
+    
+    if (step === 4) {
+      // Step 4: Required fields
+      if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
+      if (!formData.postal_code.trim()) newErrors.postal_code = 'Postal code is required';
+      if (!formData.consent) newErrors.consent = 'You must agree to continue';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   // Navigation: Go to next step
   const nextStep = () => {
-    if (currentStep < 4) {
+    if (validateStep(currentStep) && currentStep < 4) {
       setCurrentStep(prev => prev + 1);
+      setErrors({});
     }
   };
 
