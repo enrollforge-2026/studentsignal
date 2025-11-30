@@ -16,6 +16,8 @@ const StudentIntakeController = () => {
   const { user } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState('');
 
   const [formData, setFormData] = useState({
     // Step 1 — About You
