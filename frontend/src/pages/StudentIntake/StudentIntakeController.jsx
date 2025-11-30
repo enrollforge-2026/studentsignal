@@ -15,44 +15,41 @@ const StudentIntakeController = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  // Form data with all 30+ fields predeclared
   const [formData, setFormData] = useState({
-    // Step 1: About You (Identity fields)
-    first_name: user?.first_name || '',
-    last_name: user?.last_name || '',
-    email: user?.email || '',
-    phone: '',
-    birthdate: '',
-    gender: '',
-    ethnicity: '',
-    student_type: '', // High School, Transfer, Graduate
-    first_gen: '', // First-generation college student (yes/no/unsure)
-    consent: false, // Data sharing consent
-    
-    // Step 2: Academics
-    high_school_name: '',
-    high_school_grad_year: '',
-    gpa: '',
-    sat_score: '',
-    act_score: '',
-    intended_major: '',
-    alternate_major: '',
-    intended_enrollment_term: '', // Fall, Spring, Summer
-    intended_enrollment_year: '',
-    colleges_considering: '', // Text field for colleges they're considering
-    
-    // Step 3: Preferences
-    college_size: '', // Small, Medium, Large, Very Large
-    distance_from_home: '', // Close, Moderate, Far, Anywhere
-    interests: [], // Array of interest tags
-    
-    // Step 4: Location
-    address: '',
-    country: 'United States',
-    postal_code: '',
-    
-    // System fields
-    profile_picture_url: '',
+    // Step 1 — About You
+    first_name: user?.first_name || "",
+    last_name: user?.last_name || "",
+    email: user?.email || "",
+    birthdate: "",
+    gender: "",
+
+    // Step 2 — Academics
+    student_type: "",
+    high_school_name: "",
+    high_school_grad_year: "",
+    gpa: "",
+    sat_score: "",
+    act_score: "",
+    intended_major: "",
+    alternate_major: "",
+    rotc: "",
+    preferred_learning_mode: "",
+
+    // Step 3 — Preferences
+    college_size: "",
+    distance_from_home: "",
+    saved_colleges: [],
+
+    // Step 4 — Location & Phone
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+    postal_code: "",
+    first_gen: "",
+    ethnicity: "",
+    consent: false,
+
     onboarding_completed: false
   });
 
