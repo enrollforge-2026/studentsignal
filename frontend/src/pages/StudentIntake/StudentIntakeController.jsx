@@ -115,12 +115,43 @@ const StudentIntakeController = () => {
     }
   };
 
-  // Submit handler (placeholder)
+  // Submit handler
   const handleSubmit = async () => {
-    // TODO: Add API call to save profile
-    // TODO: Add completion animation
-    // TODO: Navigate to dashboard
-    console.log('Submit called with data:', formData);
+    // Validate step 4 before submitting
+    if (!validateStep(currentStep)) {
+      return;
+    }
+
+    setLoading(true);
+    setSubmitError('');
+
+    try {
+      // Set onboarding completed flag
+      const submitData = {
+        ...formData,
+        onboarding_completed: true
+      };
+
+      // Call API to save profile
+      await api.put('/api/user/profile', submitData);
+
+      // Trigger confetti animation
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+
+      // Wait 2 seconds for confetti
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 2000);
+
+    } catch (error) {
+      console.error('Profile update failed:', error);
+      setSubmitError(error.response?.data?.detail || 'Failed to save profile. Please try again.');
+      setLoading(false);
+    }
   };
 
   // Render the appropriate step component
