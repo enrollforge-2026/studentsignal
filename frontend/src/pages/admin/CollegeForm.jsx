@@ -192,19 +192,13 @@ const CollegeForm = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Type <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="type"
+              <SelectField
+                label="Type"
                 value={formData.type}
-                onChange={handleChange}
+                onChange={(value) => setFormData(prev => ({ ...prev, type: value }))}
+                options={['Public', 'Private']}
                 required
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
-              >
-                <option value="Public">Public</option>
-                <option value="Private">Private</option>
-              </select>
+              />
             </div>
 
             <div>
