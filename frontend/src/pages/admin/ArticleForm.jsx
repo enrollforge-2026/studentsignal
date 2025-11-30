@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Save, X, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
 import api from '../../services/api';
+import SelectField from '../../components/ui/SelectField';
 
 const ArticleForm = () => {
   const { id } = useParams();
