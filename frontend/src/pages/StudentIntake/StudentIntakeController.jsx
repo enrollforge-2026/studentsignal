@@ -4,6 +4,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import api from '../../services/api';
+import confetti from 'canvas-confetti';
 import Step1AboutYou from './Step1AboutYou';
 import Step2Academics from './Step2Academics';
 import Step3Preferences from './Step3Preferences';
