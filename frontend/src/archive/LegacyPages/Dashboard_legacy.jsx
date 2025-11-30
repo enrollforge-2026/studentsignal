@@ -1,3 +1,6 @@
+// ARCHIVED: Legacy Dashboard with double AuthenticatedLayout wrapper (pre-cleanup).
+// Do not use in production.
+
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import AuthenticatedLayout from '../components/layout/AuthenticatedLayout';
