@@ -270,7 +270,7 @@
 
 ## 🚀 DEPLOYMENT STATUS
 
-**Environment:** https://studentdash-7.preview.emergentagent.com
+**Environment:** https://edupulse-29.preview.emergentagent.com
 
 **Status:** ✅ LIVE AND FUNCTIONAL
 
