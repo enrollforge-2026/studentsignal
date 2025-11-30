@@ -198,6 +198,21 @@ const StudentIntakeController = () => {
             STEP {currentStep} OF 4
           </div>
 
+          {/* Error Message */}
+          {submitError && (
+            <div 
+              className="mb-6 p-4 text-sm text-center"
+              style={{ 
+                backgroundColor: '#FEF2F2', 
+                color: '#D92D20', 
+                border: '1px solid #FECACA', 
+                borderRadius: '12px' 
+              }}
+            >
+              {submitError}
+            </div>
+          )}
+
           {/* Step Content */}
           {renderStep()}
 
