@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Mail, Lock, User, ArrowRight } from 'lucide-react';
+import { Mail, Lock, User, ArrowRight, Eye, EyeOff } from 'lucide-react';
 
 const SignupPage = () => {
   const navigate = useNavigate();
   const { register } = useAuth();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -132,16 +133,50 @@ const SignupPage = () => {
               required
             />
 
-            <InputField
-              label="Password"
-              type="password"
-              value={formData.password}
-              onChange={(e) => handleInputChange('password', e.target.value)}
-              error={errors.password}
-              icon={<Lock size={20} />}
-              placeholder="At least 6 characters"
-              required
-            />
+            <div>
+              <label className="block text-sm font-medium mb-2" style={{ color: '#2A2F35' }}>
+                Password <span style={{ color: '#D92D20' }}>*</span>
+              </label>
+              <div className="relative">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: '#6B7280' }}>
+                  <Lock size={20} />
+                </div>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={formData.password}
+                  onChange={(e) => handleInputChange('password', e.target.value)}
+                  placeholder="At least 6 characters"
+                  className="w-full text-sm transition-all pl-12 pr-12"
+                  style={{
+                    height: '48px',
+                    border: errors.password ? '2px solid #D92D20' : '1px solid #E1E4E8',
+                    borderRadius: '12px',
+                    color: '#2A2F35',
+                    backgroundColor: 'white',
+                    outline: 'none',
+                  }}
+                  onFocus={(e) => {
+                    if (!errors.password) e.target.style.border = '2px solid #004C3F';
+                  }}
+                  onBlur={(e) => {
+                    if (!errors.password) e.target.style.border = '1px solid #E1E4E8';
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2"
+                  style={{ color: '#6B7280' }}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+              {errors.password && (
+                <p className="text-xs mt-1" style={{ color: '#D92D20' }}>
+                  {errors.password}
+                </p>
+              )}
+            </div>
 
             {/* Create Account Button */}
             <button

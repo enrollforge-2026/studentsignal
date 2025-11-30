@@ -10,11 +10,17 @@ const Step1AboutYou = ({ formData, updateField }) => {
       <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>
         About You
       </h1>
-      <p className="text-base mb-8" style={{ color: '#6B7280' }}>
+      <p className="text-base mb-4" style={{ color: '#6B7280' }}>
         Let's start with the basics
       </p>
+      <p 
+        className="text-xs mb-8" 
+        style={{ color: '#6B7280', opacity: 0.8, fontSize: '12.5px' }}
+      >
+        Your information is private. Colleges only receive what you explicitly share.
+      </p>
 
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* First Name and Last Name - Side by side */}
         <div className="grid grid-cols-2 gap-4">
           <InputField
