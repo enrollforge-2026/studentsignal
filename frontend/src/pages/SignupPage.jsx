@@ -41,7 +41,7 @@ const SignupPage = () => {
     try {
       const result = await register(formData);
       if (result.success) {
-        navigate('/onboarding');
+        navigate('/intake');
       } else {
         setErrors({ submit: result.error || 'Registration failed. Please try again.' });
       }
