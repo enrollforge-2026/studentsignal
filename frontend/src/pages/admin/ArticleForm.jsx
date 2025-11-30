@@ -238,24 +238,13 @@ Paragraphs are separated by blank lines."
           <h2 className="text-xl font-bold text-gray-900 mb-4">Classification</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Category <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="category"
+              <SelectField
+                label="Category"
                 value={formData.category}
-                onChange={handleChange}
+                onChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+                options={['Admissions', 'Scholarships', 'Lists', 'Mental Health', 'College Life', 'Career', 'Financial Aid']}
                 required
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all outline-none"
-              >
-                <option value="Admissions">Admissions</option>
-                <option value="Scholarships">Scholarships</option>
-                <option value="Lists">Lists</option>
-                <option value="Mental Health">Mental Health</option>
-                <option value="College Life">College Life</option>
-                <option value="Career">Career</option>
-                <option value="Financial Aid">Financial Aid</option>
-              </select>
+              />
             </div>
 
             <div>
