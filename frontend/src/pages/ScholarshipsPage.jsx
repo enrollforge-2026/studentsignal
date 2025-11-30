@@ -249,20 +249,19 @@ const ScholarshipsPage = () => {
 
                 {/* Application Deadline */}
                 <div className="mb-6">
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
-                    Application Deadline
-                  </label>
-                  <select
+                  <SelectField
+                    label="Application Deadline"
                     value={filters.deadline}
-                    onChange={(e) => setFilters({ ...filters, deadline: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
-                  >
-                    <option value="">Select Deadline</option>
-                    <option value="1week">In less than 1 week</option>
-                    <option value="2weeks">In less than 2 weeks</option>
-                    <option value="1month">In less than 1 month</option>
-                    <option value="3months">In less than 3 months</option>
-                  </select>
+                    onChange={(value) => setFilters({ ...filters, deadline: value })}
+                    options={[
+                      { value: '', label: 'Select Deadline' },
+                      { value: '1week', label: 'In less than 1 week' },
+                      { value: '2weeks', label: 'In less than 2 weeks' },
+                      { value: '1month', label: 'In less than 1 month' },
+                      { value: '3months', label: 'In less than 3 months' }
+                    ]}
+                    placeholder="Select Deadline"
+                  />
                 </div>
 
                 {/* Minimum Award Amount */}
