@@ -162,22 +162,13 @@ const ScholarshipForm = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Type <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="type"
+              <SelectField
+                label="Type"
                 value={formData.type}
-                onChange={handleChange}
+                onChange={(value) => setFormData(prev => ({ ...prev, type: value }))}
+                options={['Merit-Based', 'Need-Based', 'Athletic', 'STEM', 'First Generation']}
                 required
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition-all outline-none"
-              >
-                <option value="Merit-Based">Merit-Based</option>
-                <option value="Need-Based">Need-Based</option>
-                <option value="Athletic">Athletic</option>
-                <option value="STEM">STEM</option>
-                <option value="First Generation">First Generation</option>
-              </select>
+              />
             </div>
 
             <div>
