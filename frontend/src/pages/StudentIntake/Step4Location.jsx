@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { Phone, MapPin, Users, Globe } from 'lucide-react';
+import SelectField from '../../components/ui/SelectField';
 
 const Step4Location = ({ formData, updateField }) => {
   const usStates = [
@@ -16,6 +17,20 @@ const Step4Location = ({ formData, updateField }) => {
     'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
     'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',
     'West Virginia', 'Wisconsin', 'Wyoming'
+  ];
+
+  const firstGenOptions = ['Yes', 'No', 'Unsure'];
+
+  const ethnicityOptions = [
+    'African American',
+    'Hispanic / Latino',
+    'White',
+    'Asian',
+    'Native American',
+    'Pacific Islander',
+    'Middle Eastern',
+    'Other',
+    'Prefer Not To Say'
   ];
 
   return (
@@ -57,13 +72,10 @@ const Step4Location = ({ formData, updateField }) => {
           <SelectField
             label="State"
             value={formData.state}
-            onChange={(e) => updateField('state', e.target.value)}
-          >
-            <option value="">Select state</option>
-            {usStates.map((state, idx) => (
-              <option key={idx} value={state}>{state}</option>
-            ))}
-          </SelectField>
+            onChange={(value) => updateField('state', value)}
+            options={usStates}
+            placeholder="Select state"
+          />
         </div>
 
         {/* Postal Code */}
@@ -79,33 +91,21 @@ const Step4Location = ({ formData, updateField }) => {
         <SelectField
           label="Are you a first-generation college student?"
           value={formData.first_gen}
-          onChange={(e) => updateField('first_gen', e.target.value)}
+          onChange={(value) => updateField('first_gen', value)}
+          options={firstGenOptions}
           icon={<Users size={20} />}
-        >
-          <option value="">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-          <option value="Unsure">Unsure</option>
-        </SelectField>
+          placeholder="Select"
+        />
 
         {/* Ethnicity */}
         <SelectField
           label="Ethnicity"
           value={formData.ethnicity}
-          onChange={(e) => updateField('ethnicity', e.target.value)}
+          onChange={(value) => updateField('ethnicity', value)}
+          options={ethnicityOptions}
           icon={<Globe size={20} />}
-        >
-          <option value="">Select ethnicity</option>
-          <option value="African American">African American</option>
-          <option value="Hispanic / Latino">Hispanic / Latino</option>
-          <option value="White">White</option>
-          <option value="Asian">Asian</option>
-          <option value="Native American">Native American</option>
-          <option value="Pacific Islander">Pacific Islander</option>
-          <option value="Middle Eastern">Middle Eastern</option>
-          <option value="Other">Other</option>
-          <option value="Prefer Not To Say">Prefer Not To Say</option>
-        </SelectField>
+          placeholder="Select ethnicity"
+        />
 
         {/* Consent Checkbox */}
         <div className="pt-4">
@@ -158,41 +158,6 @@ const InputField = ({ label, icon, required, ...props }) => (
           e.target.style.border = '1px solid #E1E4E8';
         }}
       />
-    </div>
-  </div>
-);
-
-const SelectField = ({ label, icon, required, children, ...props }) => (
-  <div>
-    <label className="block text-sm font-medium mb-2" style={{ color: '#2A2F35' }}>
-      {label} {required && <span style={{ color: '#D92D20' }}>*</span>}
-    </label>
-    <div className="relative">
-      {icon && (
-        <div className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: '#6B7280' }}>
-          {icon}
-        </div>
-      )}
-      <select
-        {...props}
-        className={`w-full text-sm transition-all ${icon ? 'pl-12' : 'pl-4'} pr-4`}
-        style={{
-          height: '48px',
-          border: '1px solid #E1E4E8',
-          borderRadius: '12px',
-          color: '#2A2F35',
-          backgroundColor: 'white',
-          outline: 'none',
-        }}
-        onFocus={(e) => {
-          e.target.style.border = '2px solid #004C3F';
-        }}
-        onBlur={(e) => {
-          e.target.style.border = '1px solid #E1E4E8';
-        }}
-      >
-        {children}
-      </select>
     </div>
   </div>
 );
