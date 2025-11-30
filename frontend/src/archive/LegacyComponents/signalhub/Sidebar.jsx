@@ -1,3 +1,4 @@
+// ARCHIVED: Legacy Signal Hub component (pre-cleanup). Do not use in production.
 import React from 'react';
 import { LayoutDashboard, School, Award, CheckSquare, Bookmark, Mail, User } from 'lucide-react';
 

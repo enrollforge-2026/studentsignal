@@ -1,3 +1,4 @@
+// ARCHIVED: Legacy Signal Hub component (pre-cleanup). Do not use in production.
 import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, Clock, Circle, CheckCircle2 } from 'lucide-react';
 import api from '../../services/api';
