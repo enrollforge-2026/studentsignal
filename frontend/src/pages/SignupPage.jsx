@@ -173,17 +173,6 @@ const SignupPage = () => {
               Log in
             </Link>
           </div>
-
-          {/* Staff Login Link */}
-          <div className="mt-4 text-center">
-            <Link 
-              to="/staff-login" 
-              className="text-sm font-medium transition-colors"
-              style={{ color: '#6B7280' }}
-            >
-              Staff Login →
-            </Link>
-          </div>
         </div>
       </div>
     </div>
