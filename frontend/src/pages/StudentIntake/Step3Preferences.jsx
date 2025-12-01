@@ -3,6 +3,7 @@
 
 import React, { useState } from 'react';
 import { MapPin, Building } from 'lucide-react';
+import SelectField from '../../components/ui/SelectField';
 
 const Step3Preferences = ({ formData, updateField }) => {
   const [collegeInput, setCollegeInput] = useState('');
