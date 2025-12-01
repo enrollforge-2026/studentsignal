@@ -162,11 +162,11 @@ const CollegeDetailPage = () => {
                   </div>
                 </div>
                 
-                <div className="flex flex-col md:flex-row w-full md:w-auto gap-3">
+                <div className="flex flex-col md:flex-row w-full gap-3 max-w-full overflow-hidden">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs md:text-sm w-full md:w-auto flex-shrink-0 justify-center"
+                    className="w-full md:w-auto flex-shrink-0 bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs md:text-sm justify-center"
                     onClick={() => setIsSaved(!isSaved)}
                   >
                     <Heart size={14} className={`mr-1 ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
@@ -175,7 +175,7 @@ const CollegeDetailPage = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs md:text-sm w-full md:w-auto flex-shrink-0 justify-center"
+                    className="w-full md:w-auto flex-shrink-0 bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs md:text-sm justify-center"
                     onClick={handleShare}
                   >
                     <Share2 size={14} className="mr-1" />
@@ -183,7 +183,7 @@ const CollegeDetailPage = () => {
                   </Button>
                   <Button 
                     size="sm" 
-                    className="bg-[#f5a623] hover:bg-[#e09000] text-white text-xs md:text-sm w-full md:w-auto flex-shrink-0 justify-center"
+                    className="w-full md:w-auto flex-shrink-0 bg-[#f5a623] hover:bg-[#e09000] text-white text-xs md:text-sm justify-center"
                   >
                     <ExternalLink size={14} className="mr-1" />
                     Visit Website
