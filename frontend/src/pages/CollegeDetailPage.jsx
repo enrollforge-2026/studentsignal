@@ -231,9 +231,9 @@ const CollegeDetailPage = () => {
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-2xl p-6 shadow-sm">
-                    <h2 className="text-xl font-bold text-gray-900 mb-6">Student Demographics</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
+                    <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Student Demographics</h2>
+                    <div className="grid grid-cols-1 gap-6 sm:gap-8">
                       <div>
                         <h3 className="text-lg font-semibold mb-4 text-center">Gender Distribution</h3>
                         <ResponsiveContainer width="100%" height={250}>
