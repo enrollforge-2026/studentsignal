@@ -248,11 +248,11 @@ None. Old files were archived, new files were created from scratch.
 
 ## 🚀 DEPLOYMENT STATUS
 
-**Environment:** https://edupulse-29.preview.emergentagent.com
+**Environment:** https://campus-match-12.preview.emergentagent.com
 
 **URLs:**
-- Student Login: `https://edupulse-29.preview.emergentagent.com/login`
-- Staff Login: `https://edupulse-29.preview.emergentagent.com/staff-login`
+- Student Login: `https://campus-match-12.preview.emergentagent.com/login`
+- Staff Login: `https://campus-match-12.preview.emergentagent.com/staff-login`
 
 **Status:** ✅ LIVE AND FUNCTIONAL
 
