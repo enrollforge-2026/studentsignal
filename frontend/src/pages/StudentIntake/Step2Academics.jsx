@@ -168,22 +168,24 @@ const Step2Academics = ({ formData, updateField }) => {
           </h3>
           <div className="space-y-3">
             {/* Intended Major */}
-            <InputField
+            <SelectField
               label="Intended Major"
               value={formData.intended_major}
-              onChange={(e) => updateField('intended_major', e.target.value)}
+              onChange={(value) => updateField('intended_major', value)}
               icon={<BookOpen size={20} />}
-              placeholder="Start typing your major…"
+              placeholder="Select your major"
+              options={majorOptions}
               required
             />
 
             {/* Alternate Major */}
-            <InputField
+            <SelectField
               label="Alternate Major"
               value={formData.alternate_major}
-              onChange={(e) => updateField('alternate_major', e.target.value)}
+              onChange={(value) => updateField('alternate_major', value)}
               icon={<BookOpen size={20} />}
-              placeholder="Optional"
+              placeholder="Select alternate major (optional)"
+              options={majorOptions}
             />
 
             {/* ROTC */}
