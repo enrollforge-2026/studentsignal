@@ -21,9 +21,9 @@ const StudentIntakeController = () => {
 
   const [formData, setFormData] = useState({
     // Step 1 — About You
-    first_name: user?.first_name || "",
-    last_name: user?.last_name || "",
-    email: user?.email || "",
+    first_name: "",
+    last_name: "",
+    email: "",
     birthdate: "",
     gender: "",
 
