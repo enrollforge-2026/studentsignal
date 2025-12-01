@@ -39,6 +39,35 @@ const CollegeDetailPage = () => {
   const [isSaved, setIsSaved] = useState(false);
   const [leadModalOpen, setLeadModalOpen] = useState(false);
 
+  const handleShare = async () => {
+    const shareData = {
+      title: college.name,
+      text: `Check out ${college.name} on Student Signal`,
+      url: window.location.href
+    };
+
+    try {
+      // Try native share API (works on mobile)
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        // Fallback for desktop: copy URL to clipboard
+        await navigator.clipboard.writeText(window.location.href);
+        toast.success('Link copied to clipboard!');
+      }
+    } catch (error) {
+      // If share cancelled or failed, fallback to clipboard
+      if (error.name !== 'AbortError') {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          toast.success('Link copied to clipboard!');
+        } catch (clipboardError) {
+          toast.error('Unable to share. Please copy the URL manually.');
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchCollege = async () => {
       try {
