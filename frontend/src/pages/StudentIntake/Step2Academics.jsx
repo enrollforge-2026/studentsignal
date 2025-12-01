@@ -95,8 +95,15 @@ const Step2Academics = ({ formData, updateField }) => {
               label="SAT Score"
               type="number"
               value={formData.sat_score}
-              onChange={(e) => updateField('sat_score', e.target.value)}
-              placeholder="e.g., 1200"
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === '' || (parseInt(value) >= 400 && parseInt(value) <= 1600)) {
+                  updateField('sat_score', value);
+                }
+              }}
+              placeholder="400-1600"
+              min="400"
+              max="1600"
             />
 
             {/* ACT Score */}
