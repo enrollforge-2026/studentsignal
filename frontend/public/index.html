@@ -20,6 +20,21 @@
     -->
         <title>Emergent | Fullstack App</title>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
+        <style>
+            /* Force-remove all Emergent badge elements */
+            .__emergent_badge,
+            [class*="emergent-badge"],
+            [class*="emergent"],
+            [data-emergent],
+            #emergent-badge,
+            #emergent_badge {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                width: 0 !important;
+                height: 0 !important;
+            }
+        </style>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
