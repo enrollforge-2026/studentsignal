@@ -125,8 +125,6 @@ const Footer = () => {
           <Link to="/privacy" className="hover:text-[#1a5d3a]">Privacy Policy</Link>
           <Link to="/terms" className="hover:text-[#1a5d3a]">Terms of Service</Link>
           <Link to="/accessibility" className="hover:text-[#1a5d3a]">Accessibility</Link>
-          <span>•</span>
-          <Link to="/staff-login" className="hover:text-[#1a5d3a] font-medium">Staff Only</Link>
         </div>
 
         {/* App store buttons */}
