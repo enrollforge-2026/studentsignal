@@ -57,6 +57,18 @@ const StudentIntakeController = () => {
     onboarding_completed: false
   });
 
+  // Populate form with user data when available
+  useEffect(() => {
+    if (user) {
+      setFormData(prev => ({
+        ...prev,
+        first_name: user.first_name || "",
+        last_name: user.last_name || "",
+        email: user.email || ""
+      }));
+    }
+  }, [user]);
+
   // Helper: Update a single field in formData
   const updateField = (key, value) => {
     setFormData(prev => ({ ...prev, [key]: value }));
