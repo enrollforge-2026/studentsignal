@@ -1,7 +1,7 @@
 // StudentIntakeController.jsx
 // Main controller for the 4-step student intake flow
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
