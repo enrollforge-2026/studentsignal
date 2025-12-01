@@ -163,7 +163,7 @@ const CollegeDetailPage = () => {
                   </div>
                 </div>
                 
-                <div className="flex flex-col md:flex-row w-full gap-3 max-w-full overflow-hidden">
+                <div className="flex flex-col gap-3 w-full md:flex-row md:w-auto md:gap-4">
                   <Button
                     variant="outline"
                     size="sm"
