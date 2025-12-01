@@ -5,6 +5,7 @@ import Footer from '../components/layout/Footer';
 import LeadCaptureModal from '../components/LeadCaptureModal';
 import { collegesAPI } from '../services/api';
 import { Button } from '../components/ui/button';
+import { toast } from '../hooks/use-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Progress } from '../components/ui/progress';
 import {
