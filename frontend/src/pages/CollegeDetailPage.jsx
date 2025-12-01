@@ -94,9 +94,9 @@ const CollegeDetailPage = () => {
     <div className="min-h-screen flex flex-col bg-gray-50">
       <TopExperienceLayer />
       
-      <main className="flex-grow">
+      <main className="flex-grow overflow-x-hidden">
         {/* Hero section */}
-        <div className="relative h-[400px]">
+        <div className="relative h-[300px] sm:h-[400px]">
           <img
             src={college.image}
             alt={college.name}
@@ -105,49 +105,51 @@ const CollegeDetailPage = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
           
           {/* Content overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-8">
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8">
             <div className="max-w-7xl mx-auto">
-              <div className="flex items-end justify-between">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="bg-[#f5a623] text-white text-sm font-bold px-3 py-1 rounded-full">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="bg-[#f5a623] text-white text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded-full">
                       {college.rating}
                     </span>
-                    <span className="text-white/80 text-sm">#{college.ranking} in Best Colleges</span>
+                    <span className="text-white/80 text-xs sm:text-sm whitespace-nowrap">#{college.ranking} in Best Colleges</span>
                     {college.directAdmission && (
-                      <span className="bg-[#1a5d3a] text-white text-sm font-semibold px-3 py-1 rounded-full">
-                        Direct Admission Available
+                      <span className="bg-[#1a5d3a] text-white text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full">
+                        Direct Admission
                       </span>
                     )}
                   </div>
-                  <h1 className="text-4xl font-bold text-white mb-2">{college.name}</h1>
-                  <div className="flex items-center gap-2 text-white/90">
-                    <MapPin size={18} />
-                    <span>{college.location}</span>
-                    <span className="mx-2">•</span>
-                    <span>{college.type} University</span>
+                  <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2 truncate">{college.name}</h1>
+                  <div className="flex flex-wrap items-center gap-2 text-white/90 text-sm">
+                    <MapPin size={16} className="flex-shrink-0" />
+                    <span className="truncate">{college.location}</span>
+                    <span className="hidden sm:inline mx-2">•</span>
+                    <span className="truncate">{college.type} University</span>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
                   <Button
                     variant="outline"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900"
+                    size="sm"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs sm:text-sm"
                     onClick={() => setIsSaved(!isSaved)}
                   >
-                    <Heart size={18} className={`mr-2 ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
+                    <Heart size={16} className={`mr-1 sm:mr-2 ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
                     {isSaved ? 'Saved' : 'Save'}
                   </Button>
                   <Button
                     variant="outline"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900"
+                    size="sm"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs sm:text-sm"
                   >
-                    <Share2 size={18} className="mr-2" />
+                    <Share2 size={16} className="mr-1 sm:mr-2" />
                     Share
                   </Button>
-                  <Button className="bg-[#f5a623] hover:bg-[#e09000] text-white">
-                    <ExternalLink size={18} className="mr-2" />
-                    Visit Website
+                  <Button size="sm" className="bg-[#f5a623] hover:bg-[#e09000] text-white text-xs sm:text-sm">
+                    <ExternalLink size={16} className="mr-1 sm:mr-2" />
+                    Visit
                   </Button>
                 </div>
               </div>
