@@ -130,7 +130,7 @@ const CollegeDetailPage = () => {
         
         <main className="flex-grow">
         {/* Hero section */}
-        <div className="relative h-[300px] sm:h-[400px]">
+        <div className="w-full h-[260px] md:h-[400px] overflow-hidden relative">
           <img
             src={college.image}
             alt={college.name}
