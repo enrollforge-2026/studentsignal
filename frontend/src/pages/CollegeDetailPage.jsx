@@ -162,11 +162,11 @@ const CollegeDetailPage = () => {
                   </div>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+                <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 w-full md:w-auto max-w-full">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs sm:text-sm w-full sm:w-auto justify-center"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs md:text-sm w-full md:w-auto justify-center flex-shrink-0"
                     onClick={() => setIsSaved(!isSaved)}
                   >
                     <Heart size={14} className={`mr-1 ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
@@ -175,13 +175,13 @@ const CollegeDetailPage = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs sm:text-sm w-full sm:w-auto justify-center"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs md:text-sm w-full md:w-auto justify-center flex-shrink-0"
                     onClick={handleShare}
                   >
                     <Share2 size={14} className="mr-1" />
                     Share
                   </Button>
-                  <Button size="sm" className="bg-[#f5a623] hover:bg-[#e09000] text-white text-xs sm:text-sm w-full sm:w-auto justify-center">
+                  <Button size="sm" className="bg-[#f5a623] hover:bg-[#e09000] text-white text-xs md:text-sm w-full md:w-auto justify-center flex-shrink-0">
                     <ExternalLink size={14} className="mr-1" />
                     Visit Website
                   </Button>
