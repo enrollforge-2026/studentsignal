@@ -272,9 +272,9 @@ const CollegeDetailPage = () => {
                   <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
                     <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Student Demographics</h2>
                     <div className="w-full grid grid-cols-1 gap-6 md:grid-cols-2 overflow-x-hidden">
-                      <div>
+                      <div className="w-full max-w-full overflow-hidden">
                         <h3 className="text-lg font-semibold mb-4 text-center">Gender Distribution</h3>
-                        <ResponsiveContainer width="100%" height={250}>
+                        <ResponsiveContainer width="100%" height={250} className="w-full h-auto">
                           <PieChart>
                             <Pie
                               data={[
