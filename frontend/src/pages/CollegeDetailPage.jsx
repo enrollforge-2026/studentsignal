@@ -129,27 +129,27 @@ const CollegeDetailPage = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs sm:text-sm"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs sm:text-sm w-full sm:w-auto justify-center"
                     onClick={() => setIsSaved(!isSaved)}
                   >
-                    <Heart size={16} className={`mr-1 sm:mr-2 ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
+                    <Heart size={14} className={`mr-1 ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
                     {isSaved ? 'Saved' : 'Save'}
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs sm:text-sm"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs sm:text-sm w-full sm:w-auto justify-center"
                   >
-                    <Share2 size={16} className="mr-1 sm:mr-2" />
+                    <Share2 size={14} className="mr-1" />
                     Share
                   </Button>
-                  <Button size="sm" className="bg-[#f5a623] hover:bg-[#e09000] text-white text-xs sm:text-sm">
-                    <ExternalLink size={16} className="mr-1 sm:mr-2" />
-                    Visit
+                  <Button size="sm" className="bg-[#f5a623] hover:bg-[#e09000] text-white text-xs sm:text-sm w-full sm:w-auto justify-center">
+                    <ExternalLink size={14} className="mr-1" />
+                    Visit Website
                   </Button>
                 </div>
               </div>
