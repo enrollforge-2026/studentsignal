@@ -34,8 +34,10 @@ const ForSchools = () => {
         last_name: formData.name.split(' ').slice(1).join(' ') || '',
         email: formData.email,
         college_id: 'schools-inquiry',
-        phone: formData.school,
-        message: `Role: ${formData.role}\nSchool: ${formData.school}\n\n${formData.message}`
+        college_name: formData.school,
+        phone: '',
+        interested_major: `${formData.role} - ${formData.message}`,
+        consent_to_contact: true
       });
 
       toast.success('Thank you! We\'ll be in touch soon.');
