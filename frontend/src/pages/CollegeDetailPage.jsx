@@ -208,12 +208,12 @@ const CollegeDetailPage = () => {
         </div>
 
         {/* Main content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid lg:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+          <div className="grid lg:grid-cols-3 gap-4 sm:gap-8">
             {/* Main content area */}
             <div className="lg:col-span-2">
               <Tabs defaultValue="overview" className="w-full">
-                <TabsList className="w-full justify-start bg-white border border-gray-200 rounded-xl p-1 mb-6">
+                <TabsList className="w-full justify-start bg-white border border-gray-200 rounded-xl p-1 mb-4 sm:mb-6 overflow-x-auto flex-nowrap">
                   <TabsTrigger value="overview" className="rounded-lg">Overview</TabsTrigger>
                   <TabsTrigger value="academics" className="rounded-lg">Academics</TabsTrigger>
                   <TabsTrigger value="admissions" className="rounded-lg">Admissions</TabsTrigger>
