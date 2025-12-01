@@ -162,11 +162,11 @@ const CollegeDetailPage = () => {
                   </div>
                 </div>
                 
-                <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 w-full md:w-auto max-w-full">
+                <div className="flex flex-col md:flex-row w-full md:w-auto gap-3">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs md:text-sm w-full md:w-auto justify-center flex-shrink-0"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs md:text-sm w-full md:w-auto flex-shrink-0 justify-center"
                     onClick={() => setIsSaved(!isSaved)}
                   >
                     <Heart size={14} className={`mr-1 ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
@@ -175,13 +175,16 @@ const CollegeDetailPage = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs md:text-sm w-full md:w-auto justify-center flex-shrink-0"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs md:text-sm w-full md:w-auto flex-shrink-0 justify-center"
                     onClick={handleShare}
                   >
                     <Share2 size={14} className="mr-1" />
                     Share
                   </Button>
-                  <Button size="sm" className="bg-[#f5a623] hover:bg-[#e09000] text-white text-xs md:text-sm w-full md:w-auto justify-center flex-shrink-0">
+                  <Button 
+                    size="sm" 
+                    className="bg-[#f5a623] hover:bg-[#e09000] text-white text-xs md:text-sm w-full md:w-auto flex-shrink-0 justify-center"
+                  >
                     <ExternalLink size={14} className="mr-1" />
                     Visit Website
                   </Button>
