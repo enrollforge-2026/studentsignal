@@ -30,6 +30,7 @@ const Step1AboutYou = ({ formData, updateField }) => {
             onChange={(e) => updateField('first_name', e.target.value)}
             icon={<User size={20} />}
             placeholder="John"
+            disabled={!!formData.first_name}
             required
           />
           <InputField
@@ -38,6 +39,7 @@ const Step1AboutYou = ({ formData, updateField }) => {
             onChange={(e) => updateField('last_name', e.target.value)}
             icon={<User size={20} />}
             placeholder="Doe"
+            disabled={!!formData.last_name}
             required
           />
         </div>
