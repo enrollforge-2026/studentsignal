@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { User, Mail, Calendar, Users } from 'lucide-react';
+import SelectField from '../../components/ui/SelectField';
 
 const Step1AboutYou = ({ formData, updateField }) => {
   return (
