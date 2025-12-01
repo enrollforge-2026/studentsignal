@@ -50,21 +50,24 @@ const CollegeDetailPage = () => {
       // Try native share API (works on mobile)
       if (navigator.share) {
         await navigator.share(shareData);
-      } else {
-        // Fallback for desktop: copy URL to clipboard
-        await navigator.clipboard.writeText(window.location.href);
-        toast.success('Link copied to clipboard!');
+        return; // Success, exit early
       }
     } catch (error) {
-      // If share cancelled or failed, fallback to clipboard
-      if (error.name !== 'AbortError') {
-        try {
-          await navigator.clipboard.writeText(window.location.href);
-          toast.success('Link copied to clipboard!');
-        } catch (clipboardError) {
-          toast.error('Unable to share. Please copy the URL manually.');
-        }
+      // User cancelled share or share failed
+      if (error.name === 'AbortError') {
+        return; // User cancelled, don't show error
       }
+    }
+
+    // Fallback for desktop: copy URL to clipboard
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      toast.success('Link copied to clipboard!');
+    } catch (clipboardError) {
+      // Clipboard API not available or permission denied
+      // Show manual copy prompt
+      const url = window.location.href;
+      prompt('Copy this link:', url);
     }
   };
 
