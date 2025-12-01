@@ -32,6 +32,43 @@ const Step2Academics = ({ formData, updateField }) => {
     'Learn Anywhere'
   ];
 
+  const majorOptions = [
+    'Accounting',
+    'Anthropology',
+    'Architecture',
+    'Art History',
+    'Biology',
+    'Business Administration',
+    'Chemistry',
+    'Civil Engineering',
+    'Communications',
+    'Computer Science',
+    'Criminal Justice',
+    'Economics',
+    'Electrical Engineering',
+    'English',
+    'Environmental Science',
+    'Finance',
+    'Graphic Design',
+    'History',
+    'Information Technology',
+    'International Relations',
+    'Journalism',
+    'Marketing',
+    'Mathematics',
+    'Mechanical Engineering',
+    'Music',
+    'Nursing',
+    'Philosophy',
+    'Physics',
+    'Political Science',
+    'Psychology',
+    'Public Health',
+    'Sociology',
+    'Theater',
+    'Undecided'
+  ];
+
   return (
     <div>
       <h1 className="text-3xl font-bold mb-2" style={{ color: '#2A2F35' }}>
