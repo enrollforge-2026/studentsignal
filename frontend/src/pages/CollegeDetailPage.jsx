@@ -140,8 +140,8 @@ const CollegeDetailPage = () => {
           
           {/* Content overlay */}
           <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8">
-            <div className="max-w-7xl mx-auto">
-              <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between max-w-full">
+            <div className="w-full max-w-6xl mx-auto px-4">
+              <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2 mb-3">
                     <span className="bg-[#f5a623] text-white text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded-full">
