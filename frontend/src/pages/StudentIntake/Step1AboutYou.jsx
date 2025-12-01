@@ -116,39 +116,4 @@ const InputField = ({ label, icon, required, ...props }) => (
   </div>
 );
 
-const SelectField = ({ label, icon, required, children, ...props }) => (
-  <div>
-    <label className="block text-sm font-medium mb-2" style={{ color: '#2A2F35' }}>
-      {label} {required && <span style={{ color: '#D92D20' }}>*</span>}
-    </label>
-    <div className="relative">
-      {icon && (
-        <div className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: '#6B7280' }}>
-          {icon}
-        </div>
-      )}
-      <select
-        {...props}
-        className={`w-full text-sm transition-all ${icon ? 'pl-12' : 'pl-4'} pr-4`}
-        style={{
-          height: '48px',
-          border: '1px solid #E1E4E8',
-          borderRadius: '12px',
-          color: '#2A2F35',
-          backgroundColor: 'white',
-          outline: 'none',
-        }}
-        onFocus={(e) => {
-          e.target.style.border = '2px solid #004C3F';
-        }}
-        onBlur={(e) => {
-          e.target.style.border = '1px solid #E1E4E8';
-        }}
-      >
-        {children}
-      </select>
-    </div>
-  </div>
-);
-
 export default Step1AboutYou;
