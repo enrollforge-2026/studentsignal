@@ -53,10 +53,10 @@ const SignupPage = () => {
       if (result.success) {
         navigate('/intake');
       } else {
-        setErrors({ submit: result.error || 'Registration failed. Please try again.' });
+        setErrors(prev => ({ ...prev, submit: result.error || 'Registration failed. Please try again.' }));
       }
     } catch (error) {
-      setErrors({ submit: 'Registration failed. Please try again.' });
+      setErrors(prev => ({ ...prev, submit: 'Registration failed. Please try again.' }));
     } finally {
       setLoading(false);
     }
