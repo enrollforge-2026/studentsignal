@@ -70,7 +70,6 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/staff-login" element={<StaffLogin />} />
-          <Route path="/onboarding" element={<OnboardingFlow />} />
           <Route path="/intake" element={<StudentIntakeController />} />
           
           {/* Authenticated Student Routes */}
