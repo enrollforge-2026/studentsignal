@@ -111,8 +111,15 @@ const Step2Academics = ({ formData, updateField }) => {
               label="ACT Score"
               type="number"
               value={formData.act_score}
-              onChange={(e) => updateField('act_score', e.target.value)}
-              placeholder="e.g., 24"
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === '' || (parseInt(value) >= 1 && parseInt(value) <= 36)) {
+                  updateField('act_score', value);
+                }
+              }}
+              placeholder="1-36"
+              min="1"
+              max="36"
             />
           </div>
         </div>
