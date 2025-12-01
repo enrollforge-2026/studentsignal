@@ -159,8 +159,8 @@ const CollegeDetailPage = () => {
 
         {/* Quick stats */}
         <div className="bg-white border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-6">
               <div className="text-center">
                 <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
                   <Users size={20} />
