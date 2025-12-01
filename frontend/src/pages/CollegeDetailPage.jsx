@@ -545,6 +545,7 @@ const CollegeDetailPage = () => {
           college={college}
         />
       )}
+      </div>
     </div>
   );
 };
