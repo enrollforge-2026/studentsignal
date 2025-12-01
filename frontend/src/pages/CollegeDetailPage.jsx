@@ -124,10 +124,11 @@ const CollegeDetailPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <TopExperienceLayer />
-      
-      <main className="flex-grow overflow-x-hidden">
+    <div className="w-full overflow-x-hidden">
+      <div className="min-h-screen flex flex-col bg-gray-50">
+        <TopExperienceLayer />
+        
+        <main className="flex-grow">
         {/* Hero section */}
         <div className="relative h-[300px] sm:h-[400px]">
           <img
