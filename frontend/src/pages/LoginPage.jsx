@@ -73,7 +73,7 @@ const LoginPage = () => {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email Field */}
             <div>
               <label className="block text-sm font-medium mb-2" style={{ color: '#1A1A1A' }}>
