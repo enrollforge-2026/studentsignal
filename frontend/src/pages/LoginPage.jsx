@@ -41,12 +41,15 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const result = await login(formData);
+      console.log('Login result:', result);
       if (result.success) {
         navigate('/dashboard');
       } else {
+        console.log('Setting error:', result.error);
         setErrors({ submit: result.error || 'Invalid email or password. Please try again.' });
       }
     } catch (error) {
+      console.log('Login exception:', error);
       setErrors({ submit: 'Invalid email or password. Please try again.' });
     } finally {
       setLoading(false);
