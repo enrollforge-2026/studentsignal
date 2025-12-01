@@ -299,9 +299,9 @@ const CollegeDetailPage = () => {
                         </ResponsiveContainer>
                       </div>
 
-                      <div>
+                      <div className="w-full max-w-full overflow-hidden">
                         <h3 className="text-lg font-semibold mb-4 text-center">Ethnic Diversity</h3>
-                        <ResponsiveContainer width="100%" height={250}>
+                        <ResponsiveContainer width="100%" height={250} className="w-full h-auto">
                           <BarChart data={[
                             { name: 'White', value: 35, fill: '#1a5d3a' },
                             { name: 'Asian', value: 25, fill: '#2d8659' },
