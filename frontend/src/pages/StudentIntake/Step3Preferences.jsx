@@ -56,29 +56,31 @@ const Step3Preferences = ({ formData, updateField }) => {
         <SelectField
           label="College Size"
           value={formData.college_size}
-          onChange={(e) => updateField('college_size', e.target.value)}
+          onChange={(value) => updateField('college_size', value)}
           icon={<Building size={20} />}
-        >
-          <option value="">Select size preference</option>
-          <option value="Small">Small</option>
-          <option value="Medium">Medium</option>
-          <option value="Large">Large</option>
-          <option value="Very Large">Very Large</option>
-        </SelectField>
+          placeholder="Select size preference"
+          options={[
+            'Small',
+            'Medium',
+            'Large',
+            'Very Large'
+          ]}
+        />
 
         {/* Distance from Home */}
         <SelectField
           label="Distance from Home"
           value={formData.distance_from_home}
-          onChange={(e) => updateField('distance_from_home', e.target.value)}
+          onChange={(value) => updateField('distance_from_home', value)}
           icon={<MapPin size={20} />}
-        >
-          <option value="">Select distance preference</option>
-          <option value="Close to home">Close to home</option>
-          <option value="Moderate distance">Moderate distance</option>
-          <option value="Far from home">Far from home</option>
-          <option value="Anywhere">Anywhere</option>
-        </SelectField>
+          placeholder="Select distance preference"
+          options={[
+            'Close to home',
+            'Moderate distance',
+            'Far from home',
+            'Anywhere'
+          ]}
+        />
 
         {/* Saved Colleges */}
         <div>
