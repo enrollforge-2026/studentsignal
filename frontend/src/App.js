@@ -16,7 +16,6 @@ import StaffLogin from "./pages/StaffLogin";
 import ProfilePage from "./pages/ProfilePage";
 import SignalHub from "./pages/SignalHubPremium";
 import Dashboard from "./pages/Dashboard";
-import OnboardingFlow from "./pages/OnboardingFlow";
 import StudentIntakeController from "./pages/StudentIntake/StudentIntakeController";
 import HowItWorks from "./pages/HowItWorks";
 import PrivacyBasics from "./pages/PrivacyBasics";
