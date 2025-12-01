@@ -67,16 +67,17 @@ const Step1AboutYou = ({ formData, updateField }) => {
         <SelectField
           label="Gender"
           value={formData.gender}
-          onChange={(e) => updateField('gender', e.target.value)}
+          onChange={(value) => updateField('gender', value)}
           icon={<Users size={20} />}
           required
-        >
-          <option value="">Select gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Non-Binary">Non-Binary</option>
-          <option value="Prefer Not to Say">Prefer Not to Say</option>
-        </SelectField>
+          placeholder="Select gender"
+          options={[
+            'Male',
+            'Female',
+            'Non-Binary',
+            'Prefer Not to Say'
+          ]}
+        />
       </div>
     </div>
   );
