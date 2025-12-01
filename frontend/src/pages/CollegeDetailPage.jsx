@@ -173,6 +173,7 @@ const CollegeDetailPage = () => {
                     variant="outline"
                     size="sm"
                     className="bg-white/10 border-white/30 text-white hover:bg-white hover:text-gray-900 text-xs sm:text-sm w-full sm:w-auto justify-center"
+                    onClick={handleShare}
                   >
                     <Share2 size={14} className="mr-1" />
                     Share
