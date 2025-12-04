@@ -170,8 +170,7 @@ const CollegeSearchPage = () => {
               College <span className="text-emerald-600">Search</span>
             </h1>
             <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-              Appily makes finding and connecting with the best Colleges and Universities easy. 
-              Browse colleges for free, view admissions rates, and other insights to help you build your ideal college list.
+              {siteContent.collegeSearch.hero.subtitle}
             </p>
           </div>
 
@@ -183,7 +182,7 @@ const CollegeSearchPage = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search Colleges"
+                placeholder={siteContent.collegeSearch.hero.searchPlaceholder}
                 className="w-full pl-14 pr-4 py-4 text-lg border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a] focus:border-[#1a5d3a] bg-white"
               />
             </div>
