@@ -9,6 +9,7 @@ import Footer from '../components/layout/Footer';
 import { Button } from '../components/ui/button';
 import { Search, ChevronDown, Bookmark, DollarSign } from 'lucide-react';
 import SelectField from '../components/ui/SelectField';
+import { formatDate } from '../utils/formatters';
 
 const ScholarshipsPage = () => {
   const navigate = useNavigate();
