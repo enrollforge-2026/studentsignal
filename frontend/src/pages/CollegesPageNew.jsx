@@ -632,7 +632,7 @@ const CollegesPageNew = () => {
 
                     {/* College Details */}
                     <div className="p-4 flex flex-col flex-1">
-                      <Link to={`/college/${college.id}`}>
+                      <Link to={`/college/${college.ipedsId || college.slug}`}>
                         <h3 className="text-base font-bold text-gray-900 hover:text-[#1a5d3a] cursor-pointer mb-1 line-clamp-2 leading-tight">
                           {college.name}
                         </h3>
@@ -640,31 +640,31 @@ const CollegesPageNew = () => {
                       
                       <div className="flex items-center gap-1 text-xs text-gray-600 mb-3">
                         <MapPin size={12} />
-                        <span>{college.location}</span>
+                        <span>{college.city}, {college.state}</span>
                       </div>
 
                       <div className="flex items-center gap-2 mb-3 text-xs">
                         <span className="text-gray-700 font-medium">
-                          {college.type}
+                          {college.publicPrivate}
                         </span>
                         <span className="text-gray-400">|</span>
                         <span className="font-bold text-[#1a5d3a]">
-                          {college.acceptanceRate || 0}% Acceptance Rate
+                          {college.acceptanceRate || 'N/A'}% Acceptance Rate
                         </span>
                       </div>
 
                       <div className="space-y-2 mb-3">
                         <div className="flex items-baseline justify-between">
-                          <span className="text-xs text-gray-600">Avg Net Price:</span>
+                          <span className="text-xs text-gray-600">In-State Tuition:</span>
                           <span className="text-base font-bold text-gray-900">
-                            ${(college.tuitionInState || 0).toLocaleString()}
+                            ${(college.inStateTuition || 0).toLocaleString()}
                           </span>
                         </div>
                         
                         <div className="flex items-baseline justify-between">
-                          <span className="text-xs text-gray-600">Sticker Price:</span>
+                          <span className="text-xs text-gray-600">Avg Net Price:</span>
                           <span className="text-base font-bold text-gray-900">
-                            ${(college.tuitionOutState || 0).toLocaleString()}
+                            {college.avgNetPrice ? `$${college.avgNetPrice.toLocaleString()}` : 'N/A'}
                           </span>
                         </div>
                       </div>
