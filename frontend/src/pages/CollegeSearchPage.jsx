@@ -477,7 +477,7 @@ const CollegeCard = ({ college, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow cursor-pointer overflow-hidden border border-gray-100"
+      className="bg-white rounded-md shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-200 cursor-pointer flex flex-col"
     >
       {/* College Image */}
       <div className="relative h-48 bg-gray-200">
