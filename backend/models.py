@@ -9,53 +9,109 @@ class BaseDBModel(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
 
-# College Models
+# College Models - IPEDS 2022 Schema
+class CollegeLocation(BaseModel):
+    city: Optional[str] = None
+    state: Optional[str] = None
+    zip: Optional[str] = None
+    locale: Optional[int] = None
+
+
+class SATRange(BaseModel):
+    min: Optional[int] = None
+    max: Optional[int] = None
+
+
+class ACTRange(BaseModel):
+    min: Optional[int] = None
+    max: Optional[int] = None
+
+
+class CollegeAdmissions(BaseModel):
+    acceptanceRate: Optional[float] = None
+    satRange: Optional[SATRange] = None
+    actRange: Optional[ACTRange] = None
+
+
+class CollegeEnrollment(BaseModel):
+    undergrad: Optional[int] = None
+
+
+class RaceEthnicityPct(BaseModel):
+    black: Optional[float] = None
+    hispanic: Optional[float] = None
+    white: Optional[float] = None
+    asian: Optional[float] = None
+    pacificIslander: Optional[float] = None
+    americanIndian: Optional[float] = None
+    multiracial: Optional[float] = None
+    nonResident: Optional[float] = None
+    unknown: Optional[float] = None
+
+
+class GenderPct(BaseModel):
+    male: Optional[float] = None
+    female: Optional[float] = None
+
+
+class CollegeDiversity(BaseModel):
+    raceEthnicityPct: Optional[RaceEthnicityPct] = None
+    genderPct: Optional[GenderPct] = None
+    pellPct: Optional[float] = None
+
+
+class CollegeFinancials(BaseModel):
+    tuitionInState: Optional[int] = None
+    tuitionOutOfState: Optional[int] = None
+    feesInState: Optional[int] = None
+    feesOutOfState: Optional[int] = None
+    avgCostAttendance: Optional[int] = None
+
+
+class CollegeOutcomes(BaseModel):
+    gradRate4yr: Optional[float] = None
+    gradRate6yr: Optional[float] = None
+
+
 class College(BaseDBModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    ipeds_id: Optional[str] = None
-    name: str
-    short_name: str
-    location: str
-    state: str
-    type: str  # Public/Private
-    enrollment: int
-    acceptance_rate: float
-    tuition_in_state: int
-    tuition_out_state: int
-    sat_range: str
-    act_range: str
-    graduation_rate: float
-    ranking: Optional[int] = None
-    rating: Optional[str] = None
-    image: str
-    description: str
-    direct_admission: bool = False
-    majors: List[str] = []
-    features: List[str] = []
-    created_at: datetime = Field(default_factory=lambda: datetime.utcnow())
-    updated_at: datetime = Field(default_factory=lambda: datetime.utcnow())
+    ipedsId: str
+    name: Optional[str] = None
+    alias: Optional[str] = None
+    website: Optional[str] = None
+    location: Optional[CollegeLocation] = None
+    control: Optional[int] = None  # 1=Public, 2=Private nonprofit, 3=Private for-profit
+    sector: Optional[int] = None
+    admissions: Optional[CollegeAdmissions] = None
+    enrollment: Optional[CollegeEnrollment] = None
+    diversity: Optional[CollegeDiversity] = None
+    financials: Optional[CollegeFinancials] = None
+    outcomes: Optional[CollegeOutcomes] = None
+    override: Optional[dict] = {}
+    staticSource: Optional[str] = None
+    lastStaticUpdate: Optional[str] = None
 
 
+# Legacy models for backward compatibility (admin panel)
 class CollegeCreate(BaseModel):
     name: str
-    short_name: str
-    location: str
-    state: str
-    type: str
-    enrollment: int
-    acceptance_rate: float
-    tuition_in_state: int
-    tuition_out_state: int
-    sat_range: str
-    act_range: str
-    graduation_rate: float
+    short_name: Optional[str] = None
+    location: Optional[str] = None
+    state: Optional[str] = None
+    type: Optional[str] = None
+    enrollment: Optional[int] = None
+    acceptance_rate: Optional[float] = None
+    tuition_in_state: Optional[int] = None
+    tuition_out_state: Optional[int] = None
+    sat_range: Optional[str] = None
+    act_range: Optional[str] = None
+    graduation_rate: Optional[float] = None
     ranking: Optional[int] = None
     rating: Optional[str] = None
-    image: str
-    description: str
-    direct_admission: bool = False
-    majors: List[str] = []
-    features: List[str] = []
+    image: Optional[str] = None
+    description: Optional[str] = None
+    direct_admission: Optional[bool] = False
+    majors: Optional[List[str]] = []
+    features: Optional[List[str]] = []
 
 
 class CollegeUpdate(BaseModel):
