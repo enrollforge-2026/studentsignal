@@ -77,6 +77,7 @@ const CollegeDetailPage = () => {
       try {
         setLoading(true);
         const data = await collegesAPI.getCollege(id);
+        console.log("COLLEGE_DETAIL_PROPS", data);
         setCollege(data);
         setError(null);
       } catch (err) {
