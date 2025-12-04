@@ -199,7 +199,7 @@ const Dashboard = () => {
                   </div>
                   {scholarship.deadline && (
                     <div className="text-xs" style={{ color: '#6B7280' }}>
-                      Due: {new Date(scholarship.deadline).toLocaleDateString()}
+                      Due: {formatDate(scholarship.deadline)}
                     </div>
                   )}
                 </div>
