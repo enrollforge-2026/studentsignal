@@ -141,13 +141,14 @@ const ScholarshipsPage = () => {
 
   const handleStartApplying = (scholarshipName, deadline) => {
     console.log('Start Applying clicked:', scholarshipName);
+    const formattedDeadline = formatDate(deadline);
     // Create a visible modal/notification instead of alert
     const modal = document.createElement('div');
     modal.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 10000; max-width: 500px; width: 90%;';
     modal.innerHTML = `
       <h2 style="color: #1a5d3a; font-size: 24px; font-weight: bold; margin-bottom: 16px;">Start Your Application</h2>
       <p style="color: #333; margin-bottom: 12px; font-size: 18px;"><strong>${scholarshipName}</strong></p>
-      <p style="color: #666; margin-bottom: 8px;">Deadline: <strong>${deadline}</strong></p>
+      <p style="color: #666; margin-bottom: 8px;">Deadline: <strong>${formattedDeadline}</strong></p>
       <p style="color: #666; margin-bottom: 20px;">You'll be redirected to the application portal where you can submit your documents and complete the application process.</p>
       <button onclick="this.parentElement.remove(); document.getElementById('modal-overlay').remove();" style="background: #f5a623; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%;">Got It!</button>
     `;
