@@ -263,21 +263,21 @@ const CollegeSearchPage = () => {
               {/* Cost */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Cost (Avg Net Price)
+                  {siteContent.collegeSearch.filters.labels.cost}
                 </label>
                 <div className="space-y-2">
                   <input
                     type="number"
                     value={filters.minCost}
                     onChange={(e) => handleFilterChange('minCost', e.target.value)}
-                    placeholder="Min $"
+                    placeholder={siteContent.collegeSearch.filters.placeholders.minCost}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
                   />
                   <input
                     type="number"
                     value={filters.maxCost}
                     onChange={(e) => handleFilterChange('maxCost', e.target.value)}
-                    placeholder="Max $"
+                    placeholder={siteContent.collegeSearch.filters.placeholders.maxCost}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
                   />
                 </div>
@@ -286,7 +286,7 @@ const CollegeSearchPage = () => {
               {/* Selectivity */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Selectivity (Acceptance Rate)
+                  {siteContent.collegeSearch.filters.labels.selectivity}
                 </label>
                 <select
                   value={filters.acceptanceRange}
