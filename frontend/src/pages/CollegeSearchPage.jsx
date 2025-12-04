@@ -353,7 +353,7 @@ const CollegeSearchPage = () => {
                     Filters
                   </button>
                   <h3 className="text-lg font-semibold text-gray-900">
-                    Browsing {totalResults.toLocaleString()} Colleges
+                    {siteContent.collegeSearch.results.browsingText.replace('{count}', totalResults.toLocaleString())}
                   </h3>
                 </div>
                 
