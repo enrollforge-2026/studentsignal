@@ -481,22 +481,17 @@ const CollegeCard = ({ college, onClick }) => {
     >
       {/* College Image */}
       <div className="relative h-48 bg-gray-200">
-        {college.imageUrl ? (
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-500 to-teal-600">
+          <span className="text-6xl font-bold text-white opacity-50">
+            {college.name.substring(0, 1)}
+          </span>
+        </div>
+        {college.imageUrl && (
           <img
             src={college.imageUrl}
             alt={college.name}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              e.target.style.display = 'none';
-              e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-500 to-teal-600"><span class="text-6xl font-bold text-white opacity-50">${college.name.substring(0, 1)}</span></div>` + e.target.parentElement.innerHTML.substring(e.target.parentElement.innerHTML.indexOf('</div>') + 6);
-            }}
+            className="absolute inset-0 w-full h-full object-cover"
           />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-500 to-teal-600">
-            <span className="text-6xl font-bold text-white opacity-50">
-              {college.name.substring(0, 1)}
-            </span>
-          </div>
         )}
         
         {/* Badges */}
