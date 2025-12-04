@@ -316,13 +316,9 @@ const CollegeDetailPage = () => {
 
                   <div className="bg-white rounded-2xl p-6 shadow-sm">
                     <h2 className="text-xl font-bold text-gray-900 mb-4">Campus Life</h2>
-                    <div className="flex flex-wrap gap-2">
-                      {college.features.map((feature, idx) => (
-                        <span key={idx} className="bg-[#1a5d3a]/10 text-[#1a5d3a] px-3 py-1 rounded-full text-sm font-medium">
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Campus features and amenities information is not currently available for this institution.
+                    </p>
                   </div>
                 </TabsContent>
 
