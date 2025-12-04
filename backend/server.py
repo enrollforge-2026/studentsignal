@@ -14,7 +14,7 @@ load_dotenv()
 
 # Import local modules
 from models import (
-    College, CollegeCreate, CollegeUpdate,
+    College, CollegeUI, CollegeCreate, CollegeUpdate,
     Scholarship, ScholarshipCreate,
     User, UserCreate, UserLogin, UserResponse, Token, SavedItem,
     OnboardingData,
