@@ -366,10 +366,10 @@ const CollegeSearchPage = () => {
               </div>
             </div>
 
-            {/* Loading State */}
+            {/* Loading State - Fixed Height */}
             {loading && (
-              <div className="flex justify-center items-center py-20">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
+              <div className="flex justify-center items-center" style={{ minHeight: '600px' }}>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1a5d3a]"></div>
               </div>
             )}
 
