@@ -236,28 +236,9 @@ for idx, row in base.iterrows():
         fees_out = safe_int(row.get('FEE2'))
         avg_cost = safe_int(row.get('CHG1AY3'))
         
-        # Graduation rates
-        # 4-year: GRTOTLT from gr2022_rv / cohort size
+        # Graduation rates - DISABLED IN V1
         gr_4yr = None
-        grtotlt_4yr = safe_int(row.get('GRTOTLT'))
-        # Try to find cohort size column
-        cohort_cols = [col for col in base.columns if 'CHRT' in col.upper() or 'COHORT' in col.upper()]
-        if grtotlt_4yr is not None:
-            for cohort_col in cohort_cols:
-                cohort_size = safe_int(row.get(cohort_col))
-                if cohort_size is not None and cohort_size > 0:
-                    gr_4yr = round(grtotlt_4yr / cohort_size, 4)
-                    break
-        
-        # 6-year: GRTOTLT from gr200_22_rv
         gr_6yr = None
-        grtotlt_6yr = safe_int(row.get('GRTOTLT_gr200'))
-        if grtotlt_6yr is not None:
-            for cohort_col in cohort_cols:
-                cohort_size = safe_int(row.get(cohort_col))
-                if cohort_size is not None and cohort_size > 0:
-                    gr_6yr = round(grtotlt_6yr / cohort_size, 4)
-                    break
         
         college = {
             'ipedsId': str(row.get('UNITID')),
