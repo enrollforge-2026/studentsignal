@@ -293,13 +293,13 @@ const CollegeSearchPage = () => {
 
               {/* Test Scores - SAT */}
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   SAT Score Range
                 </label>
                 <select
                   value={filters.satRange}
                   onChange={(e) => handleFilterChange('satRange', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
                 >
                   <option value="">All</option>
                   <option value="1400-1600">1400 - 1600</option>
@@ -311,13 +311,13 @@ const CollegeSearchPage = () => {
 
               {/* Test Scores - ACT */}
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   ACT Score Range
                 </label>
                 <select
                   value={filters.actRange}
                   onChange={(e) => handleFilterChange('actRange', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
                 >
                   <option value="">All</option>
                   <option value="32-36">32 - 36</option>
