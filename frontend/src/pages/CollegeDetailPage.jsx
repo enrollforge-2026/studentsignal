@@ -138,8 +138,8 @@ const CollegeDetailPage = () => {
         {/* Hero section */}
         <div className="w-full h-[260px] md:h-[400px] overflow-hidden relative">
           <img
-            src={college.image}
-            alt={college.name}
+            src={college.imageUrl || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80'}
+            alt={`${college.name} campus`}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
