@@ -487,7 +487,8 @@ const CollegeCard = ({ college, onClick }) => {
             alt={college.name}
             className="w-full h-full object-cover"
             onError={(e) => {
-              e.target.src = `https://via.placeholder.com/400x300/059669/ffffff?text=${encodeURIComponent(college.name.substring(0, 1))}`;
+              e.target.style.display = 'none';
+              e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-500 to-teal-600"><span class="text-6xl font-bold text-white opacity-50">${college.name.substring(0, 1)}</span></div>` + e.target.parentElement.innerHTML.substring(e.target.parentElement.innerHTML.indexOf('</div>') + 6);
             }}
           />
         ) : (
