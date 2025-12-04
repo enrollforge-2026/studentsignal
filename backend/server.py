@@ -9,6 +9,9 @@ from typing import List, Optional
 from datetime import datetime, timedelta
 from uuid import uuid4
 
+# Load environment variables BEFORE importing local modules
+load_dotenv()
+
 # Import local modules
 from models import (
     College, CollegeCreate, CollegeUpdate,
