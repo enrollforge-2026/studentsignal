@@ -127,18 +127,22 @@ const Dashboard = () => {
         {savedColleges.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {savedColleges.slice(0, 6).map((college) => (
-              <div
+              <Link
                 key={college.ipedsId}
+                to={`/college/${college.ipedsId}`}
                 className="p-4 bg-gray-50 rounded-xl border hover:border-[#004C3F] transition-all cursor-pointer"
                 style={{ borderColor: '#E1E4E8' }}
               >
                 <h3 className="font-semibold text-sm mb-1" style={{ color: '#2A2F35' }}>
                   {college.name}
                 </h3>
-                <p className="text-xs" style={{ color: '#6B7280' }}>
-                  {college.city}, {college.state}
+                <p className="text-xs mb-1" style={{ color: '#6B7280' }}>
+                  {formatLocation(college.city, college.state)}
                 </p>
-              </div>
+                <p className="text-xs" style={{ color: '#9CA3AF' }}>
+                  {formatCollegeTag(college.publicPrivate, college.degreeLevel)}
+                </p>
+              </Link>
             ))}
           </div>
         ) : (
