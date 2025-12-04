@@ -148,13 +148,14 @@ const CollegeDetailPage = () => {
               <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="bg-[#f5a623] text-white text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded-full">
-                      {college.rating}
-                    </span>
-                    <span className="text-white/80 text-xs sm:text-sm whitespace-nowrap">#{college.ranking} in Best Colleges</span>
-                    {college.directAdmission && (
+                    {college.type && (
                       <span className="bg-[#1a5d3a] text-white text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full">
-                        Direct Admission
+                        {college.type}
+                      </span>
+                    )}
+                    {college.enrollmentFormatted && (
+                      <span className="text-white/80 text-xs sm:text-sm whitespace-nowrap">
+                        {college.enrollmentFormatted} students
                       </span>
                     )}
                   </div>
@@ -162,8 +163,6 @@ const CollegeDetailPage = () => {
                   <div className="flex flex-wrap items-center gap-2 text-white/90 text-sm">
                     <MapPin size={16} className="flex-shrink-0" />
                     <span className="truncate">{college.location}</span>
-                    <span className="hidden sm:inline mx-2">•</span>
-                    <span className="truncate">{college.type} University</span>
                   </div>
                 </div>
                 
