@@ -207,41 +207,45 @@ async def complete_onboarding(
 async def get_colleges(
     search: Optional[str] = Query(None),
     state: Optional[str] = Query(None),
-    control: Optional[int] = Query(None),
+    publicPrivate: Optional[str] = Query(None),
+    degreeLevel: Optional[str] = Query(None),
     min_tuition: Optional[int] = Query(None),
     max_tuition: Optional[int] = Query(None),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100)
 ):
-    """Get list of colleges with filters - IPEDS 2022 schema"""
-    query = {}
+    """Get list of colleges with filters - UI-optimized flat schema"""
+    query = {'isActive': True}  # Only return active colleges
     
     if search:
         query['$or'] = [
             {'name': {'$regex': search, '$options': 'i'}},
-            {'alias': {'$regex': search, '$options': 'i'}},
-            {'location.city': {'$regex': search, '$options': 'i'}}
+            {'city': {'$regex': search, '$options': 'i'}},
+            {'slug': {'$regex': search, '$options': 'i'}}
         ]
     
     if state:
-        query['location.state'] = state
+        query['state'] = state
     
-    if control:
-        query['control'] = control
+    if publicPrivate:
+        query['publicPrivate'] = publicPrivate
+    
+    if degreeLevel:
+        query['degreeLevel'] = degreeLevel
     
     if min_tuition is not None or max_tuition is not None:
-        query['financials.tuitionInState'] = {}
+        query['inStateTuition'] = {}
         if min_tuition is not None:
-            query['financials.tuitionInState']['$gte'] = min_tuition
+            query['inStateTuition']['$gte'] = min_tuition
         if max_tuition is not None:
-            query['financials.tuitionInState']['$lte'] = max_tuition
+            query['inStateTuition']['$lte'] = max_tuition
     
     # Get total count
-    total = await colleges_collection.count_documents(query)
+    total = await colleges_ui_collection.count_documents(query)
     
     # Get paginated results
     skip = (page - 1) * limit
-    colleges = await colleges_collection.find(query, {"_id": 0}).skip(skip).limit(limit).to_list(limit)
+    colleges = await colleges_ui_collection.find(query, {"_id": 0}).skip(skip).limit(limit).to_list(limit)
     
     return {
         "colleges": colleges,
