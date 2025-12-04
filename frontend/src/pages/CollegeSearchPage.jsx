@@ -5,6 +5,7 @@ import { Search, MapPin, DollarSign, GraduationCap, Award, ChevronDown, SlidersH
 import TopExperienceLayer from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { formatCurrency, formatPercentage, formatTestScore, formatLocation } from '../utils/formatters';
+import siteContent from '../config/siteContent';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const PAGE_SIZE = 18;
