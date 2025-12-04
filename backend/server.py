@@ -478,7 +478,7 @@ async def get_saved_colleges(email: str = Depends(get_current_user_email)):
         raise HTTPException(status_code=404, detail="User not found")
     
     saved_ids = user.get('saved_colleges', [])
-    colleges = await colleges_collection.find({"id": {"$in": saved_ids}}, {"_id": 0}).to_list(100)
+    colleges = await colleges_collection.find({"ipedsId": {"$in": saved_ids}}, {"_id": 0}).to_list(100)
     return colleges
 
 
