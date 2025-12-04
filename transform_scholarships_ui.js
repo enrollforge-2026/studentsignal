@@ -353,7 +353,7 @@ async function runETL() {
 
   try {
     console.log('=' .repeat(80));
-    console.log('SCHOLARSHIP ETL PIPELINE - PHASE 2');
+    console.log('SCHOLARSHIP ETL PIPELINE - PHASE 2.5 (WITH ENRICHMENT)');
     console.log('=' .repeat(80));
 
     await client.connect();
@@ -375,9 +375,15 @@ async function runETL() {
     console.log(`   Records: ${SOURCE_SCHOLARSHIPS.length}`);
     console.log(`   Source: Backend seed_data.py`);
 
+    // Load enrichment data
+    console.log(`\n📥 Loading enrichment data...`);
+    const enrichmentData = loadEnrichmentData();
+    const enrichedCount = Object.keys(enrichmentData).length;
+    console.log(`   ✓ Loaded enrichment for ${enrichedCount} scholarships`);
+
     // Transform scholarships
-    console.log(`\n⚙️  Transforming scholarships...`);
-    const transformedScholarships = SOURCE_SCHOLARSHIPS.map(transformScholarship);
+    console.log(`\n⚙️  Transforming scholarships with enrichment...`);
+    const transformedScholarships = SOURCE_SCHOLARSHIPS.map(s => transformScholarship(s, enrichmentData));
 
     // Display sample transformation
     console.log(`\n📋 SAMPLE TRANSFORMATION:`);
