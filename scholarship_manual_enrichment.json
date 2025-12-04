@@ -1,0 +1,53 @@
+{
+  "instructions": "Fill in missing sponsor and website information for each scholarship. This data will be merged in Phase 2.5.",
+  "scholarships": {
+    "national-merit-scholarship": {
+      "sponsor": "",
+      "sponsorWebsite": "",
+      "website": "",
+      "applicationUrl": ""
+    },
+    "coca-cola-scholars-program": {
+      "sponsor": "",
+      "sponsorWebsite": "",
+      "website": "",
+      "applicationUrl": ""
+    },
+    "gates-scholarship": {
+      "sponsor": "",
+      "sponsorWebsite": "",
+      "website": "",
+      "applicationUrl": ""
+    },
+    "stem-excellence-scholarship": {
+      "sponsor": "",
+      "sponsorWebsite": "",
+      "website": "",
+      "applicationUrl": ""
+    },
+    "first-generation-college-scholarship": {
+      "sponsor": "",
+      "sponsorWebsite": "",
+      "website": "",
+      "applicationUrl": ""
+    },
+    "athletic-excellence-scholarship": {
+      "sponsor": "",
+      "sponsorWebsite": "",
+      "website": "",
+      "applicationUrl": ""
+    },
+    "women-in-technology-scholarship": {
+      "sponsor": "",
+      "sponsorWebsite": "",
+      "website": "",
+      "applicationUrl": ""
+    },
+    "community-service-leadership-award": {
+      "sponsor": "",
+      "sponsorWebsite": "",
+      "website": "",
+      "applicationUrl": ""
+    }
+  }
+}
