@@ -337,7 +337,7 @@ const CollegeSearchPage = () => {
                 </select>
               </div>
             </div>
-          </div>
+          </aside>
 
           {/* Right Content - Results */}
           <div className="flex-1">
