@@ -207,45 +207,122 @@ async def complete_onboarding(
 async def get_colleges(
     search: Optional[str] = Query(None),
     state: Optional[str] = Query(None),
+    city: Optional[str] = Query(None),
     publicPrivate: Optional[str] = Query(None),
     degreeLevel: Optional[str] = Query(None),
-    min_tuition: Optional[int] = Query(None),
-    max_tuition: Optional[int] = Query(None),
+    min_net_price: Optional[int] = Query(None),
+    max_net_price: Optional[int] = Query(None),
+    min_acceptance_rate: Optional[int] = Query(None),
+    max_acceptance_rate: Optional[int] = Query(None),
+    min_sat: Optional[int] = Query(None),
+    max_sat: Optional[int] = Query(None),
+    min_act: Optional[int] = Query(None),
+    max_act: Optional[int] = Query(None),
+    sort_by: Optional[str] = Query(None),
     page: int = Query(1, ge=1),
-    limit: int = Query(20, ge=1, le=100)
+    limit: int = Query(18, ge=1, le=100)
 ):
-    """Get list of colleges with filters - UI-optimized flat schema"""
+    """Get list of colleges with comprehensive filters - UI-optimized flat schema"""
     query = {'isActive': True}  # Only return active colleges
     
+    # Search across name, city, and state
     if search:
         query['$or'] = [
             {'name': {'$regex': search, '$options': 'i'}},
             {'city': {'$regex': search, '$options': 'i'}},
-            {'slug': {'$regex': search, '$options': 'i'}}
+            {'state': {'$regex': search, '$options': 'i'}}
         ]
     
+    # Location filters
     if state:
-        query['state'] = state
+        query['state'] = {'$regex': state, '$options': 'i'}
+    if city:
+        query['city'] = {'$regex': city, '$options': 'i'}
     
+    # Institution type filter (supports multiple values)
     if publicPrivate:
-        query['publicPrivate'] = publicPrivate
+        types = [t.strip() for t in publicPrivate.split(',')]
+        if len(types) == 1:
+            query['publicPrivate'] = types[0]
+        else:
+            query['publicPrivate'] = {'$in': types}
     
+    # Degree level filter (supports multiple values)
     if degreeLevel:
-        query['degreeLevel'] = degreeLevel
+        levels = [l.strip() for l in degreeLevel.split(',')]
+        if len(levels) == 1:
+            query['degreeLevel'] = levels[0]
+        else:
+            query['degreeLevel'] = {'$in': levels}
     
-    if min_tuition is not None or max_tuition is not None:
-        query['inStateTuition'] = {}
-        if min_tuition is not None:
-            query['inStateTuition']['$gte'] = min_tuition
-        if max_tuition is not None:
-            query['inStateTuition']['$lte'] = max_tuition
+    # Cost filter (avgNetPrice)
+    if min_net_price is not None or max_net_price is not None:
+        query['avgNetPrice'] = {}
+        if min_net_price is not None:
+            query['avgNetPrice']['$gte'] = min_net_price
+        if max_net_price is not None:
+            query['avgNetPrice']['$lte'] = max_net_price
+    
+    # Acceptance rate filter
+    if min_acceptance_rate is not None or max_acceptance_rate is not None:
+        query['acceptanceRate'] = {}
+        if min_acceptance_rate is not None:
+            query['acceptanceRate']['$gte'] = min_acceptance_rate
+        if max_acceptance_rate is not None:
+            query['acceptanceRate']['$lte'] = max_acceptance_rate
+    
+    # SAT score filter
+    if min_sat is not None or max_sat is not None:
+        query['satAvg'] = {}
+        if min_sat is not None:
+            query['satAvg']['$gte'] = min_sat
+        if max_sat is not None:
+            query['satAvg']['$lte'] = max_sat
+        # Only include colleges that have SAT scores
+        if min_sat is not None or max_sat is not None:
+            query['satAvg']['$ne'] = None
+    
+    # ACT score filter
+    if min_act is not None or max_act is not None:
+        query['actAvg'] = {}
+        if min_act is not None:
+            query['actAvg']['$gte'] = min_act
+        if max_act is not None:
+            query['actAvg']['$lte'] = max_act
+        # Only include colleges that have ACT scores
+        if min_act is not None or max_act is not None:
+            query['actAvg']['$ne'] = None
+    
+    # Sorting
+    sort_field = 'name'
+    sort_direction = 1
+    
+    if sort_by:
+        if sort_by == 'acceptance_rate_asc':
+            sort_field = 'acceptanceRate'
+            sort_direction = 1
+        elif sort_by == 'acceptance_rate_desc':
+            sort_field = 'acceptanceRate'
+            sort_direction = -1
+        elif sort_by == 'cost_asc':
+            sort_field = 'avgNetPrice'
+            sort_direction = 1
+        elif sort_by == 'cost_desc':
+            sort_field = 'avgNetPrice'
+            sort_direction = -1
+        elif sort_by == 'name_asc':
+            sort_field = 'name'
+            sort_direction = 1
+        elif sort_by == 'name_desc':
+            sort_field = 'name'
+            sort_direction = -1
     
     # Get total count
     total = await colleges_ui_collection.count_documents(query)
     
-    # Get paginated results
+    # Get paginated results with sorting
     skip = (page - 1) * limit
-    colleges = await colleges_ui_collection.find(query, {"_id": 0}).skip(skip).limit(limit).to_list(limit)
+    colleges = await colleges_ui_collection.find(query, {"_id": 0}).sort(sort_field, sort_direction).skip(skip).limit(limit).to_list(limit)
     
     return {
         "colleges": colleges,
