@@ -10,7 +10,8 @@ db = client[os.environ.get('DB_NAME', 'student_signal')]
 # Collections
 colleges_collection = db.colleges  # Legacy IPEDS nested schema (READ-ONLY)
 colleges_ui_collection = db.colleges_ui  # New flat UI-optimized schema (ACTIVE)
-scholarships_collection = db.scholarships
+scholarships_collection = db.scholarships  # Legacy seed schema (READ-ONLY)
+scholarships_ui_collection = db.scholarships_ui  # New flat UI-optimized schema (ACTIVE)
 users_collection = db.users
 ipeds_sync_collection = db.ipeds_sync
 leads_collection = db.leads
