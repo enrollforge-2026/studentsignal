@@ -685,9 +685,9 @@ const CollegesPageNew = () => {
                           {college.actAvg && (
                             <div>
                               <div className="flex items-baseline justify-between mb-1">
-                                <span className="text-xs text-gray-600">Average ACT Composite:</span>
+                                <span className="text-xs text-gray-600">ACT Avg:</span>
                                 <span className="text-sm font-bold text-gray-900">
-                                  {college.actAvg}
+                                  {formatTestScore(college.actAvg)}
                                 </span>
                               </div>
                               <div className="flex items-center gap-2">
@@ -706,17 +706,17 @@ const CollegesPageNew = () => {
                           {college.satAvg && (
                             <div>
                               <div className="flex items-baseline justify-between mb-1">
-                                <span className="text-xs text-gray-600">Average SAT Composite:</span>
+                                <span className="text-xs text-gray-600">SAT Avg:</span>
                                 <span className="text-sm font-bold text-gray-900">
-                                  {college.satAvg}
+                                  {formatTestScore(college.satAvg)}
                                 </span>
                               </div>
                               <div className="flex items-center gap-2">
-                                <span className="text-xs text-gray-500">0</span>
+                                <span className="text-xs text-gray-500">400</span>
                                 <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
                                   <div 
                                     className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
-                                    style={{ width: `${(college.satAvg / 1600) * 100}%` }}
+                                    style={{ width: `${((college.satAvg - 400) / 1200) * 100}%` }}
                                   ></div>
                                 </div>
                                 <span className="text-xs text-gray-500">1600</span>
