@@ -392,7 +392,7 @@ const CollegeSearchPage = () => {
                 <p className="text-xl text-gray-600 mb-4">No colleges found matching your criteria</p>
                 <button
                   onClick={clearAllFilters}
-                  className="px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium"
+                  className="px-6 py-3 bg-[#1a5d3a] text-white rounded-md hover:bg-[#1a5d3a]/90 font-medium transition-colors"
                 >
                   Clear All Filters
                 </button>
