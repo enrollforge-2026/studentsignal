@@ -243,7 +243,7 @@ const CollegeSearchPage = () => {
               {/* Institution Type */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Institution Type
+                  {siteContent.collegeSearch.filters.labels.institutionType}
                 </label>
                 <div className="space-y-2">
                   {['Public', 'Private', 'Private For-Profit'].map(type => (
