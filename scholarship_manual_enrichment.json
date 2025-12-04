@@ -93,9 +93,9 @@
       "type": "Athletic",
       "category": "Sports",
       "enrichment_data": {
-        "sponsor": "",
-        "website": "",
-        "applicationUrl": ""
+        "sponsor": "National Student Athletics Foundation",
+        "website": "https://www.nsafoundation.org/athletic-excellence",
+        "applicationUrl": "https://www.nsafoundation.org/athletic-excellence/apply"
       }
     },
     {
