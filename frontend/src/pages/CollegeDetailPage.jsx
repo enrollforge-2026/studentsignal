@@ -303,63 +303,33 @@ const CollegeDetailPage = () => {
 
                 <TabsContent value="admissions" className="space-y-6">
                   <div className="bg-white rounded-2xl p-6 shadow-sm">
-                    <h2 className="text-xl font-bold text-gray-900 mb-4">Admissions Requirements</h2>
+                    <h2 className="text-xl font-bold text-gray-900 mb-4">Admissions Statistics</h2>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <p className="text-sm text-gray-500 mb-1">SAT Range</p>
-                        <p className="text-lg font-bold text-gray-900">{college.satRange}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 mb-1">ACT Range</p>
-                        <p className="text-lg font-bold text-gray-900">{college.actRange}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 mb-1">Acceptance Rate</p>
-                        <p className="text-lg font-bold text-gray-900">{college.acceptanceRate}%</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 mb-1">Application Deadline</p>
-                        <p className="text-lg font-bold text-gray-900">January 15</p>
-                      </div>
+                      {college.acceptanceRate && (
+                        <div>
+                          <p className="text-sm text-gray-500 mb-1">Acceptance Rate</p>
+                          <p className="text-lg font-bold text-gray-900">{formatPercentage(college.acceptanceRate)}</p>
+                        </div>
+                      )}
+                      {college.satAvg && (
+                        <div>
+                          <p className="text-sm text-gray-500 mb-1">SAT Average</p>
+                          <p className="text-lg font-bold text-gray-900">{formatTestScore(college.satAvg)}</p>
+                        </div>
+                      )}
+                      {college.actAvg && (
+                        <div>
+                          <p className="text-sm text-gray-500 mb-1">ACT Average</p>
+                          <p className="text-lg font-bold text-gray-900">{formatTestScore(college.actAvg)}</p>
+                        </div>
+                      )}
                     </div>
-                  </div>
-
-                  <div className="bg-white rounded-2xl p-6 shadow-sm">
-                    <h2 className="text-xl font-bold text-gray-900 mb-4">Acceptance Rate Trend</h2>
-                    <ResponsiveContainer width="100%" height={300}>
-                      <LineChart data={[
-                        { year: '2020', rate: college.acceptanceRate + 1 },
-                        { year: '2021', rate: college.acceptanceRate + 0.5 },
-                        { year: '2022', rate: college.acceptanceRate },
-                        { year: '2023', rate: college.acceptanceRate - 0.3 },
-                        { year: '2024', rate: college.acceptanceRate - 0.5 }
-                      ]}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="year" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="rate" stroke="#1a5d3a" strokeWidth={3} name="Acceptance Rate %" />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </div>
-
-                  {college.directAdmission && (
-                    <div className="bg-[#1a5d3a] rounded-2xl p-6 text-white">
-                      <div className="flex items-center gap-3 mb-4">
-                        <CheckCircle size={24} />
-                        <h2 className="text-xl font-bold">Direct Admission Available</h2>
-                      </div>
-                      <p className="text-white/90 mb-4">
-                        Skip the application process! Create a Student Signal Profile and get admitted directly based on your academic credentials.
+                    {!college.acceptanceRate && !college.satAvg && !college.actAvg && (
+                      <p className="text-gray-600 text-sm">
+                        Detailed admissions statistics are not currently available. Please visit the college website for admission requirements and deadlines.
                       </p>
-                      <Link to="/signup">
-                        <Button className="bg-[#f5a623] hover:bg-[#e09000] text-white">
-                          Get Direct Admission
-                        </Button>
-                      </Link>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </TabsContent>
 
                 <TabsContent value="cost" className="space-y-6">
