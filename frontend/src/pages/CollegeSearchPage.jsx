@@ -275,14 +275,13 @@ const CollegeSearchPage = () => {
 
               {/* Selectivity */}
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  <Award className="inline mr-2" size={16} />
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Selectivity (Acceptance Rate)
                 </label>
                 <select
                   value={filters.acceptanceRange}
                   onChange={(e) => handleFilterChange('acceptanceRange', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
                 >
                   <option value="">All</option>
                   <option value="0-25">0% - 25% (Most Selective)</option>
