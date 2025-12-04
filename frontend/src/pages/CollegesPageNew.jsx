@@ -624,9 +624,10 @@ const CollegesPageNew = () => {
                     {/* College Image */}
                     <div className="relative h-48">
                       <img
-                        src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80"
-                        alt={college.name}
+                        src={college.imageUrl || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80'}
+                        alt={`${college.name} campus`}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                       <button
                         onClick={() => toggleSaveCollege(college.ipedsId)}
