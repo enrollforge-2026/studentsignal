@@ -91,6 +91,42 @@ class College(BaseDBModel):
     lastStaticUpdate: Optional[str] = None
 
 
+# UI-Optimized Flat College Model (for colleges_ui collection)
+class CollegeUI(BaseDBModel):
+    """Flat, UI-friendly college model"""
+    name: str
+    slug: str
+    city: Optional[str] = None
+    state: Optional[str] = None
+    publicPrivate: Optional[str] = None
+    degreeLevel: Optional[str] = None
+    
+    # Financials
+    inStateTuition: Optional[int] = None
+    outStateTuition: Optional[int] = None
+    avgNetPrice: Optional[int] = None
+    stickerPriceInState: Optional[int] = None
+    stickerPriceOutState: Optional[int] = None
+    
+    # Admissions
+    acceptanceRate: Optional[int] = None  # 0-100 scale
+    satAvg: Optional[int] = None
+    actAvg: Optional[int] = None
+    
+    # Metadata
+    website: Optional[str] = None
+    canonicalUrl: Optional[str] = None
+    isActive: bool = True
+    
+    # Timestamps
+    createdAt: Optional[datetime] = None
+    updatedAt: Optional[datetime] = None
+    
+    # Reference
+    ipedsId: Optional[str] = None
+    sourceCollection: Optional[str] = None
+
+
 # Legacy models for backward compatibility (admin panel)
 class CollegeCreate(BaseModel):
     name: str
