@@ -141,29 +141,12 @@ if 'UNITID' in dfs['ic_ay'].columns:
 else:
     print("  ⚠ WARNING: UNITID not found in IC file")
 
-# Step 7: Merge 4-year graduation data (with filtering)
-print("\n[7/8] Merging 4-year graduation data (gr2022_rv.csv)...")
-gr_filtered = dfs['gr'].copy()
-if 'GRTYPE' in gr_filtered.columns and 'COHORT' in gr_filtered.columns:
-    gr_filtered = gr_filtered[(gr_filtered['GRTYPE'] == 3) & (gr_filtered['COHORT'] == 2)]
-    print(f"  Filtered graduation data: {len(gr_filtered)} rows")
-    base = base.merge(gr_filtered, on='UNITID', how='left', suffixes=('', '_gr'))
-    print(f"  ✓ Merged: {len(base)} rows")
-else:
-    print("  ⚠ WARNING: Required filter columns not found in gr2022")
-    base = base.merge(gr_filtered, on='UNITID', how='left', suffixes=('', '_gr'))
+# Step 7 & 8: Skip graduation data for now (will be added in future version)
+print("\n[7/8] Skipping 4-year graduation data (gr2022_rv.csv) - disabled in v1")
+print("  ✓ Graduation rates will be set to null")
 
-# Step 8: Merge 6-year graduation data (with filtering)
-print("\n[8/8] Merging 6-year graduation data (gr200_22_rv.csv)...")
-gr200_filtered = dfs['gr200'].copy()
-if 'GRTYPE' in gr200_filtered.columns and 'COHORT' in gr200_filtered.columns:
-    gr200_filtered = gr200_filtered[(gr200_filtered['GRTYPE'] == 3) & (gr200_filtered['COHORT'] == 2)]
-    print(f"  Filtered 6-year graduation data: {len(gr200_filtered)} rows")
-    base = base.merge(gr200_filtered, on='UNITID', how='left', suffixes=('', '_gr200'))
-    print(f"  ✓ Merged: {len(base)} rows")
-else:
-    print("  ⚠ WARNING: Required filter columns not found in gr200_22")
-    base = base.merge(gr200_filtered, on='UNITID', how='left', suffixes=('', '_gr200'))
+print("\n[8/8] Skipping 6-year graduation data (gr200_22_rv.csv) - disabled in v1")
+print("  ✓ Graduation rates will be set to null")
 
 print(f"\n✓ All merges complete. Total rows: {len(base)}")
 print(f"✓ Total columns: {len(base.columns)}")
