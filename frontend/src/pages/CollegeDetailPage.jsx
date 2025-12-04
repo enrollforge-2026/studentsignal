@@ -30,18 +30,13 @@ import {
   Mail,
   Globe
 } from 'lucide-react';
-import { transformCollegeForUI } from '../components/college/CollegeDataWrapper';
-
 const CollegeDetailPage = () => {
   const { id } = useParams();
-  const [collegeRaw, setCollegeRaw] = useState(null);
+  const [college, setCollege] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
   const [leadModalOpen, setLeadModalOpen] = useState(false);
-  
-  // Transform IPEDS data for UI
-  const college = collegeRaw ? transformCollegeForUI(collegeRaw) : null;
 
   const handleShare = async () => {
     const shareData = {
