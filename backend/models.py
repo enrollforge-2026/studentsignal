@@ -116,6 +116,7 @@ class CollegeUI(BaseDBModel):
     # Metadata
     website: Optional[str] = None
     canonicalUrl: Optional[str] = None
+    imageUrl: Optional[str] = None  # College campus image
     isActive: bool = True
     
     # Timestamps
