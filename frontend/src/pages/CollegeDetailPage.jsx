@@ -255,12 +255,11 @@ const CollegeDetailPage = () => {
 
                 <TabsContent value="overview" className="space-y-6">
                   <div className="bg-white rounded-2xl p-6 shadow-sm">
-                    <h2 className="text-xl font-bold text-gray-900 mb-4">About {college.shortName}</h2>
-                    <p className="text-gray-600 leading-relaxed">{college.description}</p>
-                    <p className="text-gray-600 leading-relaxed mt-4">
-                      {college.name} is a {college.type.toLowerCase()} university located in {college.location}. 
-                      With an enrollment of {college.enrollment.toLocaleString()} students and an acceptance rate of {college.acceptanceRate}%, 
-                      {college.shortName} is ranked #{college.ranking} nationally and offers a wide range of academic programs.
+                    <h2 className="text-xl font-bold text-gray-900 mb-4">About {college.name}</h2>
+                    <p className="text-gray-600 leading-relaxed">
+                      {college.name} is a {college.publicPrivate} {college.degreeLevel} institution located in {college.city}, {college.state}.
+                      {college.acceptanceRate && ` With an acceptance rate of ${college.acceptanceRate}%, `}
+                      {college.name} offers a comprehensive range of academic programs.
                     </p>
                   </div>
 
