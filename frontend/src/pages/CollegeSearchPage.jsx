@@ -181,10 +181,10 @@ const CollegeSearchPage = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8" style={{ width: '100%', maxWidth: '1600px' }}>
         <div className="flex gap-6">
-          {/* Left Sidebar - Filters */}
-          <div className={`${showFilters ? 'w-72' : 'w-0'} flex-shrink-0 transition-all duration-300 overflow-hidden`}>
+          {/* Left Sidebar - Filters - Fixed Width */}
+          <aside className="hidden lg:block" style={{ width: '288px', minWidth: '288px', flexShrink: 0 }}>
             <div className="bg-white rounded-md shadow-md border border-gray-200 p-5 sticky top-24">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="font-semibold text-gray-900">Filters</h3>
