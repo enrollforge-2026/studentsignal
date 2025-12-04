@@ -161,6 +161,7 @@ const ScholarshipsPage = () => {
 
   const handleLearnMore = (scholarship) => {
     console.log('Learn More clicked:', scholarship.name);
+    const formattedDeadline = formatDate(scholarship.deadline);
     // Create a visible modal/notification instead of alert
     const modal = document.createElement('div');
     modal.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 10000; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;';
@@ -169,7 +170,7 @@ const ScholarshipsPage = () => {
       <div style="margin-bottom: 12px;">
         <strong style="color: #f5a623; font-size: 20px;">${scholarship.amount}</strong>
       </div>
-      <p style="color: #666; margin-bottom: 8px;"><strong>Deadline:</strong> ${formatDate(scholarship.deadline)}</p>
+      <p style="color: #666; margin-bottom: 8px;"><strong>Deadline:</strong> ${formattedDeadline}</p>
       <p style="color: #666; margin-bottom: 8px;"><strong>Type:</strong> ${scholarship.type}</p>
       <p style="color: #666; margin-bottom: 8px;"><strong>Category:</strong> ${scholarship.category}</p>
       <p style="color: #333; margin: 16px 0;">${scholarship.description}</p>
