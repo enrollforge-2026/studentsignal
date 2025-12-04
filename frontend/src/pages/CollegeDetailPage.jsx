@@ -434,16 +434,20 @@ const CollegeDetailPage = () => {
                   <div className="bg-white rounded-2xl p-6 shadow-sm">
                     <h2 className="text-xl font-bold text-gray-900 mb-4">Cost of Attendance</h2>
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div className="bg-[#1a5d3a]/5 rounded-xl p-4">
-                        <p className="text-sm text-gray-500 mb-1">In-State Tuition</p>
-                        <p className="text-2xl font-bold text-[#1a5d3a]">${college.tuitionInState.toLocaleString()}</p>
-                        <p className="text-xs text-gray-500 mt-1">per year</p>
-                      </div>
-                      <div className="bg-[#f5a623]/10 rounded-xl p-4">
-                        <p className="text-sm text-gray-500 mb-1">Out-of-State Tuition</p>
-                        <p className="text-2xl font-bold text-[#f5a623]">${college.tuitionOutState.toLocaleString()}</p>
-                        <p className="text-xs text-gray-500 mt-1">per year</p>
-                      </div>
+                      {college.inStateTuition && (
+                        <div className="bg-[#1a5d3a]/5 rounded-xl p-4">
+                          <p className="text-sm text-gray-500 mb-1">In-State Tuition</p>
+                          <p className="text-2xl font-bold text-[#1a5d3a]">${college.inStateTuition.toLocaleString()}</p>
+                          <p className="text-xs text-gray-500 mt-1">per year</p>
+                        </div>
+                      )}
+                      {college.outStateTuition && (
+                        <div className="bg-[#f5a623]/10 rounded-xl p-4">
+                          <p className="text-sm text-gray-500 mb-1">Out-of-State Tuition</p>
+                          <p className="text-2xl font-bold text-[#f5a623]">${college.outStateTuition.toLocaleString()}</p>
+                          <p className="text-xs text-gray-500 mt-1">per year</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </TabsContent>
