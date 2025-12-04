@@ -5,7 +5,7 @@
 ### Test 1: Guest Chat on Homepage
 
 1. **Navigate to Homepage**
-   - URL: `https://studentui-stable.preview.emergentagent.com/`
+   - URL: `https://enrichment-hub-2.preview.emergentagent.com/`
    - Look for purple gradient chat button in bottom-right corner
 
 2. **Open Chat**
@@ -31,7 +31,7 @@
 ### Test 2: Authenticated Chat on Signal Hub
 
 1. **Login**
-   - Navigate to: `https://studentui-stable.preview.emergentagent.com/login`
+   - Navigate to: `https://enrichment-hub-2.preview.emergentagent.com/login`
    - Use test credentials:
      - Email: `elon_test@example.com`
      - Password: `test123`

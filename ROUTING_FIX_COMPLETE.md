@@ -270,7 +270,7 @@
 
 ## 🚀 DEPLOYMENT STATUS
 
-**Environment:** https://studentui-stable.preview.emergentagent.com
+**Environment:** https://enrichment-hub-2.preview.emergentagent.com
 
 **Status:** ✅ LIVE AND FUNCTIONAL
 

@@ -248,11 +248,11 @@ None. Old files were archived, new files were created from scratch.
 
 ## 🚀 DEPLOYMENT STATUS
 
-**Environment:** https://studentui-stable.preview.emergentagent.com
+**Environment:** https://enrichment-hub-2.preview.emergentagent.com
 
 **URLs:**
-- Student Login: `https://studentui-stable.preview.emergentagent.com/login`
-- Staff Login: `https://studentui-stable.preview.emergentagent.com/staff-login`
+- Student Login: `https://enrichment-hub-2.preview.emergentagent.com/login`
+- Staff Login: `https://enrichment-hub-2.preview.emergentagent.com/staff-login`
 
 **Status:** ✅ LIVE AND FUNCTIONAL
 
