@@ -203,6 +203,57 @@ class ScholarshipCreate(BaseModel):
     image: Optional[str] = None
 
 
+# UI-Optimized Flat Scholarship Model (for scholarships_ui collection)
+class ScholarshipUI(BaseDBModel):
+    """Flat, UI-friendly scholarship model"""
+    # Core Identity
+    id: str
+    slug: str
+    name: str
+    
+    # Financial
+    amount: str  # Display text
+    amountMin: Optional[int] = None
+    amountMax: Optional[int] = None
+    amountType: Optional[str] = None  # fixed, range, full-ride, unknown
+    
+    # Deadlines
+    deadline: Optional[datetime] = None  # ISO datetime
+    deadlineDisplay: Optional[str] = None  # Human-readable
+    isRolling: bool = False
+    
+    # Categorization
+    type: Optional[str] = None  # Merit-Based, Need-Based, Athletic
+    category: Optional[str] = None
+    tags: List[str] = []
+    
+    # Content
+    description: Optional[str] = None
+    eligibility: List[str] = []
+    
+    # Application Info
+    renewable: bool = False
+    applicationRequired: bool = True
+    website: Optional[str] = None
+    applicationUrl: Optional[str] = None
+    
+    # Sponsor
+    sponsor: Optional[str] = None
+    sponsorWebsite: Optional[str] = None
+    
+    # Metadata
+    imageUrl: Optional[str] = None
+    isActive: bool = True
+    featured: bool = False
+    
+    # Timestamps
+    createdAt: Optional[datetime] = None
+    updatedAt: Optional[datetime] = None
+    
+    # Source tracking
+    sourceCollection: Optional[str] = None
+
+
 # User Models
 class User(BaseDBModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
