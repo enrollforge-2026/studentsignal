@@ -197,25 +197,25 @@ const CollegeSearchPage = () => {
           <aside className="hidden lg:block" style={{ width: '288px', minWidth: '288px', flexShrink: 0 }}>
             <div className="bg-white rounded-md shadow-md border border-gray-200 p-5 sticky top-24">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="font-semibold text-gray-900">Filters</h3>
+                <h3 className="font-semibold text-gray-900">{siteContent.collegeSearch.filters.title}</h3>
                 <button
                   onClick={clearAllFilters}
                   className="text-sm text-[#1a5d3a] hover:underline"
                 >
-                  Clear all
+                  {siteContent.collegeSearch.filters.clearAll}
                 </button>
               </div>
 
               {/* Location */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Location
+                  {siteContent.collegeSearch.filters.labels.location}
                 </label>
                 <input
                   type="text"
                   value={filters.location}
                   onChange={(e) => handleFilterChange('location', e.target.value)}
-                  placeholder="City or State"
+                  placeholder={siteContent.collegeSearch.filters.placeholders.location}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
                 />
               </div>
@@ -223,7 +223,7 @@ const CollegeSearchPage = () => {
               {/* Level of Institution */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Level of Institution
+                  {siteContent.collegeSearch.filters.labels.levelOfInstitution}
                 </label>
                 <div className="space-y-2">
                   {['2-Year', '4-Year'].map(level => (
