@@ -9,7 +9,6 @@ import Footer from '../components/layout/Footer';
 import LeadCaptureModal from '../components/LeadCaptureModal';
 import { Button } from '../components/ui/button';
 import { Search, Bookmark, MapPin, ChevronDown, SlidersHorizontal, X } from 'lucide-react';
-import { transformCollegeForUI } from '../components/college/CollegeDataWrapper';
 
 const CollegesPageNew = () => {
   const [searchParams] = useSearchParams();
