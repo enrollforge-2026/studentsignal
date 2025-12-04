@@ -185,13 +185,16 @@ const CollegeDetailPage = () => {
                     <Share2 size={14} className="mr-1" />
                     Share
                   </Button>
-                  <Button 
-                    size="sm" 
-                    className="w-full md:w-auto flex-shrink-0 bg-[#f5a623] hover:bg-[#e09000] text-white text-xs md:text-sm justify-center"
-                  >
-                    <ExternalLink size={14} className="mr-1" />
-                    Visit Website
-                  </Button>
+                  {college.website && college.website !== '#' && (
+                    <Button 
+                      size="sm" 
+                      className="w-full md:w-auto flex-shrink-0 bg-[#f5a623] hover:bg-[#e09000] text-white text-xs md:text-sm justify-center"
+                      onClick={() => window.open(college.website, '_blank')}
+                    >
+                      <ExternalLink size={14} className="mr-1" />
+                      Visit Website
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
