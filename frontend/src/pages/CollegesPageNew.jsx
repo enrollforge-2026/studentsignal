@@ -66,7 +66,7 @@ const CollegesPageNew = () => {
       if (isAuthenticated) {
         try {
           const saved = await collegesAPI.getSavedColleges();
-          setSavedColleges(saved.map(c => c.ipedsId || c.id));
+          setSavedColleges(saved.map(c => c.ipedsId));
         } catch (error) {
           console.error('Error fetching saved colleges:', error);
         }
