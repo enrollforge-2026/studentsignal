@@ -482,18 +482,14 @@ const CollegeDetailPage = () => {
               <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                 <h3 className="font-bold text-gray-900 mb-4">Contact Information</h3>
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-gray-600">
-                    <Globe size={18} className="text-[#1a5d3a]" />
-                    <span className="text-sm">www.{college.shortName.toLowerCase().replace(/\s/g, '')}.edu</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-gray-600">
-                    <Phone size={18} className="text-[#1a5d3a]" />
-                    <span className="text-sm">(555) 123-4567</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-gray-600">
-                    <Mail size={18} className="text-[#1a5d3a]" />
-                    <span className="text-sm">admissions@{college.shortName.toLowerCase().replace(/\s/g, '')}.edu</span>
-                  </div>
+                  {college.website && (
+                    <div className="flex items-center gap-3 text-gray-600">
+                      <Globe size={18} className="text-[#1a5d3a]" />
+                      <a href={college.website} target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[#1a5d3a]">
+                        {college.website.replace('https://', '').replace('http://', '')}
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
 
