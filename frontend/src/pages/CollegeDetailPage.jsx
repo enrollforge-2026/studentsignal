@@ -164,7 +164,7 @@ const CollegeDetailPage = () => {
                   <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2 truncate">{college.name}</h1>
                   <div className="flex flex-wrap items-center gap-2 text-white/90 text-sm">
                     <MapPin size={16} className="flex-shrink-0" />
-                    <span className="truncate">{college.city}, {college.state}</span>
+                    <span className="truncate">{formatLocation(college.city, college.state)}</span>
                   </div>
                 </div>
                 
