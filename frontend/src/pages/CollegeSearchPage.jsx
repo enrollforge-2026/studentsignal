@@ -252,8 +252,7 @@ const CollegeSearchPage = () => {
 
               {/* Cost */}
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  <DollarSign className="inline mr-2" size={16} />
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Cost (Avg Net Price)
                 </label>
                 <div className="space-y-2">
@@ -262,14 +261,14 @@ const CollegeSearchPage = () => {
                     value={filters.minCost}
                     onChange={(e) => handleFilterChange('minCost', e.target.value)}
                     placeholder="Min $"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
                   />
                   <input
                     type="number"
                     value={filters.maxCost}
                     onChange={(e) => handleFilterChange('maxCost', e.target.value)}
                     placeholder="Max $"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#1a5d3a]/20 focus:border-[#1a5d3a]"
                   />
                 </div>
               </div>
