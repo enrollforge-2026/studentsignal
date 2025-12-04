@@ -514,17 +514,17 @@ const CollegeCard = ({ college, onClick }) => {
       </div>
 
       {/* Card Content */}
-      <div className="p-4 flex flex-col flex-1">
-        <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-2 min-h-[3.5rem]">
+      <div className="p-4 flex flex-col" style={{ flex: '1 1 auto', minHeight: '288px', overflow: 'hidden' }}>
+        <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-2" style={{ height: '3.5rem', minHeight: '3.5rem' }}>
           {college.name}
         </h3>
         
-        <p className="text-sm text-gray-600 mb-4">
+        <p className="text-sm text-gray-600 mb-4" style={{ height: '1.25rem', minHeight: '1.25rem' }}>
           {formatLocation(college.city, college.state)}
         </p>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
+        <div className="grid grid-cols-2 gap-3 mb-4 text-sm" style={{ flexGrow: 1 }}>
           <div>
             <p className="text-gray-500 text-xs mb-1">Acceptance Rate</p>
             <p className="font-semibold text-gray-900">
