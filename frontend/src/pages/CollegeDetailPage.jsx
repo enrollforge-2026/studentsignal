@@ -151,12 +151,12 @@ const CollegeDetailPage = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2 mb-3">
                     {college.publicPrivate && (
-                      <span className="bg-[#1a5d3a] text-white text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full">
+                      <span className={`${getBadgeColors(college.publicPrivate).bg} ${getBadgeColors(college.publicPrivate).text} text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full`}>
                         {college.publicPrivate}
                       </span>
                     )}
                     {college.degreeLevel && (
-                      <span className="text-white/80 text-xs sm:text-sm whitespace-nowrap">
+                      <span className="bg-white/20 text-white text-xs sm:text-sm font-medium px-2 sm:px-3 py-1 rounded-full whitespace-nowrap">
                         {college.degreeLevel}
                       </span>
                     )}
