@@ -169,7 +169,7 @@ const ScholarshipsPage = () => {
       <div style="margin-bottom: 12px;">
         <strong style="color: #f5a623; font-size: 20px;">${scholarship.amount}</strong>
       </div>
-      <p style="color: #666; margin-bottom: 8px;"><strong>Deadline:</strong> ${scholarship.deadline}</p>
+      <p style="color: #666; margin-bottom: 8px;"><strong>Deadline:</strong> ${formatDate(scholarship.deadline)}</p>
       <p style="color: #666; margin-bottom: 8px;"><strong>Type:</strong> ${scholarship.type}</p>
       <p style="color: #666; margin-bottom: 8px;"><strong>Category:</strong> ${scholarship.category}</p>
       <p style="color: #333; margin: 16px 0;">${scholarship.description}</p>
