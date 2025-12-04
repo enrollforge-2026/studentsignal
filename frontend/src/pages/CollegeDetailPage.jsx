@@ -386,30 +386,13 @@ const CollegeDetailPage = () => {
                 </div>
               </div>
 
-              {/* Important dates */}
+              {/* Location Info */}
               <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                <h3 className="font-bold text-gray-900 mb-4">Important Dates</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <Calendar size={18} className="text-[#f5a623]" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Early Decision</p>
-                      <p className="text-xs text-gray-500">November 1</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Calendar size={18} className="text-[#f5a623]" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Regular Decision</p>
-                      <p className="text-xs text-gray-500">January 15</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Calendar size={18} className="text-[#f5a623]" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Financial Aid</p>
-                      <p className="text-xs text-gray-500">March 2</p>
-                    </div>
+                <h3 className="font-bold text-gray-900 mb-4">Location</h3>
+                <div className="flex items-center gap-3 text-gray-600">
+                  <MapPin size={18} className="text-[#1a5d3a]" />
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">{formatLocation(college.city, college.state)}</p>
                   </div>
                 </div>
               </div>
