@@ -474,9 +474,10 @@ const CollegeCard = ({ college, onClick }) => {
     <div
       onClick={onClick}
       className="bg-white rounded-md shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-200 cursor-pointer flex flex-col"
+      style={{ minHeight: '480px', maxHeight: '480px', height: '480px' }}
     >
-      {/* College Image */}
-      <div className="relative h-48 bg-gray-200">
+      {/* College Image - Fixed Height */}
+      <div className="relative bg-gray-200" style={{ height: '192px', minHeight: '192px', maxHeight: '192px', flexShrink: 0 }}>
         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-500 to-teal-600">
           <span className="text-6xl font-bold text-white opacity-50">
             {college.name.substring(0, 1)}
