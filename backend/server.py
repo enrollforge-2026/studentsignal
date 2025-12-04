@@ -336,16 +336,20 @@ async def get_scholarships(
     category: Optional[str] = Query(None),
     type: Optional[str] = Query(None),
     renewable: Optional[bool] = Query(None),
+    min_amount: Optional[int] = Query(None),
+    max_amount: Optional[int] = Query(None),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100)
 ):
-    """Get list of scholarships with filters"""
-    query = {}
+    """Get list of scholarships with filters - UI-optimized flat schema"""
+    query = {'isActive': True}  # Only return active scholarships
     
     if search:
         query['$or'] = [
             {'name': {'$regex': search, '$options': 'i'}},
-            {'description': {'$regex': search, '$options': 'i'}}
+            {'description': {'$regex': search, '$options': 'i'}},
+            {'sponsor': {'$regex': search, '$options': 'i'}},
+            {'tags': {'$regex': search, '$options': 'i'}}
         ]
     
     if category:
@@ -357,12 +361,22 @@ async def get_scholarships(
     if renewable is not None:
         query['renewable'] = renewable
     
+    # Amount filtering (using amountMax for filtering)
+    if min_amount is not None or max_amount is not None:
+        amount_query = {}
+        if min_amount is not None:
+            amount_query['$gte'] = min_amount
+        if max_amount is not None:
+            amount_query['$lte'] = max_amount
+        if amount_query:
+            query['amountMax'] = amount_query
+    
     # Get total count
-    total = await scholarships_collection.count_documents(query)
+    total = await scholarships_ui_collection.count_documents(query)
     
     # Get paginated results
     skip = (page - 1) * limit
-    scholarships = await scholarships_collection.find(query, {"_id": 0}).skip(skip).limit(limit).to_list(limit)
+    scholarships = await scholarships_ui_collection.find(query, {"_id": 0}).skip(skip).limit(limit).to_list(limit)
     
     return {
         "scholarships": scholarships,
@@ -373,10 +387,14 @@ async def get_scholarships(
     }
 
 
-@api_router.get("/scholarships/{scholarship_id}", response_model=Scholarship)
+@api_router.get("/scholarships/{scholarship_id}", response_model=ScholarshipUI)
 async def get_scholarship(scholarship_id: str):
-    """Get single scholarship by ID"""
-    scholarship = await scholarships_collection.find_one({"id": scholarship_id}, {"_id": 0})
+    """Get single scholarship by ID or slug"""
+    # Try to find by ID first, then by slug
+    scholarship = await scholarships_ui_collection.find_one(
+        {"$or": [{"id": scholarship_id}, {"slug": scholarship_id}]},
+        {"_id": 0}
+    )
     if not scholarship:
         raise HTTPException(status_code=404, detail="Scholarship not found")
     return scholarship
