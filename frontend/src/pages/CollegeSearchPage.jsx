@@ -564,7 +564,7 @@ const CollegeCard = ({ college, onClick }) => {
 
         {/* CTA Button */}
         <button className="w-full mt-auto py-2.5 px-4 border-2 border-[#1a5d3a] text-[#1a5d3a] rounded-md font-semibold hover:bg-[#1a5d3a]/5 transition-colors">
-          Will you get accepted?
+          {siteContent.collegeSearch.card.ctaButton}
         </button>
       </div>
     </div>
