@@ -616,7 +616,7 @@ const CollegesPageNew = () => {
                     {/* College Image */}
                     <div className="relative h-48">
                       <img
-                        src={college.image}
+                        src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80"
                         alt={college.name}
                         className="w-full h-full object-cover"
                       />
