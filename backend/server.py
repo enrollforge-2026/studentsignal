@@ -486,15 +486,15 @@ async def unsave_college(
     return {"message": "College removed from saved list"}
 
 
-@api_router.get("/users/saved-colleges", response_model=List[College])
+@api_router.get("/users/saved-colleges", response_model=List[CollegeUI])
 async def get_saved_colleges(email: str = Depends(get_current_user_email)):
-    """Get user's saved colleges"""
+    """Get user's saved colleges - UI-optimized"""
     user = await users_collection.find_one({"email": email})
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
     saved_ids = user.get('saved_colleges', [])
-    colleges = await colleges_collection.find({"ipedsId": {"$in": saved_ids}}, {"_id": 0}).to_list(100)
+    colleges = await colleges_ui_collection.find({"ipedsId": {"$in": saved_ids}}, {"_id": 0}).to_list(100)
     return colleges
 
 
