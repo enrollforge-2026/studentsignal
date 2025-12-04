@@ -37,7 +37,7 @@ from auth import (
     get_current_user_email, get_current_admin_email, ACCESS_TOKEN_EXPIRE_MINUTES
 )
 from database import (
-    db, colleges_collection, colleges_ui_collection, scholarships_collection,
+    db, colleges_collection, colleges_ui_collection, scholarships_collection, scholarships_ui_collection,
     users_collection, ipeds_sync_collection, leads_collection, articles_collection, todos_collection,
     institutions_collection, high_schools_collection, mega_menu_features_collection,
     announcement_bars_collection,
