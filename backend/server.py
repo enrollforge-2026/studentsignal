@@ -204,38 +204,34 @@ async def complete_onboarding(
 async def get_colleges(
     search: Optional[str] = Query(None),
     state: Optional[str] = Query(None),
-    type: Optional[str] = Query(None),
+    control: Optional[int] = Query(None),
     min_tuition: Optional[int] = Query(None),
     max_tuition: Optional[int] = Query(None),
-    direct_admission: Optional[bool] = Query(None),
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100)
 ):
-    """Get list of colleges with filters"""
+    """Get list of colleges with filters - IPEDS 2022 schema"""
     query = {}
     
     if search:
         query['$or'] = [
             {'name': {'$regex': search, '$options': 'i'}},
-            {'short_name': {'$regex': search, '$options': 'i'}},
-            {'location': {'$regex': search, '$options': 'i'}}
+            {'alias': {'$regex': search, '$options': 'i'}},
+            {'location.city': {'$regex': search, '$options': 'i'}}
         ]
     
     if state:
-        query['state'] = state
+        query['location.state'] = state
     
-    if type:
-        query['type'] = type
+    if control:
+        query['control'] = control
     
     if min_tuition is not None or max_tuition is not None:
-        query['tuition_in_state'] = {}
+        query['financials.tuitionInState'] = {}
         if min_tuition is not None:
-            query['tuition_in_state']['$gte'] = min_tuition
+            query['financials.tuitionInState']['$gte'] = min_tuition
         if max_tuition is not None:
-            query['tuition_in_state']['$lte'] = max_tuition
-    
-    if direct_admission is not None:
-        query['direct_admission'] = direct_admission
+            query['financials.tuitionInState']['$lte'] = max_tuition
     
     # Get total count
     total = await colleges_collection.count_documents(query)
