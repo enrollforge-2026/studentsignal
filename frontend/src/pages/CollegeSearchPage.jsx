@@ -212,8 +212,7 @@ const CollegeSearchPage = () => {
 
               {/* Level of Institution */}
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  <GraduationCap className="inline mr-2" size={16} />
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Level of Institution
                 </label>
                 <div className="space-y-2">
@@ -223,7 +222,7 @@ const CollegeSearchPage = () => {
                         type="checkbox"
                         checked={filters.degreeLevel.includes(level)}
                         onChange={() => handleCheckboxFilter('degreeLevel', level)}
-                        className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                        className="w-4 h-4 text-[#1a5d3a] border-gray-300 rounded focus:ring-[#1a5d3a]"
                       />
                       <span className="ml-2 text-sm text-gray-700">{level}</span>
                     </label>
