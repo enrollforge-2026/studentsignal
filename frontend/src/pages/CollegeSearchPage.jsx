@@ -187,12 +187,12 @@ const CollegeSearchPage = () => {
           <div className={`${showFilters ? 'w-72' : 'w-0'} flex-shrink-0 transition-all duration-300 overflow-hidden`}>
             <div className="bg-white rounded-md shadow-md border border-gray-200 p-5 sticky top-24">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-bold text-gray-900">Filters</h2>
+                <h3 className="font-semibold text-gray-900">Filters</h3>
                 <button
                   onClick={clearAllFilters}
-                  className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
+                  className="text-sm text-[#1a5d3a] hover:underline"
                 >
-                  Clear All
+                  Clear all
                 </button>
               </div>
 
