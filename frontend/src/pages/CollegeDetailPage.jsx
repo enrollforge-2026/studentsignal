@@ -207,40 +207,40 @@ const CollegeDetailPage = () => {
         <div className="bg-white border-b border-gray-200">
           <div className="w-full max-w-6xl mx-auto px-4 py-4 sm:py-6">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-6">
-              {college.acceptanceRate && (
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                  <GraduationCap size={20} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">{formatPercentage(college.acceptanceRate)}</p>
+                <p className="text-sm text-gray-500">Acceptance Rate</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                  <DollarSign size={20} />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">{formatCurrency(college.inStateTuition)}</p>
+                <p className="text-sm text-gray-500">In-State Tuition</p>
+              </div>
+              {(college.satAvg || college.actAvg) && (
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
-                    <GraduationCap size={20} />
+                    <BookOpen size={20} />
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">{college.acceptanceRate}%</p>
-                  <p className="text-sm text-gray-500">Acceptance Rate</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {college.satAvg ? formatTestScore(college.satAvg) : formatTestScore(college.actAvg)}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {college.satAvg ? 'SAT Average' : 'ACT Average'}
+                  </p>
                 </div>
               )}
-              {college.inStateTuition && (
+              {college.avgNetPrice && (
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
                     <DollarSign size={20} />
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">${college.inStateTuition.toLocaleString()}</p>
-                  <p className="text-sm text-gray-500">In-State Tuition</p>
-                </div>
-              )}
-              {college.satAvg && (
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
-                    <BookOpen size={20} />
-                  </div>
-                  <p className="text-2xl font-bold text-gray-900">{college.satAvg}</p>
-                  <p className="text-sm text-gray-500">SAT Average</p>
-                </div>
-              )}
-              {college.actAvg && (
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
-                    <BookOpen size={20} />
-                  </div>
-                  <p className="text-2xl font-bold text-gray-900">{college.actAvg}</p>
-                  <p className="text-sm text-gray-500">ACT Average</p>
+                  <p className="text-2xl font-bold text-gray-900">{formatCurrency(college.avgNetPrice)}</p>
+                  <p className="text-sm text-gray-500">Avg Net Price</p>
                 </div>
               )}
             </div>
