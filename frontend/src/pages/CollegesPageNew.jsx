@@ -669,45 +669,51 @@ const CollegesPageNew = () => {
                         </div>
                       </div>
 
-                      <div className="space-y-2 mb-3">
-                        <div>
-                          <div className="flex items-baseline justify-between mb-1">
-                            <span className="text-xs text-gray-600">Average ACT Composite:</span>
-                            <span className="text-sm font-bold text-gray-900">
-                              {(college.actRange || '0-0').split('-')[0]}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs text-gray-500">0</span>
-                            <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
-                              <div 
-                                className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
-                                style={{ width: `${(parseInt((college.actRange || '0-0').split('-')[0]) / 36) * 100}%` }}
-                              ></div>
+                      {(college.actAvg || college.satAvg) && (
+                        <div className="space-y-2 mb-3">
+                          {college.actAvg && (
+                            <div>
+                              <div className="flex items-baseline justify-between mb-1">
+                                <span className="text-xs text-gray-600">Average ACT Composite:</span>
+                                <span className="text-sm font-bold text-gray-900">
+                                  {college.actAvg}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-gray-500">0</span>
+                                <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
+                                  <div 
+                                    className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
+                                    style={{ width: `${(college.actAvg / 36) * 100}%` }}
+                                  ></div>
+                                </div>
+                                <span className="text-xs text-gray-500">36</span>
+                              </div>
                             </div>
-                            <span className="text-xs text-gray-500">36</span>
-                          </div>
-                        </div>
+                          )}
 
-                        <div>
-                          <div className="flex items-baseline justify-between mb-1">
-                            <span className="text-xs text-gray-600">Average SAT Composite:</span>
-                            <span className="text-sm font-bold text-gray-900">
-                              {(college.satRange || '0-0').split('-')[0]}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs text-gray-500">0</span>
-                            <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
-                              <div 
-                                className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
-                                style={{ width: `${(parseInt((college.satRange || '0-0').split('-')[0]) / 1600) * 100}%` }}
-                              ></div>
+                          {college.satAvg && (
+                            <div>
+                              <div className="flex items-baseline justify-between mb-1">
+                                <span className="text-xs text-gray-600">Average SAT Composite:</span>
+                                <span className="text-sm font-bold text-gray-900">
+                                  {college.satAvg}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-gray-500">0</span>
+                                <div className="flex-1 h-2 bg-gray-200 rounded-full relative overflow-hidden">
+                                  <div 
+                                    className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#1a5d3a] to-[#2d8659] rounded-full"
+                                    style={{ width: `${(college.satAvg / 1600) * 100}%` }}
+                                  ></div>
+                                </div>
+                                <span className="text-xs text-gray-500">1600</span>
+                              </div>
                             </div>
-                            <span className="text-xs text-gray-500">1600</span>
-                          </div>
+                          )}
                         </div>
-                      </div>
+                      )}
 
                       <div className="mt-auto pt-2 border-t border-gray-100">
                         <div className="flex gap-2">
