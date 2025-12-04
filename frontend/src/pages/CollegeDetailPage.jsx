@@ -264,8 +264,8 @@ const CollegeDetailPage = () => {
                   <div className="bg-white rounded-2xl p-6 shadow-sm">
                     <h2 className="text-xl font-bold text-gray-900 mb-4">About {college.name}</h2>
                     <p className="text-gray-600 leading-relaxed">
-                      {college.name} is a {college.publicPrivate} {college.degreeLevel} institution located in {college.city}, {college.state}.
-                      {college.acceptanceRate && ` With an acceptance rate of ${college.acceptanceRate}%, `}
+                      {college.name} is a {college.publicPrivate} {college.degreeLevel} institution located in {formatLocation(college.city, college.state)}.
+                      {college.acceptanceRate && ` With an acceptance rate of ${formatPercentage(college.acceptanceRate)}, `}
                       {college.name} offers a comprehensive range of academic programs.
                     </p>
                   </div>
