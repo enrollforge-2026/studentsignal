@@ -7,7 +7,7 @@ import { AuthProvider } from './context/AuthContext';
 
 // Pages
 import HomePage from "./pages/HomePage";
-import CollegesPage from "./pages/CollegesPageNew";
+import CollegeSearchPage from "./pages/CollegeSearchPage";
 import CollegeDetailPage from "./pages/CollegeDetailPage";
 import ScholarshipsPage from "./pages/ScholarshipsPage";
 import SignupPage from "./pages/SignupPage";
