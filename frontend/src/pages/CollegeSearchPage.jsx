@@ -181,11 +181,11 @@ const CollegeSearchPage = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex gap-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex gap-6">
           {/* Left Sidebar - Filters */}
           <div className={`${showFilters ? 'w-72' : 'w-0'} flex-shrink-0 transition-all duration-300 overflow-hidden`}>
-            <div className="bg-white rounded-lg shadow-sm p-6 sticky top-4">
+            <div className="bg-white rounded-md shadow-md border border-gray-200 p-5 sticky top-24">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-bold text-gray-900">Filters</h2>
                 <button
