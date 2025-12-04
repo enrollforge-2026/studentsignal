@@ -461,7 +461,8 @@ const CollegeSearchPage = () => {
       </div>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 
