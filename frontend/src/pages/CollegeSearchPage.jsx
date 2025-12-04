@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { Search, MapPin, DollarSign, GraduationCap, Award, ChevronDown, SlidersHorizontal } from 'lucide-react';
-import Navbar from '../components/layout/Navbar';
+import TopExperienceLayer from '../components/top/TopExperienceLayer';
 import Footer from '../components/layout/Footer';
 import { formatCurrency, formatPercentage, formatTestScore, formatLocation } from '../utils/formatters';
 
