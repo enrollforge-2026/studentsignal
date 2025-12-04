@@ -7,7 +7,6 @@ import { collegesAPI } from '../services/api';
 import { Button } from '../components/ui/button';
 import { toast } from 'sonner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { Progress } from '../components/ui/progress';
 import { 
   formatCurrency, 
   formatPercentage, 
