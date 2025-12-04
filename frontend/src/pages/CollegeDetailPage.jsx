@@ -75,7 +75,7 @@ const CollegeDetailPage = () => {
       try {
         setLoading(true);
         const data = await collegesAPI.getCollege(id);
-        setCollegeRaw(data);
+        setCollege(data);
         setError(null);
       } catch (err) {
         console.error('Error fetching college:', err);
