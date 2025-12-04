@@ -336,7 +336,7 @@ const CollegeSearchPage = () => {
           {/* Right Content - Results */}
           <div className="flex-1">
             {/* Results Header */}
-            <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div className="bg-white rounded-md shadow-md border border-gray-200 p-4 mb-5">
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-4">
                   <button
