@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { states, majorsList } from '../data/mockData';
@@ -9,6 +9,14 @@ import Footer from '../components/layout/Footer';
 import LeadCaptureModal from '../components/LeadCaptureModal';
 import { Button } from '../components/ui/button';
 import { Search, Bookmark, MapPin, ChevronDown, SlidersHorizontal, X } from 'lucide-react';
+import { 
+  formatCurrency, 
+  formatPercentage, 
+  formatTestScore, 
+  formatLocation,
+  formatCollegeTag,
+  getBadgeColors 
+} from '../utils/formatters';
 
 const CollegesPageNew = () => {
   const [searchParams] = useSearchParams();
