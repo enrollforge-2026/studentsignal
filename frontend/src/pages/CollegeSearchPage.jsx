@@ -142,8 +142,18 @@ const CollegeSearchPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50" style={{ overflowAnchor: 'none' }}>
-      <TopExperienceLayer />
+    <>
+      <style>{`
+        /* Layout Stability CSS */
+        .college-search-container * {
+          overflow-anchor: none !important;
+        }
+        .college-search-container img {
+          content-visibility: auto;
+        }
+      `}</style>
+      <div className="min-h-screen bg-gray-50 college-search-container" style={{ overflowAnchor: 'none' }}>
+        <TopExperienceLayer />
       
       {/* Hero Section - Fixed Height */}
       <div className="relative bg-gradient-to-br from-teal-50 via-blue-50 to-purple-50 py-16 px-4" style={{ minHeight: '350px', height: '350px' }}>
