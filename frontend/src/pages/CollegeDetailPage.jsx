@@ -16,10 +16,6 @@ import {
   getBadgeColors 
 } from '../utils/formatters';
 import {
-  BarChart, Bar, PieChart, Pie, Cell, LineChart, Line,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
-} from 'recharts';
-import {
   MapPin,
   GraduationCap,
   DollarSign,
