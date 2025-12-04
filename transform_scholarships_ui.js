@@ -250,13 +250,50 @@ function generateTags(type, category) {
 }
 
 /**
+ * Load enrichment data from JSON file
+ */
+function loadEnrichmentData() {
+  const fs = require('fs');
+  const path = require('path');
+  const enrichmentPath = path.join(__dirname, 'scholarship_manual_enrichment.json');
+  
+  if (!fs.existsSync(enrichmentPath)) {
+    console.warn('⚠️  Enrichment file not found. Scholarships will have null sponsor/website fields.');
+    return {};
+  }
+
+  try {
+    const enrichmentFile = fs.readFileSync(enrichmentPath, 'utf8');
+    const enrichmentData = JSON.parse(enrichmentFile);
+    
+    // Convert array format to slug-based lookup object
+    const enrichmentMap = {};
+    if (enrichmentData.scholarships && Array.isArray(enrichmentData.scholarships)) {
+      enrichmentData.scholarships.forEach(scholarship => {
+        if (scholarship.slug && scholarship.enrichment_data) {
+          enrichmentMap[scholarship.slug] = scholarship.enrichment_data;
+        }
+      });
+    }
+    
+    return enrichmentMap;
+  } catch (error) {
+    console.error('❌ Error loading enrichment data:', error.message);
+    return {};
+  }
+}
+
+/**
  * Transform single scholarship record
  */
-function transformScholarship(scholarship) {
+function transformScholarship(scholarship, enrichmentData = {}) {
   const amountParsed = parseAmountString(scholarship.amount);
   const deadlineISO = parseDeadlineString(scholarship.deadline);
   const slug = slugify(scholarship.name);
   const tags = generateTags(scholarship.type, scholarship.category);
+
+  // Get enrichment data for this scholarship
+  const enrichment = enrichmentData[slug] || {};
 
   return {
     // Core Identity
@@ -287,12 +324,12 @@ function transformScholarship(scholarship) {
     // Application Info
     renewable: scholarship.renewable,
     applicationRequired: scholarship.application_required,
-    website: null, // To be enriched manually
-    applicationUrl: null, // To be enriched manually
+    website: enrichment.website || null,
+    applicationUrl: enrichment.applicationUrl || null,
 
     // Sponsor
-    sponsor: null, // To be enriched manually
-    sponsorWebsite: null, // To be enriched manually
+    sponsor: enrichment.sponsor || null,
+    sponsorWebsite: enrichment.website || null, // Use same as website for now
 
     // Metadata
     imageUrl: scholarship.image,
