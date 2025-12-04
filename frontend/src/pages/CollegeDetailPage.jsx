@@ -325,14 +325,9 @@ const CollegeDetailPage = () => {
                 <TabsContent value="academics" className="space-y-6">
                   <div className="bg-white rounded-2xl p-6 shadow-sm">
                     <h2 className="text-xl font-bold text-gray-900 mb-4">Popular Majors</h2>
-                    <div className="grid grid-cols-2 gap-3">
-                      {college.majors.map((major, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-gray-700">
-                          <CheckCircle size={16} className="text-[#1a5d3a]" />
-                          <span>{major}</span>
-                        </div>
-                      ))}
-                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Major program information is not currently available. Please visit the college website for detailed academic offerings.
+                    </p>
                   </div>
 
                   <div className="bg-white rounded-2xl p-6 shadow-sm">
