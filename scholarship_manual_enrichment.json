@@ -1,53 +1,128 @@
 {
-  "instructions": "Fill in missing sponsor and website information for each scholarship. This data will be merged in Phase 2.5.",
-  "scholarships": {
-    "national-merit-scholarship": {
-      "sponsor": "",
-      "sponsorWebsite": "",
-      "website": "",
-      "applicationUrl": ""
+  "instructions": {
+    "purpose": "Manual enrichment for 8 scholarships - Phase 2.5",
+    "status": "AWAITING USER INPUT",
+    "fields_needed": [
+      "sponsor: Organization/institution offering the scholarship (e.g., 'National Merit Scholarship Corporation', 'The Coca-Cola Foundation')",
+      "website: Official scholarship information page (full URL starting with https://)",
+      "applicationUrl: Direct link to application portal or form (full URL starting with https://)"
+    ],
+    "validation": {
+      "sponsor": "String, 5-100 characters, organization name",
+      "website": "Valid URL (https://), preferably official .org/.edu/.com domain",
+      "applicationUrl": "Valid URL (https://), direct application link"
     },
-    "coca-cola-scholars-program": {
-      "sponsor": "",
-      "sponsorWebsite": "",
-      "website": "",
-      "applicationUrl": ""
+    "notes": [
+      "For MOCK scholarships: Use realistic but clearly fictional data (e.g., 'Mock Foundation for X', 'https://example.com/scholarship-x')",
+      "All URLs must start with 'https://'",
+      "sponsor should be the full organization name, not abbreviated",
+      "website and applicationUrl can be the same if application is on the main page"
+    ]
+  },
+  "scholarships": [
+    {
+      "slug": "national-merit-scholarship",
+      "name": "National Merit Scholarship",
+      "amount": "Up to $2,500",
+      "deadline": "October 15, 2025",
+      "type": "Merit-Based",
+      "category": "Academic Excellence",
+      "enrichment_data": {
+        "sponsor": "",
+        "website": "",
+        "applicationUrl": ""
+      }
     },
-    "gates-scholarship": {
-      "sponsor": "",
-      "sponsorWebsite": "",
-      "website": "",
-      "applicationUrl": ""
+    {
+      "slug": "coca-cola-scholars-program",
+      "name": "Coca-Cola Scholars Program",
+      "amount": "$20,000",
+      "deadline": "October 31, 2025",
+      "type": "Merit-Based",
+      "category": "Leadership",
+      "enrichment_data": {
+        "sponsor": "",
+        "website": "",
+        "applicationUrl": ""
+      }
     },
-    "stem-excellence-scholarship": {
-      "sponsor": "",
-      "sponsorWebsite": "",
-      "website": "",
-      "applicationUrl": ""
+    {
+      "slug": "gates-scholarship",
+      "name": "Gates Scholarship",
+      "amount": "Full Cost of Attendance",
+      "deadline": "September 15, 2025",
+      "type": "Need-Based",
+      "category": "Minority Students",
+      "enrichment_data": {
+        "sponsor": "",
+        "website": "",
+        "applicationUrl": ""
+      }
     },
-    "first-generation-college-scholarship": {
-      "sponsor": "",
-      "sponsorWebsite": "",
-      "website": "",
-      "applicationUrl": ""
+    {
+      "slug": "stem-excellence-scholarship",
+      "name": "STEM Excellence Scholarship",
+      "amount": "$5,000",
+      "deadline": "January 15, 2026",
+      "type": "Merit-Based",
+      "category": "STEM",
+      "enrichment_data": {
+        "sponsor": "",
+        "website": "",
+        "applicationUrl": ""
+      }
     },
-    "athletic-excellence-scholarship": {
-      "sponsor": "",
-      "sponsorWebsite": "",
-      "website": "",
-      "applicationUrl": ""
+    {
+      "slug": "first-generation-college-scholarship",
+      "name": "First Generation College Scholarship",
+      "amount": "$10,000",
+      "deadline": "December 1, 2025",
+      "type": "Need-Based",
+      "category": "First Generation",
+      "enrichment_data": {
+        "sponsor": "",
+        "website": "",
+        "applicationUrl": ""
+      }
     },
-    "women-in-technology-scholarship": {
-      "sponsor": "",
-      "sponsorWebsite": "",
-      "website": "",
-      "applicationUrl": ""
+    {
+      "slug": "athletic-excellence-scholarship",
+      "name": "Athletic Excellence Scholarship",
+      "amount": "$15,000",
+      "deadline": "November 30, 2025",
+      "type": "Athletic",
+      "category": "Sports",
+      "enrichment_data": {
+        "sponsor": "",
+        "website": "",
+        "applicationUrl": ""
+      }
     },
-    "community-service-leadership-award": {
-      "sponsor": "",
-      "sponsorWebsite": "",
-      "website": "",
-      "applicationUrl": ""
+    {
+      "slug": "women-in-technology-scholarship",
+      "name": "Women in Technology Scholarship",
+      "amount": "$7,500",
+      "deadline": "February 28, 2026",
+      "type": "Merit-Based",
+      "category": "Women in STEM",
+      "enrichment_data": {
+        "sponsor": "",
+        "website": "",
+        "applicationUrl": ""
+      }
+    },
+    {
+      "slug": "community-service-leadership-award",
+      "name": "Community Service Leadership Award",
+      "amount": "$3,000",
+      "deadline": "March 31, 2026",
+      "type": "Merit-Based",
+      "category": "Community Service",
+      "enrichment_data": {
+        "sponsor": "",
+        "website": "",
+        "applicationUrl": ""
+      }
     }
-  }
+  ]
 }
