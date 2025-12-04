@@ -453,16 +453,21 @@ async def save_college(
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
-    # Check if college exists
-    college = await colleges_collection.find_one({"ipedsId": item.item_id})
+    # Check if college exists (check by ipedsId or slug)
+    college = await colleges_ui_collection.find_one({
+        "$or": [{"ipedsId": item.item_id}, {"slug": item.item_id}]
+    })
     if not college:
         raise HTTPException(status_code=404, detail="College not found")
     
+    # Store ipedsId for consistency
+    college_id = college.get('ipedsId', item.item_id)
+    
     # Add to saved list if not already saved
-    if item.item_id not in user.get('saved_colleges', []):
+    if college_id not in user.get('saved_colleges', []):
         await users_collection.update_one(
             {"email": email},
-            {"$push": {"saved_colleges": item.item_id}, "$set": {"updated_at": datetime.utcnow().isoformat()}}
+            {"$push": {"saved_colleges": college_id}, "$set": {"updated_at": datetime.utcnow().isoformat()}}
         )
     
     return {"message": "College saved successfully"}
