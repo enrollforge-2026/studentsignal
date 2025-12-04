@@ -270,7 +270,7 @@
 
 ## 🚀 DEPLOYMENT STATUS
 
-**Environment:** https://enrichment-hub-2.preview.emergentagent.com
+**Environment:** https://studentview.preview.emergentagent.com
 
 **Status:** ✅ LIVE AND FUNCTIONAL
 

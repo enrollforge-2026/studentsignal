@@ -481,7 +481,7 @@ agent_communication:
       ✅ COMPREHENSIVE BACKEND TESTING RESULTS:
       - Created and executed backend_test.py with 21 comprehensive API tests
       - 100% success rate across all endpoints and functionality
-      - Backend URL: https://enrichment-hub-2.preview.emergentagent.com/api
+      - Backend URL: https://studentview.preview.emergentagent.com/api
       
       ✅ ROOT ENDPOINT TESTING:
       - GET /api/ returns correct API info with version 1.0.0 and endpoints list
