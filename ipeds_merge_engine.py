@@ -184,7 +184,7 @@ for idx, row in base.iterrows():
         # Enrollment
         undergrad = safe_int(row.get('EFTOTLT'))
         
-        # Race/Ethnicity percentages
+        # Race/Ethnicity percentages (updated mapping)
         race_eth_pct = {}
         if undergrad and undergrad > 0:
             race_cols = {
@@ -192,15 +192,15 @@ for idx, row in base.iterrows():
                 'hispanic': 'EFHISPT',
                 'white': 'EFWHITT',
                 'asian': 'EFASIAT',
-                'nativeHawaiian': 'EFNHPIT',
+                'pacificIslander': 'EFNHPIT',
                 'americanIndian': 'EFAIANT',
-                'twoOrMore': 'EF2MORT',
+                'multiracial': 'EF2MORT',
                 'nonResident': 'EFNRALT',
                 'unknown': 'EFUNKNT'
             }
             for key, col in race_cols.items():
                 val = safe_int(row.get(col))
-                if val is not None:
+                if val is not None and val > 0:
                     race_eth_pct[key] = round(val / undergrad, 4)
         
         # Gender percentages
