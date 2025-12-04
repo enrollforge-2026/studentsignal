@@ -646,33 +646,36 @@ const CollegesPageNew = () => {
                         </h3>
                       </Link>
                       
-                      <div className="flex items-center gap-1 text-xs text-gray-600 mb-3">
+                      <div className="flex items-center gap-1 text-xs text-gray-600 mb-2">
                         <MapPin size={12} />
-                        <span>{college.city}, {college.state}</span>
+                        <span>{formatLocation(college.city, college.state)}</span>
                       </div>
 
-                      <div className="flex items-center gap-2 mb-3 text-xs">
-                        <span className="text-gray-700 font-medium">
-                          {college.publicPrivate}
-                        </span>
-                        <span className="text-gray-400">|</span>
-                        <span className="font-bold text-[#1a5d3a]">
-                          {college.acceptanceRate || 'N/A'}% Acceptance Rate
+                      <div className="mb-3">
+                        <span className="inline-block text-xs font-medium text-gray-700 bg-gray-100 px-2 py-1 rounded">
+                          {formatCollegeTag(college.publicPrivate, college.degreeLevel)}
                         </span>
                       </div>
 
                       <div className="space-y-2 mb-3">
                         <div className="flex items-baseline justify-between">
+                          <span className="text-xs text-gray-600">Acceptance Rate:</span>
+                          <span className="text-base font-bold text-[#1a5d3a]">
+                            {formatPercentage(college.acceptanceRate)}
+                          </span>
+                        </div>
+                        
+                        <div className="flex items-baseline justify-between">
                           <span className="text-xs text-gray-600">In-State Tuition:</span>
                           <span className="text-base font-bold text-gray-900">
-                            ${(college.inStateTuition || 0).toLocaleString()}
+                            {formatCurrency(college.inStateTuition)}
                           </span>
                         </div>
                         
                         <div className="flex items-baseline justify-between">
                           <span className="text-xs text-gray-600">Avg Net Price:</span>
                           <span className="text-base font-bold text-gray-900">
-                            {college.avgNetPrice ? `$${college.avgNetPrice.toLocaleString()}` : 'N/A'}
+                            {formatCurrency(college.avgNetPrice)}
                           </span>
                         </div>
                       </div>
