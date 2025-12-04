@@ -204,49 +204,61 @@ const CollegeDetailPage = () => {
         {/* Quick stats */}
         <div className="bg-white border-b border-gray-200">
           <div className="w-full max-w-6xl mx-auto px-4 py-4 sm:py-6">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-6">
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
-                  <Users size={20} />
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-6">
+              {college.enrollment && (
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                    <Users size={20} />
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900">{college.enrollmentFormatted}</p>
+                  <p className="text-sm text-gray-500">Students</p>
                 </div>
-                <p className="text-2xl font-bold text-gray-900">{college.enrollment.toLocaleString()}</p>
-                <p className="text-sm text-gray-500">Students</p>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
-                  <GraduationCap size={20} />
+              )}
+              {college.acceptanceRate && (
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                    <GraduationCap size={20} />
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900">{college.acceptanceRate}%</p>
+                  <p className="text-sm text-gray-500">Acceptance Rate</p>
                 </div>
-                <p className="text-2xl font-bold text-gray-900">{college.acceptanceRate}%</p>
-                <p className="text-sm text-gray-500">Acceptance Rate</p>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
-                  <DollarSign size={20} />
+              )}
+              {college.tuitionInState && (
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                    <DollarSign size={20} />
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900">{college.tuitionInStateFormatted}</p>
+                  <p className="text-sm text-gray-500">In-State Tuition</p>
                 </div>
-                <p className="text-2xl font-bold text-gray-900">${college.tuitionInState.toLocaleString()}</p>
-                <p className="text-sm text-gray-500">In-State Tuition</p>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
-                  <Award size={20} />
+              )}
+              {college.graduationRateFormatted && college.graduationRateFormatted !== 'Not available' && (
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                    <Award size={20} />
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900">{college.graduationRateFormatted}</p>
+                  <p className="text-sm text-gray-500">Graduation Rate</p>
                 </div>
-                <p className="text-2xl font-bold text-gray-900">{college.graduationRate}%</p>
-                <p className="text-sm text-gray-500">Graduation Rate</p>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
-                  <BookOpen size={20} />
+              )}
+              {college.satRange && college.satRange !== 'Not reported' && (
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                    <BookOpen size={20} />
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900">{college.satRange}</p>
+                  <p className="text-sm text-gray-500">SAT Range</p>
                 </div>
-                <p className="text-2xl font-bold text-gray-900">{college.satRange}</p>
-                <p className="text-sm text-gray-500">SAT Range</p>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
-                  <Star size={20} />
+              )}
+              {college.actRange && college.actRange !== 'Not reported' && (
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 text-[#1a5d3a] mb-1">
+                    <BookOpen size={20} />
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900">{college.actRange}</p>
+                  <p className="text-sm text-gray-500">ACT Range</p>
                 </div>
-                <p className="text-2xl font-bold text-gray-900">#{college.ranking}</p>
-                <p className="text-sm text-gray-500">National Rank</p>
-              </div>
+              )}
             </div>
           </div>
         </div>
