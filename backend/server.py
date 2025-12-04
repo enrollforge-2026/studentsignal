@@ -443,7 +443,7 @@ async def save_college(
         raise HTTPException(status_code=404, detail="User not found")
     
     # Check if college exists
-    college = await colleges_collection.find_one({"id": item.item_id})
+    college = await colleges_collection.find_one({"ipedsId": item.item_id})
     if not college:
         raise HTTPException(status_code=404, detail="College not found")
     
