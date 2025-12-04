@@ -87,6 +87,28 @@ export const getDisplayValue = (value, fallback = "N/A") => {
 };
 
 /**
+ * Format ISO date to readable format
+ * @param {string|Date} date - ISO date string or Date object
+ * @param {string} fallback - Fallback text if invalid (default: "N/A")
+ * @returns {string} Formatted date like "Jan 15, 2025" or fallback
+ */
+export const formatDate = (date, fallback = "N/A") => {
+  if (!date) return fallback;
+  
+  try {
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    
+    // Check if valid date
+    if (isNaN(dateObj.getTime())) return fallback;
+    
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return dateObj.toLocaleDateString('en-US', options);
+  } catch (error) {
+    return fallback;
+  }
+};
+
+/**
  * StudentSignal Brand Colors
  */
 export const COLORS = {
