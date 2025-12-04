@@ -232,7 +232,7 @@ const CollegeSearchPage = () => {
 
               {/* Institution Type */}
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Institution Type
                 </label>
                 <div className="space-y-2">
@@ -242,7 +242,7 @@ const CollegeSearchPage = () => {
                         type="checkbox"
                         checked={filters.publicPrivate.includes(type)}
                         onChange={() => handleCheckboxFilter('publicPrivate', type)}
-                        className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                        className="w-4 h-4 text-[#1a5d3a] border-gray-300 rounded focus:ring-[#1a5d3a]"
                       />
                       <span className="ml-2 text-sm text-gray-700">{type}</span>
                     </label>
