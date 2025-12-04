@@ -379,7 +379,7 @@ const CollegeSearchPage = () => {
 
             {/* College Grid */}
             {!loading && colleges.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
                 {colleges.map(college => (
                   <CollegeCard
                     key={college.ipedsId || college.slug}
