@@ -189,7 +189,7 @@ const CollegesPageNew = () => {
       console.error('Error saving/unsaving college:', error);
       toast.error('Failed to update saved status. Please try again.');
     }
-  };
+  }, [isAuthenticated, savedColleges]);
 
   const handleWillYouGetAccepted = (collegeName) => {
     // Create a visible modal/notification instead of alert
