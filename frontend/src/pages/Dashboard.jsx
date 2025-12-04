@@ -11,7 +11,7 @@ import {
   Target,
   ExternalLink
 } from 'lucide-react';
-import { formatLocation, formatCollegeTag } from '../utils/formatters';
+import { formatLocation, formatCollegeTag, formatDate } from '../utils/formatters';
 
 const Dashboard = () => {
   const { user } = useAuth();
