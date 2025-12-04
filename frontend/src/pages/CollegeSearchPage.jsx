@@ -517,7 +517,7 @@ const CollegeCard = ({ college, onClick }) => {
       </div>
 
       {/* Card Content */}
-      <div className="p-5">
+      <div className="p-4 flex flex-col flex-1">
         <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-2 min-h-[3.5rem]">
           {college.name}
         </h3>
