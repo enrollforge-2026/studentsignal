@@ -386,9 +386,9 @@ const CollegeSearchPage = () => {
               </div>
             )}
 
-            {/* No Results */}
+            {/* No Results - Fixed Height */}
             {!loading && colleges.length === 0 && (
-              <div className="text-center py-20">
+              <div className="text-center py-20" style={{ minHeight: '600px' }}>
                 <p className="text-xl text-gray-600 mb-4">No colleges found matching your criteria</p>
                 <button
                   onClick={clearAllFilters}
