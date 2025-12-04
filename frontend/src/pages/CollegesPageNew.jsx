@@ -621,12 +621,12 @@ const CollegesPageNew = () => {
                         className="w-full h-full object-cover"
                       />
                       <button
-                        onClick={() => toggleSaveCollege(college.id)}
+                        onClick={() => toggleSaveCollege(college.ipedsId)}
                         className={`absolute top-3 right-3 bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors ${
-                          savedColleges.includes(college.id) ? 'text-[#f5a623]' : 'text-gray-400'
+                          savedColleges.includes(college.ipedsId) ? 'text-[#f5a623]' : 'text-gray-400'
                         }`}
                       >
-                        <Bookmark size={18} fill={savedColleges.includes(college.id) ? '#f5a623' : 'none'} />
+                        <Bookmark size={18} fill={savedColleges.includes(college.ipedsId) ? '#f5a623' : 'none'} />
                       </button>
                     </div>
 
