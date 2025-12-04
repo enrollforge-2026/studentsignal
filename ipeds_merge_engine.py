@@ -315,7 +315,7 @@ print(f"✓ Total colleges in dataset: {len(colleges)}")
 
 # Generate summary statistics
 print("\n" + "=" * 80)
-print("DATASET SUMMARY")
+print("DATASET SUMMARY - Balanced Merge v1")
 print("=" * 80)
 
 # Count non-null values for key fields
@@ -325,6 +325,9 @@ stats = {
     'with_sat_scores': sum(1 for c in colleges if c['admissions']['satRange']['min'] is not None),
     'with_act_scores': sum(1 for c in colleges if c['admissions']['actRange']['min'] is not None),
     'with_enrollment': sum(1 for c in colleges if c['enrollment']['undergrad'] is not None),
+    'with_race_ethnicity_data': sum(1 for c in colleges if len(c['diversity']['raceEthnicityPct']) > 0),
+    'with_gender_data': sum(1 for c in colleges if len(c['diversity']['genderPct']) > 0),
+    'with_pell_pct': sum(1 for c in colleges if c['diversity']['pellPct'] is not None),
     'with_tuition_data': sum(1 for c in colleges if c['financials']['tuitionInState'] is not None),
     'with_grad_rate_4yr': sum(1 for c in colleges if c['outcomes']['gradRate4yr'] is not None),
     'with_grad_rate_6yr': sum(1 for c in colleges if c['outcomes']['gradRate6yr'] is not None),
@@ -333,6 +336,25 @@ stats = {
 for key, value in stats.items():
     pct = (value / len(colleges) * 100) if len(colleges) > 0 else 0
     print(f"  {key}: {value} ({pct:.1f}%)")
+
+# Additional diversity breakdown
+print("\n" + "-" * 80)
+print("DIVERSITY DATA BREAKDOWN")
+print("-" * 80)
+race_keys = ['black', 'hispanic', 'white', 'asian', 'pacificIslander', 
+             'americanIndian', 'multiracial', 'nonResident', 'unknown']
+for race_key in race_keys:
+    count = sum(1 for c in colleges if race_key in c['diversity']['raceEthnicityPct'])
+    pct = (count / len(colleges) * 100) if len(colleges) > 0 else 0
+    print(f"  with {race_key} data: {count} ({pct:.1f}%)")
+
+print("\n" + "-" * 80)
+print("GENDER DATA BREAKDOWN")
+print("-" * 80)
+male_count = sum(1 for c in colleges if 'male' in c['diversity']['genderPct'])
+female_count = sum(1 for c in colleges if 'female' in c['diversity']['genderPct'])
+print(f"  with male data: {male_count} ({male_count/len(colleges)*100:.1f}%)")
+print(f"  with female data: {female_count} ({female_count/len(colleges)*100:.1f}%)")
 
 print("\n" + "=" * 80)
 print("✓ MERGE COMPLETE")
