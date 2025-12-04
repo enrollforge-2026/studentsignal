@@ -270,7 +270,7 @@
 
 ## 🚀 DEPLOYMENT STATUS
 
-**Environment:** https://campus-match-12.preview.emergentagent.com
+**Environment:** https://studentui-stable.preview.emergentagent.com
 
 **Status:** ✅ LIVE AND FUNCTIONAL
 
