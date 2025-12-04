@@ -434,7 +434,7 @@ const ScholarshipsPage = () => {
                       <div className="space-y-2 mb-4 text-sm">
                         <div className="flex items-start gap-2">
                           <span className="font-semibold text-gray-700 min-w-[70px]">Deadline:</span>
-                          <span className="text-gray-600">{scholarship.deadline}</span>
+                          <span className="text-gray-600">{formatDate(scholarship.deadline)}</span>
                         </div>
                         <div className="flex items-start gap-2">
                           <span className="font-semibold text-gray-700 min-w-[70px]">Type:</span>
