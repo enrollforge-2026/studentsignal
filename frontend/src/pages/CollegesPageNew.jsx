@@ -45,9 +45,11 @@ const CollegesPageNew = () => {
     const fetchColleges = async () => {
       try {
         setLoading(true);
-        const response = await collegesAPI.getColleges();
-        setColleges(response.colleges || []);
-        setFilteredColleges(response.colleges || []);
+        const response = await collegesAPI.getColleges({limit: 100});
+        // Transform IPEDS data for UI
+        const transformedColleges = (response.colleges || []).map(transformCollegeForUI);
+        setColleges(transformedColleges);
+        setFilteredColleges(transformedColleges);
         setError(null);
       } catch (err) {
         console.error('Error fetching colleges:', err);
