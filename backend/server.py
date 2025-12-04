@@ -251,8 +251,8 @@ async def get_colleges(
 
 @api_router.get("/colleges/{college_id}", response_model=College)
 async def get_college(college_id: str):
-    """Get single college by ID"""
-    college = await colleges_collection.find_one({"id": college_id}, {"_id": 0})
+    """Get single college by IPEDS ID"""
+    college = await colleges_collection.find_one({"ipedsId": college_id}, {"_id": 0})
     if not college:
         raise HTTPException(status_code=404, detail="College not found")
     return college
