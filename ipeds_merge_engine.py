@@ -83,20 +83,46 @@ if 'UNITID' in dfs['adm'].columns:
 else:
     print("  ⚠ WARNING: UNITID not found in admissions file")
 
-# Step 4: Merge enrollment/diversity data (with filtering)
+# Step 4: Merge enrollment/diversity data (with filtering and aggregation)
 print("\n[4/6] Merging enrollment/diversity data (ef2022a_rv.csv)...")
 ef_filtered = dfs['ef'].copy()
-if 'EFALEVEL' in ef_filtered.columns and 'LINE' in ef_filtered.columns and 'SECTION' in ef_filtered.columns:
-    ef_filtered = ef_filtered[
-        (ef_filtered['EFALEVEL'] == 1) & 
-        (ef_filtered['LINE'] == 1) & 
-        (ef_filtered['SECTION'] == 1)
-    ]
-    print(f"  Filtered enrollment data: {len(ef_filtered)} rows")
-    base = base.merge(ef_filtered, on='UNITID', how='left', suffixes=('', '_ef'))
+if 'EFALEVEL' in ef_filtered.columns:
+    # Filter only undergraduate level
+    ef_filtered = ef_filtered[ef_filtered['EFALEVEL'] == 1]
+    print(f"  Filtered to EFALEVEL=1: {len(ef_filtered)} rows")
+    
+    # Define columns to aggregate
+    race_cols = ['EFTOTLT', 'EFBKAAT', 'EFHISPT', 'EFWHITT', 'EFASIAT', 
+                 'EFNHPIT', 'EFAIANT', 'EF2MORT', 'EFNRALT', 'EFUNKNT']
+    
+    # Find all gender columns (ending in M or W)
+    all_ef_cols = [col for col in ef_filtered.columns if col.startswith('EF')]
+    male_cols = [col for col in all_ef_cols if col.endswith('M')]
+    female_cols = [col for col in all_ef_cols if col.endswith('W')]
+    
+    print(f"  Found {len(male_cols)} male columns and {len(female_cols)} female columns")
+    
+    # Prepare aggregation dictionary
+    agg_dict = {}
+    for col in race_cols:
+        if col in ef_filtered.columns:
+            agg_dict[col] = 'sum'
+    for col in male_cols:
+        if col in ef_filtered.columns:
+            agg_dict[col] = 'sum'
+    for col in female_cols:
+        if col in ef_filtered.columns:
+            agg_dict[col] = 'sum'
+    
+    # Group by UNITID and sum
+    ef_aggregated = ef_filtered.groupby('UNITID', as_index=False).agg(agg_dict)
+    print(f"  Aggregated to {len(ef_aggregated)} unique institutions")
+    
+    # Merge with base
+    base = base.merge(ef_aggregated, on='UNITID', how='left', suffixes=('', '_ef'))
     print(f"  ✓ Merged: {len(base)} rows")
 else:
-    print("  ⚠ WARNING: Required filter columns not found")
+    print("  ⚠ WARNING: EFALEVEL column not found")
     base = base.merge(ef_filtered, on='UNITID', how='left', suffixes=('', '_ef'))
 
 # Step 5: Merge Pell data
