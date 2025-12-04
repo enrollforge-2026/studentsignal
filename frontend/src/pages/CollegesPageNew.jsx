@@ -149,7 +149,7 @@ const CollegesPageNew = () => {
     }));
   };
 
-  const toggleSaveCollege = async (collegeId) => {
+  const toggleSaveCollege = useCallback(async (collegeId) => {
     if (!isAuthenticated) {
       // Show modal prompting user to log in
       const modal = document.createElement('div');
