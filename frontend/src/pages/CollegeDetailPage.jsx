@@ -8,6 +8,13 @@ import { Button } from '../components/ui/button';
 import { toast } from 'sonner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Progress } from '../components/ui/progress';
+import { 
+  formatCurrency, 
+  formatPercentage, 
+  formatTestScore, 
+  formatLocation,
+  getBadgeColors 
+} from '../utils/formatters';
 import {
   BarChart, Bar, PieChart, Pie, Cell, LineChart, Line,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
