@@ -127,7 +127,7 @@ const Dashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {savedColleges.slice(0, 6).map((college) => (
               <div
-                key={college.id}
+                key={college.ipedsId}
                 className="p-4 bg-gray-50 rounded-xl border hover:border-[#004C3F] transition-all cursor-pointer"
                 style={{ borderColor: '#E1E4E8' }}
               >
@@ -135,7 +135,7 @@ const Dashboard = () => {
                   {college.name}
                 </h3>
                 <p className="text-xs" style={{ color: '#6B7280' }}>
-                  {college.location || college.state}
+                  {college.city}, {college.state}
                 </p>
               </div>
             ))}
